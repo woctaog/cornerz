@@ -1,0 +1,52 @@
+{
+  "puzzles": [
+    {
+      "id": 1,
+      "title": "Fruits",
+      "description": "Fresh and delicious fruits",
+      "words": [
+        "APPLE",
+        "ORANGE",
+        "BANANA",
+        "GRAPE",
+        "CHERRY",
+        "LEMON",
+        "PEACH",
+        "BERRY",
+        "MELON"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Colors",
+      "description": "Vibrant colors of the rainbow",
+      "words": [
+        "RED",
+        "BLUE",
+        "GREEN",
+        "YELLOW",
+        "PURPLE",
+        "ORANGE",
+        "PINK",
+        "BLACK",
+        "WHITE"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Animals",
+      "description": "Creatures from around the world",
+      "words": [
+        "DOG",
+        "CAT",
+        "BIRD",
+        "FISH",
+        "LION",
+        "TIGER",
+        "BEAR",
+        "WOLF",
+        "HORSE"
+      ]
+    }
+  ]
+}

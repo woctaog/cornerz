@@ -1,0 +1,56 @@
+<div class="game-container">
+  <div class="puzzle-info" *ngIf="currentPuzzle && !loading">
+    <h2>{{ currentPuzzle.title }}</h2>
+    <p class="puzzle-description">{{ currentPuzzle.description }}</p>
+    <div class="puzzle-navigation">
+      <a [href]="'?puzzle=1'" [class.active]="currentPuzzle.id === 1">Puzzle 1</a>
+      <a [href]="'?puzzle=2'" [class.active]="currentPuzzle.id === 2">Puzzle 2</a>
+      <a [href]="'?puzzle=3'" [class.active]="currentPuzzle.id === 3">Puzzle 3</a>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    <p>Loading puzzle...</p>
+  </div>
+
+  <div class="error" *ngIf="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <div class="game-content" *ngIf="!loading && !error">
+    <div class="game-board">
+      <div class="grid-cell" 
+           *ngFor="let tile of gridTiles; let i = index"
+           [class.occupied]="tile !== null"
+           cdkDropList
+           [id]="'grid-cell-' + i"
+           (cdkDropListDropped)="dropOnCell($event, i)"
+           [cdkDropListData]="[tile]"
+           [cdkDropListConnectedTo]="getConnectedDropLists()">
+        <app-game-tile 
+          *ngIf="tile" 
+          [word]="tile.word"
+          [isDraggable]="true"
+          cdkDrag>
+        </app-game-tile>
+      </div>
+    </div>
+
+    <div class="tile-bank">
+      <h3>Available Tiles</h3>
+      <div class="bank-container" 
+           cdkDropList
+           id="bank-list"
+           (cdkDropListDropped)="dropToBank($event)"
+           [cdkDropListData]="availableTiles"
+           [cdkDropListConnectedTo]="getConnectedDropLists()">
+        <app-game-tile 
+          *ngFor="let tile of availableTiles" 
+          [word]="tile.word"
+          [isDraggable]="true"
+          cdkDrag>
+        </app-game-tile>
+      </div>
+    </div>
+  </div>
+</div>
