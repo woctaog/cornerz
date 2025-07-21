@@ -22,7 +22,7 @@ export class GameService {
   constructor(private http: HttpClient) { }
 
   loadPuzzles(): Observable<PuzzleData> {
-    return this.http.get<PuzzleData>('/assets/puzzles.json');
+    return this.http.get<PuzzleData>('./assets/puzzles.json');
   }
 
   getPuzzleById(id: number): Observable<Puzzle | null> {
