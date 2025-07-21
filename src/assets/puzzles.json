@@ -2,8 +2,8 @@
   "puzzles": [
     {
       "id": 1,
-      "title": "Money, Colors & Rolling",
-      "description": "A dual-category puzzle with cheese, bakery, and music themes",
+      "title": "Puzzle 1",
+      "description": "Arrange the words in the 3x3 grid",
       "words": [
         "CHEDDAR",
         "BLUE", 

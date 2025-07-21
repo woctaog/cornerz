@@ -3,9 +3,9 @@
     <h2>{{ currentPuzzle.title }}</h2>
     <p class="puzzle-description">{{ currentPuzzle.description }}</p>
     <div class="puzzle-navigation">
-      <a [href]="'?puzzle=1'" [class.active]="currentPuzzle.id === 1">Puzzle 1</a>
-      <a [href]="'?puzzle=2'" [class.active]="currentPuzzle.id === 2">Puzzle 2</a>
-      <a [href]="'?puzzle=3'" [class.active]="currentPuzzle.id === 3">Puzzle 3</a>
+      <button (click)="loadPuzzle(1, true)" [class.active]="currentPuzzle.id === 1">Puzzle 1</button>
+      <button (click)="loadPuzzle(2, true)" [class.active]="currentPuzzle.id === 2">Puzzle 2</button>
+      <button (click)="loadPuzzle(3, true)" [class.active]="currentPuzzle.id === 3">Puzzle 3</button>
     </div>
   </div>
 
@@ -18,39 +18,56 @@
   </div>
 
   <div class="game-content" *ngIf="!loading && !error">
-    <div class="game-board">
-      <div class="grid-cell" 
-           *ngFor="let tile of gridTiles; let i = index"
-           [class.occupied]="tile !== null"
-           cdkDropList
-           [id]="'grid-cell-' + i"
-           (cdkDropListDropped)="dropOnCell($event, i)"
-           [cdkDropListData]="[tile]"
-           [cdkDropListConnectedTo]="getConnectedDropLists()">
-        <app-game-tile 
-          *ngIf="tile" 
-          [word]="tile.word"
-          [isDraggable]="true"
-          cdkDrag>
-        </app-game-tile>
+    <!-- Show game interface for puzzle 1 -->
+    <div *ngIf="currentPuzzle && currentPuzzle.id === 1">
+      <div class="game-board">
+        <div class="grid-cell" 
+             *ngFor="let tile of gridTiles; let i = index"
+             [class.occupied]="tile !== null"
+             cdkDropList
+             [id]="'grid-cell-' + i"
+             (cdkDropListDropped)="dropOnCell($event, i)"
+             [cdkDropListData]="[tile]"
+             [cdkDropListConnectedTo]="getConnectedDropLists()">
+          <app-game-tile 
+            *ngIf="tile" 
+            [word]="tile.word"
+            [isDraggable]="true"
+            cdkDrag>
+          </app-game-tile>
+        </div>
+      </div>
+
+      <div class="tile-bank">
+        <h3>Available Tiles</h3>
+        <div class="bank-container" 
+             cdkDropList
+             id="bank-list"
+             (cdkDropListDropped)="dropToBank($event)"
+             [cdkDropListData]="availableTiles"
+             [cdkDropListConnectedTo]="getConnectedDropLists()">
+          <app-game-tile 
+            *ngFor="let tile of availableTiles" 
+            [word]="tile.word"
+            [isDraggable]="true"
+            cdkDrag>
+          </app-game-tile>
+        </div>
+      </div>
+
+      <div class="how-to-play">
+        <h3>How to Play</h3>
+        <p>
+          Drag words from the tile bank to the 3×3 grid. Each word must belong to both 
+          its row category AND its column category. Think carefully about where each word fits!
+        </p>
       </div>
     </div>
 
-    <div class="tile-bank">
-      <h3>Available Tiles</h3>
-      <div class="bank-container" 
-           cdkDropList
-           id="bank-list"
-           (cdkDropListDropped)="dropToBank($event)"
-           [cdkDropListData]="availableTiles"
-           [cdkDropListConnectedTo]="getConnectedDropLists()">
-        <app-game-tile 
-          *ngFor="let tile of availableTiles" 
-          [word]="tile.word"
-          [isDraggable]="true"
-          cdkDrag>
-        </app-game-tile>
-      </div>
+    <!-- Show coming soon for puzzles 2 and 3 -->
+    <div class="coming-soon" *ngIf="currentPuzzle && (currentPuzzle.id === 2 || currentPuzzle.id === 3)">
+      <h2>Coming Soon!</h2>
+      <p>This puzzle is still being crafted. Check back later for more challenging word puzzles!</p>
     </div>
   </div>
 </div>

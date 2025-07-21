@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { GameService, Puzzle } from '../../services/game.service';
 
@@ -22,8 +22,18 @@ export class GameBoardComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private gameService: GameService
   ) { }
+
+  private shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -32,21 +42,46 @@ export class GameBoardComponent implements OnInit {
     });
   }
 
-  loadPuzzle(puzzleId: number): void {
+  loadPuzzle(puzzleId: number, updateUrl: boolean = false): void {
     this.loading = true;
     this.error = null;
+    
+    // Update URL if called from button click
+    if (updateUrl) {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { puzzle: puzzleId },
+        queryParamsHandling: 'merge'
+      });
+    }
+    
+    // Handle puzzles 2 and 3 as coming soon
+    if (puzzleId === 2 || puzzleId === 3) {
+      this.currentPuzzle = {
+        id: puzzleId,
+        title: `Puzzle ${puzzleId}`,
+        description: 'Coming Soon!',
+        words: []
+      };
+      this.availableTiles = [];
+      this.gridTiles = new Array(9).fill(null);
+      this.loading = false;
+      return;
+    }
     
     this.gameService.getPuzzleById(puzzleId).subscribe({
       next: (puzzle) => {
         if (puzzle) {
           this.currentPuzzle = puzzle;
-          this.availableTiles = puzzle.words.map((word, index) => ({
+          // Shuffle the words to hide the puzzle structure
+          const shuffledWords = this.shuffleArray(puzzle.words);
+          this.availableTiles = shuffledWords.map((word, index) => ({
             id: index + 1,
             word: word
           }));
           this.gridTiles = new Array(9).fill(null);
         } else {
-          this.error = `Puzzle ${puzzleId} not found. Available puzzles: 1, 2, 3`;
+          this.error = `Puzzle ${puzzleId} not found. Available puzzles: 1`;
           this.loadPuzzle(1);
         }
         this.loading = false;
