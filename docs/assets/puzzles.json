@@ -1,0 +1,48 @@
+{
+  "puzzles": [
+    {
+      "id": 1,
+      "title": "Money, Colors & Rolling",
+      "description": "A dual-category puzzle with cheese, bakery, and music themes",
+      "words": [
+        "CHEDDAR",
+        "BLUE", 
+        "WHEEL",
+        "DOUGH",
+        "BROWN",
+        "ROLL",
+        "CASH",
+        "WHITE",
+        "CHECKER"
+      ],
+      "categorySetA": [
+        {
+          "name": "Types of Cheese",
+          "words": ["CHEDDAR", "BLUE", "WHEEL"]
+        },
+        {
+          "name": "Bakery Terms", 
+          "words": ["DOUGH", "BROWN", "ROLL"]
+        },
+        {
+          "name": "Musical Artist Last Names",
+          "words": ["CASH", "WHITE", "CHECKER"]
+        }
+      ],
+      "categorySetB": [
+        {
+          "name": "Slang for Money",
+          "words": ["CHEDDAR", "DOUGH", "CASH"]
+        },
+        {
+          "name": "Colors",
+          "words": ["BLUE", "BROWN", "WHITE"]
+        },
+        {
+          "name": "Things That Roll",
+          "words": ["WHEEL", "ROLL", "CHECKER"]
+        }
+      ]
+    }
+  ]
+}
