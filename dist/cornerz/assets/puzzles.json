@@ -2,31 +2,34 @@
   "puzzles": [
     {
       "id": 1,
-      "title": "Money, Colors & Rolling",
-      "description": "A dual-category puzzle with cheese, bakery, and music themes",
+      "title": "Puzzle 1",
+      "description": "Arrange the words in the 3x4 grid",
       "words": [
         "CHEDDAR",
         "BLUE", 
         "WHEEL",
+        "GOUDA",
         "DOUGH",
         "BROWN",
         "ROLL",
+        "BAGUETTE",
         "CASH",
         "WHITE",
-        "CHECKER"
+        "CHECKER",
+        "BERRY"
       ],
       "categorySetA": [
         {
           "name": "Types of Cheese",
-          "words": ["CHEDDAR", "BLUE", "WHEEL"]
+          "words": ["CHEDDAR", "BLUE", "WHEEL", "GOUDA"]
         },
         {
           "name": "Bakery Terms", 
-          "words": ["DOUGH", "BROWN", "ROLL"]
+          "words": ["DOUGH", "BROWN", "ROLL", "BAGUETTE"]
         },
         {
           "name": "Musical Artist Last Names",
-          "words": ["CASH", "WHITE", "CHECKER"]
+          "words": ["CASH", "WHITE", "CHECKER", "BERRY"]
         }
       ],
       "categorySetB": [
@@ -41,6 +44,10 @@
         {
           "name": "Things That Roll",
           "words": ["WHEEL", "ROLL", "CHECKER"]
+        },
+        {
+          "name": "Foods/Natural Items",
+          "words": ["GOUDA", "BAGUETTE", "BERRY"]
         }
       ]
     }

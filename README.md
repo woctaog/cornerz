@@ -1,4 +1,4 @@
-# Stackz
+# Cornerz
 
 A challenging word puzzle game inspired by NY Times Connections, built with Angular. Players arrange words in a 3x3 grid where each word must belong to both its row category and column category simultaneously.
 
@@ -13,7 +13,7 @@ A challenging word puzzle game inspired by NY Times Connections, built with Angu
 
 ## Game Mechanics
 
-Stackz is a sophisticated word puzzle that challenges players to think in multiple dimensions. The game presents a 3x3 grid where each position must be filled with a word that satisfies **two categories simultaneously**.
+Cornerz is a sophisticated word puzzle that challenges players to think in multiple dimensions. The game presents a 4x4 grid with 12 outer spots where each position must be filled with a word that satisfies **two categories simultaneously**.
 
 ### How It Works
 
@@ -25,14 +25,32 @@ Players can choose whether Category Set A represents rows or columns, making the
 
 Each word in the grid must belong to **both** its row category **and** its column category, creating a complex web of interconnected meanings.
 
-### Example Puzzle Layout
+### Game Mechanics
 
 ```
-            SLANG FOR MONEY  |    COLORS    |  THINGS THAT ROLL
-          -------------------|--------------|-------------------
-CHEESE TYPES    |  CHEDDAR   |    BLUE      |     WHEEL
-BAKERY TERMS    |   DOUGH    |    BROWN     |     ROLL  
-MUSICIANS       |   CASH     |    WHITE     |     CHECKER
+4x4 Grid (X = available spots, O = disabled center spots):
+
+X X X X
+X O O X  
+X O O X
+X X X X
+
+Drag 4 words to form complete lines:
+- Top Row (positions 0,1,2,3)
+- Bottom Row (positions 12,13,14,15)
+- Left Column (positions 0,4,8,12)
+- Right Column (positions 3,7,11,15)
+
+If all 4 words belong to the same category, they turn GREEN and lock in place.
+Otherwise, they automatically return to the tile bank.
+Any line can be any category!
+
+🎯 VISUAL INDICATORS:
+When a line is completed, the corresponding center square shows:
+- Top Row → Top Right center (arrow ↑ + category name)
+- Right Column → Bottom Right center (arrow → + category name)  
+- Bottom Row → Bottom Left center (arrow ↓ + category name)
+- Left Column → Top Left center (arrow ← + category name)
 ```
 
 In this example:
@@ -42,7 +60,7 @@ In this example:
 
 ### The Challenge
 
-The brilliance of Stackz lies in finding words that can satisfy dual categories. Players must:
+The brilliance of Cornerz lies in finding words that can satisfy dual categories. Players must:
 
 1. **Analyze Categories**: Understand what each row and column category represents
 2. **Find Intersections**: Identify words that logically fit both their row and column themes
@@ -76,7 +94,7 @@ The brilliance of Stackz lies in finding words that can satisfy dual categories.
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd stackz
+   cd cornerz
    ```
 
 2. Install dependencies:

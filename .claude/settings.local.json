@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv:*)",
+      "Bash(find:*)",
+      "Bash(sed:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm start)",
+      "Bash(netstat:*)",
+      "Bash(taskkill:*)",
+      "Bash(ng serve:*)",
+      "Bash(/bashes)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

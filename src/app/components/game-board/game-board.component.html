@@ -21,20 +21,32 @@
     <!-- Show game interface for puzzle 1 -->
     <div *ngIf="currentPuzzle && currentPuzzle.id === 1">
       <div class="game-board">
+        <!-- Grid cells -->
         <div class="grid-cell" 
              *ngFor="let tile of gridTiles; let i = index"
-             [class.occupied]="tile !== null"
+             [class.occupied]="gridTiles[i] !== null && !isSpotDisabled(i)"
+             [class.disabled]="isSpotDisabled(i)"
+             [class.completed]="isCellCompleted(i)"
              cdkDropList
              [id]="'grid-cell-' + i"
              (cdkDropListDropped)="dropOnCell($event, i)"
              [cdkDropListData]="[tile]"
              [cdkDropListConnectedTo]="getConnectedDropLists()">
           <app-game-tile 
-            *ngIf="tile" 
-            [word]="tile.word"
-            [isDraggable]="true"
+            *ngIf="gridTiles[i] && !isSpotDisabled(i)" 
+            [word]="gridTiles[i]!.word"
+            [isDraggable]="!isCellCompleted(i)"
             cdkDrag>
           </app-game-tile>
+          
+          <!-- Center indicator for completed lines -->
+          <div *ngIf="isSpotDisabled(i) && isCenterIndicatorActive(i)" class="center-indicator">
+            <div class="arrow">{{ getCenterIndicatorArrow(i) }}</div>
+            <div class="category-label">{{ getCenterIndicatorCategory(i) }}</div>
+          </div>
+          
+          <!-- Default disabled spot -->
+          <div *ngIf="isSpotDisabled(i) && !isCenterIndicatorActive(i)" class="disabled-spot"></div>
         </div>
       </div>
 
@@ -58,8 +70,8 @@
       <div class="how-to-play">
         <h3>How to Play</h3>
         <p>
-          Drag words from the tile bank to the 3×3 grid. Each word must belong to both 
-          its row category AND its column category. Think carefully about where each word fits!
+          Drag words to form complete lines of 4! If all 4 words in a row or column belong to the same category, 
+          they will turn green and lock in place. Otherwise, they return to the tile bank. Any edge can be any category!
         </p>
       </div>
     </div>

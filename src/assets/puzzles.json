@@ -2,45 +2,42 @@
   "puzzles": [
     {
       "id": 1,
-      "title": "Puzzle 1",
-      "description": "Arrange the words in the 3x3 grid",
+      "title": "Cornerz Puzzle 1",
+      "description": "Arrange the words in the 4x4 grid (outer spots only)",
       "words": [
-        "CHEDDAR",
-        "BLUE", 
-        "WHEEL",
-        "DOUGH",
-        "BROWN",
-        "ROLL",
-        "CASH",
-        "WHITE",
-        "CHECKER"
+        "RING",
+        "CHAIN",
+        "PENDANT",
+        "BAND",
+        "SCALE",
+        "NOTE",
+        "PITCH",
+        "BAT",
+        "BASE",
+        "DIAMOND",
+        "SQUARE",
+        "CIRCLE"
       ],
-      "categorySetA": [
+      "categories": [
         {
-          "name": "Types of Cheese",
-          "words": ["CHEDDAR", "BLUE", "WHEEL"]
+          "id": 1,
+          "name": "Jewelry",
+          "words": ["RING", "CHAIN", "PENDANT", "BAND"]
         },
         {
-          "name": "Bakery Terms", 
-          "words": ["DOUGH", "BROWN", "ROLL"]
+          "id": 2,
+          "name": "Music Terms",
+          "words": ["BAND", "SCALE", "NOTE", "PITCH"]
         },
         {
-          "name": "Musical Artist Last Names",
-          "words": ["CASH", "WHITE", "CHECKER"]
-        }
-      ],
-      "categorySetB": [
-        {
-          "name": "Slang for Money",
-          "words": ["CHEDDAR", "DOUGH", "CASH"]
+          "id": 3,
+          "name": "Baseball Terms",
+          "words": ["PITCH", "BAT", "BASE", "DIAMOND"]
         },
         {
-          "name": "Colors",
-          "words": ["BLUE", "BROWN", "WHITE"]
-        },
-        {
-          "name": "Things That Roll",
-          "words": ["WHEEL", "ROLL", "CHECKER"]
+          "id": 4,
+          "name": "Geometric Shapes",
+          "words": ["DIAMOND", "SQUARE", "CIRCLE", "RING"]
         }
       ]
     }
