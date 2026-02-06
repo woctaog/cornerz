@@ -22,22 +22,26 @@
         {
           "id": 1,
           "name": "Jewelry",
+          "difficulty": 1,
           "words": ["RING", "CHAIN", "PENDANT", "BAND"]
         },
         {
           "id": 2,
-          "name": "Music Terms",
-          "words": ["BAND", "SCALE", "NOTE", "PITCH"]
+          "name": "Geometric Shapes",
+          "difficulty": 2,
+          "words": ["DIAMOND", "SQUARE", "CIRCLE", "RING"]
         },
         {
           "id": 3,
-          "name": "Baseball Terms",
-          "words": ["PITCH", "BAT", "BASE", "DIAMOND"]
+          "name": "Music Terms",
+          "difficulty": 3,
+          "words": ["BAND", "SCALE", "NOTE", "PITCH"]
         },
         {
           "id": 4,
-          "name": "Geometric Shapes",
-          "words": ["DIAMOND", "SQUARE", "CIRCLE", "RING"]
+          "name": "Baseball Terms",
+          "difficulty": 4,
+          "words": ["PITCH", "BAT", "BASE", "DIAMOND"]
         }
       ]
     }
