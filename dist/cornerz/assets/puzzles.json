@@ -1,0 +1,49 @@
+{
+  "puzzles": [
+    {
+      "id": 1,
+      "title": "Cornerz Puzzle 1",
+      "description": "Arrange the words in the 4x4 grid (outer spots only)",
+      "words": [
+        "RING",
+        "CHAIN",
+        "PENDANT",
+        "BAND",
+        "SCALE",
+        "NOTE",
+        "PITCH",
+        "BAT",
+        "BASE",
+        "DIAMOND",
+        "SQUARE",
+        "CIRCLE"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Jewelry",
+          "difficulty": 1,
+          "words": ["RING", "CHAIN", "PENDANT", "BAND"]
+        },
+        {
+          "id": 2,
+          "name": "Geometric Shapes",
+          "difficulty": 2,
+          "words": ["DIAMOND", "SQUARE", "CIRCLE", "RING"]
+        },
+        {
+          "id": 3,
+          "name": "Music Terms",
+          "difficulty": 3,
+          "words": ["BAND", "SCALE", "NOTE", "PITCH"]
+        },
+        {
+          "id": 4,
+          "name": "Baseball Terms",
+          "difficulty": 4,
+          "words": ["PITCH", "BAT", "BASE", "DIAMOND"]
+        }
+      ]
+    }
+  ]
+}
