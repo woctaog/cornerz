@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class GameTileComponent {
   @Input() word: string = '';
   @Input() isDraggable: boolean = true;
+  @Input() isSelected: boolean = false;
 }

@@ -2,45 +2,46 @@
   "puzzles": [
     {
       "id": 1,
-      "title": "Money, Colors & Rolling",
-      "description": "A dual-category puzzle with cheese, bakery, and music themes",
+      "title": "Cornerz Puzzle 1",
+      "description": "Arrange the words in the 4x4 grid (outer spots only)",
       "words": [
-        "CHEDDAR",
-        "BLUE", 
-        "WHEEL",
-        "DOUGH",
-        "BROWN",
-        "ROLL",
-        "CASH",
-        "WHITE",
-        "CHECKER"
+        "RING",
+        "CHAIN",
+        "PENDANT",
+        "BAND",
+        "SCALE",
+        "NOTE",
+        "PITCH",
+        "BAT",
+        "BASE",
+        "DIAMOND",
+        "SQUARE",
+        "CIRCLE"
       ],
-      "categorySetA": [
+      "categories": [
         {
-          "name": "Types of Cheese",
-          "words": ["CHEDDAR", "BLUE", "WHEEL"]
+          "id": 1,
+          "name": "Jewelry",
+          "difficulty": 1,
+          "words": ["RING", "CHAIN", "PENDANT", "BAND"]
         },
         {
-          "name": "Bakery Terms", 
-          "words": ["DOUGH", "BROWN", "ROLL"]
+          "id": 2,
+          "name": "Geometric Shapes",
+          "difficulty": 2,
+          "words": ["DIAMOND", "SQUARE", "CIRCLE", "RING"]
         },
         {
-          "name": "Musical Artist Last Names",
-          "words": ["CASH", "WHITE", "CHECKER"]
-        }
-      ],
-      "categorySetB": [
-        {
-          "name": "Slang for Money",
-          "words": ["CHEDDAR", "DOUGH", "CASH"]
+          "id": 3,
+          "name": "Music Terms",
+          "difficulty": 3,
+          "words": ["BAND", "SCALE", "NOTE", "PITCH"]
         },
         {
-          "name": "Colors",
-          "words": ["BLUE", "BROWN", "WHITE"]
-        },
-        {
-          "name": "Things That Roll",
-          "words": ["WHEEL", "ROLL", "CHECKER"]
+          "id": 4,
+          "name": "Baseball Terms",
+          "difficulty": 4,
+          "words": ["PITCH", "BAT", "BASE", "DIAMOND"]
         }
       ]
     }

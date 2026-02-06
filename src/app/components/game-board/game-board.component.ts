@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CdkDragDrop, CdkDragStart, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
 import { GameService, Puzzle } from '../../services/game.service';
 
 export interface GameTile {
@@ -14,16 +14,67 @@ export interface GameTile {
   styleUrls: ['./game-board.component.scss']
 })
 export class GameBoardComponent implements OnInit {
-  gridTiles: (GameTile | null)[] = new Array(9).fill(null);
+  gridTiles: (GameTile | null)[] = new Array(16).fill(null);
   availableTiles: GameTile[] = [];
   currentPuzzle: Puzzle | null = null;
   loading = true;
   error: string | null = null;
 
+  // Define which spots are disabled (center 4 spots in 4x4 grid)
+  disabledSpots = new Set([5, 6, 9, 10]);
+
+  // Track completed lines (green and locked)
+  completedLines = new Set<string>();
+
+  // Track which category is assigned to each completed line
+  lineCategories = new Map<string, string>();
+  lineDifficulties = new Map<string, number>();
+
+  // Animation state: cells currently playing an animation
+  bouncingCells = new Set<number>();
+  shakingCells = new Set<number>();
+
+  // Drag state: true while a tile is being dragged
+  isDragging = false;
+  isResolvingInvalidLine = false;
+
+  // Tap-to-place: currently selected tile source
+  selectedTile: { source: 'bank'; index: number } | { source: 'grid'; index: number } | null = null;
+
+  // Scoring
+  mistakes: number = 0;
+  gameWon: boolean = false;
+
+  // Define the possible lines (top, bottom, left, right)
+  lines: Record<string, number[]> = {
+    top: [0, 1, 2, 3],
+    bottom: [12, 13, 14, 15],
+    left: [0, 4, 8, 12],
+    right: [3, 7, 11, 15]
+  };
+
+  // Map lines to their corresponding center indicator squares
+  centerIndicators: Record<string, number> = {
+    top: 6,
+    right: 10,
+    bottom: 9,
+    left: 5
+  };
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private gameService: GameService
   ) { }
+
+  private shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -32,57 +83,127 @@ export class GameBoardComponent implements OnInit {
     });
   }
 
-  loadPuzzle(puzzleId: number): void {
+  loadPuzzle(puzzleId: number, updateUrl: boolean = false): void {
     this.loading = true;
     this.error = null;
-    
+    this.selectedTile = null;
+    this.gameWon = false;
+    this.mistakes = 0;
+
+    if (updateUrl) {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { puzzle: puzzleId },
+        queryParamsHandling: 'merge'
+      });
+    }
+
+    if (puzzleId === 2 || puzzleId === 3) {
+      this.currentPuzzle = {
+        id: puzzleId,
+        title: `Puzzle ${puzzleId}`,
+        description: 'Coming Soon!',
+        words: [],
+        categories: []
+      };
+      this.availableTiles = [];
+      this.gridTiles = new Array(16).fill(null);
+      this.loading = false;
+      return;
+    }
+
     this.gameService.getPuzzleById(puzzleId).subscribe({
       next: (puzzle) => {
         if (puzzle) {
           this.currentPuzzle = puzzle;
-          this.availableTiles = puzzle.words.map((word, index) => ({
+          const shuffledWords = this.shuffleArray(puzzle.words);
+          this.availableTiles = shuffledWords.map((word, index) => ({
             id: index + 1,
             word: word
           }));
-          this.gridTiles = new Array(9).fill(null);
+          this.gridTiles = new Array(16).fill(null);
+          this.completedLines = new Set<string>();
+          this.lineCategories = new Map<string, string>();
+          this.lineDifficulties = new Map<string, number>();
         } else {
-          this.error = `Puzzle ${puzzleId} not found. Available puzzles: 1, 2, 3`;
+          this.error = `Puzzle ${puzzleId} not found. Available puzzles: 1`;
           this.loadPuzzle(1);
         }
         this.loading = false;
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Failed to load puzzle data';
         this.loading = false;
       }
     });
   }
 
+  // --- Drag-and-drop handlers ---
+
+  onDragStarted(_event: CdkDragStart) {
+    this.isDragging = true;
+    this.selectedTile = null;
+  }
+
+  onDragEnded(_event: CdkDragEnd) {
+    this.isDragging = false;
+  }
+
   dropOnCell(event: CdkDragDrop<any>, cellIndex: number) {
+    if (this.isResolvingInvalidLine) return;
+    if (this.isSpotDisabled(cellIndex) || this.isCornerLocked(cellIndex)) {
+      return;
+    }
+
     if (event.previousContainer === event.container) {
       return;
     }
 
     if (event.previousContainer.id === 'bank-list') {
-      if (this.gridTiles[cellIndex] === null) {
-        const tile = event.previousContainer.data[event.previousIndex] as GameTile;
+      if (this.isCellInCompletedLine(cellIndex)) {
+        return;
+      }
+      const tile = event.previousContainer.data[event.previousIndex] as GameTile;
+
+      if (this.gridTiles[cellIndex] !== null) {
+        const existingTile = this.gridTiles[cellIndex]!;
+        this.availableTiles.splice(event.previousIndex, 1, existingTile);
+        this.gridTiles[cellIndex] = tile;
+      } else {
         this.gridTiles[cellIndex] = tile;
         this.availableTiles.splice(event.previousIndex, 1);
       }
     } else if (event.previousContainer.id.startsWith('grid-cell-')) {
       const fromIndex = parseInt(event.previousContainer.id.split('-')[2]);
-      if (this.gridTiles[cellIndex] === null) {
-        const tile = this.gridTiles[fromIndex];
-        this.gridTiles[cellIndex] = tile;
-        this.gridTiles[fromIndex] = null;
+      if (!this.canMoveBetweenCells(fromIndex, cellIndex)) {
+        return;
+      }
+      const movingTile = this.gridTiles[fromIndex];
+
+      if (movingTile) {
+        if (this.gridTiles[cellIndex] !== null) {
+          const destinationTile = this.gridTiles[cellIndex]!;
+          this.gridTiles[fromIndex] = destinationTile;
+          this.gridTiles[cellIndex] = movingTile;
+        } else {
+          this.gridTiles[cellIndex] = movingTile;
+          this.gridTiles[fromIndex] = null;
+        }
       }
     }
+
+    this.playBounce(cellIndex);
+    this.checkForCompletedLines();
   }
 
   dropToBank(event: CdkDragDrop<any>) {
+    if (this.isResolvingInvalidLine) return;
     if (event.previousContainer !== event.container) {
       if (event.previousContainer.id.startsWith('grid-cell-')) {
         const gridIndex = parseInt(event.previousContainer.id.split('-')[2]);
+        if (this.isCellInCompletedLine(gridIndex)) {
+          return;
+        }
         const tile = this.gridTiles[gridIndex] as GameTile;
         if (tile) {
           this.availableTiles.push(tile);
@@ -94,8 +215,308 @@ export class GameBoardComponent implements OnInit {
     }
   }
 
+  // --- Tap-to-place handlers ---
+
+  onBankTileClick(index: number) {
+    if (this.isDragging || this.isResolvingInvalidLine) return;
+
+    if (this.selectedTile?.source === 'bank' && this.selectedTile.index === index) {
+      this.selectedTile = null;
+      return;
+    }
+
+    this.selectedTile = { source: 'bank', index };
+  }
+
+  onGridCellClick(cellIndex: number) {
+    if (this.isDragging || this.isResolvingInvalidLine || this.isSpotDisabled(cellIndex) || this.isCornerLocked(cellIndex)) {
+      return;
+    }
+
+    if (this.selectedTile) {
+      // Place or swap the selected tile into this cell
+      if (this.selectedTile.source === 'bank') {
+        if (this.isCellInCompletedLine(cellIndex)) {
+          this.selectedTile = null;
+          return;
+        }
+        const tile = this.availableTiles[this.selectedTile.index];
+        if (this.gridTiles[cellIndex] !== null) {
+          const existingTile = this.gridTiles[cellIndex]!;
+          this.availableTiles.splice(this.selectedTile.index, 1, existingTile);
+        } else {
+          this.availableTiles.splice(this.selectedTile.index, 1);
+        }
+        this.gridTiles[cellIndex] = tile;
+      } else if (this.selectedTile.source === 'grid') {
+        const fromIndex = this.selectedTile.index;
+        if (fromIndex === cellIndex) {
+          this.selectedTile = null;
+          return;
+        }
+        if (!this.canMoveBetweenCells(fromIndex, cellIndex)) {
+          this.selectedTile = null;
+          return;
+        }
+        const movingTile = this.gridTiles[fromIndex];
+        if (movingTile) {
+          this.gridTiles[fromIndex] = this.gridTiles[cellIndex];
+          this.gridTiles[cellIndex] = movingTile;
+        }
+      }
+
+      this.selectedTile = null;
+      this.playBounce(cellIndex);
+      this.checkForCompletedLines();
+    } else if (this.gridTiles[cellIndex] !== null) {
+      // Select this grid tile
+      this.selectedTile = { source: 'grid', index: cellIndex };
+    }
+  }
+
+  onBankClick() {
+    if (this.isDragging || this.isResolvingInvalidLine) return;
+
+    // If a grid tile is selected, return it to the bank
+    if (this.selectedTile?.source === 'grid') {
+      const gridIndex = this.selectedTile.index;
+      if (this.isCellInCompletedLine(gridIndex)) {
+        this.selectedTile = null;
+        return;
+      }
+      const tile = this.gridTiles[gridIndex];
+      if (tile) {
+        this.availableTiles.push(tile);
+        this.gridTiles[gridIndex] = null;
+      }
+      this.selectedTile = null;
+    }
+  }
+
+  // --- Selection state helpers ---
+
+  isBankTileSelected(index: number): boolean {
+    return this.selectedTile?.source === 'bank' && this.selectedTile.index === index;
+  }
+
+  isGridCellSelected(cellIndex: number): boolean {
+    return this.selectedTile?.source === 'grid' && this.selectedTile.index === cellIndex;
+  }
+
+  isGridTileDraggable(cellIndex: number): boolean {
+    return !this.isCornerLocked(cellIndex) && !this.isResolvingInvalidLine;
+  }
+
+  isValidDropTarget(cellIndex: number): boolean {
+    if (this.isSpotDisabled(cellIndex) || this.isCornerLocked(cellIndex) || this.isResolvingInvalidLine) {
+      return false;
+    }
+    // Show targets when dragging OR when a tile is selected
+    return this.isDragging || this.selectedTile !== null;
+  }
+
+  // --- Animation helpers ---
+
+  private playBounce(cellIndex: number) {
+    this.bouncingCells.add(cellIndex);
+    setTimeout(() => this.bouncingCells.delete(cellIndex), 300);
+  }
+
+  private playShake(positions: number[]) {
+    positions.forEach(pos => this.shakingCells.add(pos));
+    setTimeout(() => {
+      positions.forEach(pos => this.shakingCells.delete(pos));
+    }, 400);
+  }
+
+  isBouncing(cellIndex: number): boolean {
+    return this.bouncingCells.has(cellIndex);
+  }
+
+  isShaking(cellIndex: number): boolean {
+    return this.shakingCells.has(cellIndex);
+  }
+
+  // --- Connected drop lists ---
+
   getConnectedDropLists(): string[] {
-    const gridCells = Array.from({length: 9}, (_, i) => `grid-cell-${i}`);
+    const gridCells = Array.from({ length: 16 }, (_, i) => `grid-cell-${i}`)
+      .filter(cellId => {
+        const index = parseInt(cellId.split('-')[2]);
+        return !this.disabledSpots.has(index);
+      });
     return ['bank-list', ...gridCells];
+  }
+
+  // --- Grid state helpers ---
+
+  isSpotDisabled(index: number): boolean {
+    return this.disabledSpots.has(index);
+  }
+
+  isCellInCompletedLine(index: number): boolean {
+    return Object.entries(this.lines).some(([lineName, positions]) =>
+      positions.includes(index) && this.completedLines.has(lineName)
+    );
+  }
+
+  isCellCompleted(index: number): boolean {
+    return this.isCellInCompletedLine(index);
+  }
+
+  // --- Locking / movement rules ---
+
+  private getCompletedLinesForCell(index: number): string[] {
+    return Object.entries(this.lines)
+      .filter(([lineName, positions]) => positions.includes(index) && this.completedLines.has(lineName))
+      .map(([lineName]) => lineName);
+  }
+
+  private isCornerCell(index: number): boolean {
+    return index === 0 || index === 3 || index === 12 || index === 15;
+  }
+
+  isCornerLocked(index: number): boolean {
+    if (!this.isCornerCell(index)) return false;
+    const completedLinesForCell = this.getCompletedLinesForCell(index);
+    return completedLinesForCell.length === 2;
+  }
+
+  canMoveBetweenCells(fromIndex: number, toIndex: number): boolean {
+    if (this.isCornerLocked(fromIndex) || this.isCornerLocked(toIndex)) return false;
+
+    const fromCompleted = this.getCompletedLinesForCell(fromIndex);
+    const toCompleted = this.getCompletedLinesForCell(toIndex);
+
+    if (fromCompleted.length === 0 && toCompleted.length === 0) {
+      return true;
+    }
+
+    return fromCompleted.some(lineName => toCompleted.includes(lineName));
+  }
+
+  // --- Line checking ---
+
+  checkForCompletedLines() {
+    if (this.isResolvingInvalidLine) return;
+    if (!this.currentPuzzle || !this.currentPuzzle.categories) return;
+
+    Object.entries(this.lines).forEach(([lineName, positions]) => {
+      if (this.completedLines.has(lineName)) return;
+
+      const lineWords = positions
+        .map(pos => this.gridTiles[pos]?.word)
+        .filter((word): word is string => Boolean(word));
+
+      if (lineWords.length === 4) {
+        const matchingCategory = this.currentPuzzle!.categories.find(category =>
+          this.arraysEqual([...lineWords].sort(), [...category.words].sort())
+        );
+
+        if (matchingCategory) {
+          this.completedLines.add(lineName);
+          this.lineCategories.set(lineName, matchingCategory.name);
+          this.lineDifficulties.set(lineName, matchingCategory.difficulty);
+          this.checkWinCondition();
+        } else {
+          this.mistakes++;
+          this.isResolvingInvalidLine = true;
+          this.playShake(positions);
+          setTimeout(() => {
+            this.returnLineToBank(positions);
+            this.isResolvingInvalidLine = false;
+          }, 500);
+        }
+      }
+    });
+  }
+
+  returnLineToBank(positions: number[]) {
+    positions.forEach(pos => {
+      if (this.isCellInCompletedLine(pos)) {
+        return;
+      }
+      const tile = this.gridTiles[pos];
+      if (tile) {
+        this.availableTiles.push(tile);
+        this.gridTiles[pos] = null;
+      }
+    });
+  }
+
+  arraysEqual(a: string[], b: string[]): boolean {
+    return a.length === b.length && a.every((val, i) => val === b[i]);
+  }
+
+  // --- Win condition ---
+
+  private checkWinCondition() {
+    if (this.completedLines.size === 4) {
+      this.gameWon = true;
+    }
+  }
+
+  onPlayAgain() {
+    if (this.currentPuzzle) {
+      this.loadPuzzle(this.currentPuzzle.id);
+    }
+  }
+
+  onNextPuzzle() {
+    if (this.currentPuzzle) {
+      this.loadPuzzle(this.currentPuzzle.id + 1, true);
+    }
+  }
+
+  // --- Difficulty color helpers ---
+
+  getCellDifficulty(cellIndex: number): number {
+    for (const [lineName, positions] of Object.entries(this.lines)) {
+      if (positions.includes(cellIndex) && this.completedLines.has(lineName)) {
+        return this.lineDifficulties.get(lineName) || 0;
+      }
+    }
+    return 0;
+  }
+
+  getCenterDifficulty(index: number): number {
+    const lineName = Object.entries(this.centerIndicators)
+      .find(([, centerIndex]) => centerIndex === index)?.[0];
+    if (lineName && this.completedLines.has(lineName)) {
+      return this.lineDifficulties.get(lineName) || 0;
+    }
+    return 0;
+  }
+
+  // --- Center indicator helpers ---
+
+  getCenterIndicatorCategory(index: number): string {
+    const lineName = Object.entries(this.centerIndicators)
+      .find(([, centerIndex]) => centerIndex === index)?.[0];
+
+    if (lineName && this.completedLines.has(lineName)) {
+      return this.lineCategories.get(lineName) || '';
+    }
+    return '';
+  }
+
+  getCenterIndicatorArrow(index: number): string {
+    const lineName = Object.entries(this.centerIndicators)
+      .find(([, centerIndex]) => centerIndex === index)?.[0];
+
+    switch (lineName) {
+      case 'top': return '↑';
+      case 'right': return '→';
+      case 'bottom': return '↓';
+      case 'left': return '←';
+      default: return '';
+    }
+  }
+
+  isCenterIndicatorActive(index: number): boolean {
+    const lineName = Object.entries(this.centerIndicators)
+      .find(([, centerIndex]) => centerIndex === index)?.[0];
+
+    return lineName ? this.completedLines.has(lineName) : false;
   }
 }
