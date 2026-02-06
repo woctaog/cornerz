@@ -292,9 +292,9 @@ $board-max: 400px;
       }
 
       .category-label {
-        font-size: clamp(0.4rem, 1.2vw, 0.6rem);
+        font-size: clamp(0.52rem, 1.6vw, 0.78rem);
         text-align: center;
-        line-height: 1.1;
+        line-height: 1.2;
         word-wrap: break-word;
         max-width: 90%;
         text-transform: uppercase;
@@ -395,5 +395,53 @@ $board-max: 400px;
     background-color: #f8f9fa;
     border-radius: 8px;
     border: 1px solid #e9ecef;
+  }
+}
+
+@media (max-width: 768px) {
+  .puzzle-info {
+    .puzzle-description {
+      font-size: 1rem;
+    }
+
+    .puzzle-navigation button {
+      font-size: 0.95rem;
+    }
+  }
+
+  .hud-item {
+    .hud-label {
+      font-size: 0.8rem;
+    }
+
+    .hud-value {
+      font-size: 1.6rem;
+    }
+  }
+
+  .grid-cell.disabled .center-indicator {
+    .arrow {
+      font-size: 1.1rem;
+    }
+
+    .category-label {
+      font-size: 0.62rem;
+      line-height: 1.2;
+    }
+  }
+
+  .tile-bank h3 {
+    font-size: 1.05rem;
+  }
+
+  .how-to-play {
+    h3 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
   }
 }
