@@ -1,11 +1,8 @@
 <div class="game-container">
   <div class="puzzle-info" *ngIf="currentPuzzle && !loading">
-    <h2>{{ currentPuzzle.title }}</h2>
-    <p class="puzzle-description">{{ currentPuzzle.description }}</p>
-    <div class="puzzle-navigation">
-      <button (click)="loadPuzzle(1, true)" [class.active]="currentPuzzle.id === 1">Puzzle 1</button>
-      <button (click)="loadPuzzle(2, true)" [class.active]="currentPuzzle.id === 2">Puzzle 2</button>
-      <button (click)="loadPuzzle(3, true)" [class.active]="currentPuzzle.id === 3">Puzzle 3</button>
+    <h2>Cornerz Daily Puzzle</h2>
+    <div class="header-actions">
+      <button type="button" class="help-button" (click)="openHelp()" aria-label="Open how to play help">?</button>
     </div>
   </div>
 
@@ -20,13 +17,6 @@
   <div class="game-content" *ngIf="!loading && !error">
     <!-- Show game interface for puzzle 1 -->
     <div *ngIf="currentPuzzle && currentPuzzle.id === 1">
-      <div class="game-hud">
-        <div class="hud-item">
-          <span class="hud-label">Mistakes</span>
-          <span class="hud-value" [class.has-mistakes]="mistakes > 0">{{ mistakes }}</span>
-        </div>
-      </div>
-
       <div class="game-board">
         <!-- Grid cells -->
         <div class="grid-cell"
@@ -71,7 +61,6 @@
       </div>
 
       <div class="tile-bank">
-        <h3>Available Tiles</h3>
         <div class="bank-container"
              cdkDropList
              id="bank-list"
@@ -96,13 +85,6 @@
         </div>
       </div>
 
-      <div class="how-to-play">
-        <h3>How to Play</h3>
-        <p>
-          Drag or tap words to form complete lines of 4! If all 4 words in a row or column belong to the same category,
-          they will turn green and lock in place. Otherwise, they return to the tile bank. Any edge can be any category!
-        </p>
-      </div>
     </div>
 
     <!-- Win modal -->
@@ -118,6 +100,23 @@
     <div class="coming-soon" *ngIf="currentPuzzle && (currentPuzzle.id === 2 || currentPuzzle.id === 3)">
       <h2>Coming Soon!</h2>
       <p>This puzzle is still being crafted. Check back later for more challenging word puzzles!</p>
+    </div>
+  </div>
+
+  <div class="help-modal-backdrop" *ngIf="isHelpOpen" (click)="closeHelp()">
+    <div class="help-modal" (click)="$event.stopPropagation()">
+      <div class="help-modal-header">
+        <h3>How To Play</h3>
+        <button type="button" class="close-button" (click)="closeHelp()" aria-label="Close help">X</button>
+      </div>
+      <ul>
+        <li>Place 12 words on the outer edge of the 4x4 grid. The 4 center cells are disabled.</li>
+        <li>Complete 4 lines: top, bottom, left, and right. Each line must match exactly one category.</li>
+        <li>Corner words are shared between two categories and connect intersecting lines.</li>
+        <li>Use drag and drop, or tap a tile then tap a cell. You can swap by dropping on an occupied cell.</li>
+        <li>Correct lines lock as solved. Incorrect guesses return only newly placed tiles and increase mistakes.</li>
+        <li>Win when all 4 lines are solved.</li>
+      </ul>
     </div>
   </div>
 </div>

@@ -3,22 +3,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
-  padding: 1.5rem 1rem;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding: 0.6rem 0.6rem 0.5rem;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
 
-  h1 {
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    color: #333;
-    margin: 0 0 0.25rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  p {
-    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-    color: #666;
-    margin: 0 0 1.5rem;
-    text-align: center;
+  app-game-board {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
   }
 }

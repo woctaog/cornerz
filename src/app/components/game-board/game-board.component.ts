@@ -44,6 +44,7 @@ export class GameBoardComponent implements OnInit {
   // Scoring
   mistakes: number = 0;
   gameWon: boolean = false;
+  isHelpOpen: boolean = false;
 
   // Define the possible lines (top, bottom, left, right)
   lines: Record<string, number[]> = {
@@ -466,6 +467,14 @@ export class GameBoardComponent implements OnInit {
     if (this.currentPuzzle) {
       this.loadPuzzle(this.currentPuzzle.id + 1, true);
     }
+  }
+
+  openHelp() {
+    this.isHelpOpen = true;
+  }
+
+  closeHelp() {
+    this.isHelpOpen = false;
   }
 
   // --- Difficulty color helpers ---

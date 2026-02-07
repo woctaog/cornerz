@@ -26,10 +26,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('cornerz');
   });
 
-  it('should render title', () => {
+  it('should render the game board', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Cornerz Game');
+    expect(compiled.querySelector('app-game-board')).toBeTruthy();
   });
 });

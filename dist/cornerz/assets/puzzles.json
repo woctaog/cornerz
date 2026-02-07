@@ -23,39 +23,177 @@
           "id": 1,
           "name": "Jewelry",
           "difficulty": 1,
-          "words": ["RING", "CHAIN", "PENDANT", "BAND"]
+          "words": [
+            "RING",
+            "CHAIN",
+            "PENDANT",
+            "BAND"
+          ]
         },
         {
           "id": 2,
           "name": "Geometric Shapes",
           "difficulty": 2,
-          "words": ["DIAMOND", "SQUARE", "CIRCLE", "RING"]
+          "words": [
+            "DIAMOND",
+            "SQUARE",
+            "CIRCLE",
+            "RING"
+          ]
         },
         {
           "id": 3,
           "name": "Music Terms",
           "difficulty": 3,
-          "words": ["BAND", "SCALE", "NOTE", "PITCH"]
+          "words": [
+            "BAND",
+            "SCALE",
+            "NOTE",
+            "PITCH"
+          ]
         },
         {
           "id": 4,
           "name": "Baseball Terms",
           "difficulty": 4,
-          "words": ["PITCH", "BAT", "BASE", "DIAMOND"]
+          "words": [
+            "PITCH",
+            "BAT",
+            "BASE",
+            "DIAMOND"
+          ]
         }
       ]
     },
     {
-  "id": 2,
-  "title": "Cornerz Puzzle 2",
-  "description": "Arrange the words so each edge line forms a category.",
-  "words": ["SOLE", "PERCH", "RAY", "BASS", "LACE", "EYELET", "DRUM", "HARP", "HEART", "LUNG", "TOUNGE", "ORGAN"],
-  "categories": [
-    { "id": 1, "name": "Types of Fish",        "difficulty": 4, "words": ["SOLE", "PERCH", "RAY", "BASS"] },
-    { "id": 2, "name": "Parts of a Shoe",      "difficulty": 3, "words": ["SOLE", "TOUNGE", "LACE", "EYELET"] },
-    { "id": 3, "name": "Musical Instruments",  "difficulty": 2, "words": ["BASS", "DRUM", "HARP", "ORGAN"] },
-    { "id": 4, "name": "Body Parts",           "difficulty": 1, "words": ["TOUNGE", "HEART", "LUNG", "ORGAN"] }
-  ]
-}
+      "id": 2,
+      "title": "Cornerz Puzzle 2",
+      "description": "Arrange the words so each edge line forms a category.",
+      "words": [
+        "SOLE",
+        "PERCH",
+        "RAY",
+        "BASS",
+        "LACE",
+        "EYELET",
+        "DRUM",
+        "HARP",
+        "HEART",
+        "LUNG",
+        "TOUNGE",
+        "ORGAN"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Types of Fish",
+          "difficulty": 4,
+          "words": [
+            "SOLE",
+            "PERCH",
+            "RAY",
+            "BASS"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Parts of a Shoe",
+          "difficulty": 3,
+          "words": [
+            "SOLE",
+            "TOUNGE",
+            "LACE",
+            "EYELET"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Musical Instruments",
+          "difficulty": 2,
+          "words": [
+            "BASS",
+            "DRUM",
+            "HARP",
+            "ORGAN"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Body Parts",
+          "difficulty": 1,
+          "words": [
+            "TOUNGE",
+            "HEART",
+            "LUNG",
+            "ORGAN"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Cornerz Puzzle 3",
+      "description": "Arrange the words so each edge line forms a category.",
+      "words": [
+        "JAM",
+        "TOAST",
+        "CEREAL",
+        "BAGEL",
+        "POP",
+        "BEAT",
+        "TRACK",
+        "PUNCH",
+        "BALLOON",
+        "CONFETTI",
+        "CIDER",
+        "SHAKE"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Breakfast Foods",
+          "difficulty": 1,
+          "words": [
+            "JAM",
+            "TOAST",
+            "CEREAL",
+            "BAGEL"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Party Things",
+          "difficulty": 2,
+          "words": [
+            "TOAST",
+            "PUNCH",
+            "BALLOON",
+            "CONFETTI"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Music Terms",
+          "difficulty": 3,
+          "words": [
+            "JAM",
+            "POP",
+            "BEAT",
+            "TRACK"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Types of Drinks",
+          "difficulty": 4,
+          "words": [
+            "POP",
+            "PUNCH",
+            "CIDER",
+            "SHAKE"
+          ]
+        }
+      ]
+    }
   ]
 }
