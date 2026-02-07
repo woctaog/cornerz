@@ -66,7 +66,7 @@ PuzzleService (abstract interface)
   - Difficulty color-coding: Yellow(1), Green(2), Blue(3), Purple(4) per category
   - Mistake counter in HUD above the board (no timer — casual game)
 
-- [ ] **1.4 — Puzzle validation tooling**
+- [x] **1.4 — Puzzle validation tooling**
   - Add a dev-only utility to validate puzzle JSON (ensure all words appear in exactly 2 categories, categories have exactly 4 words, no orphan words)
   - Ensure the puzzle is solvable (each word can be uniquely placed)
 
