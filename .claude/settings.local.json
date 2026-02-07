@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run e2e:*)",
+      "Bash(npx ng build:*)"
+    ]
+  }
+}

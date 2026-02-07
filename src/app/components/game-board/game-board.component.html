@@ -62,7 +62,7 @@
           <div *ngIf="isSpotDisabled(i) && isCenterIndicatorActive(i)" class="center-indicator"
                [attr.data-difficulty]="getCenterDifficulty(i)">
             <div class="arrow">{{ getCenterIndicatorArrow(i) }}</div>
-            <div class="category-label">{{ getCenterIndicatorCategory(i) }}</div>
+            <div class="category-label" [appFitText]="12" [fitTextWrap]="true">{{ getCenterIndicatorCategory(i) }}</div>
           </div>
 
           <!-- Default disabled spot -->

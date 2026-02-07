@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { GameBoardComponent } from './components/game-board/game-board.component';
 import { GameTileComponent } from './components/game-tile/game-tile.component';
 import { WinModalComponent } from './components/win-modal/win-modal.component';
+import { FitTextDirective } from './directives/fit-text.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameBoardComponent,
     GameTileComponent,
-    WinModalComponent
+    WinModalComponent,
+    FitTextDirective
   ],
   imports: [
     BrowserModule,

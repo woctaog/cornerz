@@ -44,6 +44,18 @@
           "words": ["PITCH", "BAT", "BASE", "DIAMOND"]
         }
       ]
-    }
+    },
+    {
+  "id": 2,
+  "title": "Cornerz Puzzle 2",
+  "description": "Arrange the words so each edge line forms a category.",
+  "words": ["SOLE", "PERCH", "RAY", "BASS", "LACE", "EYELET", "DRUM", "HARP", "HEART", "LUNG", "TOUNGE", "ORGAN"],
+  "categories": [
+    { "id": 1, "name": "Types of Fish",        "difficulty": 4, "words": ["SOLE", "PERCH", "RAY", "BASS"] },
+    { "id": 2, "name": "Parts of a Shoe",      "difficulty": 3, "words": ["SOLE", "TOUNGE", "LACE", "EYELET"] },
+    { "id": 3, "name": "Musical Instruments",  "difficulty": 2, "words": ["BASS", "DRUM", "HARP", "ORGAN"] },
+    { "id": 4, "name": "Body Parts",           "difficulty": 1, "words": ["TOUNGE", "HEART", "LUNG", "ORGAN"] }
+  ]
+}
   ]
 }
