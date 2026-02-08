@@ -78,10 +78,15 @@ export class GameBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      const puzzleId = params['puzzle'] ? parseInt(params['puzzle']) : 1;
-      this.loadPuzzle(puzzleId);
-    });
+    const testMode = this.route.snapshot.data['testMode'];
+    if (testMode) {
+      this.loadPuzzle(-1);
+    } else {
+      this.route.queryParams.subscribe(params => {
+        const puzzleId = params['puzzle'] ? parseInt(params['puzzle']) : 1;
+        this.loadPuzzle(puzzleId);
+      });
+    }
   }
 
   loadPuzzle(puzzleId: number, updateUrl: boolean = false): void {
@@ -126,6 +131,10 @@ export class GameBoardComponent implements OnInit {
           this.completedLines = new Set<string>();
           this.lineCategories = new Map<string, string>();
           this.lineDifficulties = new Map<string, number>();
+
+          if (puzzleId === -1 && this.route.snapshot.data['testMode']) {
+            this.prePopulateTestPuzzle();
+          }
         } else {
           this.error = `Puzzle ${puzzleId} not found. Available puzzles: 1`;
           this.loadPuzzle(1);
@@ -137,6 +146,48 @@ export class GameBoardComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  private prePopulateTestPuzzle(): void {
+    // Place tiles for completed Top and Left lines
+    const placements: [number, string][] = [
+      [0, 'COUNTERPRODUCTIVE'],  // Top + Left corner
+      [1, 'BAMBOOZLE'],          // Top
+      [2, 'HI'],                 // Top
+      [3, 'GO'],                 // Top + Right corner (only Top done)
+      [4, 'PERPENDICULAR'],      // Left
+      [8, 'ME'],                 // Left
+      [12, 'EXTRAORDINARY'],     // Left + Bottom corner (only Left done)
+    ];
+
+    for (const [cellIndex, word] of placements) {
+      const tileIndex = this.availableTiles.findIndex(t => t.word === word);
+      if (tileIndex !== -1) {
+        this.gridTiles[cellIndex] = this.availableTiles[tileIndex];
+        this.availableTiles.splice(tileIndex, 1);
+      }
+    }
+
+    // Mark Top and Left as completed
+    this.completedLines.add('top');
+    this.completedLines.add('left');
+
+    // Set category info for completed lines
+    const topCategory = this.currentPuzzle!.categories.find(c =>
+      this.arraysEqual([...c.words].sort(), ['COUNTERPRODUCTIVE', 'BAMBOOZLE', 'HI', 'GO'].sort())
+    );
+    const leftCategory = this.currentPuzzle!.categories.find(c =>
+      this.arraysEqual([...c.words].sort(), ['COUNTERPRODUCTIVE', 'PERPENDICULAR', 'ME', 'EXTRAORDINARY'].sort())
+    );
+
+    if (topCategory) {
+      this.lineCategories.set('top', topCategory.name);
+      this.lineDifficulties.set('top', topCategory.difficulty);
+    }
+    if (leftCategory) {
+      this.lineCategories.set('left', leftCategory.name);
+      this.lineDifficulties.set('left', leftCategory.difficulty);
+    }
   }
 
   // --- Drag-and-drop handlers ---

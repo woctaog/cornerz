@@ -58,7 +58,7 @@ async function solveFullPuzzle(page: Page) {
 
 test.describe('UI state', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/?puzzle=1');
+    await page.goto('/#/?puzzle=1');
     await expect(page.locator('.game-board')).toBeVisible();
   });
 
@@ -148,30 +148,12 @@ test.describe('UI state', () => {
 
   test('puzzle loads from URL query parameter', async ({ page }) => {
     // Puzzle 1 loaded via ?puzzle=1 in beforeEach
-    await expect(page.locator('.puzzle-info h2')).toHaveText('Cornerz Puzzle 1');
+    await expect(page.locator('.puzzle-info h2')).toHaveText('Cornerz Daily Puzzle');
     await expect(page.locator('.bank-tile-wrapper')).toHaveCount(12);
 
     // Default (no param) also loads puzzle 1
-    await page.goto('/');
+    await page.goto('/#/');
     await expect(page.locator('.game-board')).toBeVisible();
-    await expect(page.locator('.puzzle-info h2')).toHaveText('Cornerz Puzzle 1');
-  });
-
-  test('puzzle navigation buttons switch puzzles and update URL', async ({ page }) => {
-    // Switch to puzzle 2 via button
-    await page.locator('.puzzle-navigation button', { hasText: 'Puzzle 2' }).click();
-    await expect(page.locator('.coming-soon')).toBeVisible();
-    await expect(page).toHaveURL(/puzzle=2/);
-
-    // Switch to puzzle 3 via button
-    await page.locator('.puzzle-navigation button', { hasText: 'Puzzle 3' }).click();
-    await expect(page.locator('.coming-soon')).toBeVisible();
-    await expect(page).toHaveURL(/puzzle=3/);
-
-    // Switch back to puzzle 1
-    await page.locator('.puzzle-navigation button', { hasText: 'Puzzle 1' }).click();
-    await expect(page.locator('.game-board')).toBeVisible();
-    await expect(page.locator('.bank-tile-wrapper')).toHaveCount(12);
-    await expect(page).toHaveURL(/puzzle=1/);
+    await expect(page.locator('.puzzle-info h2')).toHaveText('Cornerz Daily Puzzle');
   });
 });

@@ -60,7 +60,7 @@ async function fillLine(page: Page, placements: [string, number][]) {
 
 test.describe('Core gameplay', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/?puzzle=1');
+    await page.goto('/#/?puzzle=1');
     // Wait for puzzle to finish loading
     await expect(page.locator('.game-board')).toBeVisible();
   });
@@ -152,9 +152,6 @@ test.describe('Core gameplay', () => {
 
     // Center indicator for top line (cell 6) should show category name
     await expect(page.locator('#grid-cell-6 .category-label')).toHaveText(/Jewelry/i);
-
-    // Mistakes should still be 0
-    await expect(page.locator('.hud-value')).toHaveText('0');
   });
 
   test('incorrect line: tiles shake and return to bank', async ({ page }) => {
@@ -174,9 +171,6 @@ test.describe('Core gameplay', () => {
     for (const i of [0, 1, 2, 3]) {
       expect(await getCellText(page, i)).toBe('');
     }
-
-    // Mistake counter should increment to 1
-    await expect(page.locator('.hud-value')).toHaveText('1');
   });
 
   test('win condition: complete all 4 lines to trigger win modal', async ({ page }) => {

@@ -26,6 +26,7 @@ $board-max: 400px;
 }
 
 .game-container {
+  --board-width: min(90vw, #{$board-max}, calc(100dvh - 285px));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,7 +114,7 @@ $board-max: 400px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: clamp(4px, 1.5vw, 8px);
-  width: min(90vw, $board-max, calc(100dvh - 285px));
+  width: var(--board-width);
   aspect-ratio: 1;
   border: 2px solid #333;
   border-radius: 8px;
@@ -316,12 +317,13 @@ $board-max: 400px;
   border: 2px solid #ddd;
   border-radius: 8px;
   background-color: #fafafa;
-  width: min(90vw, $board-max);
+  width: var(--board-width);
   margin: 0 auto;
 }
 
 .bank-tile-wrapper {
   aspect-ratio: 1;
+  overflow: hidden;
   border-radius: 6px;
   transition: box-shadow 0.15s ease;
 
@@ -410,8 +412,8 @@ $board-max: 400px;
     font-size: 0.95rem;
   }
 
-  .game-board {
-    width: min(91vw, calc(100dvh - 245px));
+  .game-container {
+    --board-width: min(91vw, calc(100dvh - 245px));
   }
 
   .help-modal {

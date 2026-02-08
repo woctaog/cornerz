@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm run e2e:*)",
-      "Bash(npx ng build:*)"
+      "Bash(npx ng build:*)",
+      "Bash(npx playwright test:*)"
     ]
   }
 }

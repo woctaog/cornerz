@@ -43,6 +43,9 @@
     line-height: 1.2;
     padding: 2px;
     white-space: nowrap;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 

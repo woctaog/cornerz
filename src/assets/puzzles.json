@@ -194,6 +194,71 @@
           ]
         }
       ]
+    },
+    {
+      "id": -1,
+      "title": "Test Puzzle",
+      "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
+      "words": [
+        "COUNTERPRODUCTIVE",
+        "GO",
+        "EXTRAORDINARY",
+        "AX",
+        "BAMBOOZLE",
+        "HI",
+        "PERPENDICULAR",
+        "ME",
+        "QUINTESSENTIAL",
+        "UP",
+        "JUXTAPOSITION",
+        "RAZZMATAZZ"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Words That Rhyme With A President's Last Name",
+          "difficulty": 1,
+          "words": [
+            "COUNTERPRODUCTIVE",
+            "BAMBOOZLE",
+            "HI",
+            "GO"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Big",
+          "difficulty": 2,
+          "words": [
+            "COUNTERPRODUCTIVE",
+            "PERPENDICULAR",
+            "ME",
+            "EXTRAORDINARY"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Overwhelming Sensations",
+          "difficulty": 3,
+          "words": [
+            "GO",
+            "QUINTESSENTIAL",
+            "UP",
+            "AX"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Communication Methods",
+          "difficulty": 4,
+          "words": [
+            "EXTRAORDINARY",
+            "JUXTAPOSITION",
+            "RAZZMATAZZ",
+            "AX"
+          ]
+        }
+      ]
     }
   ]
 }
