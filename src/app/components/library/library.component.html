@@ -1,0 +1,50 @@
+<div class="library-container">
+  <div class="library-header">
+    <h2>Puzzle Archive</h2>
+    <button class="daily-link" type="button" (click)="goToDaily()">Back To Daily</button>
+  </div>
+
+  <div class="filters">
+    <label>
+      Difficulty
+      <select [(ngModel)]="difficultyFilter">
+        <option value="all">All</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </label>
+    <label>
+      Status
+      <select [(ngModel)]="completionFilter">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="incomplete">Incomplete</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="loading" *ngIf="loading">Loading archive...</div>
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <div class="empty-state" *ngIf="!loading && !error && filteredPuzzles.length === 0">
+    No puzzles match your filters.
+  </div>
+
+  <div class="puzzle-list" *ngIf="!loading && !error && filteredPuzzles.length > 0">
+    <div class="puzzle-card" *ngFor="let puzzle of filteredPuzzles">
+      <div class="card-title-row">
+        <h3>{{ puzzle.title }}</h3>
+        <span class="completion-tag" [class.completed]="puzzle.completed">
+          {{ puzzle.completed ? 'Completed' : 'Not solved' }}
+        </span>
+      </div>
+      <p>{{ puzzle.description }}</p>
+      <div class="card-footer">
+        <span class="difficulty" [attr.data-difficulty]="puzzle.uiDifficulty">{{ puzzle.uiDifficulty }}</span>
+        <button type="button" (click)="playPuzzle(puzzle.id)">Play</button>
+      </div>
+    </div>
+  </div>
+</div>
+

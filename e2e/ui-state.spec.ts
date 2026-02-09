@@ -161,7 +161,7 @@ test.describe('UI state', () => {
 
   test('puzzle loads from URL query parameter', async ({ page }) => {
     // Puzzle 1 loaded via ?puzzle=1 in beforeEach
-    await expect(page.locator('.puzzle-info h2')).toHaveText('Cornerz Daily Puzzle');
+    await expect(page.locator('.puzzle-info h2')).toHaveText('Cornerz Puzzle 1');
     await expect(page.locator('.bank-tile-wrapper')).toHaveCount(12);
 
     // Default (no param) also loads puzzle 1

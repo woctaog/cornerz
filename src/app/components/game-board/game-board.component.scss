@@ -94,29 +94,6 @@ $board-max: 400px;
   width: 100%;
 }
 
-.coming-soon {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  width: 100%;
-  max-width: $board-max;
-
-  h2 {
-    color: #6c757d;
-    margin: 0 0 0.75rem;
-    font-size: 1.8rem;
-  }
-
-  p {
-    color: #6c757d;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin: 0;
-  }
-}
-
 .game-board {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -365,6 +342,7 @@ $board-max: 400px;
     color: #37474f;
     font-size: 0.9rem;
     line-height: 1.45;
+    margin-bottom: 0.8rem;
   }
 }
 
@@ -390,6 +368,16 @@ $board-max: 400px;
   height: 28px;
   font-size: 0.8rem;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.archive-link {
+  border: 1px solid #cfd8dc;
+  background: #fff;
+  color: #455a64;
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.8rem;
   cursor: pointer;
 }
 

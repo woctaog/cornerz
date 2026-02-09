@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, CdkDragStart, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
 import { GameService, Puzzle } from '../../services/game.service';
+import { ProgressService } from '../../services/progress.service';
 
 export interface GameTile {
   id: number;
@@ -14,8 +15,6 @@ export interface GameTile {
   styleUrls: ['./game-board.component.scss']
 })
 export class GameBoardComponent implements OnInit, OnDestroy {
-  private static readonly DAILY_STORAGE_KEY = 'cornerz-daily-completions';
-
   gridTiles: (GameTile | null)[] = new Array(16).fill(null);
   availableTiles: GameTile[] = [];
   currentPuzzle: Puzzle | null = null;
@@ -72,7 +71,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private gameService: GameService
+    private gameService: GameService,
+    private progressService: ProgressService
   ) { }
 
   private shuffleArray<T>(array: T[]): T[] {
@@ -141,20 +141,6 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         queryParams: { puzzle: puzzleId },
         queryParamsHandling: 'merge'
       });
-    }
-
-    if (puzzleId === 2 || puzzleId === 3) {
-      this.currentPuzzle = {
-        id: puzzleId,
-        title: `Puzzle ${puzzleId}`,
-        description: 'Coming Soon!',
-        words: [],
-        categories: []
-      };
-      this.availableTiles = [];
-      this.gridTiles = new Array(16).fill(null);
-      this.loading = false;
-      return;
     }
 
     this.gameService.getPuzzleById(puzzleId).subscribe({
@@ -550,6 +536,9 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   private checkWinCondition() {
     if (this.completedLines.size === 4) {
+      if (this.currentPuzzle && this.currentPuzzle.id > 0) {
+        this.progressService.markPuzzleCompleted(this.currentPuzzle.id);
+      }
       if (this.isDailyPuzzleMode && this.currentPuzzle?.id === this.dailyPuzzleId) {
         this.markDailyCompleted();
       }
@@ -597,29 +586,9 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.dailyCountdown = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
 
-  private getTodayKey(): string {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-
-  private getDailyCompletions(): Record<string, number> {
-    const raw = localStorage.getItem(GameBoardComponent.DAILY_STORAGE_KEY);
-    if (!raw) return {};
-    try {
-      return JSON.parse(raw) as Record<string, number>;
-    } catch {
-      return {};
-    }
-  }
-
   private markDailyCompleted(): void {
     if (this.dailyPuzzleId == null) return;
-    const completions = this.getDailyCompletions();
-    completions[this.getTodayKey()] = this.dailyPuzzleId;
-    localStorage.setItem(GameBoardComponent.DAILY_STORAGE_KEY, JSON.stringify(completions));
+    this.progressService.markDailyCompleted(this.dailyPuzzleId);
     this.isDailyLocked = true;
   }
 
@@ -628,8 +597,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       this.isDailyLocked = false;
       return;
     }
-    const completions = this.getDailyCompletions();
-    this.isDailyLocked = completions[this.getTodayKey()] === this.dailyPuzzleId;
+    this.isDailyLocked = this.progressService.isDailyCompleted(this.dailyPuzzleId);
   }
 
   // --- Difficulty color helpers ---

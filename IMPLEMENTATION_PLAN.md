@@ -109,13 +109,13 @@ PuzzleService (abstract interface)
   - Organize puzzles with metadata: difficulty (easy/medium/hard), theme, author, date
   - Update `puzzles.json` schema to include metadata fields
 
-- [ ] **3.2 — Daily puzzle system**
+- [x] **3.2 — Daily puzzle system**
   - Determine daily puzzle by date (e.g., puzzle index = days since launch date)
   - Show the daily puzzle prominently on the home/landing page
   - Prevent replaying the daily puzzle once completed (store completion in localStorage)
   - Show a countdown timer to the next daily puzzle
 
-- [ ] **3.3 — Puzzle archive / library view**
+- [x] **3.3 — Puzzle archive / library view**
   - Create a new route `/library` with a grid/list of all available puzzles
   - Show puzzle metadata: title, difficulty, completion status (checkmark if solved)
   - Allow filtering by difficulty or completion status
