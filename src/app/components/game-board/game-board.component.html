@@ -5,6 +5,10 @@
       <button type="button" class="help-button" (click)="openHelp()" aria-label="Open how to play help">?</button>
     </div>
   </div>
+  <div class="daily-status" *ngIf="currentPuzzle && !loading">
+    <span *ngIf="isDailyLocked">Today's daily puzzle is complete.</span>
+    <span *ngIf="!isDailyLocked">Next daily puzzle in {{ dailyCountdown }}</span>
+  </div>
 
   <div class="loading" *ngIf="loading">
     <p>Loading puzzle...</p>
@@ -15,8 +19,8 @@
   </div>
 
   <div class="game-content" *ngIf="!loading && !error">
-    <!-- Show game interface for puzzles with words -->
-    <div *ngIf="currentPuzzle && currentPuzzle.words.length > 0">
+    <!-- Show game interface for playable puzzles -->
+    <div *ngIf="currentPuzzle && currentPuzzle.words.length > 0 && !isDailyLocked">
       <div class="game-board">
         <!-- Grid cells -->
         <div class="grid-cell"
@@ -85,6 +89,12 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="daily-locked-card" *ngIf="currentPuzzle && currentPuzzle.words.length > 0 && isDailyLocked">
+      <h3>Come back tomorrow</h3>
+      <p>You already solved today's puzzle.</p>
+      <p class="countdown">Next puzzle in {{ dailyCountdown }}</p>
     </div>
 
     <!-- Win modal -->

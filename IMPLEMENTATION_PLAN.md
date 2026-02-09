@@ -73,7 +73,7 @@ PuzzleService (abstract interface)
 ### Phase 2: Automated E2E Testing (Playwright)
 **Goal**: Establish a reliable test suite before adding features, so regressions are caught early.
 
-- [ ] **2.1 — Playwright setup**
+- [x] **2.1 — Playwright setup**
   - Install `@playwright/test` and configure for the Angular dev server
   - Add `playwright.config.ts` with base URL pointed at `ng serve`
   - Configure `webServer` option to auto-start the Angular dev server before tests
@@ -81,7 +81,7 @@ PuzzleService (abstract interface)
   - Add npm scripts: `npm run e2e`, `npm run e2e:headed` (for debugging)
   - Add `e2e/` directory to project root for test files
 
-- [ ] **2.2 — Core gameplay tests**
+- [x] **2.2 — Core gameplay tests**
   - **Puzzle load**: Verify the game board renders with 12 tiles in the bank and an empty grid
   - **Drag-and-drop**: Test dragging a tile from bank to a grid cell, verify it appears in the cell and leaves the bank
   - **Tile swapping**: Drag a tile onto an occupied cell, verify the swap occurs
@@ -90,13 +90,13 @@ PuzzleService (abstract interface)
   - **Line validation (incorrect)**: Fill a line with mismatched words, verify tiles return to bank
   - **Win condition**: Complete all 4 lines correctly, verify the win state is triggered
 
-- [ ] **2.3 — UI state tests**
+- [x] **2.3 — UI state tests**
   - Verify disabled center cells are not droppable
   - Verify locked/completed lines cannot be dragged from
   - Verify center indicators show correct category names and arrows
   - Verify puzzle loads from URL query parameter (`?puzzle=1`)
 
-- [ ] **2.4 — Regression safety net**
+- [x] **2.4 — Regression safety net**
   - Add test for tile bank rendering (correct count, shuffled order)
   - Add snapshot/visual comparison tests for key states (empty board, mid-game, win)
   - Integrate Playwright into CI (GitHub Actions workflow) for PR checks

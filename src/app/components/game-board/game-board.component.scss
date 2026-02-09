@@ -66,6 +66,14 @@ $board-max: 400px;
   }
 }
 
+.daily-status {
+  width: min(92vw, $board-max);
+  text-align: center;
+  color: #455a64;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
 .loading, .error {
   text-align: center;
   padding: 2rem;
@@ -385,6 +393,33 @@ $board-max: 400px;
   cursor: pointer;
 }
 
+.daily-locked-card {
+  width: min(90vw, $board-max);
+  background: #ffffff;
+  border: 1px solid #d6dee3;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+
+  h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    color: #263238;
+  }
+
+  p {
+    margin: 0;
+    color: #546e7a;
+    font-size: 0.9rem;
+  }
+
+  .countdown {
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: #37474f;
+  }
+}
+
 @media (max-width: 768px) {
   .puzzle-info {
     h2 {
@@ -423,5 +458,9 @@ $board-max: 400px;
       font-size: 0.9rem;
       line-height: 1.5;
     }
+  }
+
+  .daily-locked-card {
+    width: min(91vw, calc(100dvh - 245px));
   }
 }

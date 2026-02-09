@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 
 export interface Category {
   id: number;
@@ -42,11 +42,16 @@ export interface PuzzleData {
   providedIn: 'root'
 })
 export class GameService {
+  private readonly launchDate = new Date(2026, 1, 9); // February 9, 2026 (local time)
+  private puzzles$?: Observable<PuzzleData>;
 
   constructor(private http: HttpClient) { }
 
   loadPuzzles(): Observable<PuzzleData> {
-    return this.http.get<PuzzleData>('assets/puzzles.json');
+    if (!this.puzzles$) {
+      this.puzzles$ = this.http.get<PuzzleData>('assets/puzzles.json').pipe(shareReplay(1));
+    }
+    return this.puzzles$;
   }
 
   getPuzzleById(id: number): Observable<Puzzle | null> {
@@ -58,6 +63,24 @@ export class GameService {
   getAvailablePuzzles(): Observable<Puzzle[]> {
     return this.loadPuzzles().pipe(
       map(data => data.puzzles)
+    );
+  }
+
+  getDailyPuzzle(today: Date = new Date()): Observable<Puzzle> {
+    return this.getAvailablePuzzles().pipe(
+      map(puzzles => {
+        const candidates = puzzles.filter(puzzle => puzzle.id > 0 && puzzle.words.length > 0);
+        if (candidates.length === 0) {
+          throw new Error('No daily puzzle candidates available');
+        }
+
+        const dayMs = 24 * 60 * 60 * 1000;
+        const launchMidnight = new Date(this.launchDate.getFullYear(), this.launchDate.getMonth(), this.launchDate.getDate());
+        const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const daysSinceLaunch = Math.max(0, Math.floor((todayMidnight.getTime() - launchMidnight.getTime()) / dayMs));
+        const index = daysSinceLaunch % candidates.length;
+        return candidates[index];
+      })
     );
   }
 

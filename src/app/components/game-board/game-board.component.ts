@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, CdkDragStart, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
 import { GameService, Puzzle } from '../../services/game.service';
@@ -13,7 +13,9 @@ export interface GameTile {
   templateUrl: './game-board.component.html',
   styleUrls: ['./game-board.component.scss']
 })
-export class GameBoardComponent implements OnInit {
+export class GameBoardComponent implements OnInit, OnDestroy {
+  private static readonly DAILY_STORAGE_KEY = 'cornerz-daily-completions';
+
   gridTiles: (GameTile | null)[] = new Array(16).fill(null);
   availableTiles: GameTile[] = [];
   currentPuzzle: Puzzle | null = null;
@@ -45,6 +47,11 @@ export class GameBoardComponent implements OnInit {
   mistakes: number = 0;
   gameWon: boolean = false;
   isHelpOpen: boolean = false;
+  isDailyPuzzleMode = false;
+  dailyPuzzleId: number | null = null;
+  isDailyLocked = false;
+  dailyCountdown = '';
+  private countdownTimer: ReturnType<typeof setInterval> | null = null;
 
   // Define the possible lines (top, bottom, left, right)
   lines: Record<string, number[]> = {
@@ -78,15 +85,46 @@ export class GameBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.startDailyCountdown();
+
     const testMode = this.route.snapshot.data['testMode'];
     if (testMode) {
+      this.isDailyPuzzleMode = false;
       this.loadPuzzle(-1);
     } else {
       this.route.queryParams.subscribe(params => {
-        const puzzleId = params['puzzle'] ? parseInt(params['puzzle']) : 1;
-        this.loadPuzzle(puzzleId);
+        const puzzleParam = params['puzzle'];
+        if (puzzleParam) {
+          this.isDailyPuzzleMode = false;
+          this.dailyPuzzleId = null;
+          const puzzleId = parseInt(puzzleParam, 10);
+          this.loadPuzzle(puzzleId);
+        } else {
+          this.loadDailyPuzzle();
+        }
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+      this.countdownTimer = null;
+    }
+  }
+
+  private loadDailyPuzzle(): void {
+    this.isDailyPuzzleMode = true;
+    this.gameService.getDailyPuzzle().subscribe({
+      next: (puzzle) => {
+        this.dailyPuzzleId = puzzle.id;
+        this.loadPuzzle(puzzle.id);
+      },
+      error: () => {
+        this.error = 'Failed to load daily puzzle';
+        this.loading = false;
+      }
+    });
   }
 
   loadPuzzle(puzzleId: number, updateUrl: boolean = false): void {
@@ -95,6 +133,7 @@ export class GameBoardComponent implements OnInit {
     this.selectedTile = null;
     this.gameWon = false;
     this.mistakes = 0;
+    this.isDailyLocked = false;
 
     if (updateUrl) {
       this.router.navigate([], {
@@ -135,6 +174,7 @@ export class GameBoardComponent implements OnInit {
           if (puzzleId === -1 && this.route.snapshot.data['testMode']) {
             this.prePopulateTestPuzzle();
           }
+          this.updateDailyLockState();
         } else {
           this.error = `Puzzle ${puzzleId} not found. Available puzzles: 1`;
           this.loadPuzzle(1);
@@ -202,6 +242,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   dropOnCell(event: CdkDragDrop<any>, cellIndex: number) {
+    if (this.isDailyLocked) return;
     if (this.isResolvingInvalidLine) return;
     if (this.isSpotDisabled(cellIndex) || this.isCornerLocked(cellIndex)) {
       return;
@@ -249,6 +290,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   dropToBank(event: CdkDragDrop<any>) {
+    if (this.isDailyLocked) return;
     if (this.isResolvingInvalidLine) return;
     if (event.previousContainer !== event.container) {
       if (event.previousContainer.id.startsWith('grid-cell-')) {
@@ -270,6 +312,7 @@ export class GameBoardComponent implements OnInit {
   // --- Tap-to-place handlers ---
 
   onBankTileClick(index: number) {
+    if (this.isDailyLocked) return;
     if (this.isDragging || this.isResolvingInvalidLine) return;
 
     if (this.selectedTile?.source === 'bank' && this.selectedTile.index === index) {
@@ -281,6 +324,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   onGridCellClick(cellIndex: number) {
+    if (this.isDailyLocked) return;
     if (this.isDragging || this.isResolvingInvalidLine || this.isSpotDisabled(cellIndex) || this.isCornerLocked(cellIndex)) {
       return;
     }
@@ -327,6 +371,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   onBankClick() {
+    if (this.isDailyLocked) return;
     if (this.isDragging || this.isResolvingInvalidLine) return;
 
     // If a grid tile is selected, return it to the bank
@@ -356,11 +401,11 @@ export class GameBoardComponent implements OnInit {
   }
 
   isGridTileDraggable(cellIndex: number): boolean {
-    return !this.isCornerLocked(cellIndex) && !this.isResolvingInvalidLine;
+    return !this.isDailyLocked && !this.isCornerLocked(cellIndex) && !this.isResolvingInvalidLine;
   }
 
   isValidDropTarget(cellIndex: number): boolean {
-    if (this.isSpotDisabled(cellIndex) || this.isCornerLocked(cellIndex) || this.isResolvingInvalidLine) {
+    if (this.isDailyLocked || this.isSpotDisabled(cellIndex) || this.isCornerLocked(cellIndex) || this.isResolvingInvalidLine) {
       return false;
     }
     // Show targets when dragging OR when a tile is selected
@@ -450,6 +495,7 @@ export class GameBoardComponent implements OnInit {
   // --- Line checking ---
 
   checkForCompletedLines() {
+    if (this.isDailyLocked) return;
     if (this.isResolvingInvalidLine) return;
     if (!this.currentPuzzle || !this.currentPuzzle.categories) return;
 
@@ -504,11 +550,18 @@ export class GameBoardComponent implements OnInit {
 
   private checkWinCondition() {
     if (this.completedLines.size === 4) {
+      if (this.isDailyPuzzleMode && this.currentPuzzle?.id === this.dailyPuzzleId) {
+        this.markDailyCompleted();
+      }
       this.gameWon = true;
     }
   }
 
   onPlayAgain() {
+    if (this.isDailyPuzzleMode && this.isDailyLocked) {
+      this.gameWon = false;
+      return;
+    }
     if (this.currentPuzzle) {
       this.loadPuzzle(this.currentPuzzle.id);
     }
@@ -526,6 +579,57 @@ export class GameBoardComponent implements OnInit {
 
   closeHelp() {
     this.isHelpOpen = false;
+  }
+
+  private startDailyCountdown(): void {
+    this.updateDailyCountdown();
+    this.countdownTimer = setInterval(() => this.updateDailyCountdown(), 1000);
+  }
+
+  private updateDailyCountdown(): void {
+    const now = new Date();
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const diffMs = tomorrow.getTime() - now.getTime();
+    const totalSeconds = Math.max(0, Math.floor(diffMs / 1000));
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    this.dailyCountdown = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+
+  private getTodayKey(): string {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  private getDailyCompletions(): Record<string, number> {
+    const raw = localStorage.getItem(GameBoardComponent.DAILY_STORAGE_KEY);
+    if (!raw) return {};
+    try {
+      return JSON.parse(raw) as Record<string, number>;
+    } catch {
+      return {};
+    }
+  }
+
+  private markDailyCompleted(): void {
+    if (this.dailyPuzzleId == null) return;
+    const completions = this.getDailyCompletions();
+    completions[this.getTodayKey()] = this.dailyPuzzleId;
+    localStorage.setItem(GameBoardComponent.DAILY_STORAGE_KEY, JSON.stringify(completions));
+    this.isDailyLocked = true;
+  }
+
+  private updateDailyLockState(): void {
+    if (!this.isDailyPuzzleMode || this.dailyPuzzleId == null || this.currentPuzzle?.id !== this.dailyPuzzleId) {
+      this.isDailyLocked = false;
+      return;
+    }
+    const completions = this.getDailyCompletions();
+    this.isDailyLocked = completions[this.getTodayKey()] === this.dailyPuzzleId;
   }
 
   // --- Difficulty color helpers ---

@@ -81,16 +81,29 @@ test.describe('UI state', () => {
     }
   });
 
-  test('completed line tiles cannot be selected or moved', async ({ page }) => {
+  test('completed line tiles can be reordered within the same completed line', async ({ page }) => {
     // Complete the top line (Jewelry)
     await fillLine(page, [['RING', 0], ['CHAIN', 1], ['PENDANT', 2], ['BAND', 3]]);
     await expect(page.locator('#grid-cell-0')).toHaveClass(/completed/);
 
-    // Try to select a completed tile (cell 1 = CHAIN) and move it to an empty cell
+    // Move CHAIN from cell 1 to cell 2 (same completed line) - should swap with PENDANT
+    await clickCell(page, 1);
+    await clickCell(page, 2);
+
+    expect(await getCellText(page, 2)).toBe('CHAIN');
+    expect(await getCellText(page, 1)).toBe('PENDANT');
+  });
+
+  test('completed line tiles cannot move to a different line', async ({ page }) => {
+    // Complete the top line (Jewelry)
+    await fillLine(page, [['RING', 0], ['CHAIN', 1], ['PENDANT', 2], ['BAND', 3]]);
+    await expect(page.locator('#grid-cell-0')).toHaveClass(/completed/);
+
+    // Try to move CHAIN from completed top line to a different line cell
     await clickCell(page, 1);
     await clickCell(page, 7);
 
-    // CHAIN should still be in cell 1, cell 7 should be empty
+    // Move should be rejected
     expect(await getCellText(page, 1)).toBe('CHAIN');
     expect(await getCellText(page, 7)).toBe('');
   });
