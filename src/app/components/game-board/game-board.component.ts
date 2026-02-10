@@ -45,6 +45,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   // Scoring
   mistakes: number = 0;
   gameWon: boolean = false;
+  keepBoardVisibleAfterWin = false;
   isHelpOpen: boolean = false;
   isDailyPuzzleMode = false;
   dailyPuzzleId: number | null = null;
@@ -132,6 +133,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.error = null;
     this.selectedTile = null;
     this.gameWon = false;
+    this.keepBoardVisibleAfterWin = false;
     this.mistakes = 0;
     this.isDailyLocked = false;
 
@@ -161,6 +163,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
             this.prePopulateTestPuzzle();
           }
           this.updateDailyLockState();
+          this.restoreLockedDailyBoardState();
         } else {
           this.error = `Puzzle ${puzzleId} not found. Available puzzles: 1`;
           this.loadPuzzle(1);
@@ -536,10 +539,12 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   private checkWinCondition() {
     if (this.completedLines.size === 4) {
+      this.keepBoardVisibleAfterWin = true;
       if (this.currentPuzzle && this.currentPuzzle.id > 0) {
         this.progressService.markPuzzleCompleted(this.currentPuzzle.id);
       }
       if (this.isDailyPuzzleMode && this.currentPuzzle?.id === this.dailyPuzzleId) {
+        this.progressService.saveTodayDailySnapshot(this.dailyPuzzleId, this.gridTiles.map(tile => tile?.word ?? null));
         this.markDailyCompleted();
       }
       this.gameWon = true;
@@ -560,6 +565,10 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     if (this.currentPuzzle) {
       this.loadPuzzle(this.currentPuzzle.id + 1, true);
     }
+  }
+
+  onCloseWinModal() {
+    this.gameWon = false;
   }
 
   openHelp() {
@@ -598,6 +607,166 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       return;
     }
     this.isDailyLocked = this.progressService.isDailyCompleted(this.dailyPuzzleId);
+  }
+
+  private restoreLockedDailyBoardState(): void {
+    if (!this.isDailyPuzzleMode || !this.isDailyLocked || this.dailyPuzzleId == null || !this.currentPuzzle) {
+      return;
+    }
+
+    const snapshot = this.progressService.getTodayDailySnapshot(this.dailyPuzzleId);
+    if (!snapshot) {
+      if (this.buildSolvedGridFromCategories()) {
+        this.keepBoardVisibleAfterWin = true;
+      }
+      return;
+    }
+
+    const tileByWord = new Map(
+      this.currentPuzzle.words.map((word, index) => [word, { id: index + 1, word }])
+    );
+
+    const invalidWord = snapshot.gridWords.find((word) => word !== null && !tileByWord.has(word));
+    if (invalidWord) {
+      return;
+    }
+
+    this.gridTiles = snapshot.gridWords.map((word) => (word ? tileByWord.get(word)! : null));
+    const placedWords = new Set(snapshot.gridWords.filter((word): word is string => word !== null));
+
+    this.availableTiles = this.currentPuzzle.words
+      .filter(word => !placedWords.has(word))
+      .map((word, index) => ({
+        id: index + 1,
+        word
+      }));
+
+    this.rebuildCompletedLineStateFromGrid();
+    this.keepBoardVisibleAfterWin = this.completedLines.size === 4;
+  }
+
+  private buildSolvedGridFromCategories(): boolean {
+    if (!this.currentPuzzle) {
+      return false;
+    }
+
+    const categories = this.currentPuzzle.categories;
+    if (categories.length !== 4) {
+      return false;
+    }
+
+    const permutations = this.getPermutations(categories.map((_, i) => i));
+    for (const perm of permutations) {
+      const top = categories[perm[0]];
+      const right = categories[perm[1]];
+      const bottom = categories[perm[2]];
+      const left = categories[perm[3]];
+
+      const topLeft = this.getSingleSharedWord(top.words, left.words);
+      const topRight = this.getSingleSharedWord(top.words, right.words);
+      const bottomLeft = this.getSingleSharedWord(bottom.words, left.words);
+      const bottomRight = this.getSingleSharedWord(bottom.words, right.words);
+
+      if (!topLeft || !topRight || !bottomLeft || !bottomRight) {
+        continue;
+      }
+
+      const corners = [topLeft, topRight, bottomLeft, bottomRight];
+      if (new Set(corners).size !== 4) {
+        continue;
+      }
+
+      const topInner = top.words.filter(word => word !== topLeft && word !== topRight);
+      const rightInner = right.words.filter(word => word !== topRight && word !== bottomRight);
+      const bottomInner = bottom.words.filter(word => word !== bottomLeft && word !== bottomRight);
+      const leftInner = left.words.filter(word => word !== topLeft && word !== bottomLeft);
+
+      if (topInner.length !== 2 || rightInner.length !== 2 || bottomInner.length !== 2 || leftInner.length !== 2) {
+        continue;
+      }
+
+      const tileByWord = new Map(
+        this.currentPuzzle.words.map((word, index) => [word, { id: index + 1, word }])
+      );
+      const orderedGridWords: (string | null)[] = [
+        topLeft, topInner[0], topInner[1], topRight,
+        leftInner[0], null, null, rightInner[0],
+        leftInner[1], null, null, rightInner[1],
+        bottomLeft, bottomInner[0], bottomInner[1], bottomRight
+      ];
+
+      if (orderedGridWords.some((word) => word !== null && !tileByWord.has(word))) {
+        continue;
+      }
+
+      this.gridTiles = orderedGridWords.map((word) => (word ? tileByWord.get(word)! : null));
+      this.availableTiles = [];
+
+      this.completedLines = new Set<string>(['top', 'right', 'bottom', 'left']);
+      this.lineCategories = new Map<string, string>([
+        ['top', top.name],
+        ['right', right.name],
+        ['bottom', bottom.name],
+        ['left', left.name]
+      ]);
+      this.lineDifficulties = new Map<string, number>([
+        ['top', top.difficulty],
+        ['right', right.difficulty],
+        ['bottom', bottom.difficulty],
+        ['left', left.difficulty]
+      ]);
+      return true;
+    }
+
+    return false;
+  }
+
+  private getSingleSharedWord(a: string[], b: string[]): string | null {
+    const shared = a.filter(word => b.includes(word));
+    return shared.length === 1 ? shared[0] : null;
+  }
+
+  private getPermutations(values: number[]): number[][] {
+    if (values.length <= 1) {
+      return [values];
+    }
+
+    const result: number[][] = [];
+    values.forEach((value, index) => {
+      const remaining = [...values.slice(0, index), ...values.slice(index + 1)];
+      this.getPermutations(remaining).forEach((perm) => result.push([value, ...perm]));
+    });
+    return result;
+  }
+
+  private rebuildCompletedLineStateFromGrid(): void {
+    if (!this.currentPuzzle) {
+      return;
+    }
+
+    this.completedLines = new Set<string>();
+    this.lineCategories = new Map<string, string>();
+    this.lineDifficulties = new Map<string, number>();
+
+    Object.entries(this.lines).forEach(([lineName, positions]) => {
+      const lineWords = positions
+        .map(pos => this.gridTiles[pos]?.word)
+        .filter((word): word is string => Boolean(word));
+
+      if (lineWords.length !== 4) {
+        return;
+      }
+
+      const matchingCategory = this.currentPuzzle!.categories.find(category =>
+        this.arraysEqual([...lineWords].sort(), [...category.words].sort())
+      );
+
+      if (matchingCategory) {
+        this.completedLines.add(lineName);
+        this.lineCategories.set(lineName, matchingCategory.name);
+        this.lineDifficulties.set(lineName, matchingCategory.difficulty);
+      }
+    });
   }
 
   // --- Difficulty color helpers ---

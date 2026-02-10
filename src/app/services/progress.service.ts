@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 
+export interface DailyPuzzleSnapshot {
+  puzzleId: number;
+  gridWords: (string | null)[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProgressService {
   private readonly dailyCompletionsKey = 'cornerz-daily-completions';
   private readonly puzzleCompletionsKey = 'cornerz-puzzle-completions';
+  private readonly dailySnapshotsKey = 'cornerz-daily-snapshots';
 
   private getTodayKey(): string {
     const now = new Date();
@@ -15,21 +21,25 @@ export class ProgressService {
     return `${year}-${month}-${day}`;
   }
 
-  private safeParse(raw: string | null): Record<string, number> {
-    if (!raw) return {};
+  private safeParse<T>(raw: string | null, fallback: T): T {
+    if (!raw) return fallback;
     try {
-      return JSON.parse(raw) as Record<string, number>;
+      return JSON.parse(raw) as T;
     } catch {
-      return {};
+      return fallback;
     }
   }
 
   private getDailyCompletions(): Record<string, number> {
-    return this.safeParse(localStorage.getItem(this.dailyCompletionsKey));
+    return this.safeParse(localStorage.getItem(this.dailyCompletionsKey), {});
   }
 
   private getPuzzleCompletions(): Record<string, number> {
-    return this.safeParse(localStorage.getItem(this.puzzleCompletionsKey));
+    return this.safeParse(localStorage.getItem(this.puzzleCompletionsKey), {});
+  }
+
+  private getDailySnapshots(): Record<string, DailyPuzzleSnapshot> {
+    return this.safeParse(localStorage.getItem(this.dailySnapshotsKey), {});
   }
 
   isDailyCompleted(puzzleId: number): boolean {
@@ -43,6 +53,29 @@ export class ProgressService {
     localStorage.setItem(this.dailyCompletionsKey, JSON.stringify(completions));
   }
 
+  saveTodayDailySnapshot(puzzleId: number, gridWords: (string | null)[]): void {
+    const snapshots = this.getDailySnapshots();
+    snapshots[this.getTodayKey()] = {
+      puzzleId,
+      gridWords: gridWords.slice(0, 16)
+    };
+    localStorage.setItem(this.dailySnapshotsKey, JSON.stringify(snapshots));
+  }
+
+  getTodayDailySnapshot(puzzleId: number): DailyPuzzleSnapshot | null {
+    const snapshots = this.getDailySnapshots();
+    const snapshot = snapshots[this.getTodayKey()];
+    if (!snapshot || snapshot.puzzleId !== puzzleId) {
+      return null;
+    }
+
+    if (!Array.isArray(snapshot.gridWords) || snapshot.gridWords.length !== 16) {
+      return null;
+    }
+
+    return snapshot;
+  }
+
   markPuzzleCompleted(puzzleId: number): void {
     const completions = this.getPuzzleCompletions();
     completions[String(puzzleId)] = Date.now();
@@ -54,4 +87,3 @@ export class ProgressService {
     return Number.isFinite(completions[String(puzzleId)]);
   }
 }
-

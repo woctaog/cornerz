@@ -43,8 +43,8 @@
         },
         {
           "id": 3,
-          "name": "Homophones of money/pricing terms",
-          "difficulty": 3,
+          "name": "Homophones of money terms",
+          "difficulty": 4,
           "words": [
             "SAIL",
             "SENT",
@@ -55,7 +55,7 @@
         {
           "id": 4,
           "name": "Best / top-tier",
-          "difficulty": 4,
+          "difficulty": 3,
           "words": [
             "GOLD",
             "VICTOR",

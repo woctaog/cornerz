@@ -10,6 +10,7 @@ export class WinModalComponent {
   @Input() puzzleId: number = 1;
   @Output() playAgain = new EventEmitter<void>();
   @Output() nextPuzzle = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
 
   get ratingStars(): string {
     if (this.mistakes === 0) return '★★★';
