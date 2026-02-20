@@ -1,6 +1,71 @@
 {
   "puzzles": [
     {
+  "id": 5,
+  "title": "Cornerz Puzzle 5",
+  "description": "Arrange the words so each edge line forms a category.",
+  "words": [
+    "FIELD",
+    "FOSTER",
+    "SWANK",
+    "STONE",
+    "DANCES",
+    "TILE",
+    "TIN",
+    "STEEL",
+    "BULL",
+    "HERRING",
+    "FLAG",
+    "WOOD"
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Repeat Best Actress Winners",
+      "difficulty": 3,
+      "words": [
+        "FIELD",
+        "FOSTER",
+        "SWANK",
+        "STONE"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "First Words of Kevin Costner Movies",
+      "difficulty": 4,
+      "words": [
+        "FIELD",
+        "DANCES",
+        "TIN",
+        "BULL"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Building Materials",
+      "difficulty": 1,
+      "words": [
+        "STONE",
+        "TILE",
+        "STEEL",
+        "WOOD"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Words That Follow RED",
+      "difficulty": 2,
+      "words": [
+        "BULL",
+        "HERRING",
+        "FLAG",
+        "WOOD"
+      ]
+    }
+  ]
+},
+    {
       "id": 4,
       "title": "Cornerz Puzzle 4",
       "description": "Arrange the words so each edge line forms a category.",
