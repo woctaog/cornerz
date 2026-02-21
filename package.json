@@ -9,7 +9,9 @@
     "test": "ng test",
     "e2e": "npx playwright test",
     "e2e:headed": "npx playwright test --headed",
-    "validate": "node tools/validate-puzzles.js"
+    "validate": "node tools/validate-puzzles.js",
+    "build:pages": "ng build --configuration production --base-href /",
+    "deploy": "npm run build:pages && npx angular-cli-ghpages --dir=dist/cornerz --cname=cornerz.cc"
   },
   "private": true,
   "dependencies": {
