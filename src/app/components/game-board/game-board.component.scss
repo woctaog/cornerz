@@ -459,6 +459,24 @@ $board-max: 400px;
   }
 }
 
+.solution-difficulty-label {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  margin-left: 0.4rem;
+
+  &[data-difficulty="1"] { background-color: #F9A825; }
+  &[data-difficulty="2"] { background-color: #2E7D32; }
+  &[data-difficulty="3"] { background-color: #1565C0; }
+  &[data-difficulty="4"] { background-color: #6A1B9A; }
+}
+
 .solution-body {
   color: #37474f;
   font-size: 0.9rem;

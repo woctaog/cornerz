@@ -121,7 +121,7 @@ PuzzleService (abstract interface)
   - Allow filtering by difficulty or completion status
   - Clicking a puzzle navigates to the game board with that puzzle loaded
 
-- [ ] **3.4 — Category solutions**
+- [x] **3.4 — Category solutions**
   - Add a `solution: string` field to the `Category` interface (HTML with detailed clues)
   - Update `puzzles.json` schema to include descriptions for each category (this has already been done)
   - Solution should explain the category theme and how it relates to each of the 4 words in the category

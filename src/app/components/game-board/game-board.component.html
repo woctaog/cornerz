@@ -102,6 +102,7 @@
       *ngIf="gameWon"
       [mistakes]="mistakes"
       [puzzleId]="currentPuzzle?.id || 1"
+      [categories]="completedCategories"
       (playAgain)="onPlayAgain()"
       (nextPuzzle)="onNextPuzzle()"
       (close)="onCloseWinModal()">
@@ -130,7 +131,10 @@
   <div class="solution-modal-backdrop" *ngIf="activeSolution" (click)="closeSolution()">
     <div class="solution-modal" [attr.data-difficulty]="activeSolution.difficulty" (click)="$event.stopPropagation()">
       <div class="solution-modal-header">
-        <h3>{{ activeSolution.name }}</h3>
+        <h3>
+          {{ activeSolution.name }}
+          <span class="solution-difficulty-label" [attr.data-difficulty]="activeSolution.difficulty">{{ getDifficultyLabel(activeSolution.difficulty) }}</span>
+        </h3>
         <button type="button" class="close-button" (click)="closeSolution()" aria-label="Close solution">X</button>
       </div>
       <div class="solution-body" [innerHTML]="activeSolution.solutionHtml"></div>

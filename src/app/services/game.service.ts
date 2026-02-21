@@ -11,6 +11,10 @@ export interface Category {
   solution?: string; // HTML string explaining the category theme and word connections
 }
 
+export const DIFFICULTY_LABELS: Record<number, string> = {
+  1: 'Easy', 2: 'Medium', 3: 'Hard', 4: 'Hardest'
+};
+
 export interface GridLayout {
   corners: {
     topLeft: string;

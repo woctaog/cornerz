@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CdkDragDrop, CdkDragStart, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
-import { GameService, Category, Puzzle } from '../../services/game.service';
+import { GameService, Category, Puzzle, DIFFICULTY_LABELS } from '../../services/game.service';
 import { ProgressService } from '../../services/progress.service';
 
 export interface GameTile {
@@ -804,6 +804,15 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         this.lineCategoryData.set(lineName, matchingCategory);
       }
     });
+  }
+
+  get completedCategories(): Category[] {
+    return Array.from(this.lineCategoryData.values())
+      .sort((a, b) => a.difficulty - b.difficulty);
+  }
+
+  getDifficultyLabel(difficulty: number): string {
+    return DIFFICULTY_LABELS[difficulty] || '';
   }
 
   // --- Difficulty color helpers ---

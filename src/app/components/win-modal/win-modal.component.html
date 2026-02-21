@@ -1,21 +1,58 @@
 <div class="overlay" (click)="$event.stopPropagation()">
   <div class="modal">
-    <h2>Puzzle Complete!</h2>
 
-    <div class="rating">{{ ratingStars }}</div>
-    <div class="rating-label">{{ ratingLabel }}</div>
+    <!-- View 1: Category list -->
+    <ng-container *ngIf="!selectedCategory">
+      <h2>Puzzle Complete!</h2>
 
-    <div class="stats">
-      <div class="stat">
-        <span class="stat-value">{{ mistakes }}</span>
-        <span class="stat-label">{{ mistakes === 1 ? 'Mistake' : 'Mistakes' }}</span>
+      <div class="rating">{{ ratingStars }}</div>
+      <div class="rating-label">{{ ratingLabel }}</div>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-value">{{ mistakes }}</span>
+          <span class="stat-label">{{ mistakes === 1 ? 'Mistake' : 'Mistakes' }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="actions">
-      <button class="btn btn-primary" (click)="playAgain.emit()">Play Again</button>
-      <button class="btn btn-secondary" (click)="nextPuzzle.emit()">Next Puzzle</button>
-      <button class="btn btn-secondary" (click)="close.emit()">Close</button>
-    </div>
+      <div class="category-list" *ngIf="categories.length > 0">
+        <div class="category-row"
+             *ngFor="let cat of categories"
+             [style.border-left-color]="getDifficultyColor(cat.difficulty)"
+             (click)="viewSolution(cat)">
+          <div class="category-info">
+            <span class="category-name">{{ cat.name }}</span>
+            <span class="difficulty-label" [style.color]="getDifficultyColor(cat.difficulty)">{{ getDifficultyLabel(cat.difficulty) }}</span>
+          </div>
+          <span class="chevron">&#8250;</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" (click)="playAgain.emit()">Play Again</button>
+        <button class="btn btn-secondary" (click)="nextPuzzle.emit()">Next Puzzle</button>
+        <button class="btn btn-secondary" (click)="close.emit()">Close</button>
+      </div>
+    </ng-container>
+
+    <!-- View 2: Solution detail -->
+    <ng-container *ngIf="selectedCategory">
+      <div class="solution-header">
+        <button class="back-button" (click)="backToList()">&#8249; Back</button>
+        <h2>{{ selectedCategory.name }}</h2>
+      </div>
+
+      <div class="difficulty-badge" [style.background-color]="getDifficultyColor(selectedCategory.difficulty)">
+        {{ getDifficultyLabel(selectedCategory.difficulty) }}
+      </div>
+
+      <div class="solution-body" *ngIf="selectedSolutionHtml" [innerHTML]="selectedSolutionHtml"></div>
+      <div class="solution-body no-solution" *ngIf="!selectedSolutionHtml">No solution details available.</div>
+
+      <div class="actions">
+        <button class="btn btn-secondary" (click)="backToList()">Back to Results</button>
+      </div>
+    </ng-container>
+
   </div>
 </div>
