@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CdkDragDrop, CdkDragStart, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
-import { GameService, Puzzle } from '../../services/game.service';
+import { GameService, Category, Puzzle } from '../../services/game.service';
 import { ProgressService } from '../../services/progress.service';
 
 export interface GameTile {
@@ -30,6 +31,10 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   // Track which category is assigned to each completed line
   lineCategories = new Map<string, string>();
   lineDifficulties = new Map<string, number>();
+  lineCategoryData = new Map<string, Category>();
+
+  // Solution modal state
+  activeSolution: { name: string; difficulty: number; solutionHtml: SafeHtml } | null = null;
 
   // Animation state: cells currently playing an animation
   bouncingCells = new Set<number>();
@@ -72,6 +77,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private sanitizer: DomSanitizer,
     private gameService: GameService,
     private progressService: ProgressService
   ) { }
@@ -158,6 +164,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.completedLines = new Set<string>();
           this.lineCategories = new Map<string, string>();
           this.lineDifficulties = new Map<string, number>();
+          this.lineCategoryData = new Map<string, Category>();
 
           if (puzzleId === -1 && this.route.snapshot.data['testMode']) {
             this.prePopulateTestPuzzle();
@@ -212,10 +219,12 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     if (topCategory) {
       this.lineCategories.set('top', topCategory.name);
       this.lineDifficulties.set('top', topCategory.difficulty);
+      this.lineCategoryData.set('top', topCategory);
     }
     if (leftCategory) {
       this.lineCategories.set('left', leftCategory.name);
       this.lineDifficulties.set('left', leftCategory.difficulty);
+      this.lineCategoryData.set('left', leftCategory);
     }
   }
 
@@ -504,6 +513,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.completedLines.add(lineName);
           this.lineCategories.set(lineName, matchingCategory.name);
           this.lineDifficulties.set(lineName, matchingCategory.difficulty);
+          this.lineCategoryData.set(lineName, matchingCategory);
           this.checkWinCondition();
         } else {
           this.mistakes++;
@@ -577,6 +587,25 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   closeHelp() {
     this.isHelpOpen = false;
+  }
+
+  onCenterIndicatorClick(index: number) {
+    const lineName = Object.entries(this.centerIndicators)
+      .find(([, centerIndex]) => centerIndex === index)?.[0];
+    if (!lineName || !this.completedLines.has(lineName)) return;
+
+    const category = this.lineCategoryData.get(lineName);
+    if (!category?.solution) return;
+
+    this.activeSolution = {
+      name: category.name,
+      difficulty: category.difficulty,
+      solutionHtml: this.sanitizer.bypassSecurityTrustHtml(category.solution)
+    };
+  }
+
+  closeSolution() {
+    this.activeSolution = null;
   }
 
   private startDailyCountdown(): void {
@@ -715,6 +744,12 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         ['bottom', bottom.difficulty],
         ['left', left.difficulty]
       ]);
+      this.lineCategoryData = new Map<string, Category>([
+        ['top', top],
+        ['right', right],
+        ['bottom', bottom],
+        ['left', left]
+      ]);
       return true;
     }
 
@@ -747,6 +782,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.completedLines = new Set<string>();
     this.lineCategories = new Map<string, string>();
     this.lineDifficulties = new Map<string, number>();
+    this.lineCategoryData = new Map<string, Category>();
 
     Object.entries(this.lines).forEach(([lineName, positions]) => {
       const lineWords = positions
@@ -765,6 +801,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         this.completedLines.add(lineName);
         this.lineCategories.set(lineName, matchingCategory.name);
         this.lineDifficulties.set(lineName, matchingCategory.difficulty);
+        this.lineCategoryData.set(lineName, matchingCategory);
       }
     });
   }

@@ -121,13 +121,13 @@ PuzzleService (abstract interface)
   - Allow filtering by difficulty or completion status
   - Clicking a puzzle navigates to the game board with that puzzle loaded
 
-- [ ] **3.4 — Category descriptions**
-  - Add a `description: string` field to the `Category` interface (HTML with detailed clues)
-  - Update `puzzles.json` schema to include descriptions for each category
-  - Descriptions should explain the category theme and how it relates to each of the 4 words in the category
-  - Create a UI component to display category descriptions (e.g., modal, collapsible panel, or info popover)
-  - Show description on demand (e.g., via a help icon or expandable section)
-  - Ensure descriptions are accessible and render HTML content safely (use Angular's sanitization)
+- [ ] **3.4 — Category solutions**
+  - Add a `solution: string` field to the `Category` interface (HTML with detailed clues)
+  - Update `puzzles.json` schema to include descriptions for each category (this has already been done)
+  - Solution should explain the category theme and how it relates to each of the 4 words in the category
+  - Create a UI component to display category solutions (e.g., modal, collapsible panel, or info popover)
+  - Show solutions on demand (e.g., clicking the category once its revealed opens a model with the full solution)
+  - Ensure solutions are accessible and render HTML content safely (use Angular's sanitization)
 
 - [ ] **3.5 — Refactor PuzzleService for API-readiness**
   - Define a clean `PuzzleProvider` interface with methods:

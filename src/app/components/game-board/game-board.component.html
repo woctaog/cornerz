@@ -52,8 +52,9 @@
           </app-game-tile>
 
           <!-- Center indicator for completed lines -->
-          <div *ngIf="isSpotDisabled(i) && isCenterIndicatorActive(i)" class="center-indicator"
-               [attr.data-difficulty]="getCenterDifficulty(i)">
+          <div *ngIf="isSpotDisabled(i) && isCenterIndicatorActive(i)" class="center-indicator clickable"
+               [attr.data-difficulty]="getCenterDifficulty(i)"
+               (click)="onCenterIndicatorClick(i); $event.stopPropagation()">
             <div class="arrow">{{ getCenterIndicatorArrow(i) }}</div>
             <div class="category-label" [appFitText]="12" [fitTextWrap]="true">{{ getCenterIndicatorCategory(i) }}</div>
           </div>
@@ -123,6 +124,16 @@
         <li>Win when all 4 lines are solved.</li>
       </ul>
       <button type="button" class="archive-link" routerLink="/library" (click)="closeHelp()">Puzzle Archive</button>
+    </div>
+  </div>
+
+  <div class="solution-modal-backdrop" *ngIf="activeSolution" (click)="closeSolution()">
+    <div class="solution-modal" [attr.data-difficulty]="activeSolution.difficulty" (click)="$event.stopPropagation()">
+      <div class="solution-modal-header">
+        <h3>{{ activeSolution.name }}</h3>
+        <button type="button" class="close-button" (click)="closeSolution()" aria-label="Close solution">X</button>
+      </div>
+      <div class="solution-body" [innerHTML]="activeSolution.solutionHtml"></div>
     </div>
   </div>
 </div>

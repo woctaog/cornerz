@@ -1,6 +1,75 @@
 {
   "puzzles": [
     {
+  "id": 5,
+  "title": "Cornerz Puzzle 5",
+  "description": "Arrange the words so each edge line forms a category.",
+  "words": [
+    "FIELD",
+    "FOSTER",
+    "SWANK",
+    "STONE",
+    "DANCES",
+    "TILE",
+    "TIN",
+    "STEEL",
+    "BULL",
+    "HERRING",
+    "FLAG",
+    "WOOD"
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Repeat Best Actress Winners",
+      "difficulty": 3,
+      "solution": "<strong>FIELD</strong> - Sally Field won for <em>Norma Rae</em> (1979) and <em>Places in the Heart</em> (1984)<br><strong>FOSTER</strong> - Jodie Foster won for <em>The Accused</em> (1988) and <em>The Silence of the Lambs</em> (1991)<br><strong>SWANK</strong> - Hilary Swank won for <em>Boys Don't Cry</em> (1999) and <em>Million Dollar Baby</em> (2004)<br><strong>STONE</strong> - Emma Stone won for <em>La La Land</em> (2016) and <em>Poor Things</em> (2023)",
+      "words": [
+        "FIELD",
+        "FOSTER",
+        "SWANK",
+        "STONE"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "First Words of Kevin Costner Movies",
+      "difficulty": 4,
+      "solution": "<strong>FIELD</strong> - <em>Field of Dreams</em> (1989)<br><strong>DANCES</strong> - <em>Dances with Wolves</em> (1990)<br><strong>TIN</strong> - <em>Tin Cup</em> (1996)<br><strong>BULL</strong> - <em>Bull Durham</em> (1988)",
+      "words": [
+        "FIELD",
+        "DANCES",
+        "TIN",
+        "BULL"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Building Materials",
+      "difficulty": 1,
+      "solution": "<strong>STONE</strong> - Natural stone used in construction<br><strong>TILE</strong> - Ceramic or porcelain tiles for flooring and walls<br><strong>STEEL</strong> - Metal alloy used in structural frameworks<br><strong>WOOD</strong> - Lumber and timber for framing and finishing",
+      "words": [
+        "STONE",
+        "TILE",
+        "STEEL",
+        "WOOD"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Words That Follow RED",
+      "difficulty": 2,
+      "solution": "<strong>BULL</strong> - <em>Red Bull</em> (energy drink)<br><strong>HERRING</strong> - <em>Red Herring</em> (misleading clue or distraction)<br><strong>FLAG</strong> - <em>Red Flag</em> (warning sign)<br><strong>WOOD</strong> - <em>Redwood</em> (type of tree)",
+      "words": [
+        "BULL",
+        "HERRING",
+        "FLAG",
+        "WOOD"
+      ]
+    }
+  ]
+},
+    {
       "id": 4,
       "title": "Cornerz Puzzle 4",
       "description": "Arrange the words so each edge line forms a category.",
@@ -23,6 +92,7 @@
           "id": 1,
           "name": "Types of Fish",
           "difficulty": 1,
+          "solution": "<strong>GOLD</strong> - Goldfish (common aquarium fish)<br><strong>SWORD</strong> - Swordfish (large game fish)<br><strong>TUNA</strong> - Tuna fish (commercial food fish)<br><strong>SAIL</strong> - Sailfish (fish with large dorsal fin)",
           "words": [
             "GOLD",
             "SWORD",
@@ -34,6 +104,7 @@
           "id": 2,
           "name": "Words preceded by MOUNTAIN",
           "difficulty": 2,
+          "solution": "<strong>GOAT</strong> - Mountain Goat<br><strong>PASS</strong> - Mountain Pass<br><strong>RANGE</strong> - Mountain Range<br><strong>DEW</strong> - Mountain Dew (beverage brand)",
           "words": [
             "GOAT",
             "PASS",
@@ -45,6 +116,7 @@
           "id": 3,
           "name": "Homophones of money terms",
           "difficulty": 4,
+          "solution": "<strong>SAIL</strong> - Sounds like <em>Sale</em><br><strong>SENT</strong> - Sounds like <em>Cent</em><br><strong>CACHE</strong> - Sounds like <em>Cash</em><br><strong>DEW</strong> - Sounds like <em>Due</em>",
           "words": [
             "SAIL",
             "SENT",
@@ -56,6 +128,7 @@
           "id": 4,
           "name": "Best / top-tier",
           "difficulty": 3,
+          "solution": "<strong>GOLD</strong> - Gold medal (highest award)<br><strong>VICTOR</strong> - Victor (winner)<br><strong>PRIME</strong> - Prime quality (best grade)<br><strong>GOAT</strong> - GOAT (Greatest Of All Time)",
           "words": [
             "GOLD",
             "VICTOR",
@@ -88,6 +161,7 @@
           "id": 1,
           "name": "Jewelry",
           "difficulty": 1,
+          "solution": "<strong>RING</strong> - Circular piece worn on fingers<br><strong>CHAIN</strong> - Connected links of metal worn around neck or wrist<br><strong>PENDANT</strong> - Decorative charm hanging from necklace<br><strong>BAND</strong> - Ring worn around finger, often flat",
           "words": [
             "RING",
             "CHAIN",
@@ -99,6 +173,7 @@
           "id": 2,
           "name": "Geometric Shapes",
           "difficulty": 2,
+          "solution": "<strong>DIAMOND</strong> - Rhombus with four equal sides<br><strong>SQUARE</strong> - Four-sided shape with equal sides and right angles<br><strong>CIRCLE</strong> - Round shape with no angles<br><strong>RING</strong> - Circle shape (especially in geometry, a hollow circle)",
           "words": [
             "DIAMOND",
             "SQUARE",
@@ -110,6 +185,7 @@
           "id": 3,
           "name": "Music Terms",
           "difficulty": 3,
+          "solution": "<strong>BAND</strong> - Group of musicians<br><strong>SCALE</strong> - Series of notes in ascending or descending order<br><strong>NOTE</strong> - Single sound or musical symbol<br><strong>PITCH</strong> - Highness or lowness of a note",
           "words": [
             "BAND",
             "SCALE",
@@ -121,6 +197,7 @@
           "id": 4,
           "name": "Baseball Terms",
           "difficulty": 4,
+          "solution": "<strong>PITCH</strong> - Throwing motion of the ball to the batter<br><strong>BAT</strong> - Wooden club used to hit the ball<br><strong>BASE</strong> - One of four points on the field<br><strong>DIAMOND</strong> - The infield shape formed by the four bases",
           "words": [
             "PITCH",
             "BAT",
@@ -153,6 +230,7 @@
           "id": 1,
           "name": "Types of Fish",
           "difficulty": 4,
+          "solution": "<strong>SOLE</strong> - Flatfish found in coastal waters<br><strong>PERCH</strong> - Freshwater fish with spined dorsal fin<br><strong>RAY</strong> - Flat cartilaginous fish with barbed tail<br><strong>BASS</strong> - Freshwater or saltwater game fish",
           "words": [
             "SOLE",
             "PERCH",
@@ -164,6 +242,7 @@
           "id": 2,
           "name": "Parts of a Shoe",
           "difficulty": 3,
+          "solution": "<strong>SOLE</strong> - Bottom of the shoe<br><strong>TONGUE</strong> - Flap under the laces<br><strong>LACE</strong> - Cord for fastening<br><strong>EYELET</strong> - Hole for threading laces",
           "words": [
             "SOLE",
             "TOUNGE",
@@ -175,6 +254,7 @@
           "id": 3,
           "name": "Musical Instruments",
           "difficulty": 2,
+          "solution": "<strong>BASS</strong> - Low-pitched string instrument<br><strong>DRUM</strong> - Percussion instrument struck with sticks<br><strong>HARP</strong> - String instrument with multiple strings<br><strong>ORGAN</strong> - Keyboard instrument with pipes",
           "words": [
             "BASS",
             "DRUM",
@@ -186,6 +266,7 @@
           "id": 4,
           "name": "Body Parts",
           "difficulty": 1,
+          "solution": "<strong>TONGUE</strong> - Organ in the mouth<br><strong>HEART</strong> - Organ that pumps blood<br><strong>LUNG</strong> - Organ for breathing<br><strong>ORGAN</strong> - General term for body parts with specific functions",
           "words": [
             "TOUNGE",
             "HEART",
@@ -218,6 +299,7 @@
           "id": 1,
           "name": "Breakfast Foods",
           "difficulty": 1,
+          "solution": "<strong>JAM</strong> - Fruit preserve spread on toast<br><strong>TOAST</strong> - Browned bread<br><strong>CEREAL</strong> - Grain-based breakfast food with milk<br><strong>BAGEL</strong> - Ring-shaped bread roll",
           "words": [
             "JAM",
             "TOAST",
@@ -229,6 +311,7 @@
           "id": 2,
           "name": "Party Things",
           "difficulty": 2,
+          "solution": "<strong>TOAST</strong> - A drink raised in celebration<br><strong>PUNCH</strong> - Beverage served at parties<br><strong>BALLOON</strong> - Inflatable decoration<br><strong>CONFETTI</strong> - Colorful paper scattered in celebration",
           "words": [
             "TOAST",
             "PUNCH",
@@ -240,6 +323,7 @@
           "id": 3,
           "name": "Music Terms",
           "difficulty": 3,
+          "solution": "<strong>JAM</strong> - To play music spontaneously with others<br><strong>POP</strong> - Popular music genre<br><strong>BEAT</strong> - Rhythmic pulse of music<br><strong>TRACK</strong> - Individual song on an album",
           "words": [
             "JAM",
             "POP",
@@ -251,6 +335,7 @@
           "id": 4,
           "name": "Types of Drinks",
           "difficulty": 4,
+          "solution": "<strong>POP</strong> - Carbonated soft drink (soda)<br><strong>PUNCH</strong> - Beverage made from fruit juice and other ingredients<br><strong>CIDER</strong> - Fermented or non-fermented apple juice<br><strong>SHAKE</strong> - Creamy beverage made with ice cream and milk",
           "words": [
             "POP",
             "PUNCH",
@@ -283,6 +368,7 @@
           "id": 1,
           "name": "Words That Rhyme With A President's Last Name",
           "difficulty": 1,
+          "solution": "Stress test puzzle - this category contains test words of varying lengths.",
           "words": [
             "COUNTERPRODUCTIVE",
             "BAMBOOZLE",
@@ -294,6 +380,7 @@
           "id": 2,
           "name": "Big",
           "difficulty": 2,
+          "solution": "Stress test puzzle - this category tests text fitting with extremely long words.",
           "words": [
             "COUNTERPRODUCTIVE",
             "PERPENDICULAR",
@@ -305,6 +392,7 @@
           "id": 3,
           "name": "Overwhelming Sensations",
           "difficulty": 3,
+          "solution": "Stress test puzzle - this category combines very long and very short words.",
           "words": [
             "GO",
             "QUINTESSENTIAL",
@@ -316,6 +404,7 @@
           "id": 4,
           "name": "Communication Methods",
           "difficulty": 4,
+          "solution": "Stress test puzzle - this category pushes layout limits with extreme word lengths.",
           "words": [
             "EXTRAORDINARY",
             "JUXTAPOSITION",

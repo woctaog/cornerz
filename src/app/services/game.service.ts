@@ -8,6 +8,7 @@ export interface Category {
   name: string;
   difficulty: number; // 1=Yellow(easy), 2=Green, 3=Blue, 4=Purple(hard)
   words: string[];
+  solution?: string; // HTML string explaining the category theme and word connections
 }
 
 export interface GridLayout {
