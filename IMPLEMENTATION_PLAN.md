@@ -66,7 +66,7 @@ PuzzleService (abstract interface)
   - Difficulty color-coding: Yellow(1), Green(2), Blue(3), Purple(4) per category
   - Mistake counter in HUD above the board (no timer — casual game)
 
-- [x] **1.4 — Puzzle validation tooling**
+- [ ] **1.4 — Puzzle validation tooling**
   - Add a dev-only utility to validate puzzle JSON (ensure all words appear in exactly 2 categories, categories have exactly 4 words, no orphan words)
   - Ensure the puzzle is solvable (each word can be uniquely placed)
 
@@ -137,28 +137,73 @@ PuzzleService (abstract interface)
   - Implement `StaticPuzzleProvider` that reads from JSON
   - Use Angular dependency injection so swapping providers is a one-line change
 
-### Phase 4: Local Progress & Stats
+### Phase 4: Community Puzzle Submissions (Basin Form)
+**Goal**: Enable users to submit complete puzzle ideas via a simple form, sent to email for manual review.
+
+- [ ] **4.1 — Reusable puzzle validator service**
+  - Create a `PuzzleValidatorService` with methods that validate puzzle structure
+  - Validation rules:
+    - Exactly 4 categories, each with exactly 4 words
+    - Exactly 12 unique words total (deduped across categories)
+    - Each word appears in exactly 1 or 2 categories (edge vs corner words)
+    - Word length: max 20 characters
+    - Category name length: max 30 characters
+    - No empty/whitespace-only values
+  - Returns structured validation result with per-field errors (not just pass/fail)
+  - Reusable across submission form validation AND dev-side puzzle JSON validation
+  - This also satisfies Phase 1.4 (puzzle validation tooling)
+
+- [ ] **4.2 — Submission form component**
+  - Create a new route `/submit` for the submission form
+  - Form fields:
+    - Display name (for credit if the puzzle is used)
+    - Email (for follow-up if needed)
+    - Puzzle title
+    - 4 category sections, each with: category name + 4 word inputs
+    - Optional notes / comments
+  - Client-side validation via `PuzzleValidatorService`:
+    - Required fields: display name, email, title, all 4 categories fully filled
+    - Email format validation
+    - Character limits enforced inline (word: 20 chars, category name: 30 chars)
+    - Cross-field validation: no duplicate words, valid word distribution across categories
+  - Real-time validation feedback as user types (debounced)
+  - Permission/legal text displayed above the submit button:
+    - "By submitting, you grant Cornerz permission to use your puzzle as a daily puzzle or in the puzzle archive. You also grant permission for minor edits to your submission (e.g., adjusting wording, difficulty, or categories) as needed."
+
+- [ ] **4.3 — Basin integration**
+  - POST form data to pre-configured Basin endpoint URL (Basin setup is manual/external)
+  - Form payload: display name, email, title, categories with words, notes
+  - Basic client-side rate-limiting (localStorage-based cooldown, e.g., 1 submission per 10 minutes)
+
+- [ ] **4.4 — Submission UX**
+  - Loading state on submit button while request is in flight
+  - Disable submit button to prevent double-submission
+  - Success: confirmation message thanking the user, option to submit another
+  - Error: user-friendly message with retry option
+  - Form resets on successful submission
+
+### Phase 5: Local Progress & Stats
 **Goal**: Track player stats in localStorage for a sense of progression.
 
-- [ ] **4.1 — Stats tracking service**
+- [ ] **5.1 — Stats tracking service**
   - Create `StatsService` backed by localStorage
   - Track per-puzzle: completed (bool), mistakes, completion order, date completed
   - Track aggregate stats: total puzzles solved, current streak, max streak, average mistakes
 
-- [ ] **4.2 — Stats display**
+- [ ] **5.2 — Stats display**
   - Add a stats modal/page accessible from the header
   - Show: games played, current streak, max streak, average mistakes
   - Show a distribution chart of mistake counts
 
-- [ ] **4.3 — Streak system**
+- [ ] **5.3 — Streak system**
   - Track daily puzzle streaks (consecutive days with a completed daily puzzle)
   - Show streak indicator in the header/navbar
   - Store last completion date to calculate streaks
 
-### Phase 5: Share Results
+### Phase 6: Share Results
 **Goal**: Let players share their results in a spoiler-free format.
 
-- [ ] **5.1 — Generate shareable result card**
+- [ ] **6.1 — Generate shareable result card**
   - Create an emoji grid representation of the solve:
     - Each line gets its difficulty color emoji (🟨 Yellow, 🟩 Green, 🟦 Blue, 🟪 Purple)
     - Show order lines were completed in and whether mistakes were made on each
@@ -170,55 +215,56 @@ PuzzleService (abstract interface)
       ```
   - Include puzzle number and mistake count
 
-- [ ] **5.2 — Copy to clipboard**
+- [ ] **6.2 — Copy to clipboard**
   - "Share" button on the win screen
   - Copies the emoji result to clipboard with a confirmation toast
   - Use `navigator.clipboard.writeText()` with fallback
 
-- [ ] **5.3 — (Optional) Web Share API**
+- [ ] **6.3 — (Optional) Web Share API**
   - On mobile, use the native Web Share API (`navigator.share()`) to open the share sheet
   - Fallback to clipboard copy on unsupported browsers
 
-### Phase 6: Animations & Visual Polish
+### Phase 7: Animations & Visual Polish
 **Goal**: Make the game feel satisfying and premium.
 
-- [ ] **6.1 — Tile animations**
+- [ ] **7.1 — Tile animations**
   - Entrance animation: tiles stagger-fade-in when puzzle loads
   - Drop animation: smooth snap-to-grid with slight overshoot/bounce
   - Line complete: tiles flash/pulse green with a ripple effect
   - Win animation: celebratory effect (confetti, glow burst, or cascading tile flips)
 
-- [ ] **6.2 — UI/UX refinements**
+- [ ] **7.2 — UI/UX refinements**
   - Redesign the header with a clean logo/wordmark
   - Add a consistent color palette and design tokens (CSS custom properties)
   - Improve typography hierarchy
   - Add subtle background patterns or gradients
   - Dark mode support (respect `prefers-color-scheme`, toggleable)
 
-- [ ] **6.3 — Loading and transition states**
+- [ ] **7.3 — Loading and transition states**
   - Skeleton loader while puzzle data loads
   - Smooth route transitions between library and game views
   - Button press states and micro-interactions
 
-- [ ] **6.4 — Accessibility**
+- [ ] **7.4 — Accessibility**
   - Ensure all interactive elements are keyboard-navigable
   - Add ARIA labels to grid cells, tiles, and controls
   - Ensure sufficient color contrast ratios
   - Screen reader announcements for line completions and game events
 
-### Phase 7: Navigation & App Shell
+### Phase 8: Navigation & App Shell
 **Goal**: Structure the app with proper routing and navigation.
 
-- [ ] **7.1 — App shell and routing**
+- [ ] **8.1 — App shell and routing**
   - Define routes:
     - `/` — Home / daily puzzle landing
     - `/play/:id` — Play a specific puzzle
     - `/library` — Browse all puzzles
     - `/stats` — Player stats
-  - Add a top navigation bar with links: Daily, Library, Stats
+    - `/submit` — Submit a puzzle form
+  - Add a top navigation bar with links: Daily, Library, Stats, Submit
   - Handle 404 / unknown routes
 
-- [ ] **7.2 — Home / landing page**
+- [ ] **8.2 — Home / landing page**
   - Show today's daily puzzle front-and-center
   - Quick-access to the puzzle library
   - Show current streak and basic stats summary
@@ -227,15 +273,12 @@ PuzzleService (abstract interface)
 
 ## Data Models
 
-### Puzzle (enhanced)
+### Current Models (`src/app/models/puzzle.model.ts`)
 ```typescript
 interface Puzzle {
   id: number;
   title: string;
   description: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-  author?: string;
-  datePublished?: string;       // ISO date string
   words: string[];
   categories: Category[];
 }
@@ -245,17 +288,26 @@ interface Category {
   name: string;
   difficulty: number; // 1=Yellow(easy), 2=Green, 3=Blue, 4=Purple(hard)
   words: string[];
+  solution?: string;  // HTML string explaining the category theme and word connections
 }
 
 interface PuzzleSummary {
   id: number;
   title: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-  datePublished?: string;
+  description: string;
+  difficulty: 'easy' | 'medium' | 'hard'; // computed from max category difficulty
 }
+
+interface PuzzleData {
+  puzzles: Puzzle[];
+}
+
+// Also exports:
+// DIFFICULTY_LABELS: Record<number, string> — maps 1-4 to 'Easy'/'Medium'/'Hard'/'Hardest'
+// DIFFICULTY_COLORS: Record<number, string> — maps 1-4 to hex color values
 ```
 
-### Player Stats (localStorage)
+### Player Stats (localStorage — future, Phase 5)
 ```typescript
 interface PlayerStats {
   puzzlesCompleted: PuzzleResult[];
@@ -274,64 +326,70 @@ interface PuzzleResult {
 
 ---
 
-## File Structure (Target)
+## File Structure (Current + Planned)
 
 ```
 src/
 ├── app/
 │   ├── components/
-│   │   ├── game-board/           # Main game grid (existing, enhanced)
-│   │   ├── game-tile/            # Draggable word tile (existing, enhanced)
-│   │   ├── win-modal/            # End-of-game overlay (NEW)
-│   │   ├── share-card/           # Shareable emoji result (NEW)
-│   │   ├── stats-display/        # Stats modal/page (NEW)
-│   │   ├── puzzle-card/          # Puzzle preview in library (NEW)
-│   │   ├── countdown-timer/      # Daily puzzle countdown (NEW)
-│   │   └── header/               # Top nav bar (NEW)
-│   ├── pages/
-│   │   ├── home/                 # Daily puzzle landing (NEW)
-│   │   ├── play/                 # Game play view (refactored from current)
-│   │   ├── library/              # Puzzle browse/filter (NEW)
-│   │   └── stats/                # Full stats page (NEW)
-│   ├── services/
-│   │   ├── puzzle.service.ts     # Puzzle data provider (refactored)
-│   │   ├── stats.service.ts      # LocalStorage stats tracking (NEW)
-│   │   └── share.service.ts      # Share/clipboard logic (NEW)
+│   │   ├── game-board/           # Main game grid, daily countdown, help modal (inline)
+│   │   ├── game-tile/            # Draggable word tile
+│   │   ├── library/              # Puzzle archive browse/filter view
+│   │   ├── win-modal/            # End-of-game overlay with solution detail
+│   │   ├── submit-puzzle/        # Community puzzle submission form (PLANNED — Phase 4)
+│   │   ├── share-card/           # Shareable emoji result (PLANNED — Phase 6)
+│   │   └── stats-display/        # Stats modal/page (PLANNED — Phase 5)
+│   ├── constants/
+│   │   └── grid.constants.ts     # DISABLED_SPOTS, LINES, CENTER_INDICATORS
+│   ├── directives/
+│   │   └── fit-text.directive.ts # Responsive text sizing directive
 │   ├── models/
-│   │   ├── puzzle.model.ts       # Puzzle interfaces (NEW, extracted)
-│   │   ├── stats.model.ts        # Stats interfaces (NEW)
-│   │   └── game.model.ts         # Game state interfaces (NEW)
+│   │   ├── puzzle.model.ts       # Puzzle, Category, PuzzleSummary, PuzzleData interfaces
+│   │   └── stats.model.ts        # Stats interfaces (PLANNED — Phase 5)
+│   ├── services/
+│   │   ├── puzzle-provider.ts    # Abstract PuzzleProvider base class
+│   │   ├── static-puzzle-provider.ts  # JSON-backed implementation
+│   │   ├── progress.service.ts   # localStorage tracking (completions, snapshots)
+│   │   ├── puzzle-validator.service.ts # Reusable puzzle validation (PLANNED — Phase 4)
+│   │   ├── stats.service.ts      # Aggregate stats tracking (PLANNED — Phase 5)
+│   │   └── share.service.ts      # Share/clipboard logic (PLANNED — Phase 6)
 │   ├── app.component.ts
 │   ├── app.component.html
 │   ├── app.component.scss
 │   ├── app.module.ts
 │   └── app-routing.module.ts
-│   ├── styles/
-│   │   ├── _variables.scss       # Design tokens (NEW)
-│   │   ├── _animations.scss      # Reusable animation keyframes (NEW)
-│   │   └── _mixins.scss          # SCSS mixins (NEW)
+├── styles/
+│   ├── _variables.scss           # CSS custom properties for difficulty colors
+│   └── _mixins.scss              # difficulty-color(), difficulty-bg(), modal-backdrop mixins
 ├── assets/
-│   └── puzzles.json              # Puzzle data (expanded)
+│   └── puzzles.json              # Puzzle data
 ├── index.html
-├── styles.scss                   # Global styles (enhanced)
+├── styles.scss                   # Global styles
 └── ...
+e2e/
+├── smoke.spec.ts                 # App load test
+├── gameplay.spec.ts              # Core gameplay tests (7 tests)
+├── ui-state.spec.ts              # UI state tests (7 tests)
+└── regression.spec.ts            # Regression + visual snapshot tests
+playwright.config.ts              # Multi-browser config with Angular dev server
 ```
 
 ---
 
-## Implementation Order (Recommended)
+## Implementation Order
 
-| Priority | Phase | Rationale |
-|----------|-------|-----------|
-| 1st      | Phase 1 (Core Polish) | Must-have foundation before features |
-| 2nd      | Phase 2 (E2E Tests) | Safety net before building new features |
-| 3rd      | Phase 7 (Navigation) | Routing needed before library/stats pages |
-| 4th      | Phase 3 (Puzzles & Daily) | Core content delivery |
-| 5th      | Phase 4 (Stats) | Depends on puzzle completion tracking |
-| 6th      | Phase 5 (Share) | Depends on stats/result data |
-| 7th      | Phase 6 (Animations) | Polish layer applied last |
+| Priority | Phase | Status | Notes |
+|----------|-------|--------|-------|
+| 1st      | Phase 1 (Core Polish) | Done (1.1-1.3), 1.4 absorbed into 4.1 | Puzzle validation now part of Phase 4 validator service |
+| 2nd      | Phase 2 (E2E Tests) | Done | 4 spec files covering core gameplay, UI state, regression |
+| 3rd      | Phase 3 (Puzzles & Daily) | Mostly done | 3.1 (expand library to 10+ puzzles) still TODO |
+| 4th      | Phase 4 (Community Submissions) | TODO | Validator service + submission form + Basin integration |
+| 5th      | Phase 5 (Stats) | TODO | Depends on puzzle completion tracking (ProgressService exists as foundation) |
+| 6th      | Phase 6 (Share) | TODO | Depends on stats/result data |
+| 7th      | Phase 7 (Visual Polish) | TODO | Animations, UI refinements, accessibility, dark mode, loading states |
+| 8th      | Phase 8 (Navigation) | Partially done | Basic routing exists (/, /library, /test-page); full app shell/header/stats/submit routes TODO |
 
-Phase 2 tests should be expanded as new features land in later phases. Phase 6 (animations) can be partially interleaved with earlier phases — e.g., adding tile animations during Phase 1 work.
+Phase 2 tests should be expanded as new features land in later phases.
 
 ---
 
