@@ -1,0 +1,29 @@
+// Generates [data-difficulty="N"] { $property: var(--difficulty-N-color) } for 1–4
+@mixin difficulty-color($property) {
+  @for $i from 1 through 4 {
+    &[data-difficulty="#{$i}"] {
+      #{$property}: var(--difficulty-#{$i}-color);
+    }
+  }
+}
+
+// Generates [data-difficulty="N"] { $property: var(--difficulty-N-bg) } for 1–4
+@mixin difficulty-bg($property) {
+  @for $i from 1 through 4 {
+    &[data-difficulty="#{$i}"] {
+      #{$property}: var(--difficulty-#{$i}-bg);
+    }
+  }
+}
+
+// Shared fixed-overlay backdrop used by help, solution, and win modals
+@mixin modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1100;
+}

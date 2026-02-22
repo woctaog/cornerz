@@ -263,6 +263,48 @@ Corner words appear in exactly 2 categories; edge words appear in exactly 1.
 
 ---
 
+## Puzzle Provider Architecture (API-Ready)
+
+### Abstract Provider
+- `PuzzleProvider` abstract class defines the data contract
+- Three methods: `getDailyPuzzle()`, `getPuzzleById(id)`, `getLibrary()`
+- All return RxJS `Observable`s for async compatibility
+
+### Static Implementation
+- `StaticPuzzleProvider` loads puzzles from `assets/puzzles.json` via HTTP
+- Cached with `shareReplay(1)` — single fetch per session
+- Daily puzzle calculated deterministically from days since launch date (Feb 9, 2026)
+- `getLibrary()` returns `PuzzleSummary` objects with computed difficulty label
+
+### Swapping Providers
+- Registered in `AppModule` via `{ provide: PuzzleProvider, useClass: StaticPuzzleProvider }`
+- To switch to an API backend, create a new class extending `PuzzleProvider` and change `useClass` — no component changes needed
+
+### Data Models
+- Interfaces extracted to `src/app/models/puzzle.model.ts`: `Puzzle`, `Category`, `PuzzleSummary`, `PuzzleData`, `DIFFICULTY_LABELS`, `DIFFICULTY_COLORS`
+- `PuzzleSummary` includes `id`, `title`, `description`, and computed `difficulty` ('easy' | 'medium' | 'hard')
+
+---
+
+## Shared Style System
+
+### CSS Custom Properties (`src/styles/_variables.scss`)
+- All difficulty colors defined as CSS custom properties on `:root`
+- Per-level tokens: `--difficulty-{1-4}-color`, `--difficulty-{1-4}-bg`, `--difficulty-{1-4}-accent`, `--difficulty-{1-4}-glow`
+- String-mapped aliases for the library: `--difficulty-easy-color`, `--difficulty-medium-color`, `--difficulty-hard-color`
+
+### SCSS Mixins (`src/styles/_mixins.scss`)
+- `difficulty-color($property)` — generates `[data-difficulty="N"]` rules mapping to `var(--difficulty-N-color)`
+- `difficulty-bg($property)` — same pattern for background tokens
+- `modal-backdrop` — shared fixed overlay used by help, solution, and win modals
+
+### Grid Constants (`src/app/constants/grid.constants.ts`)
+- `DISABLED_SPOTS` — Set of center cell indices (5, 6, 9, 10)
+- `LINES` — Record mapping line names to cell index arrays
+- `CENTER_INDICATORS` — Record mapping line names to center indicator cell indices
+
+---
+
 ## Test Mode
 
 - Route: `/test-page`

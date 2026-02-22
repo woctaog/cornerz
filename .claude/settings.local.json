@@ -6,7 +6,13 @@
       "Bash(npx playwright test:*)",
       "Bash(npm install:*)",
       "Bash(npm start)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npx ng serve --open)",
+      "Bash(npx kill-port:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(taskkill:*)",
+      "Bash(fuser:*)"
     ]
   }
 }

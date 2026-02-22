@@ -12,6 +12,8 @@ import { GameTileComponent } from './components/game-tile/game-tile.component';
 import { WinModalComponent } from './components/win-modal/win-modal.component';
 import { FitTextDirective } from './directives/fit-text.directive';
 import { LibraryComponent } from './components/library/library.component';
+import { PuzzleProvider } from './services/puzzle-provider';
+import { StaticPuzzleProvider } from './services/static-puzzle-provider';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { LibraryComponent } from './components/library/library.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: PuzzleProvider, useClass: StaticPuzzleProvider }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

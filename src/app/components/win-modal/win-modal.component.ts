@@ -1,6 +1,18 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Category, DIFFICULTY_LABELS } from '../../services/game.service';
+import { Category, DIFFICULTY_LABELS } from '../../models/puzzle.model';
+
+interface Rating {
+  stars: string;
+  label: string;
+}
+
+const RATING_THRESHOLDS: { max: number; stars: string; label: string }[] = [
+  { max: 0, stars: '\u2605\u2605\u2605', label: 'Perfect!' },
+  { max: 2, stars: '\u2605\u2605\u2606', label: 'Great!' },
+  { max: 4, stars: '\u2605\u2606\u2606', label: 'Good' },
+];
+const DEFAULT_RATING: Rating = { stars: '\u2606\u2606\u2606', label: 'Keep practicing!' };
 
 @Component({
   selector: 'app-win-modal',
@@ -18,32 +30,14 @@ export class WinModalComponent {
   selectedCategory: Category | null = null;
   selectedSolutionHtml: SafeHtml | null = null;
 
-  private difficultyColors: Record<number, string> = {
-    1: '#F9A825', 2: '#2E7D32', 3: '#1565C0', 4: '#6A1B9A'
-  };
-
   constructor(private sanitizer: DomSanitizer) {}
 
-  get ratingStars(): string {
-    if (this.mistakes === 0) return '★★★';
-    if (this.mistakes <= 2) return '★★☆';
-    if (this.mistakes <= 4) return '★☆☆';
-    return '☆☆☆';
-  }
-
-  get ratingLabel(): string {
-    if (this.mistakes === 0) return 'Perfect!';
-    if (this.mistakes <= 2) return 'Great!';
-    if (this.mistakes <= 4) return 'Good';
-    return 'Keep practicing!';
+  get rating(): Rating {
+    return RATING_THRESHOLDS.find(t => this.mistakes <= t.max) || DEFAULT_RATING;
   }
 
   getDifficultyLabel(difficulty: number): string {
     return DIFFICULTY_LABELS[difficulty] || '';
-  }
-
-  getDifficultyColor(difficulty: number): string {
-    return this.difficultyColors[difficulty] || '#888';
   }
 
   viewSolution(cat: Category): void {

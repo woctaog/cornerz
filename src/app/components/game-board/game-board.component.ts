@@ -2,7 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CdkDragDrop, CdkDragStart, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
-import { GameService, Category, Puzzle, DIFFICULTY_LABELS } from '../../services/game.service';
+import { Category, Puzzle, DIFFICULTY_LABELS } from '../../models/puzzle.model';
+import { DISABLED_SPOTS, LINES, CENTER_INDICATORS } from '../../constants/grid.constants';
+import { PuzzleProvider } from '../../services/puzzle-provider';
 import { ProgressService } from '../../services/progress.service';
 
 export interface GameTile {
@@ -22,8 +24,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   loading = true;
   error: string | null = null;
 
-  // Define which spots are disabled (center 4 spots in 4x4 grid)
-  disabledSpots = new Set([5, 6, 9, 10]);
+  disabledSpots = DISABLED_SPOTS;
 
   // Track completed lines (green and locked)
   completedLines = new Set<string>();
@@ -58,27 +59,14 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   dailyCountdown = '';
   private countdownTimer: ReturnType<typeof setInterval> | null = null;
 
-  // Define the possible lines (top, bottom, left, right)
-  lines: Record<string, number[]> = {
-    top: [0, 1, 2, 3],
-    bottom: [12, 13, 14, 15],
-    left: [0, 4, 8, 12],
-    right: [3, 7, 11, 15]
-  };
-
-  // Map lines to their corresponding center indicator squares
-  centerIndicators: Record<string, number> = {
-    top: 6,
-    right: 10,
-    bottom: 9,
-    left: 5
-  };
+  lines = LINES;
+  centerIndicators = CENTER_INDICATORS;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private gameService: GameService,
+    private puzzleProvider: PuzzleProvider,
     private progressService: ProgressService
   ) { }
 
@@ -122,7 +110,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   private loadDailyPuzzle(): void {
     this.isDailyPuzzleMode = true;
-    this.gameService.getDailyPuzzle().subscribe({
+    this.puzzleProvider.getDailyPuzzle().subscribe({
       next: (puzzle) => {
         this.dailyPuzzleId = puzzle.id;
         this.loadPuzzle(puzzle.id);
@@ -151,7 +139,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       });
     }
 
-    this.gameService.getPuzzleById(puzzleId).subscribe({
+    this.puzzleProvider.getPuzzleById(puzzleId).subscribe({
       next: (puzzle) => {
         if (puzzle) {
           this.currentPuzzle = puzzle;

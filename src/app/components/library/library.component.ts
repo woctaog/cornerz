@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameService, Puzzle } from '../../services/game.service';
+import { PuzzleSummary } from '../../models/puzzle.model';
+import { PuzzleProvider } from '../../services/puzzle-provider';
 import { ProgressService } from '../../services/progress.service';
 
 type DifficultyFilter = 'all' | 'easy' | 'medium' | 'hard';
 type CompletionFilter = 'all' | 'completed' | 'incomplete';
 
-interface LibraryPuzzle extends Puzzle {
-  uiDifficulty: Exclude<DifficultyFilter, 'all'>;
+interface LibraryPuzzle extends PuzzleSummary {
   completed: boolean;
 }
 
@@ -26,17 +26,15 @@ export class LibraryComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private gameService: GameService,
+    private puzzleProvider: PuzzleProvider,
     private progressService: ProgressService
   ) {}
 
   ngOnInit(): void {
-    this.gameService.getAvailablePuzzles().subscribe({
+    this.puzzleProvider.getLibrary().subscribe({
       next: (puzzles) => {
-        const playable = puzzles.filter((p) => p.id > 0 && p.words.length > 0);
-        this.puzzles = playable.map((puzzle) => ({
+        this.puzzles = puzzles.map((puzzle) => ({
           ...puzzle,
-          uiDifficulty: this.getPuzzleDifficulty(puzzle),
           completed: this.progressService.isPuzzleCompleted(puzzle.id)
         }));
         this.loading = false;
@@ -50,7 +48,7 @@ export class LibraryComponent implements OnInit {
 
   get filteredPuzzles(): LibraryPuzzle[] {
     return this.puzzles.filter((puzzle) => {
-      const difficultyMatch = this.difficultyFilter === 'all' || puzzle.uiDifficulty === this.difficultyFilter;
+      const difficultyMatch = this.difficultyFilter === 'all' || puzzle.difficulty === this.difficultyFilter;
       const completionMatch =
         this.completionFilter === 'all' ||
         (this.completionFilter === 'completed' && puzzle.completed) ||
@@ -66,13 +64,6 @@ export class LibraryComponent implements OnInit {
 
   goToDaily(): void {
     this.router.navigate(['/']);
-  }
-
-  private getPuzzleDifficulty(puzzle: Puzzle): Exclude<DifficultyFilter, 'all'> {
-    const maxCategoryDifficulty = Math.max(...puzzle.categories.map((c) => c.difficulty));
-    if (maxCategoryDifficulty <= 2) return 'easy';
-    if (maxCategoryDifficulty === 3) return 'medium';
-    return 'hard';
   }
 }
 

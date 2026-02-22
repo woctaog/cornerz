@@ -41,7 +41,7 @@
       </div>
       <p>{{ puzzle.description }}</p>
       <div class="card-footer">
-        <span class="difficulty" [attr.data-difficulty]="puzzle.uiDifficulty">{{ puzzle.uiDifficulty }}</span>
+        <span class="difficulty" [attr.data-difficulty]="puzzle.difficulty">{{ puzzle.difficulty }}</span>
         <button type="button" (click)="playPuzzle(puzzle.id)">Play</button>
       </div>
     </div>

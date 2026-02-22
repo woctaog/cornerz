@@ -129,7 +129,7 @@ PuzzleService (abstract interface)
   - Show solutions on demand (e.g., clicking the category once its revealed opens a model with the full solution)
   - Ensure solutions are accessible and render HTML content safely (use Angular's sanitization)
 
-- [ ] **3.5 — Refactor PuzzleService for API-readiness**
+- [x] **3.5 — Refactor PuzzleService for API-readiness**
   - Define a clean `PuzzleProvider` interface with methods:
     - `getDailyPuzzle(): Observable<Puzzle>`
     - `getPuzzleById(id: number): Observable<Puzzle>`

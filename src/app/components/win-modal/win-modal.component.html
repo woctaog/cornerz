@@ -5,8 +5,8 @@
     <ng-container *ngIf="!selectedCategory">
       <h2>Puzzle Complete!</h2>
 
-      <div class="rating">{{ ratingStars }}</div>
-      <div class="rating-label">{{ ratingLabel }}</div>
+      <div class="rating">{{ rating.stars }}</div>
+      <div class="rating-label">{{ rating.label }}</div>
 
       <div class="stats">
         <div class="stat">
@@ -18,11 +18,11 @@
       <div class="category-list" *ngIf="categories.length > 0">
         <div class="category-row"
              *ngFor="let cat of categories"
-             [style.border-left-color]="getDifficultyColor(cat.difficulty)"
+             [attr.data-difficulty]="cat.difficulty"
              (click)="viewSolution(cat)">
           <div class="category-info">
             <span class="category-name">{{ cat.name }}</span>
-            <span class="difficulty-label" [style.color]="getDifficultyColor(cat.difficulty)">{{ getDifficultyLabel(cat.difficulty) }}</span>
+            <span class="difficulty-label" [attr.data-difficulty]="cat.difficulty">{{ getDifficultyLabel(cat.difficulty) }}</span>
           </div>
           <span class="chevron">&#8250;</span>
         </div>
@@ -42,7 +42,7 @@
         <h2>{{ selectedCategory.name }}</h2>
       </div>
 
-      <div class="difficulty-badge" [style.background-color]="getDifficultyColor(selectedCategory.difficulty)">
+      <div class="difficulty-badge" [attr.data-difficulty]="selectedCategory.difficulty">
         {{ getDifficultyLabel(selectedCategory.difficulty) }}
       </div>
 

@@ -131,15 +131,15 @@
   color: #455a64;
 
   &[data-difficulty='easy'] {
-    color: #2e7d32;
+    color: var(--difficulty-easy-color);
   }
 
   &[data-difficulty='medium'] {
-    color: #1565c0;
+    color: var(--difficulty-medium-color);
   }
 
   &[data-difficulty='hard'] {
-    color: #6a1b9a;
+    color: var(--difficulty-hard-color);
   }
 }
 
@@ -148,4 +148,3 @@
     flex-direction: column;
   }
 }
-

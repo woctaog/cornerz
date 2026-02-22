@@ -1,3 +1,5 @@
+@use 'mixins' as *;
+
 // Board sizing: scales with viewport, capped at 400px
 $board-max: 400px;
 
@@ -130,32 +132,12 @@ $board-max: 400px;
     background-color: #e0e0e0 !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-    // Yellow - easiest
-    &[data-difficulty="1"] {
-      border-color: #F9A825 !important;
-      background-color: #FFF9C4 !important;
-      box-shadow: 0 0 10px rgba(249, 168, 37, 0.3);
-    }
-
-    // Green
-    &[data-difficulty="2"] {
-      border-color: #2E7D32 !important;
-      background-color: #C8E6C9 !important;
-      box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
-    }
-
-    // Blue
-    &[data-difficulty="3"] {
-      border-color: #1565C0 !important;
-      background-color: #BBDEFB !important;
-      box-shadow: 0 0 10px rgba(21, 101, 192, 0.3);
-    }
-
-    // Purple - hardest
-    &[data-difficulty="4"] {
-      border-color: #6A1B9A !important;
-      background-color: #E1BEE7 !important;
-      box-shadow: 0 0 10px rgba(106, 27, 154, 0.3);
+    @for $i from 1 through 4 {
+      &[data-difficulty="#{$i}"] {
+        border-color: var(--difficulty-#{$i}-color) !important;
+        background-color: var(--difficulty-#{$i}-bg) !important;
+        box-shadow: 0 0 10px rgba(var(--difficulty-#{$i}-glow), 0.3);
+      }
     }
   }
 
@@ -216,28 +198,12 @@ $board-max: 400px;
         }
       }
 
-      &[data-difficulty="1"] {
-        background-color: #F9A825;
-        border-color: #F57F17;
-        box-shadow: 0 0 15px rgba(249, 168, 37, 0.5);
-      }
-
-      &[data-difficulty="2"] {
-        background-color: #2E7D32;
-        border-color: #4CAF50;
-        box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-      }
-
-      &[data-difficulty="3"] {
-        background-color: #1565C0;
-        border-color: #42A5F5;
-        box-shadow: 0 0 15px rgba(21, 101, 192, 0.5);
-      }
-
-      &[data-difficulty="4"] {
-        background-color: #6A1B9A;
-        border-color: #AB47BC;
-        box-shadow: 0 0 15px rgba(106, 27, 154, 0.5);
+      @for $i from 1 through 4 {
+        &[data-difficulty="#{$i}"] {
+          background-color: var(--difficulty-#{$i}-color);
+          border-color: var(--difficulty-#{$i}-accent);
+          box-shadow: 0 0 15px rgba(var(--difficulty-#{$i}-glow), 0.5);
+        }
       }
 
       .arrow {
@@ -332,14 +298,7 @@ $board-max: 400px;
 }
 
 .help-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 1100;
+  @include modal-backdrop;
 }
 
 .help-modal {
@@ -422,14 +381,7 @@ $board-max: 400px;
 }
 
 .solution-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 1100;
+  @include modal-backdrop;
 }
 
 .solution-modal {
@@ -440,10 +392,7 @@ $board-max: 400px;
   padding: 0.9rem 1rem 1rem;
   border-top: 4px solid #888;
 
-  &[data-difficulty="1"] { border-top-color: #F9A825; }
-  &[data-difficulty="2"] { border-top-color: #2E7D32; }
-  &[data-difficulty="3"] { border-top-color: #1565C0; }
-  &[data-difficulty="4"] { border-top-color: #6A1B9A; }
+  @include difficulty-color(border-top-color);
 }
 
 .solution-modal-header {
@@ -471,10 +420,7 @@ $board-max: 400px;
   vertical-align: middle;
   margin-left: 0.4rem;
 
-  &[data-difficulty="1"] { background-color: #F9A825; }
-  &[data-difficulty="2"] { background-color: #2E7D32; }
-  &[data-difficulty="3"] { background-color: #1565C0; }
-  &[data-difficulty="4"] { background-color: #6A1B9A; }
+  @include difficulty-color(background-color);
 }
 
 .solution-body {
