@@ -1,74 +1,74 @@
 {
   "puzzles": [
     {
-  "id": 5,
-  "title": "Cornerz Puzzle 5",
-  "description": "Arrange the words so each edge line forms a category.",
-  "words": [
-    "FIELD",
-    "FOSTER",
-    "SWANK",
-    "STONE",
-    "DANCES",
-    "TILE",
-    "TIN",
-    "STEEL",
-    "BULL",
-    "HERRING",
-    "FLAG",
-    "WOOD"
-  ],
-  "categories": [
-    {
-      "id": 1,
-      "name": "Repeat Best Actress Winners",
-      "difficulty": 3,
-      "solution": "<strong>FIELD</strong> - Sally Field won for <em>Norma Rae</em> (1979) and <em>Places in the Heart</em> (1984)<br><strong>FOSTER</strong> - Jodie Foster won for <em>The Accused</em> (1988) and <em>The Silence of the Lambs</em> (1991)<br><strong>SWANK</strong> - Hilary Swank won for <em>Boys Don't Cry</em> (1999) and <em>Million Dollar Baby</em> (2004)<br><strong>STONE</strong> - Emma Stone won for <em>La La Land</em> (2016) and <em>Poor Things</em> (2023)",
+      "id": 5,
+      "title": "Cornerz Puzzle 5",
+      "description": "Arrange the words so each edge line forms a category.",
       "words": [
         "FIELD",
         "FOSTER",
         "SWANK",
-        "STONE"
-      ]
-    },
-    {
-      "id": 2,
-      "name": "First Words of Kevin Costner Movies",
-      "difficulty": 4,
-      "solution": "<strong>FIELD</strong> - <em>Field of Dreams</em> (1989)<br><strong>DANCES</strong> - <em>Dances with Wolves</em> (1990)<br><strong>TIN</strong> - <em>Tin Cup</em> (1996)<br><strong>BULL</strong> - <em>Bull Durham</em> (1988)",
-      "words": [
-        "FIELD",
-        "DANCES",
-        "TIN",
-        "BULL"
-      ]
-    },
-    {
-      "id": 3,
-      "name": "Building Materials",
-      "difficulty": 1,
-      "solution": "<strong>STONE</strong> - Natural stone used in construction<br><strong>TILE</strong> - Ceramic or porcelain tiles for flooring and walls<br><strong>STEEL</strong> - Metal alloy used in structural frameworks<br><strong>WOOD</strong> - Lumber and timber for framing and finishing",
-      "words": [
         "STONE",
+        "DANCES",
         "TILE",
+        "TIN",
         "STEEL",
-        "WOOD"
-      ]
-    },
-    {
-      "id": 4,
-      "name": "Words That Follow RED",
-      "difficulty": 2,
-      "solution": "<strong>BULL</strong> - <em>Red Bull</em> (energy drink)<br><strong>HERRING</strong> - <em>Red Herring</em> (misleading clue or distraction)<br><strong>FLAG</strong> - <em>Red Flag</em> (warning sign)<br><strong>WOOD</strong> - <em>Redwood</em> (type of tree)",
-      "words": [
         "BULL",
         "HERRING",
         "FLAG",
         "WOOD"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Repeat Best Actress Winners",
+          "difficulty": 3,
+          "solution": "<strong>FIELD</strong> - Sally Field won for <em>Norma Rae</em> (1979) and <em>Places in the Heart</em> (1984)<br><strong>FOSTER</strong> - Jodie Foster won for <em>The Accused</em> (1988) and <em>The Silence of the Lambs</em> (1991)<br><strong>SWANK</strong> - Hilary Swank won for <em>Boys Don't Cry</em> (1999) and <em>Million Dollar Baby</em> (2004)<br><strong>STONE</strong> - Emma Stone won for <em>La La Land</em> (2016) and <em>Poor Things</em> (2023)",
+          "words": [
+            "FIELD",
+            "FOSTER",
+            "SWANK",
+            "STONE"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "First Words of Kevin Costner Movies",
+          "difficulty": 4,
+          "solution": "<strong>FIELD</strong> - <em>Field of Dreams</em> (1989)<br><strong>DANCES</strong> - <em>Dances with Wolves</em> (1990)<br><strong>TIN</strong> - <em>Tin Cup</em> (1996)<br><strong>BULL</strong> - <em>Bull Durham</em> (1988)",
+          "words": [
+            "FIELD",
+            "DANCES",
+            "TIN",
+            "BULL"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Building Materials",
+          "difficulty": 1,
+          "solution": "<strong>STONE</strong> - Natural stone used in construction<br><strong>TILE</strong> - Ceramic or porcelain tiles for flooring and walls<br><strong>STEEL</strong> - Metal alloy used in structural frameworks<br><strong>WOOD</strong> - Lumber and timber for framing and finishing",
+          "words": [
+            "STONE",
+            "TILE",
+            "STEEL",
+            "WOOD"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Words That Follow RED",
+          "difficulty": 2,
+          "solution": "<strong>BULL</strong> - <em>Red Bull</em> (energy drink)<br><strong>HERRING</strong> - <em>Red Herring</em> (misleading clue or distraction)<br><strong>FLAG</strong> - <em>Red Flag</em> (warning sign)<br><strong>WOOD</strong> - <em>Redwood</em> (type of tree)",
+          "words": [
+            "BULL",
+            "HERRING",
+            "FLAG",
+            "WOOD"
+          ]
+        }
       ]
-    }
-  ]
-},
+    },
     {
       "id": 4,
       "title": "Cornerz Puzzle 4",
@@ -410,6 +410,75 @@
             "JUXTAPOSITION",
             "RAZZMATAZZ",
             "AX"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Cornerz Puzzle 6",
+      "description": "Arrange the words so each edge line forms a category.",
+      "words": [
+        "BEAR",
+        "DOLPHIN",
+        "LION",
+        "BRONCO",
+        "BEETLE",
+        "VIPER",
+        "RABBIT",
+        "ROOSTER",
+        "DRAGON",
+        "RAT",
+        "DUCK",
+        "BADGER"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "NFL Teams",
+          "difficulty": 1,
+          "solution": "<strong>BEAR</strong> - Chicago Bears<br><strong>DOLPHIN</strong> - Miami Dolphins<br><strong>LION</strong> - Detroit Lions<br><strong>BRONCO</strong> - Denver Broncos",
+          "words": [
+            "BEAR",
+            "DOLPHIN",
+            "LION",
+            "BRONCO"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Vehicles",
+          "difficulty": 2,
+          "solution": "<strong>BRONCO</strong> - Ford Bronco<br><strong>BEETLE</strong> - Volkswagen Beetle<br><strong>VIPER</strong> - Dodge Viper<br><strong>RABBIT</strong> - Volkswagen Rabbit",
+          "words": [
+            "BRONCO",
+            "BEETLE",
+            "VIPER",
+            "RABBIT"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Chinese Zodiac",
+          "difficulty": 3,
+          "solution": "<strong>RABBIT</strong> - One of the 12 Chinese zodiac animals<br><strong>ROOSTER</strong> - One of the 12 Chinese zodiac animals<br><strong>DRAGON</strong> - One of the 12 Chinese zodiac animals<br><strong>RAT</strong> - One of the 12 Chinese zodiac animals",
+          "words": [
+            "RABBIT",
+            "ROOSTER",
+            "DRAGON",
+            "RAT"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Verbs",
+          "difficulty": 4,
+          "solution": "<strong>RAT</strong> - To rat someone out (inform)<br><strong>DUCK</strong> - To duck (lower quickly to avoid something)<br><strong>BADGER</strong> - To badger (pester repeatedly)<br><strong>BEAR</strong> - To bear (endure/carry)",
+          "words": [
+            "RAT",
+            "DUCK",
+            "BADGER",
+            "BEAR"
           ]
         }
       ]
