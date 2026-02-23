@@ -12,7 +12,9 @@
       "Bash(lsof:*)",
       "Bash(xargs kill:*)",
       "Bash(taskkill:*)",
-      "Bash(fuser:*)"
+      "Bash(fuser:*)",
+      "WebFetch(domain:usebasin.com)",
+      "WebFetch(domain:docs.usebasin.com)"
     ]
   }
 }

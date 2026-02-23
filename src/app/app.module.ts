@@ -12,6 +12,7 @@ import { GameTileComponent } from './components/game-tile/game-tile.component';
 import { WinModalComponent } from './components/win-modal/win-modal.component';
 import { FitTextDirective } from './directives/fit-text.directive';
 import { LibraryComponent } from './components/library/library.component';
+import { SubmitPuzzleComponent } from './components/submit-puzzle/submit-puzzle.component';
 import { PuzzleProvider } from './services/puzzle-provider';
 import { StaticPuzzleProvider } from './services/static-puzzle-provider';
 
@@ -22,7 +23,8 @@ import { StaticPuzzleProvider } from './services/static-puzzle-provider';
     GameTileComponent,
     WinModalComponent,
     FitTextDirective,
-    LibraryComponent
+    LibraryComponent,
+    SubmitPuzzleComponent
   ],
   imports: [
     BrowserModule,

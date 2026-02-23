@@ -17,4 +17,10 @@
     display: flex;
     justify-content: center;
   }
+
+  app-submit-puzzle {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+  }
 }

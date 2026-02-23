@@ -140,7 +140,7 @@ PuzzleService (abstract interface)
 ### Phase 4: Community Puzzle Submissions (Basin Form)
 **Goal**: Enable users to submit complete puzzle ideas via a simple form, sent to email for manual review.
 
-- [ ] **4.1 — Reusable puzzle validator service**
+- [x] **4.1 — Reusable puzzle validator service**
   - Create a `PuzzleValidatorService` with methods that validate puzzle structure
   - Validation rules:
     - Exactly 4 categories, each with exactly 4 words
@@ -153,7 +153,7 @@ PuzzleService (abstract interface)
   - Reusable across submission form validation AND dev-side puzzle JSON validation
   - This also satisfies Phase 1.4 (puzzle validation tooling)
 
-- [ ] **4.2 — Submission form component**
+- [x] **4.2 — Submission form component**
   - Create a new route `/submit` for the submission form
   - Form fields:
     - Display name (for credit if the puzzle is used)
@@ -170,12 +170,12 @@ PuzzleService (abstract interface)
   - Permission/legal text displayed above the submit button:
     - "By submitting, you grant Cornerz permission to use your puzzle as a daily puzzle or in the puzzle archive. You also grant permission for minor edits to your submission (e.g., adjusting wording, difficulty, or categories) as needed."
 
-- [ ] **4.3 — Basin integration**
+- [x] **4.3 — Basin integration**
   - POST form data to pre-configured Basin endpoint URL (Basin setup is manual/external)
   - Form payload: display name, email, title, categories with words, notes
   - Basic client-side rate-limiting (localStorage-based cooldown, e.g., 1 submission per 10 minutes)
 
-- [ ] **4.4 — Submission UX**
+- [x] **4.4 — Submission UX**
   - Loading state on submit button while request is in flight
   - Disable submit button to prevent double-submission
   - Success: confirmation message thanking the user, option to submit another
@@ -336,7 +336,7 @@ src/
 │   │   ├── game-tile/            # Draggable word tile
 │   │   ├── library/              # Puzzle archive browse/filter view
 │   │   ├── win-modal/            # End-of-game overlay with solution detail
-│   │   ├── submit-puzzle/        # Community puzzle submission form (PLANNED — Phase 4)
+│   │   ├── submit-puzzle/        # Community puzzle submission form with Basin integration
 │   │   ├── share-card/           # Shareable emoji result (PLANNED — Phase 6)
 │   │   └── stats-display/        # Stats modal/page (PLANNED — Phase 5)
 │   ├── constants/
@@ -350,7 +350,7 @@ src/
 │   │   ├── puzzle-provider.ts    # Abstract PuzzleProvider base class
 │   │   ├── static-puzzle-provider.ts  # JSON-backed implementation
 │   │   ├── progress.service.ts   # localStorage tracking (completions, snapshots)
-│   │   ├── puzzle-validator.service.ts # Reusable puzzle validation (PLANNED — Phase 4)
+│   │   ├── puzzle-validator.service.ts # Reusable puzzle validation service
 │   │   ├── stats.service.ts      # Aggregate stats tracking (PLANNED — Phase 5)
 │   │   └── share.service.ts      # Share/clipboard logic (PLANNED — Phase 6)
 │   ├── app.component.ts
@@ -383,7 +383,7 @@ playwright.config.ts              # Multi-browser config with Angular dev server
 | 1st      | Phase 1 (Core Polish) | Done (1.1-1.3), 1.4 absorbed into 4.1 | Puzzle validation now part of Phase 4 validator service |
 | 2nd      | Phase 2 (E2E Tests) | Done | 4 spec files covering core gameplay, UI state, regression |
 | 3rd      | Phase 3 (Puzzles & Daily) | Mostly done | 3.1 (expand library to 10+ puzzles) still TODO |
-| 4th      | Phase 4 (Community Submissions) | TODO | Validator service + submission form + Basin integration |
+| 4th      | Phase 4 (Community Submissions) | Done | Validator service, submission form, Basin POST, loading/success/error UX |
 | 5th      | Phase 5 (Stats) | TODO | Depends on puzzle completion tracking (ProgressService exists as foundation) |
 | 6th      | Phase 6 (Share) | TODO | Depends on stats/result data |
 | 7th      | Phase 7 (Visual Polish) | TODO | Animations, UI refinements, accessibility, dark mode, loading states |

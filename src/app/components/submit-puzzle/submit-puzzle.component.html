@@ -1,0 +1,129 @@
+<div class="submit-container">
+  <div class="submit-header">
+    <h2>Submit a Puzzle</h2>
+    <button class="back-btn" type="button" (click)="goBack()">&larr; Back</button>
+  </div>
+
+  <!-- Success state -->
+  <div class="success-card" *ngIf="submitSuccess">
+    <h3>Puzzle Submitted!</h3>
+    <p>Thanks for your contribution. We'll review your puzzle and add it to the archive if it meets our guidelines.</p>
+    <button class="back-btn" type="button" (click)="goBack()">&larr; Back to Game</button>
+  </div>
+
+  <!-- Form (hidden after success) -->
+  <ng-container *ngIf="!submitSuccess">
+    <p class="submit-description">
+      Propose a new puzzle for the community. Fill in 4 categories with 4 words each.
+      Remember: exactly 4 words must be shared between two adjacent categories (corner words).
+    </p>
+
+    <form (ngSubmit)="onSubmit()">
+
+      <fieldset [disabled]="submitting">
+        <section class="meta-section">
+          <div class="field-group">
+            <label for="displayName">Display Name</label>
+            <input id="displayName" type="text" [(ngModel)]="formData.displayName" name="displayName"
+                   placeholder="Your name" />
+            <div class="field-error" *ngIf="submitted && !formData.displayName.trim()">
+              Display name is required.
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" [(ngModel)]="formData.email" name="email"
+                   placeholder="you@example.com" (blur)="onEmailBlur()" />
+            <div class="field-error" *ngIf="submitted && !formData.email.trim()">
+              Email is required.
+            </div>
+            <div class="field-error" *ngIf="emailError && formData.email.trim()">
+              {{ emailError }}
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="title">Puzzle Title</label>
+            <input id="title" type="text" [(ngModel)]="formData.title" name="title"
+                   placeholder="Give your puzzle a name" />
+            <div class="field-error" *ngIf="submitted && !formData.title.trim()">
+              Puzzle title is required.
+            </div>
+          </div>
+        </section>
+
+        <section class="categories-section">
+          <h3>Categories</h3>
+
+          <div class="category-block" *ngFor="let cat of formData.categories; let i = index">
+            <div class="category-header">Category {{ i + 1 }}</div>
+
+            <div class="field-group">
+              <label [for]="'catName' + i">Category Name</label>
+              <input [id]="'catName' + i" type="text"
+                     [(ngModel)]="cat.name" [name]="'catName' + i"
+                     placeholder="e.g. Types of Fish"
+                     [class.input-error]="submitted && validationResult?.errors?.categories?.[i]?.name"
+                     (ngModelChange)="onPuzzleFieldChange()" />
+              <div class="field-error"
+                   *ngIf="submitted && validationResult?.errors?.categories?.[i]?.name">
+                {{ validationResult!.errors.categories[i].name }}
+              </div>
+            </div>
+
+            <div class="words-grid">
+              <div class="field-group" *ngFor="let word of cat.words; let j = index; trackBy: trackByIndex">
+                <input type="text"
+                       [(ngModel)]="cat.words[j]" [name]="'word' + i + '_' + j"
+                       [placeholder]="'Word ' + (j + 1)"
+                       [class.input-error]="submitted && validationResult?.errors?.categories?.[i]?.words?.[j]"
+                       (ngModelChange)="onPuzzleFieldChange()" />
+                <div class="field-error"
+                     *ngIf="submitted && validationResult?.errors?.categories?.[i]?.words?.[j]">
+                  {{ validationResult!.errors.categories[i].words[j] }}
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group category-description">
+              <label [for]="'catDesc' + i">Category Description (optional)</label>
+              <textarea [id]="'catDesc' + i"
+                        [(ngModel)]="cat.description" [name]="'catDesc' + i" rows="2"
+                        placeholder="Explain the theme or how the words connect..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <section class="notes-section">
+          <div class="field-group">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" [(ngModel)]="formData.notes" name="notes" rows="3"
+                      placeholder="Any additional context about your puzzle..."></textarea>
+          </div>
+        </section>
+      </fieldset>
+
+      <div class="global-errors"
+           *ngIf="submitted && validationResult?.errors?.global?.length">
+        <ul>
+          <li *ngFor="let err of validationResult!.errors.global">{{ err }}</li>
+        </ul>
+      </div>
+
+      <div class="submit-error" *ngIf="submitError">
+        {{ submitError }}
+      </div>
+
+      <p class="permission-text">
+        By submitting, you grant permission for this puzzle to be included in Cornerz.
+        Your display name will be credited. Your puzzle may be selected as a daily puzzle!
+      </p>
+
+      <button type="submit" class="submit-btn" [disabled]="submitting">
+        <span *ngIf="!submitting">Submit Puzzle</span>
+        <span *ngIf="submitting">Submitting...</span>
+      </button>
+    </form>
+  </ng-container>
+</div>

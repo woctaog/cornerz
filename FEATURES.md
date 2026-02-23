@@ -213,6 +213,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
   - Correct lines lock; incorrect guesses return tiles and add mistakes
   - Win when all 4 lines solved
 - "Puzzle Archive" link navigates to the library
+- "Submit Your Own" link navigates to the puzzle submission form
 
 ---
 
@@ -302,6 +303,63 @@ Corner words appear in exactly 2 categories; edge words appear in exactly 1.
 - `DISABLED_SPOTS` — Set of center cell indices (5, 6, 9, 10)
 - `LINES` — Record mapping line names to cell index arrays
 - `CENTER_INDICATORS` — Record mapping line names to center indicator cell indices
+
+---
+
+## Puzzle Validation Service
+
+### PuzzleValidatorService (`providedIn: 'root'`)
+- Reusable service for validating puzzle structure before submission or during development
+- Single public method: `validate(categories: CategoryInput[])` returns `PuzzleValidationResult`
+- Validation steps (all run, errors accumulate):
+  1. **Structural shape** — exactly 4 categories with exactly 4 words each
+  2. **Empty/whitespace checks** — per-field errors for blank names or words
+  3. **Character limits** — category name max 30 chars, word max 20 chars
+  4. **Duplicate words** — any word appearing 3+ times across all categories triggers a global error
+  5. **Word distribution** — each word must appear in exactly 1 or 2 categories
+  6. **Corner count** — exactly 4 words must be shared between 2 categories (corner words)
+  7. **Solvability** — verifies at least one valid line-to-category assignment exists with 4 distinct corner words
+- Public helpers: `getPermutations()` and `getSingleSharedWord()` (extracted from GameBoardComponent)
+- `GameBoardComponent` now delegates to the service for permutation and shared-word logic
+
+### Validation Interfaces
+- `CategoryInput` — input shape: `{ name, words[] }`
+- `CategoryValidationErrors` — per-category field errors: `{ name, words[] }`
+- `PuzzleValidationErrors` — `{ global[], categories[] }`
+- `PuzzleValidationResult` — `{ valid, errors }`
+
+---
+
+## Puzzle Submission Form
+
+### Submit Route (`/submit`)
+- Accessible via `/#/submit`
+- Back button navigates to the main game
+
+### Form Fields
+- **Metadata**: Display name (required), email (required, validated on blur), puzzle title (required)
+- **Categories**: 4 category blocks, each with a category name input, a 2x2 grid of word inputs, and an optional "Category Description" textarea for explaining the theme or word connections
+- **Notes**: Optional textarea for additional context
+
+### Validation
+- Required-field errors shown after first submit attempt
+- Email format validated on blur with regex
+- Puzzle structure validated via `PuzzleValidatorService` with 400ms debounce on category/word changes
+- Per-field errors (empty, character limits) shown inline below each input
+- Global errors (duplicate words, corner count, solvability) shown in a red-bordered summary box
+- Inputs with errors highlighted with red border
+
+### Submission (Basin Integration)
+- On valid submit, POSTs flattened JSON to Basin with `Accept: application/json` header for AJAX response
+- Payload keys: `display_name`, `email`, `title`, `notes`, `category_N_name`, `category_N_description`, `category_N_word_M`
+- **Loading state**: form fields disabled via `<fieldset>`, button shows "Submitting...", opacity reduced
+- **Success state**: form replaced with green confirmation card and "Back to Game" button
+- **Error state**: red error message shown above submit button, form stays editable for retry
+- Permission/credit notice shown above submit button, mentioning possible selection as a daily puzzle
+
+### Scrollability
+- Form page is fully scrollable (`:host` overflow-y auto) within the fixed-height app container
+- `app-submit-puzzle` given flex sizing in `.main-container` to fill available height
 
 ---
 

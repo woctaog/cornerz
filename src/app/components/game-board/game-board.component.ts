@@ -6,6 +6,7 @@ import { Category, Puzzle, DIFFICULTY_LABELS } from '../../models/puzzle.model';
 import { DISABLED_SPOTS, LINES, CENTER_INDICATORS } from '../../constants/grid.constants';
 import { PuzzleProvider } from '../../services/puzzle-provider';
 import { ProgressService } from '../../services/progress.service';
+import { PuzzleValidatorService } from '../../services/puzzle-validator.service';
 
 export interface GameTile {
   id: number;
@@ -67,7 +68,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     private router: Router,
     private sanitizer: DomSanitizer,
     private puzzleProvider: PuzzleProvider,
-    private progressService: ProgressService
+    private progressService: ProgressService,
+    private validator: PuzzleValidatorService
   ) { }
 
   private shuffleArray<T>(array: T[]): T[] {
@@ -745,21 +747,11 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   private getSingleSharedWord(a: string[], b: string[]): string | null {
-    const shared = a.filter(word => b.includes(word));
-    return shared.length === 1 ? shared[0] : null;
+    return this.validator.getSingleSharedWord(a, b);
   }
 
   private getPermutations(values: number[]): number[][] {
-    if (values.length <= 1) {
-      return [values];
-    }
-
-    const result: number[][] = [];
-    values.forEach((value, index) => {
-      const remaining = [...values.slice(0, index), ...values.slice(index + 1)];
-      this.getPermutations(remaining).forEach((perm) => result.push([value, ...perm]));
-    });
-    return result;
+    return this.validator.getPermutations(values);
   }
 
   private rebuildCompletedLineStateFromGrid(): void {

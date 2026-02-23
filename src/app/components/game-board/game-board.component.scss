@@ -343,6 +343,11 @@ $board-max: 400px;
   cursor: pointer;
 }
 
+.help-modal-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .archive-link {
   border: 1px solid #cfd8dc;
   background: #fff;

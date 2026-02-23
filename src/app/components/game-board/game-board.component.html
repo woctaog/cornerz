@@ -124,7 +124,10 @@
         <li>Correct lines lock as solved. Incorrect guesses return only newly placed tiles and increase mistakes.</li>
         <li>Win when all 4 lines are solved.</li>
       </ul>
-      <button type="button" class="archive-link" routerLink="/library" (click)="closeHelp()">Puzzle Archive</button>
+      <div class="help-modal-links">
+        <button type="button" class="archive-link" routerLink="/library" (click)="closeHelp()">Puzzle Archive</button>
+        <button type="button" class="archive-link" routerLink="/submit" (click)="closeHelp()">Submit Your Own</button>
+      </div>
     </div>
   </div>
 
