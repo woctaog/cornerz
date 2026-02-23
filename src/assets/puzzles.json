@@ -346,6 +346,75 @@
       ]
     },
     {
+      "id": 7,
+      "title": "Puz #1",
+      "description": "Arrange the words so each edge line forms a category.",
+      "words": [
+        "EVE",
+        "VIOLET",
+        "KATE",
+        "AMY",
+        "ORANGE",
+        "GREEN",
+        "BLUE",
+        "APPLE",
+        "STRAWBERRY",
+        "BANANA",
+        "SNAKE",
+        "TREE"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Fruit",
+          "difficulty": 1,
+          "solution": "<strong>ORANGE</strong> - Citrus fruit<br><strong>APPLE</strong> - Common tree fruit<br><strong>STRAWBERRY</strong> - Red berry<br><strong>BANANA</strong> - Yellow tropical fruit",
+          "words": [
+            "ORANGE",
+            "APPLE",
+            "STRAWBERRY",
+            "BANANA"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Colors",
+          "difficulty": 2,
+          "solution": "<strong>VIOLET</strong> - Purple hue<br><strong>ORANGE</strong> - Warm hue between red and yellow<br><strong>GREEN</strong> - Color of grass<br><strong>BLUE</strong> - Color of the sky",
+          "words": [
+            "VIOLET",
+            "ORANGE",
+            "GREEN",
+            "BLUE"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Female Names",
+          "difficulty": 3,
+          "solution": "<strong>EVE</strong> - Classic name, also the first woman in Genesis<br><strong>VIOLET</strong> - Name derived from the flower<br><strong>KATE</strong> - Short form of Katherine<br><strong>AMY</strong> - Name meaning beloved",
+          "words": [
+            "EVE",
+            "VIOLET",
+            "KATE",
+            "AMY"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Book of Genesis",
+          "difficulty": 4,
+          "solution": "<strong>APPLE</strong> - The forbidden fruit<br><strong>EVE</strong> - The first woman<br><strong>SNAKE</strong> - The serpent that tempted Eve<br><strong>TREE</strong> - The Tree of Knowledge of Good and Evil",
+          "words": [
+            "APPLE",
+            "EVE",
+            "SNAKE",
+            "TREE"
+          ]
+        }
+      ]
+    },
+    {
       "id": -1,
       "title": "Test Puzzle",
       "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
