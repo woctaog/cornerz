@@ -130,16 +130,16 @@
   font-weight: 600;
   color: #455a64;
 
-  &[data-difficulty='easy'] {
-    color: var(--difficulty-easy-color);
+  &[data-difficulty='1'] {
+    color: var(--difficulty-1-color);
   }
 
-  &[data-difficulty='medium'] {
-    color: var(--difficulty-medium-color);
+  &[data-difficulty='2'] {
+    color: var(--difficulty-2-color);
   }
 
-  &[data-difficulty='hard'] {
-    color: var(--difficulty-hard-color);
+  &[data-difficulty='3'] {
+    color: var(--difficulty-3-color);
   }
 }
 

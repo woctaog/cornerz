@@ -56,15 +56,15 @@ export class StaticPuzzleProvider extends PuzzleProvider {
         id: puzzle.id,
         title: puzzle.title,
         description: puzzle.description,
-        difficulty: this.computePuzzleDifficulty(puzzle)
+        difficulty: puzzle.difficulty ?? this.computeFallbackDifficulty(puzzle)
       })))
     );
   }
 
-  private computePuzzleDifficulty(puzzle: Puzzle): 'easy' | 'medium' | 'hard' {
-    const maxDifficulty = Math.max(...puzzle.categories.map(c => c.difficulty));
-    if (maxDifficulty <= 2) return 'easy';
-    if (maxDifficulty === 3) return 'medium';
-    return 'hard';
+  private computeFallbackDifficulty(puzzle: Puzzle): number {
+    const maxCategoryDifficulty = Math.max(...puzzle.categories.map(c => c.difficulty));
+    if (maxCategoryDifficulty <= 2) return 1;
+    if (maxCategoryDifficulty === 3) return 2;
+    return 3;
   }
 }

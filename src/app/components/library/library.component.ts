@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PuzzleSummary } from '../../models/puzzle.model';
+import { PuzzleSummary, DIFFICULTY_LABELS } from '../../models/puzzle.model';
 import { PuzzleProvider } from '../../services/puzzle-provider';
 import { ProgressService } from '../../services/progress.service';
 
-type DifficultyFilter = 'all' | 'easy' | 'medium' | 'hard';
+type DifficultyFilter = 'all' | 1 | 2 | 3;
 type CompletionFilter = 'all' | 'completed' | 'incomplete';
 
 interface LibraryPuzzle extends PuzzleSummary {
@@ -21,6 +21,7 @@ export class LibraryComponent implements OnInit {
   loading = true;
   error: string | null = null;
 
+  difficultyLabels = DIFFICULTY_LABELS;
   difficultyFilter: DifficultyFilter = 'all';
   completionFilter: CompletionFilter = 'all';
 
@@ -48,7 +49,7 @@ export class LibraryComponent implements OnInit {
 
   get filteredPuzzles(): LibraryPuzzle[] {
     return this.puzzles.filter((puzzle) => {
-      const difficultyMatch = this.difficultyFilter === 'all' || puzzle.difficulty === this.difficultyFilter;
+      const difficultyMatch = this.difficultyFilter === 'all' || puzzle.difficulty === +this.difficultyFilter;
       const completionMatch =
         this.completionFilter === 'all' ||
         (this.completionFilter === 'completed' && puzzle.completed) ||

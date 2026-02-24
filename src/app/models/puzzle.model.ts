@@ -17,7 +17,9 @@ export const DIFFICULTY_COLORS: Record<number, string> = {
 export interface Puzzle {
   id: number;
   title: string;
-  description: string;
+  description?: string;
+  author?: string;
+  difficulty?: number; // 1=Easy, 2=Medium, 3=Hard (puzzle-level, distinct from category difficulty)
   words: string[];
   categories: Category[];
 }
@@ -25,8 +27,8 @@ export interface Puzzle {
 export interface PuzzleSummary {
   id: number;
   title: string;
-  description: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  description?: string;
+  difficulty: number;
 }
 
 export interface PuzzleData {

@@ -68,6 +68,17 @@ $board-max: 400px;
   }
 }
 
+.puzzle-author {
+  width: min(92vw, $board-max);
+  text-align: center;
+  color: #78909c;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .daily-status {
   width: min(92vw, $board-max);
   text-align: center;

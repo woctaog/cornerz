@@ -5,6 +5,9 @@
       <button type="button" class="help-button" (click)="openHelp()" aria-label="Open how to play help">?</button>
     </div>
   </div>
+  <div class="puzzle-author" *ngIf="currentPuzzle?.author && !loading">
+    by {{ currentPuzzle!.author }}
+  </div>
   <div class="daily-status" *ngIf="currentPuzzle && !loading && isDailyPuzzleMode && !isDailyLocked">
     <span>Next daily puzzle in {{ dailyCountdown }}</span>
   </div>

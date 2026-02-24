@@ -9,9 +9,9 @@
       Difficulty
       <select [(ngModel)]="difficultyFilter">
         <option value="all">All</option>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Hard</option>
       </select>
     </label>
     <label>
@@ -39,9 +39,9 @@
           {{ puzzle.completed ? 'Completed' : 'Not solved' }}
         </span>
       </div>
-      <p>{{ puzzle.description }}</p>
+      <p *ngIf="puzzle.description">{{ puzzle.description }}</p>
       <div class="card-footer">
-        <span class="difficulty" [attr.data-difficulty]="puzzle.difficulty">{{ puzzle.difficulty }}</span>
+        <span class="difficulty" [attr.data-difficulty]="puzzle.difficulty">{{ difficultyLabels[puzzle.difficulty] || 'Unknown' }}</span>
         <button type="button" (click)="playPuzzle(puzzle.id)">Play</button>
       </div>
     </div>

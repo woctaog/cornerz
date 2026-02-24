@@ -192,7 +192,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - Each puzzle shown as a card with title, description, difficulty badge, completion status, and Play button
 
 ### Filters
-- **Difficulty**: All, Easy (max difficulty <= 2), Medium (max difficulty = 3), Hard (max difficulty >= 4)
+- **Difficulty**: All, Easy (1), Medium (2), Hard (3) — uses puzzle-level difficulty field, not computed from categories
 - **Completion**: All, Completed, Incomplete
 - Filters combine with AND logic; shows count of matching puzzles
 
