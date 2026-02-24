@@ -43,16 +43,34 @@ $board-max: 400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.4rem;
+
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    min-width: 0;
+  }
 
   h2 {
     color: #333;
     margin: 0;
     font-size: clamp(0.98rem, 2.4vw, 1.2rem);
+    white-space: nowrap;
+  }
+
+  .puzzle-author {
+    color: #78909c;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .header-actions {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
   }
 
   .help-button {
@@ -66,17 +84,6 @@ $board-max: 400px;
     font-weight: 700;
     cursor: pointer;
   }
-}
-
-.puzzle-author {
-  width: min(92vw, $board-max);
-  text-align: center;
-  color: #78909c;
-  font-size: 0.78rem;
-  line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .daily-status {

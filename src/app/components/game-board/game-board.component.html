@@ -1,15 +1,12 @@
 <div class="game-container">
   <div class="puzzle-info" *ngIf="currentPuzzle && !loading">
-    <h2>{{ isDailyPuzzleMode ? 'Cornerz Daily Puzzle' : (currentPuzzle.title || 'Cornerz Puzzle') }}</h2>
+    <div class="title-row">
+      <h2>{{ isDailyPuzzleMode ? 'Cornerz Daily Puzzle' : (currentPuzzle.title || 'Cornerz Puzzle') }}</h2>
+      <span class="puzzle-author" *ngIf="currentPuzzle!.author">by {{ currentPuzzle!.author }}</span>
+    </div>
     <div class="header-actions">
       <button type="button" class="help-button" (click)="openHelp()" aria-label="Open how to play help">?</button>
     </div>
-  </div>
-  <div class="puzzle-author" *ngIf="currentPuzzle?.author && !loading">
-    by {{ currentPuzzle!.author }}
-  </div>
-  <div class="daily-status" *ngIf="currentPuzzle && !loading && isDailyPuzzleMode && !isDailyLocked">
-    <span>Next daily puzzle in {{ dailyCountdown }}</span>
   </div>
 
   <div class="loading" *ngIf="loading">
@@ -90,6 +87,10 @@
             </app-game-tile>
           </div>
         </div>
+      </div>
+
+      <div class="daily-status" *ngIf="isDailyPuzzleMode && !isDailyLocked">
+        <span>Next daily puzzle in {{ dailyCountdown }}</span>
       </div>
 
     </div>
