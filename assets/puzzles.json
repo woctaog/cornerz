@@ -3,7 +3,9 @@
     {
       "id": 5,
       "title": "Cornerz Puzzle 5",
-      "description": "Arrange the words so each edge line forms a category.",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
       "words": [
         "FIELD",
         "FOSTER",
@@ -72,7 +74,9 @@
     {
       "id": 4,
       "title": "Cornerz Puzzle 4",
-      "description": "Arrange the words so each edge line forms a category.",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
       "words": [
         "GOLD",
         "SWORD",
@@ -141,7 +145,9 @@
     {
       "id": 1,
       "title": "Cornerz Puzzle 1",
-      "description": "Arrange the words in the 4x4 grid (outer spots only)",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
       "words": [
         "RING",
         "CHAIN",
@@ -210,7 +216,9 @@
     {
       "id": 2,
       "title": "Cornerz Puzzle 2",
-      "description": "Arrange the words so each edge line forms a category.",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
       "words": [
         "SOLE",
         "PERCH",
@@ -279,7 +287,9 @@
     {
       "id": 3,
       "title": "Cornerz Puzzle 3",
-      "description": "Arrange the words so each edge line forms a category.",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 1,
       "words": [
         "JAM",
         "TOAST",
@@ -348,7 +358,9 @@
     {
       "id": 7,
       "title": "Puz #1",
-      "description": "Arrange the words so each edge line forms a category.",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 1,
       "words": [
         "EVE",
         "VIOLET",
@@ -415,9 +427,82 @@
       ]
     },
     {
+      "id": 8,
+      "title": "Puz #2",
+      "description": "",
+      "author": "Victor",
+      "difficulty": 2,
+      "words": [
+        "STRANGE",
+        "CURIOUS",
+        "PECULIAR",
+        "ODD",
+        "BUSH",
+        "BOY",
+        "COSTANZA",
+        "PEPPER",
+        "HOUSE",
+        "WHO",
+        "CAR",
+        "FENCE"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Synonyms for Weird",
+          "difficulty": 1,
+          "solution": "<strong>STRANGE</strong> - Unusual or surprising<br><strong>CURIOUS</strong> - Strange in an interesting way<br><strong>PECULIAR</strong> - Distinctly odd<br><strong>ODD</strong> - Different from what is expected",
+          "words": [
+            "STRANGE",
+            "CURIOUS",
+            "PECULIAR",
+            "ODD"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Objects in Front Yard Portrait",
+          "difficulty": 2,
+          "solution": "<strong>HOUSE</strong> - The home in the background<br><strong>CAR</strong> - Vehicle in the driveway<br><strong>BUSH</strong> - Shrub in the landscaping<br><strong>FENCE</strong> - Border around the yard",
+          "words": [
+            "HOUSE",
+            "CAR",
+            "BUSH",
+            "FENCE"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Famous Georges",
+          "difficulty": 3,
+          "solution": "<strong>BUSH</strong> - George Bush (U.S. Presidents)<br><strong>CURIOUS</strong> - Curious George (children's book character)<br><strong>BOY</strong> - Boy George (pop singer)<br><strong>COSTANZA</strong> - George Costanza (Seinfeld character)",
+          "words": [
+            "BUSH",
+            "CURIOUS",
+            "BOY",
+            "COSTANZA"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Doctors in Pop Culture",
+          "difficulty": 4,
+          "solution": "<strong>PEPPER</strong> - Dr Pepper (soft drink)<br><strong>STRANGE</strong> - Doctor Strange (Marvel)<br><strong>HOUSE</strong> - Dr. House (TV series)<br><strong>WHO</strong> - Doctor Who (BBC series)",
+          "words": [
+            "PEPPER",
+            "STRANGE",
+            "HOUSE",
+            "WHO"
+          ]
+        }
+      ]
+    },
+    {
       "id": -1,
       "title": "Test Puzzle",
       "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
+      "author": "woctaog",
+      "difficulty": 1,
       "words": [
         "COUNTERPRODUCTIVE",
         "GO",
@@ -486,7 +571,9 @@
     {
       "id": 6,
       "title": "Not About the Animals",
-      "description": "Arrange the words so each edge line forms a category.",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
       "words": [
         "BEAR",
         "DOLPHIN",
