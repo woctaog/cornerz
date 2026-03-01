@@ -49,6 +49,9 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   // Tap-to-place: currently selected tile source
   selectedTile: { source: 'bank'; index: number } | { source: 'grid'; index: number } | null = null;
 
+  // Line completion order (difficulty values in order lines were solved)
+  lineCompletionOrder: number[] = [];
+
   // Scoring
   mistakes: number = 0;
   gameWon: boolean = false;
@@ -85,7 +88,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.startDailyCountdown();
 
     const testMode = this.route.snapshot.data['testMode'];
-    if (testMode) {
+    const testMode2 = this.route.snapshot.data['testMode2'];
+    if (testMode || testMode2) {
       this.isDailyPuzzleMode = false;
       this.loadPuzzle(-1);
     } else {
@@ -155,9 +159,12 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.lineCategories = new Map<string, string>();
           this.lineDifficulties = new Map<string, number>();
           this.lineCategoryData = new Map<string, Category>();
+          this.lineCompletionOrder = [];
 
           if (puzzleId === -1 && this.route.snapshot.data['testMode']) {
             this.prePopulateTestPuzzle();
+          } else if (puzzleId === -1 && this.route.snapshot.data['testMode2']) {
+            this.prePopulateTestPuzzle2();
           }
           this.updateDailyLockState();
           this.restoreLockedDailyBoardState();
@@ -215,6 +222,52 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       this.lineCategories.set('left', leftCategory.name);
       this.lineDifficulties.set('left', leftCategory.difficulty);
       this.lineCategoryData.set('left', leftCategory);
+    }
+  }
+
+  private prePopulateTestPuzzle2(): void {
+    // Place all words except JUXTAPOSITION and RAZZMATAZZ (bottom inner cells)
+    // Grid layout for test puzzle:
+    //   [0]=COUNTERPRODUCTIVE  [1]=BAMBOOZLE  [2]=HI             [3]=GO
+    //   [4]=PERPENDICULAR      [5-6]=disabled [5-6]=disabled     [7]=QUINTESSENTIAL
+    //   [8]=ME                 [9-10]=disabled                   [11]=UP
+    //   [12]=EXTRAORDINARY     [13]=JUXTAPOSITION [14]=RAZZMATAZZ [15]=AX
+    const placements: [number, string][] = [
+      [0,  'COUNTERPRODUCTIVE'],
+      [1,  'BAMBOOZLE'],
+      [2,  'HI'],
+      [3,  'GO'],
+      [4,  'PERPENDICULAR'],
+      [7,  'QUINTESSENTIAL'],
+      [8,  'ME'],
+      [11, 'UP'],
+      [12, 'EXTRAORDINARY'],
+      [15, 'AX'],
+    ];
+
+    for (const [cellIndex, word] of placements) {
+      const tileIndex = this.availableTiles.findIndex(t => t.word === word);
+      if (tileIndex !== -1) {
+        this.gridTiles[cellIndex] = this.availableTiles[tileIndex];
+        this.availableTiles.splice(tileIndex, 1);
+      }
+    }
+
+    // Mark top, left, right as completed
+    this.completedLines.add('top');
+    this.completedLines.add('left');
+    this.completedLines.add('right');
+
+    const cats = this.currentPuzzle!.categories;
+    const topCat  = cats.find(c => this.arraysEqual([...c.words].sort(), ['BAMBOOZLE', 'COUNTERPRODUCTIVE', 'GO', 'HI'].sort()))!;
+    const leftCat = cats.find(c => this.arraysEqual([...c.words].sort(), ['COUNTERPRODUCTIVE', 'EXTRAORDINARY', 'ME', 'PERPENDICULAR'].sort()))!;
+    const rightCat = cats.find(c => this.arraysEqual([...c.words].sort(), ['AX', 'GO', 'QUINTESSENTIAL', 'UP'].sort()))!;
+
+    for (const [lineName, cat] of [['top', topCat], ['left', leftCat], ['right', rightCat]] as [string, Category][]) {
+      this.lineCategories.set(lineName, cat.name);
+      this.lineDifficulties.set(lineName, cat.difficulty);
+      this.lineCategoryData.set(lineName, cat);
+      this.lineCompletionOrder.push(cat.difficulty);
     }
   }
 
@@ -504,6 +557,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.lineCategories.set(lineName, matchingCategory.name);
           this.lineDifficulties.set(lineName, matchingCategory.difficulty);
           this.lineCategoryData.set(lineName, matchingCategory);
+          this.lineCompletionOrder.push(matchingCategory.difficulty);
           this.checkWinCondition();
         } else {
           this.mistakes++;
@@ -763,6 +817,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.lineCategories = new Map<string, string>();
     this.lineDifficulties = new Map<string, number>();
     this.lineCategoryData = new Map<string, Category>();
+    this.lineCompletionOrder = [];
 
     Object.entries(this.lines).forEach(([lineName, positions]) => {
       const lineWords = positions
@@ -782,6 +837,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         this.lineCategories.set(lineName, matchingCategory.name);
         this.lineDifficulties.set(lineName, matchingCategory.difficulty);
         this.lineCategoryData.set(lineName, matchingCategory);
+        this.lineCompletionOrder.push(matchingCategory.difficulty);
       }
     });
   }

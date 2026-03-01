@@ -182,47 +182,41 @@ PuzzleService (abstract interface)
   - Error: user-friendly message with retry option
   - Form resets on successful submission
 
-### Phase 5: Local Progress & Stats
+### Phase 5: Share Results
+**Goal**: Let players share their results in a spoiler-free format.
+
+- [x] **5.1 — Generate shareable result card** *(done)*
+  - Emoji grid representation of the solve shown in the win modal
+  - Each completed line mapped to difficulty emoji: 🟨 Yellow, 🟩 Green, 🟦 Blue, 🟪 Purple
+  - Emojis shown in completion order
+  - Format: `Cornerz #<id>` / emoji row / `Mistakes: <count>`
+  - For restored daily puzzles, completion order reconstructed from saved state
+
+- [x] **5.2 — Copy to clipboard** *(done)*
+  - "Share" button on the win screen copies result text via `navigator.clipboard.writeText()`
+  - Button shows "Copied!" confirmation for 2 seconds after copying
+
+- [ ] **5.3 — (Optional) Web Share API**
+  - On mobile, use the native Web Share API (`navigator.share()`) to open the share sheet
+  - Fallback to clipboard copy on unsupported browsers
+
+### Phase 6: Local Progress & Stats
 **Goal**: Track player stats in localStorage for a sense of progression.
 
-- [ ] **5.1 — Stats tracking service**
+- [ ] **6.1 — Stats tracking service**
   - Create `StatsService` backed by localStorage
   - Track per-puzzle: completed (bool), mistakes, completion order, date completed
   - Track aggregate stats: total puzzles solved, current streak, max streak, average mistakes
 
-- [ ] **5.2 — Stats display**
+- [ ] **6.2 — Stats display**
   - Add a stats modal/page accessible from the header
   - Show: games played, current streak, max streak, average mistakes
   - Show a distribution chart of mistake counts
 
-- [ ] **5.3 — Streak system**
+- [ ] **6.3 — Streak system**
   - Track daily puzzle streaks (consecutive days with a completed daily puzzle)
   - Show streak indicator in the header/navbar
   - Store last completion date to calculate streaks
-
-### Phase 6: Share Results
-**Goal**: Let players share their results in a spoiler-free format.
-
-- [ ] **6.1 — Generate shareable result card**
-  - Create an emoji grid representation of the solve:
-    - Each line gets its difficulty color emoji (🟨 Yellow, 🟩 Green, 🟦 Blue, 🟪 Purple)
-    - Show order lines were completed in and whether mistakes were made on each
-    - Example output:
-      ```
-      Cornerz #42
-      🟨 🟩 🟪 🟦
-      Mistakes: 2
-      ```
-  - Include puzzle number and mistake count
-
-- [ ] **6.2 — Copy to clipboard**
-  - "Share" button on the win screen
-  - Copies the emoji result to clipboard with a confirmation toast
-  - Use `navigator.clipboard.writeText()` with fallback
-
-- [ ] **6.3 — (Optional) Web Share API**
-  - On mobile, use the native Web Share API (`navigator.share()`) to open the share sheet
-  - Fallback to clipboard copy on unsupported browsers
 
 ### Phase 7: Animations & Visual Polish
 **Goal**: Make the game feel satisfying and premium.
@@ -307,7 +301,7 @@ interface PuzzleData {
 // DIFFICULTY_COLORS: Record<number, string> — maps 1-4 to hex color values
 ```
 
-### Player Stats (localStorage — future, Phase 5)
+### Player Stats (localStorage — future, Phase 6)
 ```typescript
 interface PlayerStats {
   puzzlesCompleted: PuzzleResult[];
@@ -337,22 +331,22 @@ src/
 │   │   ├── library/              # Puzzle archive browse/filter view
 │   │   ├── win-modal/            # End-of-game overlay with solution detail
 │   │   ├── submit-puzzle/        # Community puzzle submission form with Basin integration
-│   │   ├── share-card/           # Shareable emoji result (PLANNED — Phase 6)
-│   │   └── stats-display/        # Stats modal/page (PLANNED — Phase 5)
+│   │   ├── share-card/           # Shareable emoji result (PLANNED — Phase 5)
+│   │   └── stats-display/        # Stats modal/page (PLANNED — Phase 6)
 │   ├── constants/
 │   │   └── grid.constants.ts     # DISABLED_SPOTS, LINES, CENTER_INDICATORS
 │   ├── directives/
 │   │   └── fit-text.directive.ts # Responsive text sizing directive
 │   ├── models/
 │   │   ├── puzzle.model.ts       # Puzzle, Category, PuzzleSummary, PuzzleData interfaces
-│   │   └── stats.model.ts        # Stats interfaces (PLANNED — Phase 5)
+│   │   └── stats.model.ts        # Stats interfaces (PLANNED — Phase 6)
 │   ├── services/
 │   │   ├── puzzle-provider.ts    # Abstract PuzzleProvider base class
 │   │   ├── static-puzzle-provider.ts  # JSON-backed implementation
 │   │   ├── progress.service.ts   # localStorage tracking (completions, snapshots)
 │   │   ├── puzzle-validator.service.ts # Reusable puzzle validation service
-│   │   ├── stats.service.ts      # Aggregate stats tracking (PLANNED — Phase 5)
-│   │   └── share.service.ts      # Share/clipboard logic (PLANNED — Phase 6)
+│   │   ├── share.service.ts      # Share/clipboard logic (PLANNED — Phase 5)
+│   │   └── stats.service.ts      # Aggregate stats tracking (PLANNED — Phase 6)
 │   ├── app.component.ts
 │   ├── app.component.html
 │   ├── app.component.scss
@@ -384,8 +378,8 @@ playwright.config.ts              # Multi-browser config with Angular dev server
 | 2nd      | Phase 2 (E2E Tests) | Done | 4 spec files covering core gameplay, UI state, regression |
 | 3rd      | Phase 3 (Puzzles & Daily) | Mostly done | 3.1 (expand library to 10+ puzzles) still TODO |
 | 4th      | Phase 4 (Community Submissions) | Done | Validator service, submission form, Basin POST, loading/success/error UX |
-| 5th      | Phase 5 (Stats) | TODO | Depends on puzzle completion tracking (ProgressService exists as foundation) |
-| 6th      | Phase 6 (Share) | TODO | Depends on stats/result data |
+| 5th      | Phase 5 (Share) | Mostly done | 5.1 (emoji card) and 5.2 (clipboard copy) done; 5.3 (Web Share API) optional/TODO |
+| 6th      | Phase 6 (Stats) | TODO | Depends on puzzle completion tracking (ProgressService exists as foundation) |
 | 7th      | Phase 7 (Visual Polish) | TODO | Animations, UI refinements, accessibility, dark mode, loading states |
 | 8th      | Phase 8 (Navigation) | Partially done | Basic routing exists (/, /library, /test-page); full app shell/header/stats/submit routes TODO |
 

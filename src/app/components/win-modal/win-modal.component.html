@@ -5,14 +5,21 @@
     <ng-container *ngIf="!selectedCategory">
       <h2>Puzzle Complete!</h2>
 
-      <div class="rating">{{ rating.stars }}</div>
-      <div class="rating-label">{{ rating.label }}</div>
-
-      <div class="stats">
-        <div class="stat">
-          <span class="stat-value">{{ mistakes }}</span>
-          <span class="stat-label">{{ mistakes === 1 ? 'Mistake' : 'Mistakes' }}</span>
+      <div class="rating-section">
+        <div class="rating">{{ ratingStars }}</div>
+        <div class="rating-label">{{ ratingLabel }}</div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-value">{{ mistakes }}</span>
+            <span class="stat-label">{{ mistakes === 1 ? 'Mistake' : 'Mistakes' }}</span>
+          </div>
         </div>
+      </div>
+
+      <div class="share-section" *ngIf="completionOrder.length > 0">
+        <button class="btn btn-secondary share-btn" (click)="copyShareText()">
+          {{ copied ? 'Copied!' : 'Share Result' }}
+        </button>
       </div>
 
       <div class="category-list" *ngIf="categories.length > 0">

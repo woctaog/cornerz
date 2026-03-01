@@ -99,12 +99,10 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 
 ### Win Modal - Results View (Default)
 - "Puzzle Complete!" heading with animated entrance (slide-up + fade-in)
-- Star rating based on mistakes:
-  - 0 mistakes: 3 stars, "Perfect!"
-  - 1-2 mistakes: 2 stars, "Great!"
-  - 3-4 mistakes: 1 star, "Good"
-  - 5+ mistakes: 0 stars, "Keep practicing!"
-- Mistake count display
+- Star rating (★★★ / ★★☆ / ★☆☆ / ☆☆☆) with label (Perfect! / Great! / Good / Keep practicing!) based on mistake count
+- Mistake count displayed as a stat below the stars
+- **Responsive compact layout** on short screens (≤700px viewport height): stars and mistake count collapse into a single horizontal row with a divider; rating label hidden; padding, margins, and font sizes tightened throughout so the modal fits without scrolling
+- "Share Result" button copies spoiler-free emoji result to clipboard (see Shareable Result Card)
 - Category list: 4 rows sorted by difficulty (ascending), each with colored left border, category name, difficulty label, and chevron arrow
 - Tapping a category row navigates to the solution detail view
 - Action buttons: Play Again, Next Puzzle, Close
@@ -114,6 +112,15 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - Category name heading with colored difficulty badge pill
 - HTML-rendered solution body explaining the theme and word connections
 - "Back to Results" button
+
+### Shareable Result Card
+- "Share Result" button on the win screen copies a spoiler-free emoji summary to clipboard via `navigator.clipboard`
+- Each completed line represented by a colored emoji matching its difficulty: 🟨 (Easy), 🟩 (Medium), 🟦 (Hard), 🟪 (Hardest)
+- Emojis in the order lines were completed during gameplay
+- Format: `Cornerz #<id>` / emoji row / `Mistakes: <count>`
+- Button shows "Copied!" confirmation for 2 seconds after copying
+- Completion order resets on Play Again or puzzle reload
+- For restored daily puzzles, order is reconstructed from saved state
 
 ### Post-Win Board
 - Solved board remains visible after closing the win modal
@@ -365,7 +372,6 @@ Corner words appear in exactly 2 categories; edge words appear in exactly 1.
 
 ## Test Mode
 
-- Route: `/test-page`
-- Loads puzzle id -1 with pre-populated tiles showing completed top and left lines
-- Used for development/debugging of line completion, locking, and center indicators
-- Not visible in the puzzle library
+- Route: `/test-page` — loads puzzle id -1 with top and left lines pre-completed; used for debugging line completion, locking, and center indicators
+- Route: `/test-page2` — loads puzzle id -1 with top, left, and right lines pre-completed; only JUXTAPOSITION and RAZZMATAZZ remain in the bank, so placing either immediately triggers the win modal; used for iterating on the win modal UI
+- Neither test route is visible in the puzzle library

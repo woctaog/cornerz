@@ -41,6 +41,15 @@
   }
 }
 
+// --- Stars & stats ---
+
+.rating-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
 .rating {
   font-size: 2.5rem;
   margin: 0.25rem 0;
@@ -50,14 +59,12 @@
 .rating-label {
   font-size: 1.1rem;
   color: #666;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .stats {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
-  margin-bottom: 1.25rem;
 }
 
 .stat {
@@ -78,6 +85,18 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
+}
+
+// --- Share section ---
+
+.share-section {
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.share-btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
 }
 
 // --- Category list ---
@@ -236,5 +255,86 @@
 
   &:hover {
     background-color: #e0e0e0;
+  }
+}
+
+// --- Mobile: compact layout so modal fits without scrolling ---
+
+@media (max-height: 700px) {
+  .modal {
+    padding: 1.25rem 1.5rem;
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  // Stars + mistakes collapse into a single horizontal row
+  .rating-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .rating {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  // Label is redundant alongside the stat value on small screens
+  .rating-label {
+    display: none;
+  }
+
+  .stats {
+    // Separator between stars and mistake count
+    border-left: 1px solid #ddd;
+    padding-left: 1rem;
+  }
+
+  .stat {
+    .stat-value { font-size: 1.5rem; }
+    .stat-label { font-size: 0.72rem; }
+  }
+
+  .share-section {
+    margin-bottom: 0.65rem;
+  }
+
+  .share-btn {
+    padding: 0.4rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .category-list {
+    margin-bottom: 0.65rem;
+  }
+
+  .category-row {
+    padding: 0.4rem 0.6rem;
+
+    & + & {
+      margin-top: 0.25rem;
+    }
+  }
+
+  .category-name {
+    font-size: 0.88rem;
+  }
+
+  .difficulty-label {
+    font-size: 0.65rem;
+  }
+
+  .actions {
+    gap: 0.35rem;
+  }
+
+  .btn {
+    padding: 0.55rem 1.25rem;
+    font-size: 0.9rem;
   }
 }

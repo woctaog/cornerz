@@ -6,6 +6,7 @@ import { SubmitPuzzleComponent } from './components/submit-puzzle/submit-puzzle.
 
 const routes: Routes = [
   { path: 'test-page', component: GameBoardComponent, data: { testMode: true } },
+  { path: 'test-page2', component: GameBoardComponent, data: { testMode2: true } },
   { path: 'library', component: LibraryComponent },
   { path: 'submit', component: SubmitPuzzleComponent },
   { path: '', component: GameBoardComponent },

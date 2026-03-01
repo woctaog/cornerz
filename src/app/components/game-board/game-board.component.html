@@ -107,6 +107,7 @@
       [mistakes]="mistakes"
       [puzzleId]="currentPuzzle?.id || 1"
       [categories]="completedCategories"
+      [completionOrder]="lineCompletionOrder"
       (playAgain)="onPlayAgain()"
       (nextPuzzle)="onNextPuzzle()"
       (close)="onCloseWinModal()">
