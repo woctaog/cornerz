@@ -259,9 +259,12 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.completedLines.add('right');
 
     const cats = this.currentPuzzle!.categories;
-    const topCat  = cats.find(c => this.arraysEqual([...c.words].sort(), ['BAMBOOZLE', 'COUNTERPRODUCTIVE', 'GO', 'HI'].sort()))!;
-    const leftCat = cats.find(c => this.arraysEqual([...c.words].sort(), ['COUNTERPRODUCTIVE', 'EXTRAORDINARY', 'ME', 'PERPENDICULAR'].sort()))!;
-    const rightCat = cats.find(c => this.arraysEqual([...c.words].sort(), ['AX', 'GO', 'QUINTESSENTIAL', 'UP'].sort()))!;
+    const topWords   = ['BAMBOOZLE', 'COUNTERPRODUCTIVE', 'GO', 'HI'];
+    const leftWords  = ['COUNTERPRODUCTIVE', 'EXTRAORDINARY', 'ME', 'PERPENDICULAR'];
+    const rightWords = ['AX', 'GO', 'QUINTESSENTIAL', 'UP'];
+    const topCat   = cats.find(c => this.arraysEqual([...c.words].sort(), topWords))!;
+    const leftCat  = cats.find(c => this.arraysEqual([...c.words].sort(), leftWords))!;
+    const rightCat = cats.find(c => this.arraysEqual([...c.words].sort(), rightWords))!;
 
     for (const [lineName, cat] of [['top', topCat], ['left', leftCat], ['right', rightCat]] as [string, Category][]) {
       this.lineCategories.set(lineName, cat.name);

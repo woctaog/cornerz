@@ -14,6 +14,10 @@ export const DIFFICULTY_COLORS: Record<number, string> = {
   1: '#F9A825', 2: '#2E7D32', 3: '#1565C0', 4: '#6A1B9A'
 };
 
+export const DIFFICULTY_EMOJIS: Record<number, string> = {
+  1: '🟨', 2: '🟩', 3: '🟦', 4: '🟪'
+};
+
 export interface Puzzle {
   id: number;
   title: string;

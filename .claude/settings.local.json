@@ -14,7 +14,10 @@
       "Bash(taskkill:*)",
       "Bash(fuser:*)",
       "WebFetch(domain:usebasin.com)",
-      "WebFetch(domain:docs.usebasin.com)"
+      "WebFetch(domain:docs.usebasin.com)",
+      "Bash(node:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

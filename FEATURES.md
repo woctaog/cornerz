@@ -269,6 +269,8 @@ Each puzzle in `puzzles.json`:
 
 Corner words appear in exactly 2 categories; edge words appear in exactly 1.
 
+Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 ("Cornerz Puzzle 10")
+
 ---
 
 ## Puzzle Provider Architecture (API-Ready)
@@ -289,7 +291,7 @@ Corner words appear in exactly 2 categories; edge words appear in exactly 1.
 - To switch to an API backend, create a new class extending `PuzzleProvider` and change `useClass` — no component changes needed
 
 ### Data Models
-- Interfaces extracted to `src/app/models/puzzle.model.ts`: `Puzzle`, `Category`, `PuzzleSummary`, `PuzzleData`, `DIFFICULTY_LABELS`, `DIFFICULTY_COLORS`
+- Interfaces extracted to `src/app/models/puzzle.model.ts`: `Puzzle`, `Category`, `PuzzleSummary`, `PuzzleData`, `DIFFICULTY_LABELS`, `DIFFICULTY_COLORS`, `DIFFICULTY_EMOJIS`
 - `PuzzleSummary` includes `id`, `title`, `description`, and computed `difficulty` ('easy' | 'medium' | 'hard')
 
 ---

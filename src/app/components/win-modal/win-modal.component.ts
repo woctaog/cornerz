@@ -1,13 +1,20 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Category, DIFFICULTY_LABELS } from '../../models/puzzle.model';
+import { Category, DIFFICULTY_LABELS, DIFFICULTY_EMOJIS } from '../../models/puzzle.model';
+
+const RATING_TIERS: { threshold: number; stars: string; label: string }[] = [
+  { threshold: 0, stars: '★★★', label: 'Perfect!' },
+  { threshold: 2, stars: '★★☆', label: 'Great!' },
+  { threshold: 4, stars: '★☆☆', label: 'Good' },
+  { threshold: Infinity, stars: '☆☆☆', label: 'Keep practicing!' },
+];
 
 @Component({
   selector: 'app-win-modal',
   templateUrl: './win-modal.component.html',
   styleUrls: ['./win-modal.component.scss']
 })
-export class WinModalComponent {
+export class WinModalComponent implements OnDestroy {
   @Input() mistakes: number = 0;
   @Input() puzzleId: number = 1;
   @Input() categories: Category[] = [];
@@ -20,32 +27,31 @@ export class WinModalComponent {
   selectedSolutionHtml: SafeHtml | null = null;
   copied = false;
 
+  private shareTimeout: ReturnType<typeof setTimeout> | null = null;
+
   constructor(private sanitizer: DomSanitizer) {}
 
-  get ratingStars(): string {
-    if (this.mistakes === 0) return '★★★';
-    if (this.mistakes <= 2) return '★★☆';
-    if (this.mistakes <= 4) return '★☆☆';
-    return '☆☆☆';
+  ngOnDestroy(): void {
+    if (this.shareTimeout) clearTimeout(this.shareTimeout);
   }
 
-  get ratingLabel(): string {
-    if (this.mistakes === 0) return 'Perfect!';
-    if (this.mistakes <= 2) return 'Great!';
-    if (this.mistakes <= 4) return 'Good';
-    return 'Keep practicing!';
+  private getRatingTier() {
+    return RATING_TIERS.find(t => this.mistakes <= t.threshold)!;
   }
+
+  get ratingStars(): string { return this.getRatingTier().stars; }
+  get ratingLabel(): string { return this.getRatingTier().label; }
 
   get shareText(): string {
-    const emojis: Record<number, string> = { 1: '🟨', 2: '🟩', 3: '🟦', 4: '🟪' };
-    const emojiRow = this.completionOrder.map(d => emojis[d] || '⬜').join(' ');
+    const emojiRow = this.completionOrder.map(d => DIFFICULTY_EMOJIS[d] || '⬜').join(' ');
     return `Cornerz #${this.puzzleId}\n${emojiRow}\nMistakes: ${this.mistakes}`;
   }
 
   copyShareText(): void {
     navigator.clipboard.writeText(this.shareText).then(() => {
       this.copied = true;
-      setTimeout(() => this.copied = false, 2000);
+      if (this.shareTimeout) clearTimeout(this.shareTimeout);
+      this.shareTimeout = setTimeout(() => this.copied = false, 2000);
     });
   }
 
