@@ -498,13 +498,84 @@
       ]
     },
     {
+      "id": 11,
+      "title": "Cornerz Puzzle 11",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "words": [
+        "NEW",
+        "OPEN",
+        "SAVE",
+        "CLOSE",
+        "NORTH",
+        "RHODE",
+        "WEST",
+        "SERVE",
+        "RACKET",
+        "MATCH",
+        "MOOT",
+        "BREAKING"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "File Menu Options",
+          "difficulty": 1,
+          "solution": "<strong>NEW</strong> - File &gt; New (create a new document)<br><strong>OPEN</strong> - File &gt; Open (open an existing file)<br><strong>SAVE</strong> - File &gt; Save (save the current file)<br><strong>CLOSE</strong> - File &gt; Close (close the current document)",
+          "words": [
+            "NEW",
+            "OPEN",
+            "SAVE",
+            "CLOSE"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tennis Terms",
+          "difficulty": 3,
+          "solution": "<strong>OPEN</strong> - A major open tournament (e.g. US Open)<br><strong>SERVE</strong> - Putting the ball in play to start a point<br><strong>RACKET</strong> - The strung paddle used to hit the ball<br><strong>MATCH</strong> - A complete contest between two players or teams",
+          "words": [
+            "OPEN",
+            "SERVE",
+            "RACKET",
+            "MATCH"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "___ Point",
+          "difficulty": 4,
+          "solution": "<strong>MATCH</strong> - Match Point (the point that wins the match)<br><strong>MOOT</strong> - Moot Point (an issue open to debate, or no longer relevant)<br><strong>WEST</strong> - West Point (the U.S. Military Academy in New York)<br><strong>BREAKING</strong> - Breaking Point (the moment of crisis or collapse)",
+          "words": [
+            "MATCH",
+            "MOOT",
+            "WEST",
+            "BREAKING"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "First Word of a US State",
+          "difficulty": 2,
+          "solution": "<strong>NEW</strong> - New York, New Jersey, New Mexico, New Hampshire<br><strong>NORTH</strong> - North Carolina, North Dakota<br><strong>RHODE</strong> - Rhode Island<br><strong>WEST</strong> - West Virginia",
+          "words": [
+            "NEW",
+            "NORTH",
+            "RHODE",
+            "WEST"
+          ]
+        }
+      ]
+    },
+    {
       "id": 10,
       "title": "Cornerz Puzzle 10",
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
       "words": [
-        "CRUSH",
+        "SQUASH",
         "MASH",
         "PRESS",
         "SQUEEZE",
@@ -534,9 +605,9 @@
           "id": 2,
           "name": "Apply Pressure",
           "difficulty": 2,
-          "solution": "<strong>CRUSH</strong> - To crush something is to press it with force<br><strong>MASH</strong> - To mash is to press or squeeze into a pulp<br><strong>PRESS</strong> - To press is to push steadily against something<br><strong>SQUEEZE</strong> - To squeeze is to apply pressure by compressing",
+          "solution": "<strong>SQUASH</strong> - To squash something is to press it with force<br><strong>MASH</strong> - To mash is to press or squeeze into a pulp<br><strong>PRESS</strong> - To press is to push steadily against something<br><strong>SQUEEZE</strong> - To squeeze is to apply pressure by compressing",
           "words": [
-            "CRUSH",
+            "SQUASH",
             "MASH",
             "PRESS",
             "SQUEEZE"
