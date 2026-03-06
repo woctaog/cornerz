@@ -533,7 +533,7 @@
         {
           "id": 2,
           "name": "Tennis Terms",
-          "difficulty": 2,
+          "difficulty": 3,
           "solution": "<strong>OPEN</strong> - A major open tournament (e.g. US Open)<br><strong>SERVE</strong> - Putting the ball in play to start a point<br><strong>RACKET</strong> - The strung paddle used to hit the ball<br><strong>MATCH</strong> - A complete contest between two players or teams",
           "words": [
             "OPEN",
@@ -545,7 +545,7 @@
         {
           "id": 3,
           "name": "___ Point",
-          "difficulty": 3,
+          "difficulty": 4,
           "solution": "<strong>MATCH</strong> - Match Point (the point that wins the match)<br><strong>MOOT</strong> - Moot Point (an issue open to debate, or no longer relevant)<br><strong>WEST</strong> - West Point (the U.S. Military Academy in New York)<br><strong>BREAKING</strong> - Breaking Point (the moment of crisis or collapse)",
           "words": [
             "MATCH",
@@ -557,7 +557,7 @@
         {
           "id": 4,
           "name": "First Word of a US State",
-          "difficulty": 4,
+          "difficulty": 2,
           "solution": "<strong>NEW</strong> - New York, New Jersey, New Mexico, New Hampshire<br><strong>NORTH</strong> - North Carolina, North Dakota<br><strong>RHODE</strong> - Rhode Island<br><strong>WEST</strong> - West Virginia",
           "words": [
             "NEW",
