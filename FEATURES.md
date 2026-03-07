@@ -346,17 +346,47 @@ Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 (
 - Back button navigates to the main game
 
 ### Form Fields
-- **Metadata**: Display name (required), email (required, validated on blur), puzzle title (required)
-- **Categories**: 4 category blocks, each with a category name input, a 2x2 grid of word inputs, and an optional "Category Description" textarea for explaining the theme or word connections
+- **Metadata**: Display name (required), email (required, validated on blur), puzzle title (optional)
+- **Categories**: 4 category blocks, each with a category name input, a 2x2 grid of word inputs (labeled First Corner, Unique Word 1, Unique Word 2, Second Corner), and an optional "Category Description" textarea
+- Category block headers display the typed category name live; fall back to "Top/Right/Bottom/Left Category" if empty
+- Category name inputs have randomized placeholders generated fresh on each page load:
+  - Top: `e.g. Types of [noun]`
+  - Right: `e.g. _______ [noun]`
+  - Bottom: `e.g. [adjective] [noun]`
+  - Left: random pattern (`Homophones of X`, `Shades of X`, `Synonyms for X`, etc.)
+- Word banks live in `src/app/data/placeholder-words.ts` (~500 nouns, ~140 adjectives, ~50 colors, 12 patterns)
 - **Notes**: Optional textarea for additional context
+
+### Corner Word Pre-fill (Auto-linking)
+- Categories are treated as a ring: Cat1 → Cat2 → Cat3 → Cat4 → Cat1
+- Each category's **First Corner** is auto-filled from the previous category's **Second Corner** — shown read-only with a blue tint and an "auto" badge
+- The ring closes: Category 4's Second Corner is auto-filled from Category 1's First Corner
+- Auto-fill syncs on every keystroke so corner values stay consistent without manual re-entry
+- Errors on auto-filled fields are suppressed (the source field shows the error instead)
+
+### Live Puzzle Preview
+- A 4x4 grid preview updates in real time as the user fills in words
+- Cell layout mirrors the actual game: Cat1=top, Cat2=right, Cat3=bottom, Cat4=left
+- Corner cells (shared between two categories) shown in white with a bold border
+- Each category's exclusive cells shown with a distinct background color (yellow/green/blue/purple)
+- Center 4 cells mirror the game's indicator layout: show each category's name and a directional arrow (↑→↓←), colored per category
+- Empty non-corner cells shown with a dashed border as a placeholder
+- Legend below the grid maps colors to category names
 
 ### Validation
 - Required-field errors shown after first submit attempt
 - Email format validated on blur with regex
 - Puzzle structure validated via `PuzzleValidatorService` with 400ms debounce on category/word changes
-- Per-field errors (empty, character limits) shown inline below each input
+- Per-field errors (empty, character limits) shown inline below each input; suppressed on auto-filled fields
 - Global errors (duplicate words, corner count, solvability) shown in a red-bordered summary box
 - Inputs with errors highlighted with red border
+
+### Live Puzzle Preview (Updated)
+- Grid expanded to `min(100%, 400px)` (full-width up to game-board size)
+- Legend/key removed
+- Cell and center-label fonts use `appFitText` directive — same as real game tiles
+- Styling mirrors the real game board: same container border/padding/background, tile appearance, center indicator style, and empty-cell dashed border
+- **Maintenance**: preview styling must stay in sync with `game-board.component.scss` and `game-tile.component.scss` — see `CLAUDE.md` for the rule
 
 ### Submission (Basin Integration)
 - On valid submit, POSTs flattened JSON to Basin with `Accept: application/json` header for AJAX response
@@ -364,7 +394,7 @@ Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 (
 - **Loading state**: form fields disabled via `<fieldset>`, button shows "Submitting...", opacity reduced
 - **Success state**: form replaced with green confirmation card and "Back to Game" button
 - **Error state**: red error message shown above submit button, form stays editable for retry
-- Permission/credit notice shown above submit button, mentioning possible selection as a daily puzzle
+- Permission/credit notice is a **required checkbox** — must be checked before submitting; shows inline error if unchecked on submit
 
 ### Scrollability
 - Form page is fully scrollable (`:host` overflow-y auto) within the fixed-height app container

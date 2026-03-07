@@ -96,6 +96,47 @@
   margin-top: 0.2rem;
 }
 
+// ── Word label styles ──────────────────────────────────────────────
+
+.word-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #546e7a;
+  font-weight: 500;
+}
+
+.corner-word-label {
+  color: #1f2a30;
+  font-weight: 600;
+}
+
+.auto-fill-badge {
+  font-size: 0.62rem;
+  background: #e3f2fd;
+  color: #1565c0;
+  border-radius: 3px;
+  padding: 0 4px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.auto-filled-input {
+  background: #e3f2fd !important;
+  color: #1565c0 !important;
+  cursor: default;
+  border-color: #90caf9 !important;
+
+  &::placeholder {
+    color: #90a4ae;
+    font-style: italic;
+    font-size: 0.75rem;
+  }
+}
+
+// ── Categories section ─────────────────────────────────────────────
+
 .categories-section {
   margin-bottom: 1.25rem;
 
@@ -115,10 +156,26 @@
 }
 
 .category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   font-weight: 600;
   font-size: 0.9rem;
   color: #37474f;
   margin-bottom: 0.5rem;
+}
+
+.category-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .words-grid {
@@ -128,9 +185,131 @@
   margin-top: 0.5rem;
 }
 
+.corner-field {
+  // Subtle visual grouping for corner fields — relies on label/input styling
+}
+
 .category-description {
   margin-top: 0.5rem;
 }
+
+// ── Preview section ────────────────────────────────────────────────
+
+.preview-section {
+  margin-bottom: 1.25rem;
+
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: #1f2a30;
+  }
+}
+
+.preview-grid-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(4px, 1.5vw, 8px);
+  width: min(100%, 400px);
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: clamp(4px, 1.5vw, 8px);
+  background-color: #f5f5f5;
+}
+
+.preview-cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background: transparent;
+  border: 2px dashed #ccc;
+  overflow: hidden;
+  text-align: center;
+}
+
+// Corner cells: white tile with solid border to show they're shared between two categories
+.preview-corner {
+  background: #ffffff !important;
+  border: 2px solid #666 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .cell-word {
+    color: #263238 !important;
+    text-shadow: none !important;
+    font-weight: 700;
+  }
+}
+
+// Center indicators: match real game's center-indicator style
+.preview-center {
+  border: 2px solid #888 !important;
+  border-radius: 4px !important;
+  background: #666 !important; // fallback; inline style applies catColor over this
+  gap: 2px;
+}
+
+// Filled category tiles: look like real game tiles
+.preview-cat-filled {
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+// Empty category cells: dashed border, no fill
+.preview-cat-empty {
+  border: 2px dashed #ccc !important;
+  background: transparent !important;
+}
+
+.center-arrow {
+  font-size: 0.85rem;
+  line-height: 1;
+  font-weight: 700;
+  color: white;
+}
+
+.center-label {
+  font-weight: 600;
+  line-height: 1.2;
+  overflow: hidden;
+  max-width: 100%;
+  padding: 0 2px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cell-word {
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 100%;
+  padding: 2px;
+  box-sizing: border-box;
+
+  &.cell-empty {
+    color: #b0bec5;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-shadow: none;
+  }
+}
+
+// ── Notes / submit ─────────────────────────────────────────────────
 
 .notes-section {
   margin-bottom: 1rem;
@@ -193,11 +372,24 @@ fieldset {
   margin-bottom: 0.75rem;
 }
 
-.permission-text {
-  font-size: 0.78rem;
-  font-style: italic;
-  color: #78909c;
+.permission-checkbox {
   margin: 0 0 0.75rem;
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: #546e7a;
+    cursor: pointer;
+    line-height: 1.4;
+
+    input[type="checkbox"] {
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+  }
 }
 
 .submit-btn {

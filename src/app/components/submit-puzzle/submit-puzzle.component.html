@@ -15,7 +15,8 @@
   <ng-container *ngIf="!submitSuccess">
     <p class="submit-description">
       Propose a new puzzle for the community. Fill in 4 categories with 4 words each.
-      Remember: exactly 4 words must be shared between two adjacent categories (corner words).
+      Categories form a ring — each shares one <strong>corner word</strong> with the next.
+      The First and Second Corner fields link automatically as you fill them in.
     </p>
 
     <form (ngSubmit)="onSubmit()">
@@ -44,12 +45,9 @@
           </div>
 
           <div class="field-group">
-            <label for="title">Puzzle Title</label>
+            <label for="title">Puzzle Title (optional)</label>
             <input id="title" type="text" [(ngModel)]="formData.title" name="title"
                    placeholder="Give your puzzle a name" />
-            <div class="field-error" *ngIf="submitted && !formData.title.trim()">
-              Puzzle title is required.
-            </div>
           </div>
         </section>
 
@@ -57,13 +55,16 @@
           <h3>Categories</h3>
 
           <div class="category-block" *ngFor="let cat of formData.categories; let i = index">
-            <div class="category-header">Category {{ i + 1 }}</div>
+            <div class="category-header">
+              <span class="category-number" [style.background]="catBgColors[i + 1]" [style.border-color]="catColors[i + 1]">{{ i + 1 }}</span>
+              {{ cat.name.trim() || getCategoryLabel(i) }}
+            </div>
 
             <div class="field-group">
               <label [for]="'catName' + i">Category Name</label>
               <input [id]="'catName' + i" type="text"
                      [(ngModel)]="cat.name" [name]="'catName' + i"
-                     placeholder="e.g. Types of Fish"
+                     [placeholder]="categoryPlaceholders[i]"
                      [class.input-error]="submitted && validationResult?.errors?.categories?.[i]?.name"
                      (ngModelChange)="onPuzzleFieldChange()" />
               <div class="field-error"
@@ -73,14 +74,22 @@
             </div>
 
             <div class="words-grid">
-              <div class="field-group" *ngFor="let word of cat.words; let j = index; trackBy: trackByIndex">
+              <div class="field-group word-field"
+                   *ngFor="let word of cat.words; let j = index; trackBy: trackByIndex"
+                   [class.corner-field]="j === 0 || j === 3">
+                <label class="word-label" [class.corner-word-label]="j === 0 || j === 3">
+                  {{ getWordLabel(j) }}
+                  <span class="auto-fill-badge" *ngIf="isAutoFilled(i, j)">auto</span>
+                </label>
                 <input type="text"
                        [(ngModel)]="cat.words[j]" [name]="'word' + i + '_' + j"
-                       [placeholder]="'Word ' + (j + 1)"
-                       [class.input-error]="submitted && validationResult?.errors?.categories?.[i]?.words?.[j]"
+                       [placeholder]="isAutoFilled(i, j) ? getAutoFillHint(i, j) : ''"
+                       [readonly]="isAutoFilled(i, j)"
+                       [class.input-error]="submitted && !isAutoFilled(i, j) && validationResult?.errors?.categories?.[i]?.words?.[j]"
+                       [class.auto-filled-input]="isAutoFilled(i, j)"
                        (ngModelChange)="onPuzzleFieldChange()" />
                 <div class="field-error"
-                     *ngIf="submitted && validationResult?.errors?.categories?.[i]?.words?.[j]">
+                     *ngIf="submitted && !isAutoFilled(i, j) && validationResult?.errors?.categories?.[i]?.words?.[j]">
                   {{ validationResult!.errors.categories[i].words[j] }}
                 </div>
               </div>
@@ -93,6 +102,41 @@
                         placeholder="Explain the theme or how the words connect..."></textarea>
             </div>
           </div>
+        </section>
+
+        <!-- Live puzzle preview -->
+        <section class="preview-section">
+          <h3>Puzzle Preview</h3>
+
+          <div class="preview-grid-wrap">
+            <div class="preview-grid">
+              <div *ngFor="let cell of previewCells; let ci = index; trackBy: trackByIndex"
+                   class="preview-cell"
+                   [class.preview-corner]="cell.isCorner"
+                   [class.preview-center]="cell.catIndex === -1"
+                   [class.preview-cat-filled]="cell.catIndex > 0 && cell.word"
+                   [class.preview-cat-empty]="cell.catIndex > 0 && !cell.word"
+                   [style.backgroundColor]="cell.catIndex === -1 ? catColors[cell.centerFor!] : (cell.catIndex > 0 && cell.word ? catColors[cell.catIndex] : null)">
+
+                <!-- Center indicator cell -->
+                <ng-container *ngIf="cell.catIndex === -1">
+                  <span class="center-arrow">{{ getCenterArrow(cell.centerFor!) }}</span>
+                  <span class="center-label" [appFitText]="12" [fitTextWrap]="true">{{ cell.word }}</span>
+                </ng-container>
+
+                <!-- Corner cell -->
+                <span *ngIf="cell.isCorner" class="cell-word" [class.cell-empty]="!cell.word" [appFitText]="16">
+                  {{ cell.word || '·' }}
+                </span>
+
+                <!-- Category cell -->
+                <span *ngIf="!cell.isCorner && cell.catIndex > 0" class="cell-word" [class.cell-empty]="!cell.word" [appFitText]="16">
+                  {{ cell.word || '·' }}
+                </span>
+              </div>
+            </div>
+          </div>
+
         </section>
 
         <section class="notes-section">
@@ -115,10 +159,16 @@
         {{ submitError }}
       </div>
 
-      <p class="permission-text">
-        By submitting, you grant permission for this puzzle to be included in Cornerz.
-        Your display name will be credited. Your puzzle may be selected as a daily puzzle!
-      </p>
+      <div class="permission-checkbox">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="permissionGranted" name="permissionGranted" />
+          By submitting, you grant permission for this puzzle to be included in Cornerz.
+          Your display name will be credited. Your puzzle may be selected as a daily puzzle!
+        </label>
+        <div class="field-error" *ngIf="submitted && !permissionGranted">
+          You must agree before submitting.
+        </div>
+      </div>
 
       <button type="submit" class="submit-btn" [disabled]="submitting">
         <span *ngIf="!submitting">Submit Puzzle</span>
