@@ -392,6 +392,32 @@ fieldset {
   }
 }
 
+.error-summary {
+  border: 1px solid #ef9a9a;
+  border-radius: 8px;
+  background: #ffebee;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.75rem;
+
+  strong {
+    display: block;
+    color: #c62828;
+    font-size: 0.82rem;
+    margin-bottom: 0.25rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  li {
+    color: #c62828;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+}
+
 .submit-btn {
   border: none;
   border-radius: 8px;

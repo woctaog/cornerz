@@ -851,6 +851,77 @@
           ]
         }
       ]
+    },
+    {
+      "id": 12,
+      "title": "Name Dropping",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "words": [
+        "Tom Hanks",
+        "Robin Wright",
+        "Gary Sinise",
+        "Haley Joel Osment",
+        "Shirley Temple",
+        "Macaulay Culkin",
+        "Drew Barrymore",
+        "Oprah Winfrey",
+        "Regis Philbin",
+        "Ellen DeGeneres",
+        "Amy Poehler",
+        "Owen Wilson"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Forrest Gump Cast",
+          "difficulty": 2,
+          "solution": "<strong>Tom Hanks</strong> - Played Forrest Gump, the lovable Alabama man who witnessed decades of American history<br><strong>Robin Wright</strong> - Played Jenny, Forrest's lifelong love interest<br><strong>Gary Sinise</strong> - Played Lieutenant Dan, Forrest's Vietnam War commander<br><strong>Haley Joel Osment</strong> - Played Forrest Gump Jr., Forrest's son",
+          "words": [
+            "Tom Hanks",
+            "Robin Wright",
+            "Gary Sinise",
+            "Haley Joel Osment"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Child Actors",
+          "difficulty": 1,
+          "solution": "<strong>Haley Joel Osment</strong> - Starred in <em>The Sixth Sense</em> at age 11<br><strong>Shirley Temple</strong> - Hollywood's biggest child star of the 1930s and 40s<br><strong>Macaulay Culkin</strong> - Starred in <em>Home Alone</em> at age 10<br><strong>Drew Barrymore</strong> - Appeared in <em>E.T. the Extra-Terrestrial</em> at age 7",
+          "words": [
+            "Haley Joel Osment",
+            "Shirley Temple",
+            "Macaulay Culkin",
+            "Drew Barrymore"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Daytime TV Hosts",
+          "difficulty": 3,
+          "solution": "<strong>Drew Barrymore</strong> - Host of <em>The Drew Barrymore Show</em> (2020–present)<br><strong>Oprah Winfrey</strong> - Hosted <em>The Oprah Winfrey Show</em> for 25 years (1986–2011)<br><strong>Regis Philbin</strong> - Co-hosted <em>Live with Regis and Kathie Lee</em> for decades<br><strong>Ellen DeGeneres</strong> - Hosted <em>The Ellen DeGeneres Show</em> for 19 years (2003–2022)",
+          "words": [
+            "Drew Barrymore",
+            "Oprah Winfrey",
+            "Regis Philbin",
+            "Ellen DeGeneres"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Pixar Voice Leads",
+          "difficulty": 4,
+          "solution": "<strong>Ellen DeGeneres</strong> - Voiced Dory in <em>Finding Nemo</em> and <em>Finding Dory</em><br><strong>Amy Poehler</strong> - Voiced Joy in <em>Inside Out</em> and <em>Inside Out 2</em><br><strong>Owen Wilson</strong> - Voiced Lightning McQueen in the <em>Cars</em> franchise<br><strong>Tom Hanks</strong> - Voiced Woody in the <em>Toy Story</em> franchise",
+          "words": [
+            "Ellen DeGeneres",
+            "Amy Poehler",
+            "Owen Wilson",
+            "Tom Hanks"
+          ]
+        }
+      ]
     }
   ]
 }

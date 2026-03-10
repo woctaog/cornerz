@@ -152,6 +152,32 @@ export class SubmitPuzzleComponent implements OnInit {
     this.emailError = emailRegex.test(email) ? null : 'Please enter a valid email address.';
   }
 
+  get summaryErrors(): string[] {
+    if (!this.submitted) return [];
+    const errors: string[] = [];
+
+    if (!this.formData.displayName.trim()) errors.push('Display name is required.');
+    if (!this.formData.email.trim()) errors.push('Email is required.');
+    else if (this.emailError) errors.push(this.emailError);
+
+    for (let i = 0; i < 4; i++) {
+      const catErrs = this.validationResult?.errors?.categories?.[i];
+      const label = this.getCategoryLabel(i);
+      if (catErrs?.name) errors.push(`${label}: ${catErrs.name}`);
+      const wordErrs = catErrs?.words;
+      if (wordErrs?.some((w, j) => w && !this.isAutoFilled(i, j))) {
+        errors.push(`${label}: one or more words have errors.`);
+      }
+    }
+
+    const globalErrs = this.validationResult?.errors?.global;
+    if (globalErrs?.length) errors.push(...globalErrs);
+
+    if (!this.permissionGranted) errors.push('You must agree before submitting.');
+
+    return errors;
+  }
+
   hasRequiredErrors(): boolean {
     if (!this.formData.displayName.trim()) return true;
     if (!this.formData.email.trim()) return true;

@@ -79,7 +79,7 @@ export class PuzzleValidatorService {
     }
     for (const [word, count] of wordCounts) {
       if (count >= 3) {
-        errors.global.push(`Word "${word}" appears ${count} times. A word can appear in at most 2 categories.`);
+        errors.global.push(`"${word}" is used too many times — each word can only appear in 1 category (or 2 if it's a corner).`);
       }
     }
 
@@ -97,7 +97,7 @@ export class PuzzleValidatorService {
     }
     for (const [word, catCount] of wordCategories) {
       if (catCount > 2) {
-        errors.global.push(`Word "${word}" appears in ${catCount} categories. Maximum is 2.`);
+        errors.global.push(`"${word}" is used too many times — each word can only appear in 1 category (or 2 if it's a corner).`);
       }
     }
 

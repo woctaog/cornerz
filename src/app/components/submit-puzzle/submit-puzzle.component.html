@@ -170,6 +170,13 @@
         </div>
       </div>
 
+      <div class="error-summary" *ngIf="summaryErrors.length">
+        <strong>Please fix the following before submitting:</strong>
+        <ul>
+          <li *ngFor="let err of summaryErrors">{{ err }}</li>
+        </ul>
+      </div>
+
       <button type="submit" class="submit-btn" [disabled]="submitting">
         <span *ngIf="!submitting">Submit Puzzle</span>
         <span *ngIf="submitting">Submitting...</span>
