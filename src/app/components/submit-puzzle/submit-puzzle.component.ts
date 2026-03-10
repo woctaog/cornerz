@@ -47,8 +47,9 @@ export class SubmitPuzzleComponent implements OnInit {
   submitSuccess = false;
   submitError: string | null = null;
   permissionGranted = false;
-  categoryPlaceholders: string[] = ['', '', '', ''];
-  private debounceTimer: any;
+  categoryPlaceholders: string[] = [];
+  previewCells: PreviewCell[] = [];
+  private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   readonly catColors: Record<number, string> = {
     1: '#F9A825', 2: '#2E7D32', 3: '#1565C0', 4: '#6A1B9A'
@@ -73,6 +74,7 @@ export class SubmitPuzzleComponent implements OnInit {
 
   ngOnInit(): void {
     this.generatePlaceholders();
+    this.computePreviewCells();
   }
 
   private pick<T>(arr: T[]): T {
@@ -118,6 +120,10 @@ export class SubmitPuzzleComponent implements OnInit {
     return parts.join(' ');
   }
 
+  private isValidEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
   private syncCorners(): void {
     const cats = this.formData.categories;
     // Each category's First Corner is the previous category's Second Corner
@@ -130,6 +136,7 @@ export class SubmitPuzzleComponent implements OnInit {
 
   onPuzzleFieldChange(): void {
     this.syncCorners();
+    this.computePreviewCells();
     clearTimeout(this.debounceTimer);
     this.debounceTimer = setTimeout(() => this.runPuzzleValidation(), 400);
   }
@@ -144,12 +151,7 @@ export class SubmitPuzzleComponent implements OnInit {
 
   onEmailBlur(): void {
     const email = this.formData.email.trim();
-    if (!email) {
-      this.emailError = null;
-      return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.emailError = emailRegex.test(email) ? null : 'Please enter a valid email address.';
+    this.emailError = email && !this.isValidEmail(email) ? 'Please enter a valid email address.' : null;
   }
 
   get summaryErrors(): string[] {
@@ -178,27 +180,17 @@ export class SubmitPuzzleComponent implements OnInit {
     return errors;
   }
 
-  hasRequiredErrors(): boolean {
-    if (!this.formData.displayName.trim()) return true;
-    if (!this.formData.email.trim()) return true;
-    if (this.emailError) return true;
-    if (!this.permissionGranted) return true;
-    return false;
-  }
-
   onSubmit(): void {
     this.submitted = true;
     clearTimeout(this.debounceTimer);
     this.syncCorners();
+    this.computePreviewCells();
     this.runPuzzleValidation();
 
     const email = this.formData.email.trim();
-    if (email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      this.emailError = emailRegex.test(email) ? null : 'Please enter a valid email address.';
-    }
+    if (email) this.emailError = this.isValidEmail(email) ? null : 'Please enter a valid email address.';
 
-    if (this.hasRequiredErrors() || !this.validationResult?.valid) {
+    if (this.summaryErrors.length > 0) {
       return;
     }
 
@@ -256,10 +248,12 @@ export class SubmitPuzzleComponent implements OnInit {
   }
 
   getAutoFillHint(catIndex: number, wordIndex: number): string {
-    if (wordIndex === 0 && catIndex === 1) return "Filled from Top Category's 2nd Corner";
-    if (wordIndex === 0 && catIndex === 2) return "Filled from Right Category's 2nd Corner";
-    if (wordIndex === 0 && catIndex === 3) return "Filled from Bottom Category's 2nd Corner";
-    if (wordIndex === 3 && catIndex === 3) return "Filled from Top Category's 1st Corner";
+    if (wordIndex === 0 && catIndex > 0) {
+      return `Filled from ${this.categoryPositions[catIndex - 1]} Category's 2nd Corner`;
+    }
+    if (wordIndex === 3 && catIndex === 3) {
+      return `Filled from ${this.categoryPositions[0]} Category's 1st Corner`;
+    }
     return '';
   }
 
@@ -267,7 +261,7 @@ export class SubmitPuzzleComponent implements OnInit {
     return (['', '↑', '→', '↓', '←'] as string[])[centerFor] || '';
   }
 
-  get previewCells(): PreviewCell[] {
+  private computePreviewCells(): void {
     const cats = this.formData.categories;
     const w = (ci: number) => cats[ci].words;
 
@@ -275,11 +269,10 @@ export class SubmitPuzzleComponent implements OnInit {
       ({ word: word.trim().toUpperCase(), catIndex: 0, isCorner: true });
     const catCell = (word: string, ci: number): PreviewCell =>
       ({ word: word.trim().toUpperCase(), catIndex: ci, isCorner: false });
-    const positions = ['Top', 'Right', 'Bottom', 'Left'];
     const center = (ci: number): PreviewCell =>
-      ({ word: cats[ci - 1].name.trim() || `${positions[ci - 1]} Category`, catIndex: -1, isCorner: false, centerFor: ci });
+      ({ word: cats[ci - 1].name.trim() || `${this.categoryPositions[ci - 1]} Category`, catIndex: -1, isCorner: false, centerFor: ci });
 
-    return [
+    this.previewCells = [
       corner(w(0)[0]),      // 0: TL = Cat1 First Corner = Cat4 Second Corner
       catCell(w(0)[1], 1),  // 1: Cat1 Unique Word 1
       catCell(w(0)[2], 1),  // 2: Cat1 Unique Word 2
