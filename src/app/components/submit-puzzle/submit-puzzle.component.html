@@ -125,12 +125,12 @@
                 </ng-container>
 
                 <!-- Corner cell -->
-                <span *ngIf="cell.isCorner" class="cell-word" [class.cell-empty]="!cell.word" [appFitText]="16">
+                <span *ngIf="cell.isCorner" class="cell-word" [class.cell-empty]="!cell.word" [appFitText]="16" [fitTextWrap]="true">
                   {{ cell.word || '·' }}
                 </span>
 
                 <!-- Category cell -->
-                <span *ngIf="!cell.isCorner && cell.catIndex > 0" class="cell-word" [class.cell-empty]="!cell.word" [appFitText]="16">
+                <span *ngIf="!cell.isCorner && cell.catIndex > 0" class="cell-word" [class.cell-empty]="!cell.word" [appFitText]="16" [fitTextWrap]="true">
                   {{ cell.word || '·' }}
                 </span>
               </div>
