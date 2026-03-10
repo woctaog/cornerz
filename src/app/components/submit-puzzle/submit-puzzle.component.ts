@@ -49,7 +49,7 @@ export class SubmitPuzzleComponent implements OnInit {
   permissionGranted = false;
   categoryPlaceholders: string[] = [];
   previewCells: PreviewCell[] = [];
-  private debounceTimer: ReturnType<typeof setTimeout> | null = null;
+  private debounceTimer: ReturnType<typeof setTimeout> | undefined;
 
   readonly catColors: Record<number, string> = {
     1: '#F9A825', 2: '#2E7D32', 3: '#1565C0', 4: '#6A1B9A'
