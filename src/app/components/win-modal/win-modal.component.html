@@ -16,6 +16,17 @@
         </div>
       </div>
 
+      <div class="sequence-grid" *ngIf="displaySequence.length > 0">
+        <div class="sequence-row" *ngFor="let row of sequenceRows">
+          <span class="sequence-emoji" *ngFor="let item of row">
+            {{ item === 0 ? '❌' : difficultyEmoji(item) }}
+          </span>
+        </div>
+        <div class="sequence-overflow" *ngIf="gameSequence.length > MAX_SEQUENCE">
+          +{{ gameSequence.length - MAX_SEQUENCE }} more
+        </div>
+      </div>
+
       <div class="share-section" *ngIf="completionOrder.length > 0">
         <button class="btn btn-secondary share-btn" (click)="copyShareText()">
           {{ copied ? 'Copied!' : 'Share Result' }}

@@ -93,6 +93,10 @@
         <span>Next daily puzzle in {{ dailyCountdown }}</span>
       </div>
 
+      <button class="view-results-btn" *ngIf="gameWon && !winModalOpen" (click)="onReopenWinModal()">
+        View Results
+      </button>
+
     </div>
 
     <div class="daily-locked-card" *ngIf="currentPuzzle && currentPuzzle.words.length > 0 && isDailyLocked">
@@ -103,11 +107,12 @@
 
     <!-- Win modal -->
     <app-win-modal
-      *ngIf="gameWon"
+      *ngIf="gameWon && winModalOpen"
       [mistakes]="mistakes"
       [puzzleId]="currentPuzzle?.id || 1"
       [categories]="completedCategories"
       [completionOrder]="lineCompletionOrder"
+      [gameSequence]="gameSequence"
       (playAgain)="onPlayAgain()"
       (nextPuzzle)="onNextPuzzle()"
       (close)="onCloseWinModal()">

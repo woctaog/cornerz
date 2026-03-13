@@ -51,10 +51,13 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   // Line completion order (difficulty values in order lines were solved)
   lineCompletionOrder: number[] = [];
+  // Interleaved play sequence: difficulty 1-4 = correct line, 0 = mistake
+  gameSequence: number[] = [];
 
   // Scoring
   mistakes: number = 0;
   gameWon: boolean = false;
+  winModalOpen: boolean = false;
   keepBoardVisibleAfterWin = false;
   isHelpOpen: boolean = false;
   isDailyPuzzleMode = false;
@@ -133,6 +136,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.error = null;
     this.selectedTile = null;
     this.gameWon = false;
+    this.winModalOpen = false;
     this.keepBoardVisibleAfterWin = false;
     this.mistakes = 0;
     this.isDailyLocked = false;
@@ -160,6 +164,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.lineDifficulties = new Map<string, number>();
           this.lineCategoryData = new Map<string, Category>();
           this.lineCompletionOrder = [];
+          this.gameSequence = [];
 
           if (puzzleId === -1 && this.route.snapshot.data['testMode']) {
             this.prePopulateTestPuzzle();
@@ -271,6 +276,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       this.lineDifficulties.set(lineName, cat.difficulty);
       this.lineCategoryData.set(lineName, cat);
       this.lineCompletionOrder.push(cat.difficulty);
+      this.gameSequence.push(cat.difficulty);
     }
   }
 
@@ -561,9 +567,11 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.lineDifficulties.set(lineName, matchingCategory.difficulty);
           this.lineCategoryData.set(lineName, matchingCategory);
           this.lineCompletionOrder.push(matchingCategory.difficulty);
+          this.gameSequence.push(matchingCategory.difficulty);
           this.checkWinCondition();
         } else {
           this.mistakes++;
+          this.gameSequence.push(0);
           this.isResolvingInvalidLine = true;
           this.playShake(positions);
           setTimeout(() => {
@@ -605,12 +613,13 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         this.markDailyCompleted();
       }
       this.gameWon = true;
+      this.winModalOpen = true;
     }
   }
 
   onPlayAgain() {
     if (this.isDailyPuzzleMode && this.isDailyLocked) {
-      this.gameWon = false;
+      this.winModalOpen = false;
       return;
     }
     if (this.currentPuzzle) {
@@ -625,7 +634,11 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   onCloseWinModal() {
-    this.gameWon = false;
+    this.winModalOpen = false;
+  }
+
+  onReopenWinModal() {
+    this.winModalOpen = true;
   }
 
   openHelp() {
@@ -821,6 +834,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.lineDifficulties = new Map<string, number>();
     this.lineCategoryData = new Map<string, Category>();
     this.lineCompletionOrder = [];
+    this.gameSequence = [];
 
     Object.entries(this.lines).forEach(([lineName, positions]) => {
       const lineWords = positions
@@ -841,6 +855,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         this.lineDifficulties.set(lineName, matchingCategory.difficulty);
         this.lineCategoryData.set(lineName, matchingCategory);
         this.lineCompletionOrder.push(matchingCategory.difficulty);
+        this.gameSequence.push(matchingCategory.difficulty);
       }
     });
   }

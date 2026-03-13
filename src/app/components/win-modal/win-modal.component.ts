@@ -19,9 +19,12 @@ export class WinModalComponent implements OnDestroy {
   @Input() puzzleId: number = 1;
   @Input() categories: Category[] = [];
   @Input() completionOrder: number[] = [];
+  @Input() gameSequence: number[] = [];
   @Output() playAgain = new EventEmitter<void>();
   @Output() nextPuzzle = new EventEmitter<void>();
   @Output() close = new EventEmitter<void>();
+
+  readonly MAX_SEQUENCE = 20;
 
   selectedCategory: Category | null = null;
   selectedSolutionHtml: SafeHtml | null = null;
@@ -35,6 +38,28 @@ export class WinModalComponent implements OnDestroy {
     if (this.shareTimeout) clearTimeout(this.shareTimeout);
   }
 
+  get displaySequence(): number[] {
+    return this.gameSequence.slice(0, this.MAX_SEQUENCE);
+  }
+
+  get sequenceRows(): number[][] {
+    const items = this.displaySequence;
+    const n = items.length;
+    if (n === 0) return [];
+
+    // Pick per-row count (4–6) that maximises the last row's fullness
+    let perRow = 4;
+    for (let p = 4; p <= 6; p++) {
+      const lastRow = n % p || p;
+      const currentLastRow = n % perRow || perRow;
+      if (lastRow > currentLastRow) perRow = p;
+    }
+
+    const rows: number[][] = [];
+    for (let i = 0; i < n; i += perRow) rows.push(items.slice(i, i + perRow));
+    return rows;
+  }
+
   private getRatingTier() {
     return RATING_TIERS.find(t => this.mistakes <= t.threshold)!;
   }
@@ -42,8 +67,14 @@ export class WinModalComponent implements OnDestroy {
   get ratingStars(): string { return this.getRatingTier().stars; }
   get ratingLabel(): string { return this.getRatingTier().label; }
 
+  difficultyEmoji(d: number): string {
+    return DIFFICULTY_EMOJIS[d] || '⬜';
+  }
+
   get shareText(): string {
-    const emojiRow = this.completionOrder.map(d => DIFFICULTY_EMOJIS[d] || '⬜').join(' ');
+    const emojiRow = this.gameSequence
+      .map(item => item === 0 ? '❌' : (DIFFICULTY_EMOJIS[item] || '⬜'))
+      .join(' ');
     return `Cornerz #${this.puzzleId}\n${emojiRow}\nMistakes: ${this.mistakes}`;
   }
 

@@ -498,6 +498,219 @@
       ]
     },
     {
+      "id": 11,
+      "title": "Cornerz Puzzle 11",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "words": [
+        "NEW",
+        "OPEN",
+        "SAVE",
+        "CLOSE",
+        "NORTH",
+        "RHODE",
+        "WEST",
+        "SERVE",
+        "RACKET",
+        "MATCH",
+        "MOOT",
+        "BREAKING"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "File Menu Options",
+          "difficulty": 1,
+          "solution": "<strong>NEW</strong> - File &gt; New (create a new document)<br><strong>OPEN</strong> - File &gt; Open (open an existing file)<br><strong>SAVE</strong> - File &gt; Save (save the current file)<br><strong>CLOSE</strong> - File &gt; Close (close the current document)",
+          "words": [
+            "NEW",
+            "OPEN",
+            "SAVE",
+            "CLOSE"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tennis Terms",
+          "difficulty": 3,
+          "solution": "<strong>OPEN</strong> - A major open tournament (e.g. US Open)<br><strong>SERVE</strong> - Putting the ball in play to start a point<br><strong>RACKET</strong> - The strung paddle used to hit the ball<br><strong>MATCH</strong> - A complete contest between two players or teams",
+          "words": [
+            "OPEN",
+            "SERVE",
+            "RACKET",
+            "MATCH"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "___ Point",
+          "difficulty": 4,
+          "solution": "<strong>MATCH</strong> - Match Point (the point that wins the match)<br><strong>MOOT</strong> - Moot Point (an issue open to debate, or no longer relevant)<br><strong>WEST</strong> - West Point (the U.S. Military Academy in New York)<br><strong>BREAKING</strong> - Breaking Point (the moment of crisis or collapse)",
+          "words": [
+            "MATCH",
+            "MOOT",
+            "WEST",
+            "BREAKING"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "First Word of a US State",
+          "difficulty": 2,
+          "solution": "<strong>NEW</strong> - New York, New Jersey, New Mexico, New Hampshire<br><strong>NORTH</strong> - North Carolina, North Dakota<br><strong>RHODE</strong> - Rhode Island<br><strong>WEST</strong> - West Virginia",
+          "words": [
+            "NEW",
+            "NORTH",
+            "RHODE",
+            "WEST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Cornerz Puzzle 10",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "words": [
+        "SQUASH",
+        "MASH",
+        "PRESS",
+        "SQUEEZE",
+        "FLAME",
+        "LOVER",
+        "STEADY",
+        "SLAM",
+        "BLAST",
+        "ROAST",
+        "COUCH",
+        "HOT"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "___ Potato",
+          "difficulty": 1,
+          "solution": "<strong>COUCH</strong> - Couch Potato<br><strong>HOT</strong> - Hot Potato<br><strong>MASH</strong> - Mash Potato (mashed potatoes)<br><strong>ROAST</strong> - Roast Potato",
+          "words": [
+            "COUCH",
+            "HOT",
+            "MASH",
+            "ROAST"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Apply Pressure",
+          "difficulty": 2,
+          "solution": "<strong>SQUASH</strong> - To squash something is to press it with force<br><strong>MASH</strong> - To mash is to press or squeeze into a pulp<br><strong>PRESS</strong> - To press is to push steadily against something<br><strong>SQUEEZE</strong> - To squeeze is to apply pressure by compressing",
+          "words": [
+            "SQUASH",
+            "MASH",
+            "PRESS",
+            "SQUEEZE"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Romantic Partner",
+          "difficulty": 3,
+          "solution": "<strong>FLAME</strong> - An old flame (a former romantic partner)<br><strong>LOVER</strong> - A person in a romantic relationship<br><strong>STEADY</strong> - A steady (a regular, committed partner)<br><strong>SQUEEZE</strong> - My squeeze (informal for a romantic partner)",
+          "words": [
+            "FLAME",
+            "LOVER",
+            "STEADY",
+            "SQUEEZE"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Criticize Harshly",
+          "difficulty": 4,
+          "solution": "<strong>SLAM</strong> - To slam someone's work or ideas<br><strong>BLAST</strong> - To blast someone in a review or speech<br><strong>FLAME</strong> - To flame someone (harsh public criticism, especially online)<br><strong>ROAST</strong> - To roast someone (mock and criticize, often humorously)",
+          "words": [
+            "SLAM",
+            "BLAST",
+            "FLAME",
+            "ROAST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Cornerz Puzzle 9",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "words": [
+        "BIRD",
+        "KETTLE",
+        "REFEREE",
+        "TRAIN",
+        "CANDY CANE",
+        "CROSSWALK",
+        "TIGER",
+        "ANGEL",
+        "TINSEL",
+        "ORNAMENT",
+        "AIRPLANE",
+        "HOSPITAL"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Things That Whistle",
+          "difficulty": 2,
+          "solution": "<strong>BIRD</strong> - Birds whistle and tweet<br><strong>KETTLE</strong> - A boiling kettle whistles to signal it's ready<br><strong>REFEREE</strong> - Blows a whistle to start, stop, and call fouls<br><strong>TRAIN</strong> - Train horns and whistles signal departures and crossings",
+          "words": [
+            "BIRD",
+            "KETTLE",
+            "REFEREE",
+            "TRAIN"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Things With Stripes",
+          "difficulty": 1,
+          "solution": "<strong>CANDY CANE</strong> - Classic red and white spiral stripes<br><strong>CROSSWALK</strong> - White painted stripes across the road<br><strong>REFEREE</strong> - Iconic black and white striped uniform<br><strong>TIGER</strong> - Orange fur with black stripes",
+          "words": [
+            "CANDY CANE",
+            "CROSSWALK",
+            "REFEREE",
+            "TIGER"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Christmas Tree Decorations",
+          "difficulty": 3,
+          "solution": "<strong>CANDY CANE</strong> - Hooked candy hung on tree branches<br><strong>ANGEL</strong> - Traditional tree topper<br><strong>TINSEL</strong> - Shiny metallic strands draped on branches<br><strong>ORNAMENT</strong> - Decorative balls and shapes hung on the tree",
+          "words": [
+            "CANDY CANE",
+            "ANGEL",
+            "TINSEL",
+            "ORNAMENT"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Things With Wings",
+          "difficulty": 4,
+          "solution": "<strong>ANGEL</strong> - Angel wings<br><strong>BIRD</strong> - Bird wings<br><strong>AIRPLANE</strong> - Airplane wings<br><strong>HOSPITAL</strong> - A hospital wing is a section or building of a hospital",
+          "words": [
+            "ANGEL",
+            "BIRD",
+            "AIRPLANE",
+            "HOSPITAL"
+          ]
+        }
+      ]
+    },
+    {
       "id": -1,
       "title": "Test Puzzle",
       "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
@@ -635,6 +848,77 @@
             "DUCK",
             "BADGER",
             "BEAR"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Name Dropping",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "words": [
+        "Tom Hanks",
+        "Robin Wright",
+        "Gary Sinise",
+        "Haley Joel Osment",
+        "Shirley Temple",
+        "Macaulay Culkin",
+        "Drew Barrymore",
+        "Oprah Winfrey",
+        "Regis Philbin",
+        "Ellen DeGeneres",
+        "Amy Poehler",
+        "Owen Wilson"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Forrest Gump Cast",
+          "difficulty": 2,
+          "solution": "<strong>Tom Hanks</strong> - Played Forrest Gump, the lovable Alabama man who witnessed decades of American history<br><strong>Robin Wright</strong> - Played Jenny, Forrest's lifelong love interest<br><strong>Gary Sinise</strong> - Played Lieutenant Dan, Forrest's Vietnam War commander<br><strong>Haley Joel Osment</strong> - Played Forrest Gump Jr., Forrest's son",
+          "words": [
+            "Tom Hanks",
+            "Robin Wright",
+            "Gary Sinise",
+            "Haley Joel Osment"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Child Actors",
+          "difficulty": 1,
+          "solution": "<strong>Haley Joel Osment</strong> - Starred in <em>The Sixth Sense</em> at age 11<br><strong>Shirley Temple</strong> - Hollywood's biggest child star of the 1930s and 40s<br><strong>Macaulay Culkin</strong> - Starred in <em>Home Alone</em> at age 10<br><strong>Drew Barrymore</strong> - Appeared in <em>E.T. the Extra-Terrestrial</em> at age 7",
+          "words": [
+            "Haley Joel Osment",
+            "Shirley Temple",
+            "Macaulay Culkin",
+            "Drew Barrymore"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Daytime TV Hosts",
+          "difficulty": 3,
+          "solution": "<strong>Drew Barrymore</strong> - Host of <em>The Drew Barrymore Show</em> (2020–present)<br><strong>Oprah Winfrey</strong> - Hosted <em>The Oprah Winfrey Show</em> for 25 years (1986–2011)<br><strong>Regis Philbin</strong> - Co-hosted <em>Live with Regis and Kathie Lee</em> for decades<br><strong>Ellen DeGeneres</strong> - Hosted <em>The Ellen DeGeneres Show</em> for 19 years (2003–2022)",
+          "words": [
+            "Drew Barrymore",
+            "Oprah Winfrey",
+            "Regis Philbin",
+            "Ellen DeGeneres"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Pixar Voice Leads",
+          "difficulty": 4,
+          "solution": "<strong>Ellen DeGeneres</strong> - Voiced Dory in <em>Finding Nemo</em> and <em>Finding Dory</em><br><strong>Amy Poehler</strong> - Voiced Joy in <em>Inside Out</em> and <em>Inside Out 2</em><br><strong>Owen Wilson</strong> - Voiced Lightning McQueen in the <em>Cars</em> franchise<br><strong>Tom Hanks</strong> - Voiced Woody in the <em>Toy Story</em> franchise",
+          "words": [
+            "Ellen DeGeneres",
+            "Amy Poehler",
+            "Owen Wilson",
+            "Tom Hanks"
           ]
         }
       ]

@@ -86,6 +86,23 @@ $board-max: 400px;
   }
 }
 
+.view-results-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  width: var(--board-width);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
 .daily-status {
   width: min(92vw, $board-max);
   text-align: center;

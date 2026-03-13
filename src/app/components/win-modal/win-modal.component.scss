@@ -87,6 +87,33 @@
   }
 }
 
+// --- Play sequence ---
+
+.sequence-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 1.25rem;
+}
+
+.sequence-row {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+}
+
+.sequence-emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.sequence-overflow {
+  font-size: 0.72rem;
+  color: #999;
+  margin-top: 2px;
+}
+
 // --- Share section ---
 
 .share-section {
@@ -298,6 +325,14 @@
   .stat {
     .stat-value { font-size: 1.5rem; }
     .stat-label { font-size: 0.72rem; }
+  }
+
+  .sequence-grid {
+    margin-bottom: 0.65rem;
+  }
+
+  .sequence-emoji {
+    font-size: 1.3rem;
   }
 
   .share-section {

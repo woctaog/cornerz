@@ -97,6 +97,14 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - Marks puzzle as completed in progress tracking
 - For daily puzzles, saves board snapshot and locks further play
 
+### Play Sequence Display
+- Shown on the win modal between the star rating and the Share button
+- Interleaved timeline of the game: colored boxes for correct lines, red ✕ for mistakes, in the exact order they occurred
+- Box colors match the category difficulty (Yellow/Green/Blue/Purple via `data-difficulty`)
+- Capped at 20 items; overflow shown as "+N more"
+- Rows auto-balance: picks 4–6 items per row to maximize the last row's fullness (avoids a lone box on its own line)
+- Compact on short screens (≤700px): smaller boxes, tighter gaps
+
 ### Win Modal - Results View (Default)
 - "Puzzle Complete!" heading with animated entrance (slide-up + fade-in)
 - Star rating (★★★ / ★★☆ / ★☆☆ / ☆☆☆) with label (Perfect! / Great! / Good / Keep practicing!) based on mistake count
@@ -126,6 +134,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - Solved board remains visible after closing the win modal
 - Center indicators remain clickable to view solutions
 - "Play Again" reshuffles and resets the same puzzle
+- **"View Results" button** appears below the board when the win modal is dismissed; clicking it re-opens the modal
 
 ---
 
