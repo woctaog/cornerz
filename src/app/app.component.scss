@@ -23,4 +23,12 @@
     flex: 1;
     min-height: 0;
   }
+
+  app-library {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }

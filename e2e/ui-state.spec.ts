@@ -159,6 +159,25 @@ test.describe('UI state', () => {
     await expect(page.locator('#grid-cell-9 .center-indicator')).toHaveAttribute('data-difficulty', '4');
   });
 
+  test('stats modal opens and closes', async ({ page }) => {
+    await page.locator('[aria-label="View stats"]').click();
+    await expect(page.locator('app-stats-modal .modal')).toBeVisible();
+    await expect(page.locator('app-stats-modal h2')).toHaveText('Your Stats');
+
+    // Close via ✕ button
+    await page.locator('app-stats-modal .close-btn').click();
+    await expect(page.locator('app-stats-modal')).not.toBeVisible();
+  });
+
+  test('stats modal closes on backdrop click', async ({ page }) => {
+    await page.locator('[aria-label="View stats"]').click();
+    await expect(page.locator('app-stats-modal .modal')).toBeVisible();
+
+    // Click the overlay (outside the modal card)
+    await page.locator('app-stats-modal .overlay').click({ position: { x: 5, y: 5 } });
+    await expect(page.locator('app-stats-modal')).not.toBeVisible();
+  });
+
   test('puzzle loads from URL query parameter', async ({ page }) => {
     // Puzzle 1 loaded via ?puzzle=1 in beforeEach
     await expect(page.locator('.puzzle-info h2')).toHaveText('Cornerz Puzzle 1');

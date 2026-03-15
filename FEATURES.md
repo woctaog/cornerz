@@ -196,8 +196,10 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 ## Daily Puzzle System
 
 ### Daily Puzzle Rotation
-- A different puzzle loads each day based on days since launch date (Feb 9, 2026)
-- Cycles through all available puzzles (id > 0 with words)
+- A different puzzle loads each day: `puzzleId = daysSince(PUZZLE_START_DATE) + 1`
+- `PUZZLE_START_DATE` is a single constant in `src/app/constants/daily.constants.ts` — change it there to shift the entire schedule
+- Currently set to March 14, 2026 (day 0 = puzzle 1, day 1 = puzzle 2, etc.)
+- If the computed ID exceeds available puzzles, falls back to the last puzzle in the library
 - Default route (no query param) loads the daily puzzle
 
 ### Countdown Timer
@@ -244,6 +246,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 ### Library View (`/library`)
 - Lists all playable puzzles (id > 0 with words)
 - Each puzzle shown as a card with title, description, difficulty badge, completion status, and Play button
+- Fully scrollable on all devices including iOS (uses `overflow-y: auto` with `-webkit-overflow-scrolling: touch`)
 
 ### Filters
 - **Difficulty**: All, Easy (1), Medium (2), Hard (3) — uses puzzle-level difficulty field, not computed from categories
@@ -290,6 +293,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 | `cornerz-puzzle-completions` | Tracks which puzzles have been solved | `{ puzzleId: timestamp }` |
 | `cornerz-daily-completions` | Tracks daily puzzle completion per day | `{ "YYYY-MM-DD": puzzleId }` |
 | `cornerz-daily-snapshots` | Stores solved grid state for daily puzzles | `{ "YYYY-MM-DD": { puzzleId, gridWords[] } }` |
+| `cornerz-stats-v1` | Rich per-puzzle results for stats/streaks | `{ puzzleId: PuzzleResult }` |
 
 ---
 
@@ -330,7 +334,7 @@ Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 (
 ### Static Implementation
 - `StaticPuzzleProvider` loads puzzles from `assets/puzzles.json` via HTTP
 - Cached with `shareReplay(1)` — single fetch per session
-- Daily puzzle calculated deterministically from days since launch date (Feb 9, 2026)
+- Daily puzzle calculated deterministically from `PUZZLE_START_DATE` in `daily.constants.ts`
 - `getLibrary()` returns `PuzzleSummary` objects with computed difficulty label
 
 ### Swapping Providers
