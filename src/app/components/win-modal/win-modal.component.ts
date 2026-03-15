@@ -78,12 +78,20 @@ export class WinModalComponent implements OnDestroy {
     return `Cornerz #${this.puzzleId}\n${emojiRow}\nMistakes: ${this.mistakes}`;
   }
 
-  copyShareText(): void {
-    navigator.clipboard.writeText(this.shareText).then(() => {
-      this.copied = true;
-      if (this.shareTimeout) clearTimeout(this.shareTimeout);
-      this.shareTimeout = setTimeout(() => this.copied = false, 2000);
-    });
+  get canNativeShare(): boolean {
+    return !!navigator.share;
+  }
+
+  shareResult(): void {
+    if (navigator.share) {
+      navigator.share({ text: this.shareText }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(this.shareText).then(() => {
+        this.copied = true;
+        if (this.shareTimeout) clearTimeout(this.shareTimeout);
+        this.shareTimeout = setTimeout(() => this.copied = false, 2000);
+      });
+    }
   }
 
   getDifficultyLabel(difficulty: number): string {

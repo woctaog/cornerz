@@ -5,6 +5,10 @@
       <span class="puzzle-author" *ngIf="currentPuzzle!.author">by {{ currentPuzzle!.author }}</span>
     </div>
     <div class="header-actions">
+      <div class="streak-badge" *ngIf="currentStreak > 0" (click)="statsModalOpen = true" role="button" [attr.aria-label]="currentStreak + ' day streak'">
+        🔥 {{ currentStreak }}
+      </div>
+      <button type="button" class="help-button" (click)="statsModalOpen = true" aria-label="View stats">&#x1F4CA;</button>
       <button type="button" class="help-button" (click)="openHelp()" aria-label="Open how to play help">?</button>
     </div>
   </div>
@@ -154,3 +158,5 @@
     </div>
   </div>
 </div>
+
+<app-stats-modal *ngIf="statsModalOpen" (close)="statsModalOpen = false"></app-stats-modal>

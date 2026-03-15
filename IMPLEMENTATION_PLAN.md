@@ -196,27 +196,29 @@ PuzzleService (abstract interface)
   - "Share" button on the win screen copies result text via `navigator.clipboard.writeText()`
   - Button shows "Copied!" confirmation for 2 seconds after copying
 
-- [ ] **5.3 — (Optional) Web Share API**
+- [x] **5.3 — (Optional) Web Share API**
   - On mobile, use the native Web Share API (`navigator.share()`) to open the share sheet
   - Fallback to clipboard copy on unsupported browsers
 
 ### Phase 6: Local Progress & Stats
 **Goal**: Track player stats in localStorage for a sense of progression.
 
-- [ ] **6.1 — Stats tracking service**
-  - Create `StatsService` backed by localStorage
-  - Track per-puzzle: completed (bool), mistakes, completion order, date completed
-  - Track aggregate stats: total puzzles solved, current streak, max streak, average mistakes
+- [x] **6.1 — Stats tracking service**
+  - Abstract `StatsProvider` class + `LocalStatsProvider` (localStorage), mirroring `PuzzleProvider` pattern
+  - Track per-puzzle: `PuzzleResult` (puzzleId, completedAt, mistakes, gameSequence, completionOrder, isDaily)
+  - Best result kept on replay (lowest mistake count wins)
+  - Aggregate stats: totalSolved, currentStreak, maxStreak, averageMistakes, mistakeDistribution
+  - Streak uses local timezone to avoid UTC midnight boundary issues
 
-- [ ] **6.2 — Stats display**
-  - Add a stats modal/page accessible from the header
-  - Show: games played, current streak, max streak, average mistakes
-  - Show a distribution chart of mistake counts
+- [x] **6.2 — Stats display**
+  - Stats modal opened via 📊 button in game board header
+  - Shows: games played, current streak, max streak, average mistakes
+  - Mistake distribution bar chart (CSS bars, no library)
 
-- [ ] **6.3 — Streak system**
-  - Track daily puzzle streaks (consecutive days with a completed daily puzzle)
-  - Show streak indicator in the header/navbar
-  - Store last completion date to calculate streaks
+- [x] **6.3 — Streak system**
+  - Daily streaks computed from `PuzzleResult.isDaily` + `completedAt` in `LocalStatsProvider`
+  - 🔥 streak badge shown in game board header when streak > 0; clicking it opens the stats modal
+  - Streak refreshed on page load and immediately after winning a daily puzzle
 
 ### Phase 7: Animations & Visual Polish
 **Goal**: Make the game feel satisfying and premium.

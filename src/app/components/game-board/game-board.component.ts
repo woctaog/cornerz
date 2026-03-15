@@ -7,6 +7,7 @@ import { DISABLED_SPOTS, LINES, CENTER_INDICATORS } from '../../constants/grid.c
 import { PuzzleProvider } from '../../services/puzzle-provider';
 import { ProgressService } from '../../services/progress.service';
 import { PuzzleValidatorService } from '../../services/puzzle-validator.service';
+import { StatsProvider } from '../../services/stats-provider';
 
 export interface GameTile {
   id: number;
@@ -58,6 +59,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   mistakes: number = 0;
   gameWon: boolean = false;
   winModalOpen: boolean = false;
+  statsModalOpen: boolean = false;
+  currentStreak: number = 0;
   keepBoardVisibleAfterWin = false;
   isHelpOpen: boolean = false;
   isDailyPuzzleMode = false;
@@ -75,7 +78,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private puzzleProvider: PuzzleProvider,
     private progressService: ProgressService,
-    private validator: PuzzleValidatorService
+    private validator: PuzzleValidatorService,
+    private statsProvider: StatsProvider
   ) { }
 
   private shuffleArray<T>(array: T[]): T[] {
@@ -88,6 +92,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.currentStreak = this.statsProvider.getAggregate().currentStreak;
     this.startDailyCountdown();
 
     const testMode = this.route.snapshot.data['testMode'];
@@ -605,11 +610,24 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   private checkWinCondition() {
     if (this.completedLines.size === 4) {
       this.keepBoardVisibleAfterWin = true;
-      if (this.currentPuzzle && this.currentPuzzle.id > 0) {
-        this.progressService.markPuzzleCompleted(this.currentPuzzle.id);
+      const puzzleId = this.currentPuzzle?.id ?? 0;
+      const isDaily = this.isDailyPuzzleMode && puzzleId === this.dailyPuzzleId;
+
+      if (puzzleId > 0) {
+        this.progressService.markPuzzleCompleted(puzzleId);
+        this.statsProvider.recordResult({
+          puzzleId,
+          completedAt: new Date().toISOString(),
+          mistakes: this.mistakes,
+          gameSequence: [...this.gameSequence],
+          completionOrder: [...this.lineCompletionOrder],
+          isDaily,
+        });
+        this.currentStreak = this.statsProvider.getAggregate().currentStreak;
       }
-      if (this.isDailyPuzzleMode && this.currentPuzzle?.id === this.dailyPuzzleId) {
-        this.progressService.saveTodayDailySnapshot(this.dailyPuzzleId, this.gridTiles.map(tile => tile?.word ?? null));
+
+      if (isDaily) {
+        this.progressService.saveTodayDailySnapshot(this.dailyPuzzleId!, this.gridTiles.map(tile => tile?.word ?? null));
         this.markDailyCompleted();
       }
       this.gameWon = true;

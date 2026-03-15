@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Puzzle, PuzzleData, PuzzleSummary } from '../models/puzzle.model';
 import { PuzzleProvider } from './puzzle-provider';
+import { PUZZLE_START_DATE } from '../constants/daily.constants';
 
 @Injectable()
 export class StaticPuzzleProvider extends PuzzleProvider {
-  private readonly launchDate = new Date(2026, 1, 9); // February 9, 2026 (local time)
   private puzzles$?: Observable<PuzzleData>;
 
   constructor(private http: HttpClient) {
@@ -35,11 +35,16 @@ export class StaticPuzzleProvider extends PuzzleProvider {
         }
 
         const dayMs = 24 * 60 * 60 * 1000;
-        const launchMidnight = new Date(this.launchDate.getFullYear(), this.launchDate.getMonth(), this.launchDate.getDate());
+        const startMidnight = new Date(
+          PUZZLE_START_DATE.getFullYear(),
+          PUZZLE_START_DATE.getMonth(),
+          PUZZLE_START_DATE.getDate()
+        );
         const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const daysSinceLaunch = Math.max(0, Math.floor((todayMidnight.getTime() - launchMidnight.getTime()) / dayMs));
-        const index = daysSinceLaunch % candidates.length;
-        return candidates[index];
+        const daysSinceStart = Math.max(0, Math.floor((todayMidnight.getTime() - startMidnight.getTime()) / dayMs));
+        const puzzleId = daysSinceStart + 1;
+
+        return candidates.find(p => p.id === puzzleId) ?? candidates[candidates.length - 1];
       })
     );
   }

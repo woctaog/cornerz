@@ -1,0 +1,46 @@
+<div class="overlay" (click)="close.emit()">
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h2>Your Stats</h2>
+      <button class="close-btn" (click)="close.emit()" aria-label="Close stats">&#x2715;</button>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-stat">
+        <span class="summary-value">{{ stats.totalSolved }}</span>
+        <span class="summary-label">Played</span>
+      </div>
+      <div class="summary-stat">
+        <span class="summary-value">{{ stats.currentStreak }}</span>
+        <span class="summary-label">Streak</span>
+      </div>
+      <div class="summary-stat">
+        <span class="summary-value">{{ stats.maxStreak }}</span>
+        <span class="summary-label">Best Streak</span>
+      </div>
+      <div class="summary-stat">
+        <span class="summary-value">{{ avgMistakesDisplay }}</span>
+        <span class="summary-label">Avg Mistakes</span>
+      </div>
+    </div>
+
+    <ng-container *ngIf="distributionRows.length > 0; else noData">
+      <h3 class="dist-title">Mistake Distribution</h3>
+      <div class="distribution">
+        <div class="dist-row" *ngFor="let row of distributionRows">
+          <span class="dist-label">{{ row.mistakes }}</span>
+          <div class="dist-bar-track">
+            <div class="dist-bar" [style.width.%]="row.barPct"></div>
+          </div>
+          <span class="dist-count">{{ row.count }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noData>
+      <p class="no-data">Complete a puzzle to start tracking stats!</p>
+    </ng-template>
+
+  </div>
+</div>

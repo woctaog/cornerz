@@ -122,11 +122,13 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - "Back to Results" button
 
 ### Shareable Result Card
-- "Share Result" button on the win screen copies a spoiler-free emoji summary to clipboard via `navigator.clipboard`
+- "Share Result" button on the win screen shares a spoiler-free emoji summary
+- On mobile/devices with Web Share API support, tapping opens the native share sheet (`navigator.share`)
+- On unsupported browsers, falls back to copying to clipboard via `navigator.clipboard`; button shows "Copied!" for 2 seconds
 - Each completed line represented by a colored emoji matching its difficulty: 🟨 (Easy), 🟩 (Medium), 🟦 (Hard), 🟪 (Hardest)
-- Emojis in the order lines were completed during gameplay
+- ❌ shown for each incorrect line submission (mistake), interleaved in order
+- Emojis in the exact order events occurred during gameplay
 - Format: `Cornerz #<id>` / emoji row / `Mistakes: <count>`
-- Button shows "Copied!" confirmation for 2 seconds after copying
 - Completion order resets on Play Again or puzzle reload
 - For restored daily puzzles, order is reconstructed from saved state
 
@@ -135,6 +137,42 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - Center indicators remain clickable to view solutions
 - "Play Again" reshuffles and resets the same puzzle
 - **"View Results" button** appears below the board when the win modal is dismissed; clicking it re-opens the modal
+
+---
+
+## Stats Tracking
+
+### Streak Badge
+- **🔥 N** badge appears in the game board header when the player has an active daily puzzle streak
+- Hidden when streak is 0 (no clutter for new players)
+- Clicking the badge opens the stats modal
+- Updates immediately after completing a daily puzzle (no page reload needed)
+
+### Stats Modal
+- 📊 button in the game board header opens the stats modal (sits alongside the "?" help button)
+- Click outside the modal or the ✕ button to close
+- Shows four headline stats: **Played**, **Streak**, **Best Streak**, **Avg Mistakes**
+- Shows a **Mistake Distribution** bar chart — each row is a mistake count with a proportional CSS bar and game count
+- If no puzzles have been completed yet, shows an empty-state message
+
+### StatsProvider (abstracted for future sign-in)
+- Abstract `StatsProvider` class (`src/app/services/stats-provider.ts`) mirrors the `PuzzleProvider` pattern
+- Swap implementations via Angular DI — change one line in `app.module.ts` to point at a backend API provider
+- Current implementation: `LocalStatsProvider` — stores all data in `localStorage` under key `cornerz-stats-v1`
+
+### Per-Puzzle Results (`PuzzleResult`)
+- Recorded automatically when any puzzle with a valid ID is won
+- Stores: `puzzleId`, `completedAt` (ISO UTC datetime), `mistakes`, `gameSequence`, `completionOrder`, `isDaily`
+- If a puzzle is replayed with fewer mistakes, the best result is kept
+
+### Aggregate Stats (`PlayerStats`)
+- Computed on demand from stored results via `StatsProvider.getAggregate()`
+- `totalSolved` — total puzzles completed
+- `currentStreak` — consecutive daily puzzle days ending today (or yesterday if today's not yet done)
+- `maxStreak` — longest daily streak ever
+- `averageMistakes` — mean mistakes across all completed puzzles
+- `mistakeDistribution` — histogram of mistake counts (e.g., `{ 0: 5, 1: 3, 2: 1 }`)
+- Streak uses local timezone for date comparison to avoid UTC midnight boundary issues
 
 ---
 

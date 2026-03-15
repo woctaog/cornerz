@@ -70,7 +70,28 @@ $board-max: 400px;
   .header-actions {
     display: flex;
     align-items: center;
+    gap: 0.35rem;
     flex-shrink: 0;
+  }
+
+  .streak-badge {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 0.5rem;
+    border-radius: 16px;
+    border: 1px solid #ffcc80;
+    background: #fff8e1;
+    color: #e65100;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+
+    &:hover {
+      background: #fff3e0;
+    }
   }
 
   .help-button {

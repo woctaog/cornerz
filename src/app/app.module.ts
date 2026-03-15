@@ -13,8 +13,11 @@ import { WinModalComponent } from './components/win-modal/win-modal.component';
 import { FitTextDirective } from './directives/fit-text.directive';
 import { LibraryComponent } from './components/library/library.component';
 import { SubmitPuzzleComponent } from './components/submit-puzzle/submit-puzzle.component';
+import { StatsModalComponent } from './components/stats-modal/stats-modal.component';
 import { PuzzleProvider } from './services/puzzle-provider';
 import { StaticPuzzleProvider } from './services/static-puzzle-provider';
+import { StatsProvider } from './services/stats-provider';
+import { LocalStatsProvider } from './services/local-stats-provider';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { StaticPuzzleProvider } from './services/static-puzzle-provider';
     WinModalComponent,
     FitTextDirective,
     LibraryComponent,
-    SubmitPuzzleComponent
+    SubmitPuzzleComponent,
+    StatsModalComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,8 @@ import { StaticPuzzleProvider } from './services/static-puzzle-provider';
     FormsModule
   ],
   providers: [
-    { provide: PuzzleProvider, useClass: StaticPuzzleProvider }
+    { provide: PuzzleProvider, useClass: StaticPuzzleProvider },
+    { provide: StatsProvider, useClass: LocalStatsProvider }
   ],
   bootstrap: [AppComponent]
 })
