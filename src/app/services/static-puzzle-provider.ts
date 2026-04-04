@@ -55,14 +55,27 @@ export class StaticPuzzleProvider extends PuzzleProvider {
     );
   }
 
-  getLibrary(): Observable<PuzzleSummary[]> {
+  getLibrary(today: Date = new Date()): Observable<PuzzleSummary[]> {
+    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     return this.getPlayablePuzzles().pipe(
-      map(puzzles => puzzles.map(puzzle => ({
-        id: puzzle.id,
-        title: puzzle.title,
-        description: puzzle.description,
-        difficulty: puzzle.difficulty ?? this.computeFallbackDifficulty(puzzle)
-      })))
+      map(puzzles => puzzles
+        .map(puzzle => {
+          const date = new Date(
+            PUZZLE_START_DATE.getFullYear(),
+            PUZZLE_START_DATE.getMonth(),
+            PUZZLE_START_DATE.getDate() + (puzzle.id - 1)
+          );
+          return {
+            id: puzzle.id,
+            title: puzzle.title,
+            description: puzzle.description,
+            difficulty: puzzle.difficulty ?? this.computeFallbackDifficulty(puzzle),
+            date
+          };
+        })
+        .filter(puzzle => puzzle.date <= todayMidnight)
+        .sort((a, b) => b.id - a.id)
+      )
     );
   }
 

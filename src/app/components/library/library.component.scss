@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .library-container {
   width: min(92vw, 720px);
   margin: 0 auto;
@@ -77,6 +84,13 @@
     margin: 0;
     font-size: 1rem;
     color: #1f2a30;
+  }
+
+  .puzzle-date {
+    font-size: 0.78rem;
+    color: #78909c;
+    margin-top: 0.1rem;
+    display: block;
   }
 
   p {

@@ -61,6 +61,10 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   winModalOpen: boolean = false;
   statsModalOpen: boolean = false;
   currentStreak: number = 0;
+  showCornerHint: boolean = false;
+  showOneAway: boolean = false;
+  private oneAwayTimer: ReturnType<typeof setTimeout> | undefined;
+  private readonly cornerHintKey = 'cornerz-corner-hint-shown';
   keepBoardVisibleAfterWin = false;
   isHelpOpen: boolean = false;
   isDailyPuzzleMode = false;
@@ -120,6 +124,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       clearInterval(this.countdownTimer);
       this.countdownTimer = null;
     }
+    if (this.oneAwayTimer) clearTimeout(this.oneAwayTimer);
   }
 
   private loadDailyPuzzle(): void {
@@ -534,6 +539,45 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     return completedLinesForCell.length === 2;
   }
 
+  isMovableCorner(index: number): boolean {
+    if (!this.isCornerCell(index)) return false;
+    return this.getCompletedLinesForCell(index).length === 1;
+  }
+
+  private maybeShowCornerHint(): void {
+    if (this.completedLines.size === 0) return;
+    if (localStorage.getItem(this.cornerHintKey)) return;
+    this.showCornerHint = true;
+    localStorage.setItem(this.cornerHintKey, '1');
+  }
+
+  dismissCornerHint(): void {
+    this.showCornerHint = false;
+  }
+
+  private triggerOneAwayIfApplicable(submittedWords: string[]): void {
+    if (!this.currentPuzzle) return;
+    const isOneAway = this.currentPuzzle.categories
+      .filter(cat => !this.completedLines.has(this.getCategoryLineName(cat)))
+      .some(cat => {
+        const matches = submittedWords.filter(w => cat.words.includes(w)).length;
+        return matches === 3;
+      });
+    if (!isOneAway) return;
+
+    this.showOneAway = true;
+    if (this.oneAwayTimer) clearTimeout(this.oneAwayTimer);
+    this.oneAwayTimer = setTimeout(() => { this.showOneAway = false; }, 3000);
+  }
+
+  private getCategoryLineName(cat: { words: string[] }): string {
+    // Returns the line name if this category is already completed, otherwise empty string
+    for (const [lineName, data] of this.lineCategoryData.entries()) {
+      if (data === cat) return lineName;
+    }
+    return '';
+  }
+
   canMoveBetweenCells(fromIndex: number, toIndex: number): boolean {
     if (this.isCornerLocked(fromIndex) || this.isCornerLocked(toIndex)) return false;
 
@@ -577,6 +621,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         } else {
           this.mistakes++;
           this.gameSequence.push(0);
+          this.triggerOneAwayIfApplicable(lineWords);
+          this.maybeShowCornerHint();
           this.isResolvingInvalidLine = true;
           this.playShake(positions);
           setTimeout(() => {

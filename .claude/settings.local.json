@@ -17,7 +17,8 @@
       "WebFetch(domain:docs.usebasin.com)",
       "Bash(node:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

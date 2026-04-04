@@ -34,7 +34,10 @@
   <div class="puzzle-list" *ngIf="!loading && !error && filteredPuzzles.length > 0">
     <div class="puzzle-card" *ngFor="let puzzle of filteredPuzzles">
       <div class="card-title-row">
-        <h3>{{ puzzle.title }}</h3>
+        <div>
+          <h3>{{ puzzle.title }}</h3>
+          <span class="puzzle-date">{{ formatDate(puzzle.date) }}</span>
+        </div>
         <span class="completion-tag" [class.completed]="puzzle.completed">
           {{ puzzle.completed ? 'Completed' : 'Not solved' }}
         </span>

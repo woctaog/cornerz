@@ -59,6 +59,10 @@ export class LibraryComponent implements OnInit {
     });
   }
 
+  formatDate(date: Date): string {
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
   playPuzzle(puzzleId: number): void {
     this.router.navigate(['/'], { queryParams: { puzzle: puzzleId } });
   }

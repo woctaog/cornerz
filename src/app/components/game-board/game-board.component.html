@@ -32,6 +32,7 @@
              [class.disabled]="isSpotDisabled(i)"
              [class.completed]="isCellCompleted(i)"
              [class.corner-locked]="isCornerLocked(i)"
+             [class.movable-corner]="isMovableCorner(i)"
              [attr.data-difficulty]="getCellDifficulty(i)"
              [class.drop-target]="isValidDropTarget(i) && gridTiles[i] === null"
              [class.selected]="isGridCellSelected(i)"
@@ -160,3 +161,11 @@
 </div>
 
 <app-stats-modal *ngIf="statsModalOpen" (close)="statsModalOpen = false"></app-stats-modal>
+
+<div class="one-away-toast" *ngIf="showOneAway">One Away!</div>
+
+<div class="corner-hint-toast" *ngIf="showCornerHint" (click)="dismissCornerHint()">
+  <span class="corner-hint-icon">⇄</span>
+  <span class="corner-hint-text">Tip: You can rearrange tiles within a completed line — corners can still be swapped!</span>
+  <button class="corner-hint-dismiss" (click)="dismissCornerHint()" aria-label="Dismiss tip">✕</button>
+</div>

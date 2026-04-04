@@ -8,8 +8,6 @@
   padding: 0.6rem 0.6rem 0.5rem;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden;
-
   app-game-board {
     width: 100%;
     flex: 1;
@@ -28,7 +26,5 @@
     width: 100%;
     flex: 1;
     min-height: 0;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
 }

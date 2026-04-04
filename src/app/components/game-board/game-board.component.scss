@@ -175,6 +175,20 @@ $board-max: 400px;
   overflow: hidden;
   transition: all 0.2s ease;
   touch-action: none;
+  position: relative;
+
+  &.movable-corner::after {
+    content: '⇄';
+    position: absolute;
+    bottom: 3px;
+    right: 4px;
+    font-size: 0.6rem;
+    line-height: 1;
+    color: white;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 2;
+  }
 
   &.occupied {
     border-style: solid;
@@ -488,6 +502,85 @@ $board-max: 400px;
   color: #37474f;
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+// --- One Away toast ---
+
+@keyframes one-away-in-out {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  75%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+}
+
+.one-away-toast {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #37474f;
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 2000;
+  pointer-events: none;
+  animation: one-away-in-out 3s ease forwards;
+}
+
+// --- Corner hint toast ---
+
+@keyframes toast-slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.corner-hint-toast {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #37474f;
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  width: min(90vw, 380px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 2000;
+  cursor: pointer;
+  animation: toast-slide-up 0.3s ease;
+}
+
+.corner-hint-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.corner-hint-text {
+  font-size: 0.85rem;
+  line-height: 1.35;
+  flex: 1;
+}
+
+.corner-hint-dismiss {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0 0.1rem;
+  flex-shrink: 0;
+  line-height: 1;
+
+  &:hover {
+    color: #fff;
+  }
 }
 
 @media (max-width: 768px) {

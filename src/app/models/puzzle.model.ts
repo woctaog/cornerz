@@ -33,6 +33,7 @@ export interface PuzzleSummary {
   title: string;
   description?: string;
   difficulty: number;
+  date: Date;
 }
 
 export interface PuzzleData {

@@ -198,7 +198,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 ### Daily Puzzle Rotation
 - A different puzzle loads each day: `puzzleId = daysSince(PUZZLE_START_DATE) + 1`
 - `PUZZLE_START_DATE` is a single constant in `src/app/constants/daily.constants.ts` — change it there to shift the entire schedule
-- Currently set to March 14, 2026 (day 0 = puzzle 1, day 1 = puzzle 2, etc.)
+- Currently set to March 25, 2026 (day 0 = puzzle 1, day 1 = puzzle 2, etc.)
 - If the computed ID exceeds available puzzles, falls back to the last puzzle in the library
 - Default route (no query param) loads the daily puzzle
 
@@ -244,9 +244,10 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 ## Puzzle Library (Archive)
 
 ### Library View (`/library`)
-- Lists all playable puzzles (id > 0 with words)
-- Each puzzle shown as a card with title, description, difficulty badge, completion status, and Play button
-- Fully scrollable on all devices including iOS (uses `overflow-y: auto` with `-webkit-overflow-scrolling: touch`)
+- Lists only released puzzles (date ≤ today, derived from `PUZZLE_START_DATE` + puzzle id offset)
+- Each puzzle card shows title, release date (e.g. "Mar 25, 2026"), description, difficulty badge, completion status, and Play button
+- Puzzle date displayed below title in muted style
+- Fully scrollable on all devices including iOS (`overflow-y: auto`, `-webkit-overflow-scrolling: touch`, `display: block` on host; parent `.main-container` has no `overflow: hidden` so the child scroll container is not blocked)
 
 ### Filters
 - **Difficulty**: All, Easy (1), Medium (2), Hard (3) — uses puzzle-level difficulty field, not computed from categories
