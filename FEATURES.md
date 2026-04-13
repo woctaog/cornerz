@@ -321,7 +321,7 @@ Each puzzle in `puzzles.json`:
 
 Corner words appear in exactly 2 categories; edge words appear in exactly 1.
 
-Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 ("Cornerz Puzzle 10"), 11 ("Cornerz Puzzle 11"), 12 ("Name Dropping")
+Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 ("Cornerz Puzzle 10"), 11 ("Cornerz Puzzle 11"), 12 ("Name Dropping"), 13 ("Cornerz Puzzle 13")
 
 ---
 
