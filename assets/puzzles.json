@@ -711,6 +711,77 @@
       ]
     },
     {
+      "id": 13,
+      "title": "Cornerz Puzzle 13",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "words": [
+        "ROUNDUP",
+        "LASSO",
+        "CAMPFIRE",
+        "DRAW",
+        "STALEMATE",
+        "TIE",
+        "WASH",
+        "SHAMPOO",
+        "STYLE",
+        "TRIM",
+        "MOWING",
+        "FERTILIZER"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Cowboy Things",
+          "difficulty": 4,
+          "solution": "<strong>ROUNDUP</strong> - A cattle roundup, gathering livestock on the range<br><strong>LASSO</strong> - Rope thrown to catch cattle or horses<br><strong>CAMPFIRE</strong> - Cowboys gather around the campfire on the trail<br><strong>DRAW</strong> - A quick draw, pulling a gun from its holster",
+          "words": [
+            "ROUNDUP",
+            "LASSO",
+            "CAMPFIRE",
+            "DRAW"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "No Winner",
+          "difficulty": 3,
+          "solution": "<strong>DRAW</strong> - A draw ends with neither side winning<br><strong>STALEMATE</strong> - A stalemate (chess or otherwise) produces no winner<br><strong>TIE</strong> - A tied score means no winner<br><strong>WASH</strong> - A wash means no net gain or loss; a toss-up",
+          "words": [
+            "DRAW",
+            "STALEMATE",
+            "TIE",
+            "WASH"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Hair Salon Services",
+          "difficulty": 1,
+          "solution": "<strong>WASH</strong> - Shampooing and rinsing the hair<br><strong>SHAMPOO</strong> - Cleaning product used to wash hair<br><strong>STYLE</strong> - Blow-drying and finishing the hair<br><strong>TRIM</strong> - A light cut to remove split ends",
+          "words": [
+            "WASH",
+            "SHAMPOO",
+            "STYLE",
+            "TRIM"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Lawn Care",
+          "difficulty": 2,
+          "solution": "<strong>TRIM</strong> - Trimming edges and hedges<br><strong>MOWING</strong> - Cutting the grass with a mower<br><strong>FERTILIZER</strong> - Nutrients applied to feed the lawn<br><strong>ROUNDUP</strong> - Roundup, the popular weed killer brand",
+          "words": [
+            "TRIM",
+            "MOWING",
+            "FERTILIZER",
+            "ROUNDUP"
+          ]
+        }
+      ]
+    },
+    {
       "id": -1,
       "title": "Test Puzzle",
       "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
