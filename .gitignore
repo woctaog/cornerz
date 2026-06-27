@@ -45,3 +45,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Scratch / analysis data (kept outside the repo)
+/connections_categories.json
+/connections_page.html
+/duplicate_words.json
+/duplicate_words_detail.json

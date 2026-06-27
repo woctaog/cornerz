@@ -6,6 +6,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
+      "rating": 89,
+      "solveRating": 4,
       "words": [
         "FIELD",
         "FOSTER",
@@ -77,6 +79,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
+      "rating": 82,
+      "solveRating": 3,
       "words": [
         "GOLD",
         "SWORD",
@@ -148,6 +152,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
+      "rating": 68,
+      "solveRating": 2,
       "words": [
         "RING",
         "CHAIN",
@@ -219,6 +225,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
+      "rating": 76,
+      "solveRating": 3,
       "words": [
         "SOLE",
         "PERCH",
@@ -290,6 +298,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 1,
+      "rating": 91,
+      "solveRating": 2,
       "words": [
         "JAM",
         "TOAST",
@@ -361,6 +371,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 1,
+      "rating": 80,
+      "solveRating": 2,
       "words": [
         "EVE",
         "VIOLET",
@@ -432,6 +444,8 @@
       "description": "",
       "author": "Victor",
       "difficulty": 2,
+      "rating": 66,
+      "solveRating": 4,
       "words": [
         "STRANGE",
         "CURIOUS",
@@ -503,6 +517,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
+      "rating": 78,
+      "solveRating": 3,
       "words": [
         "NEW",
         "OPEN",
@@ -574,6 +590,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
+      "rating": 87,
+      "solveRating": 3,
       "words": [
         "SQUASH",
         "MASH",
@@ -645,6 +663,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
+      "rating": 92,
+      "solveRating": 3,
       "words": [
         "BIRD",
         "KETTLE",
@@ -716,6 +736,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
+      "rating": 64,
+      "solveRating": 2,
       "words": [
         "ROUNDUP",
         "LASSO",
@@ -787,6 +809,8 @@
       "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
       "author": "woctaog",
       "difficulty": 1,
+      "rating": 15,
+      "solveRating": 1,
       "words": [
         "COUNTERPRODUCTIVE",
         "GO",
@@ -858,6 +882,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
+      "rating": 93,
+      "solveRating": 4,
       "words": [
         "BEAR",
         "DOLPHIN",
@@ -929,6 +955,8 @@
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
+      "rating": 88,
+      "solveRating": 3,
       "words": [
         "Tom Hanks",
         "Robin Wright",
