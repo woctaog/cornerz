@@ -1,152 +1,6 @@
 {
   "puzzles": [
     {
-      "id": 5,
-      "title": "Cornerz Puzzle 5",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 3,
-      "rating": 89,
-      "solveRating": 4,
-      "words": [
-        "FIELD",
-        "FOSTER",
-        "SWANK",
-        "STONE",
-        "DANCES",
-        "TILE",
-        "TIN",
-        "STEEL",
-        "BULL",
-        "HERRING",
-        "FLAG",
-        "WOOD"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Repeat Best Actress Winners",
-          "difficulty": 3,
-          "solution": "<strong>FIELD</strong> - Sally Field won for <em>Norma Rae</em> (1979) and <em>Places in the Heart</em> (1984)<br><strong>FOSTER</strong> - Jodie Foster won for <em>The Accused</em> (1988) and <em>The Silence of the Lambs</em> (1991)<br><strong>SWANK</strong> - Hilary Swank won for <em>Boys Don't Cry</em> (1999) and <em>Million Dollar Baby</em> (2004)<br><strong>STONE</strong> - Emma Stone won for <em>La La Land</em> (2016) and <em>Poor Things</em> (2023)",
-          "words": [
-            "FIELD",
-            "FOSTER",
-            "SWANK",
-            "STONE"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "First Words of Kevin Costner Movies",
-          "difficulty": 4,
-          "solution": "<strong>FIELD</strong> - <em>Field of Dreams</em> (1989)<br><strong>DANCES</strong> - <em>Dances with Wolves</em> (1990)<br><strong>TIN</strong> - <em>Tin Cup</em> (1996)<br><strong>BULL</strong> - <em>Bull Durham</em> (1988)",
-          "words": [
-            "FIELD",
-            "DANCES",
-            "TIN",
-            "BULL"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Building Materials",
-          "difficulty": 1,
-          "solution": "<strong>STONE</strong> - Natural stone used in construction<br><strong>TILE</strong> - Ceramic or porcelain tiles for flooring and walls<br><strong>STEEL</strong> - Metal alloy used in structural frameworks<br><strong>WOOD</strong> - Lumber and timber for framing and finishing",
-          "words": [
-            "STONE",
-            "TILE",
-            "STEEL",
-            "WOOD"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Words That Follow RED",
-          "difficulty": 2,
-          "solution": "<strong>BULL</strong> - <em>Red Bull</em> (energy drink)<br><strong>HERRING</strong> - <em>Red Herring</em> (misleading clue or distraction)<br><strong>FLAG</strong> - <em>Red Flag</em> (warning sign)<br><strong>WOOD</strong> - <em>Redwood</em> (type of tree)",
-          "words": [
-            "BULL",
-            "HERRING",
-            "FLAG",
-            "WOOD"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Cornerz Puzzle 4",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 2,
-      "rating": 82,
-      "solveRating": 3,
-      "words": [
-        "GOLD",
-        "SWORD",
-        "TUNA",
-        "SAIL",
-        "VICTOR",
-        "SENT",
-        "PRIME",
-        "CACHE",
-        "GOAT",
-        "PASS",
-        "RANGE",
-        "DEW"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Types of Fish",
-          "difficulty": 1,
-          "solution": "<strong>GOLD</strong> - Goldfish (common aquarium fish)<br><strong>SWORD</strong> - Swordfish (large game fish)<br><strong>TUNA</strong> - Tuna fish (commercial food fish)<br><strong>SAIL</strong> - Sailfish (fish with large dorsal fin)",
-          "words": [
-            "GOLD",
-            "SWORD",
-            "TUNA",
-            "SAIL"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Words preceded by MOUNTAIN",
-          "difficulty": 2,
-          "solution": "<strong>GOAT</strong> - Mountain Goat<br><strong>PASS</strong> - Mountain Pass<br><strong>RANGE</strong> - Mountain Range<br><strong>DEW</strong> - Mountain Dew (beverage brand)",
-          "words": [
-            "GOAT",
-            "PASS",
-            "RANGE",
-            "DEW"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Homophones of money terms",
-          "difficulty": 4,
-          "solution": "<strong>SAIL</strong> - Sounds like <em>Sale</em><br><strong>SENT</strong> - Sounds like <em>Cent</em><br><strong>CACHE</strong> - Sounds like <em>Cash</em><br><strong>DEW</strong> - Sounds like <em>Due</em>",
-          "words": [
-            "SAIL",
-            "SENT",
-            "CACHE",
-            "DEW"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Best / top-tier",
-          "difficulty": 3,
-          "solution": "<strong>GOLD</strong> - Gold medal (highest award)<br><strong>VICTOR</strong> - Victor (winner)<br><strong>PRIME</strong> - Prime quality (best grade)<br><strong>GOAT</strong> - GOAT (Greatest Of All Time)",
-          "words": [
-            "GOLD",
-            "VICTOR",
-            "PRIME",
-            "GOAT"
-          ]
-        }
-      ]
-    },
-    {
       "id": 1,
       "title": "Cornerz Puzzle 1",
       "description": "",
@@ -221,73 +75,73 @@
     },
     {
       "id": 2,
-      "title": "Cornerz Puzzle 2",
+      "title": "Puz #1",
       "description": "",
       "author": "woctaog",
-      "difficulty": 2,
-      "rating": 76,
-      "solveRating": 3,
+      "difficulty": 1,
+      "rating": 80,
+      "solveRating": 2,
       "words": [
-        "SOLE",
-        "PERCH",
-        "RAY",
-        "BASS",
-        "LACE",
-        "EYELET",
-        "DRUM",
-        "HARP",
-        "HEART",
-        "LUNG",
-        "TOUNGE",
-        "ORGAN"
+        "EVE",
+        "VIOLET",
+        "KATE",
+        "AMY",
+        "ORANGE",
+        "GREEN",
+        "BLUE",
+        "APPLE",
+        "STRAWBERRY",
+        "BANANA",
+        "SNAKE",
+        "TREE"
       ],
       "categories": [
         {
           "id": 1,
-          "name": "Types of Fish",
-          "difficulty": 4,
-          "solution": "<strong>SOLE</strong> - Flatfish found in coastal waters<br><strong>PERCH</strong> - Freshwater fish with spined dorsal fin<br><strong>RAY</strong> - Flat cartilaginous fish with barbed tail<br><strong>BASS</strong> - Freshwater or saltwater game fish",
+          "name": "Fruit",
+          "difficulty": 1,
+          "solution": "<strong>ORANGE</strong> - Citrus fruit<br><strong>APPLE</strong> - Common tree fruit<br><strong>STRAWBERRY</strong> - Red berry<br><strong>BANANA</strong> - Yellow tropical fruit",
           "words": [
-            "SOLE",
-            "PERCH",
-            "RAY",
-            "BASS"
+            "ORANGE",
+            "APPLE",
+            "STRAWBERRY",
+            "BANANA"
           ]
         },
         {
           "id": 2,
-          "name": "Parts of a Shoe",
-          "difficulty": 3,
-          "solution": "<strong>SOLE</strong> - Bottom of the shoe<br><strong>TONGUE</strong> - Flap under the laces<br><strong>LACE</strong> - Cord for fastening<br><strong>EYELET</strong> - Hole for threading laces",
+          "name": "Colors",
+          "difficulty": 2,
+          "solution": "<strong>VIOLET</strong> - Purple hue<br><strong>ORANGE</strong> - Warm hue between red and yellow<br><strong>GREEN</strong> - Color of grass<br><strong>BLUE</strong> - Color of the sky",
           "words": [
-            "SOLE",
-            "TOUNGE",
-            "LACE",
-            "EYELET"
+            "VIOLET",
+            "ORANGE",
+            "GREEN",
+            "BLUE"
           ]
         },
         {
           "id": 3,
-          "name": "Musical Instruments",
-          "difficulty": 2,
-          "solution": "<strong>BASS</strong> - Low-pitched string instrument<br><strong>DRUM</strong> - Percussion instrument struck with sticks<br><strong>HARP</strong> - String instrument with multiple strings<br><strong>ORGAN</strong> - Keyboard instrument with pipes",
+          "name": "Female Names",
+          "difficulty": 3,
+          "solution": "<strong>EVE</strong> - Classic name, also the first woman in Genesis<br><strong>VIOLET</strong> - Name derived from the flower<br><strong>KATE</strong> - Short form of Katherine<br><strong>AMY</strong> - Name meaning beloved",
           "words": [
-            "BASS",
-            "DRUM",
-            "HARP",
-            "ORGAN"
+            "EVE",
+            "VIOLET",
+            "KATE",
+            "AMY"
           ]
         },
         {
           "id": 4,
-          "name": "Body Parts",
-          "difficulty": 1,
-          "solution": "<strong>TONGUE</strong> - Organ in the mouth<br><strong>HEART</strong> - Organ that pumps blood<br><strong>LUNG</strong> - Organ for breathing<br><strong>ORGAN</strong> - General term for body parts with specific functions",
+          "name": "Book of Genesis",
+          "difficulty": 4,
+          "solution": "<strong>APPLE</strong> - The forbidden fruit<br><strong>EVE</strong> - The first woman<br><strong>SNAKE</strong> - The serpent that tempted Eve<br><strong>TREE</strong> - The Tree of Knowledge of Good and Evil",
           "words": [
-            "TOUNGE",
-            "HEART",
-            "LUNG",
-            "ORGAN"
+            "APPLE",
+            "EVE",
+            "SNAKE",
+            "TREE"
           ]
         }
       ]
@@ -366,80 +220,80 @@
       ]
     },
     {
-      "id": 7,
-      "title": "Puz #1",
+      "id": 4,
+      "title": "Not About the Animals",
       "description": "",
       "author": "woctaog",
-      "difficulty": 1,
-      "rating": 80,
-      "solveRating": 2,
+      "difficulty": 3,
+      "rating": 93,
+      "solveRating": 4,
       "words": [
-        "EVE",
-        "VIOLET",
-        "KATE",
-        "AMY",
-        "ORANGE",
-        "GREEN",
-        "BLUE",
-        "APPLE",
-        "STRAWBERRY",
-        "BANANA",
-        "SNAKE",
-        "TREE"
+        "BEAR",
+        "DOLPHIN",
+        "LION",
+        "BRONCO",
+        "BEETLE",
+        "VIPER",
+        "RABBIT",
+        "ROOSTER",
+        "DRAGON",
+        "RAT",
+        "DUCK",
+        "BADGER"
       ],
       "categories": [
         {
           "id": 1,
-          "name": "Fruit",
+          "name": "NFL Teams",
           "difficulty": 1,
-          "solution": "<strong>ORANGE</strong> - Citrus fruit<br><strong>APPLE</strong> - Common tree fruit<br><strong>STRAWBERRY</strong> - Red berry<br><strong>BANANA</strong> - Yellow tropical fruit",
+          "solution": "<strong>BEAR</strong> - Chicago Bears<br><strong>DOLPHIN</strong> - Miami Dolphins<br><strong>LION</strong> - Detroit Lions<br><strong>BRONCO</strong> - Denver Broncos",
           "words": [
-            "ORANGE",
-            "APPLE",
-            "STRAWBERRY",
-            "BANANA"
+            "BEAR",
+            "DOLPHIN",
+            "LION",
+            "BRONCO"
           ]
         },
         {
           "id": 2,
-          "name": "Colors",
+          "name": "Vehicles",
           "difficulty": 2,
-          "solution": "<strong>VIOLET</strong> - Purple hue<br><strong>ORANGE</strong> - Warm hue between red and yellow<br><strong>GREEN</strong> - Color of grass<br><strong>BLUE</strong> - Color of the sky",
+          "solution": "<strong>BRONCO</strong> - Ford Bronco<br><strong>BEETLE</strong> - Volkswagen Beetle<br><strong>VIPER</strong> - Dodge Viper<br><strong>RABBIT</strong> - Volkswagen Rabbit",
           "words": [
-            "VIOLET",
-            "ORANGE",
-            "GREEN",
-            "BLUE"
+            "BRONCO",
+            "BEETLE",
+            "VIPER",
+            "RABBIT"
           ]
         },
         {
           "id": 3,
-          "name": "Female Names",
+          "name": "Chinese Zodiac",
           "difficulty": 3,
-          "solution": "<strong>EVE</strong> - Classic name, also the first woman in Genesis<br><strong>VIOLET</strong> - Name derived from the flower<br><strong>KATE</strong> - Short form of Katherine<br><strong>AMY</strong> - Name meaning beloved",
+          "solution": "<strong>RABBIT</strong> - One of the 12 Chinese zodiac animals<br><strong>ROOSTER</strong> - One of the 12 Chinese zodiac animals<br><strong>DRAGON</strong> - One of the 12 Chinese zodiac animals<br><strong>RAT</strong> - One of the 12 Chinese zodiac animals",
           "words": [
-            "EVE",
-            "VIOLET",
-            "KATE",
-            "AMY"
+            "RABBIT",
+            "ROOSTER",
+            "DRAGON",
+            "RAT"
           ]
         },
         {
           "id": 4,
-          "name": "Book of Genesis",
+          "name": "Verbs",
           "difficulty": 4,
-          "solution": "<strong>APPLE</strong> - The forbidden fruit<br><strong>EVE</strong> - The first woman<br><strong>SNAKE</strong> - The serpent that tempted Eve<br><strong>TREE</strong> - The Tree of Knowledge of Good and Evil",
+          "solution": "<strong>RAT</strong> - To rat someone out (inform)<br><strong>DUCK</strong> - To duck (lower quickly to avoid something)<br><strong>BADGER</strong> - To badger (pester repeatedly)<br><strong>BEAR</strong> - To bear (endure/carry)",
           "words": [
-            "APPLE",
-            "EVE",
-            "SNAKE",
-            "TREE"
+            "RAT",
+            "DUCK",
+            "BADGER",
+            "BEAR"
           ]
         }
       ]
     },
     {
-      "id": 8,
+      "id": 5,
       "title": "Puz #2",
       "description": "",
       "author": "Victor",
@@ -512,81 +366,8 @@
       ]
     },
     {
-      "id": 11,
-      "title": "Cornerz Puzzle 11",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 3,
-      "rating": 78,
-      "solveRating": 3,
-      "words": [
-        "NEW",
-        "OPEN",
-        "SAVE",
-        "CLOSE",
-        "NORTH",
-        "RHODE",
-        "WEST",
-        "SERVE",
-        "RACKET",
-        "MATCH",
-        "MOOT",
-        "BREAKING"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "File Menu Options",
-          "difficulty": 1,
-          "solution": "<strong>NEW</strong> - File &gt; New (create a new document)<br><strong>OPEN</strong> - File &gt; Open (open an existing file)<br><strong>SAVE</strong> - File &gt; Save (save the current file)<br><strong>CLOSE</strong> - File &gt; Close (close the current document)",
-          "words": [
-            "NEW",
-            "OPEN",
-            "SAVE",
-            "CLOSE"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Tennis Terms",
-          "difficulty": 3,
-          "solution": "<strong>OPEN</strong> - A major open tournament (e.g. US Open)<br><strong>SERVE</strong> - Putting the ball in play to start a point<br><strong>RACKET</strong> - The strung paddle used to hit the ball<br><strong>MATCH</strong> - A complete contest between two players or teams",
-          "words": [
-            "OPEN",
-            "SERVE",
-            "RACKET",
-            "MATCH"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "___ Point",
-          "difficulty": 4,
-          "solution": "<strong>MATCH</strong> - Match Point (the point that wins the match)<br><strong>MOOT</strong> - Moot Point (an issue open to debate, or no longer relevant)<br><strong>WEST</strong> - West Point (the U.S. Military Academy in New York)<br><strong>BREAKING</strong> - Breaking Point (the moment of crisis or collapse)",
-          "words": [
-            "MATCH",
-            "MOOT",
-            "WEST",
-            "BREAKING"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "First Word of a US State",
-          "difficulty": 2,
-          "solution": "<strong>NEW</strong> - New York, New Jersey, New Mexico, New Hampshire<br><strong>NORTH</strong> - North Carolina, North Dakota<br><strong>RHODE</strong> - Rhode Island<br><strong>WEST</strong> - West Virginia",
-          "words": [
-            "NEW",
-            "NORTH",
-            "RHODE",
-            "WEST"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "title": "Cornerz Puzzle 10",
+      "id": 6,
+      "title": "Cornerz Puzzle 6",
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
@@ -658,8 +439,300 @@
       ]
     },
     {
+      "id": 7,
+      "title": "Name Dropping",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "rating": 88,
+      "solveRating": 3,
+      "words": [
+        "Tom Hanks",
+        "Robin Wright",
+        "Gary Sinise",
+        "Haley Joel Osment",
+        "Shirley Temple",
+        "Macaulay Culkin",
+        "Drew Barrymore",
+        "Oprah Winfrey",
+        "Regis Philbin",
+        "Ellen DeGeneres",
+        "Amy Poehler",
+        "Owen Wilson"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Forrest Gump Cast",
+          "difficulty": 2,
+          "solution": "<strong>Tom Hanks</strong> - Played Forrest Gump, the lovable Alabama man who witnessed decades of American history<br><strong>Robin Wright</strong> - Played Jenny, Forrest's lifelong love interest<br><strong>Gary Sinise</strong> - Played Lieutenant Dan, Forrest's Vietnam War commander<br><strong>Haley Joel Osment</strong> - Played Forrest Gump Jr., Forrest's son",
+          "words": [
+            "Tom Hanks",
+            "Robin Wright",
+            "Gary Sinise",
+            "Haley Joel Osment"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Child Actors",
+          "difficulty": 1,
+          "solution": "<strong>Haley Joel Osment</strong> - Starred in <em>The Sixth Sense</em> at age 11<br><strong>Shirley Temple</strong> - Hollywood's biggest child star of the 1930s and 40s<br><strong>Macaulay Culkin</strong> - Starred in <em>Home Alone</em> at age 10<br><strong>Drew Barrymore</strong> - Appeared in <em>E.T. the Extra-Terrestrial</em> at age 7",
+          "words": [
+            "Haley Joel Osment",
+            "Shirley Temple",
+            "Macaulay Culkin",
+            "Drew Barrymore"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Daytime TV Hosts",
+          "difficulty": 3,
+          "solution": "<strong>Drew Barrymore</strong> - Host of <em>The Drew Barrymore Show</em> (2020\u2013present)<br><strong>Oprah Winfrey</strong> - Hosted <em>The Oprah Winfrey Show</em> for 25 years (1986\u20132011)<br><strong>Regis Philbin</strong> - Co-hosted <em>Live with Regis and Kathie Lee</em> for decades<br><strong>Ellen DeGeneres</strong> - Hosted <em>The Ellen DeGeneres Show</em> for 19 years (2003\u20132022)",
+          "words": [
+            "Drew Barrymore",
+            "Oprah Winfrey",
+            "Regis Philbin",
+            "Ellen DeGeneres"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Pixar Voice Leads",
+          "difficulty": 4,
+          "solution": "<strong>Ellen DeGeneres</strong> - Voiced Dory in <em>Finding Nemo</em> and <em>Finding Dory</em><br><strong>Amy Poehler</strong> - Voiced Joy in <em>Inside Out</em> and <em>Inside Out 2</em><br><strong>Owen Wilson</strong> - Voiced Lightning McQueen in the <em>Cars</em> franchise<br><strong>Tom Hanks</strong> - Voiced Woody in the <em>Toy Story</em> franchise",
+          "words": [
+            "Ellen DeGeneres",
+            "Amy Poehler",
+            "Owen Wilson",
+            "Tom Hanks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Cornerz Puzzle 8",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "rating": 89,
+      "solveRating": 4,
+      "words": [
+        "FIELD",
+        "FOSTER",
+        "SWANK",
+        "STONE",
+        "DANCES",
+        "TILE",
+        "TIN",
+        "STEEL",
+        "BULL",
+        "HERRING",
+        "FLAG",
+        "WOOD"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Repeat Best Actress Winners",
+          "difficulty": 3,
+          "solution": "<strong>FIELD</strong> - Sally Field won for <em>Norma Rae</em> (1979) and <em>Places in the Heart</em> (1984)<br><strong>FOSTER</strong> - Jodie Foster won for <em>The Accused</em> (1988) and <em>The Silence of the Lambs</em> (1991)<br><strong>SWANK</strong> - Hilary Swank won for <em>Boys Don't Cry</em> (1999) and <em>Million Dollar Baby</em> (2004)<br><strong>STONE</strong> - Emma Stone won for <em>La La Land</em> (2016) and <em>Poor Things</em> (2023)",
+          "words": [
+            "FIELD",
+            "FOSTER",
+            "SWANK",
+            "STONE"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "First Words of Kevin Costner Movies",
+          "difficulty": 4,
+          "solution": "<strong>FIELD</strong> - <em>Field of Dreams</em> (1989)<br><strong>DANCES</strong> - <em>Dances with Wolves</em> (1990)<br><strong>TIN</strong> - <em>Tin Cup</em> (1996)<br><strong>BULL</strong> - <em>Bull Durham</em> (1988)",
+          "words": [
+            "FIELD",
+            "DANCES",
+            "TIN",
+            "BULL"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Building Materials",
+          "difficulty": 1,
+          "solution": "<strong>STONE</strong> - Natural stone used in construction<br><strong>TILE</strong> - Ceramic or porcelain tiles for flooring and walls<br><strong>STEEL</strong> - Metal alloy used in structural frameworks<br><strong>WOOD</strong> - Lumber and timber for framing and finishing",
+          "words": [
+            "STONE",
+            "TILE",
+            "STEEL",
+            "WOOD"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Words That Follow RED",
+          "difficulty": 2,
+          "solution": "<strong>BULL</strong> - <em>Red Bull</em> (energy drink)<br><strong>HERRING</strong> - <em>Red Herring</em> (misleading clue or distraction)<br><strong>FLAG</strong> - <em>Red Flag</em> (warning sign)<br><strong>WOOD</strong> - <em>Redwood</em> (type of tree)",
+          "words": [
+            "BULL",
+            "HERRING",
+            "FLAG",
+            "WOOD"
+          ]
+        }
+      ]
+    },
+    {
       "id": 9,
       "title": "Cornerz Puzzle 9",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "rating": 82,
+      "solveRating": 3,
+      "words": [
+        "GOLD",
+        "SWORD",
+        "TUNA",
+        "SAIL",
+        "VICTOR",
+        "SENT",
+        "PRIME",
+        "CACHE",
+        "GOAT",
+        "PASS",
+        "RANGE",
+        "DEW"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Types of Fish",
+          "difficulty": 1,
+          "solution": "<strong>GOLD</strong> - Goldfish (common aquarium fish)<br><strong>SWORD</strong> - Swordfish (large game fish)<br><strong>TUNA</strong> - Tuna fish (commercial food fish)<br><strong>SAIL</strong> - Sailfish (fish with large dorsal fin)",
+          "words": [
+            "GOLD",
+            "SWORD",
+            "TUNA",
+            "SAIL"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Words preceded by MOUNTAIN",
+          "difficulty": 2,
+          "solution": "<strong>GOAT</strong> - Mountain Goat<br><strong>PASS</strong> - Mountain Pass<br><strong>RANGE</strong> - Mountain Range<br><strong>DEW</strong> - Mountain Dew (beverage brand)",
+          "words": [
+            "GOAT",
+            "PASS",
+            "RANGE",
+            "DEW"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Homophones of money terms",
+          "difficulty": 4,
+          "solution": "<strong>SAIL</strong> - Sounds like <em>Sale</em><br><strong>SENT</strong> - Sounds like <em>Cent</em><br><strong>CACHE</strong> - Sounds like <em>Cash</em><br><strong>DEW</strong> - Sounds like <em>Due</em>",
+          "words": [
+            "SAIL",
+            "SENT",
+            "CACHE",
+            "DEW"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Best / top-tier",
+          "difficulty": 3,
+          "solution": "<strong>GOLD</strong> - Gold medal (highest award)<br><strong>VICTOR</strong> - Victor (winner)<br><strong>PRIME</strong> - Prime quality (best grade)<br><strong>GOAT</strong> - GOAT (Greatest Of All Time)",
+          "words": [
+            "GOLD",
+            "VICTOR",
+            "PRIME",
+            "GOAT"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Cornerz Puzzle 10",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "rating": 78,
+      "solveRating": 3,
+      "words": [
+        "NEW",
+        "OPEN",
+        "SAVE",
+        "CLOSE",
+        "NORTH",
+        "RHODE",
+        "WEST",
+        "SERVE",
+        "RACKET",
+        "MATCH",
+        "MOOT",
+        "BREAKING"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "File Menu Options",
+          "difficulty": 1,
+          "solution": "<strong>NEW</strong> - File &gt; New (create a new document)<br><strong>OPEN</strong> - File &gt; Open (open an existing file)<br><strong>SAVE</strong> - File &gt; Save (save the current file)<br><strong>CLOSE</strong> - File &gt; Close (close the current document)",
+          "words": [
+            "NEW",
+            "OPEN",
+            "SAVE",
+            "CLOSE"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tennis Terms",
+          "difficulty": 3,
+          "solution": "<strong>OPEN</strong> - A major open tournament (e.g. US Open)<br><strong>SERVE</strong> - Putting the ball in play to start a point<br><strong>RACKET</strong> - The strung paddle used to hit the ball<br><strong>MATCH</strong> - A complete contest between two players or teams",
+          "words": [
+            "OPEN",
+            "SERVE",
+            "RACKET",
+            "MATCH"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "___ Point",
+          "difficulty": 4,
+          "solution": "<strong>MATCH</strong> - Match Point (the point that wins the match)<br><strong>MOOT</strong> - Moot Point (an issue open to debate, or no longer relevant)<br><strong>WEST</strong> - West Point (the U.S. Military Academy in New York)<br><strong>BREAKING</strong> - Breaking Point (the moment of crisis or collapse)",
+          "words": [
+            "MATCH",
+            "MOOT",
+            "WEST",
+            "BREAKING"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "First Word of a US State",
+          "difficulty": 2,
+          "solution": "<strong>NEW</strong> - New York, New Jersey, New Mexico, New Hampshire<br><strong>NORTH</strong> - North Carolina, North Dakota<br><strong>RHODE</strong> - Rhode Island<br><strong>WEST</strong> - West Virginia",
+          "words": [
+            "NEW",
+            "NORTH",
+            "RHODE",
+            "WEST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Cornerz Puzzle 11",
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
@@ -731,8 +804,8 @@
       ]
     },
     {
-      "id": 13,
-      "title": "Cornerz Puzzle 13",
+      "id": 12,
+      "title": "Cornerz Puzzle 12",
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
@@ -799,6 +872,225 @@
             "MOWING",
             "FERTILIZER",
             "ROUNDUP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Cornerz Puzzle 13",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "rating": 76,
+      "solveRating": 3,
+      "words": [
+        "SOLE",
+        "PERCH",
+        "RAY",
+        "BASS",
+        "LACE",
+        "EYELET",
+        "DRUM",
+        "HARP",
+        "HEART",
+        "LUNG",
+        "TONGUE",
+        "ORGAN"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Types of Fish",
+          "difficulty": 4,
+          "solution": "<strong>SOLE</strong> - Flatfish found in coastal waters<br><strong>PERCH</strong> - Freshwater fish with spined dorsal fin<br><strong>RAY</strong> - Flat cartilaginous fish with barbed tail<br><strong>BASS</strong> - Freshwater or saltwater game fish",
+          "words": [
+            "SOLE",
+            "PERCH",
+            "RAY",
+            "BASS"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Parts of a Shoe",
+          "difficulty": 3,
+          "solution": "<strong>SOLE</strong> - Bottom of the shoe<br><strong>TONGUE</strong> - Flap under the laces<br><strong>LACE</strong> - Cord for fastening<br><strong>EYELET</strong> - Hole for threading laces",
+          "words": [
+            "SOLE",
+            "TONGUE",
+            "LACE",
+            "EYELET"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Musical Instruments",
+          "difficulty": 2,
+          "solution": "<strong>BASS</strong> - Low-pitched string instrument<br><strong>DRUM</strong> - Percussion instrument struck with sticks<br><strong>HARP</strong> - String instrument with multiple strings<br><strong>ORGAN</strong> - Keyboard instrument with pipes",
+          "words": [
+            "BASS",
+            "DRUM",
+            "HARP",
+            "ORGAN"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Body Parts",
+          "difficulty": 1,
+          "solution": "<strong>TONGUE</strong> - Organ in the mouth<br><strong>HEART</strong> - Organ that pumps blood<br><strong>LUNG</strong> - Organ for breathing<br><strong>ORGAN</strong> - General term for body parts with specific functions",
+          "words": [
+            "TONGUE",
+            "HEART",
+            "LUNG",
+            "ORGAN"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Cornerz Puzzle 14",
+      "description": "",
+      "author": "Claude",
+      "difficulty": 1,
+      "rating": 90,
+      "solveRating": 2,
+      "words": [
+        "WASH",
+        "DRY",
+        "FOLD",
+        "IRON",
+        "BLUFF",
+        "ANTE",
+        "CALL",
+        "THROW",
+        "QUARTER",
+        "GREEN",
+        "WEDGE",
+        "PUTTER"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Doing the Laundry",
+          "difficulty": 1,
+          "solution": "<strong>WASH</strong> - Run the clothes through the washing machine<br><strong>DRY</strong> - Tumble or hang the clothes to dry<br><strong>FOLD</strong> - Fold the clean clothes<br><strong>IRON</strong> - Press out the wrinkles",
+          "words": [
+            "WASH",
+            "DRY",
+            "FOLD",
+            "IRON"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Poker Actions",
+          "difficulty": 3,
+          "solution": "<strong>FOLD</strong> - Surrender your hand and sit out the rest of the round<br><strong>CALL</strong> - Match the current bet<br><strong>BLUFF</strong> - Bet big on a weak hand to scare opponents off<br><strong>ANTE</strong> - Put in the required stake before the deal",
+          "words": [
+            "FOLD",
+            "CALL",
+            "BLUFF",
+            "ANTE"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "___ BACK",
+          "difficulty": 4,
+          "solution": "<strong>CALL</strong> - Callback (a return phone call, or a second audition)<br><strong>THROW</strong> - Throwback (a nostalgic nod to the past)<br><strong>QUARTER</strong> - Quarterback (football position)<br><strong>GREEN</strong> - Greenback (slang for a U.S. dollar bill)",
+          "words": [
+            "CALL",
+            "THROW",
+            "QUARTER",
+            "GREEN"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Golf Terms",
+          "difficulty": 2,
+          "solution": "<strong>GREEN</strong> - The closely mown area around the hole<br><strong>IRON</strong> - Club used for approach shots<br><strong>WEDGE</strong> - High-loft club for short shots and bunkers<br><strong>PUTTER</strong> - Club used on the green",
+          "words": [
+            "GREEN",
+            "IRON",
+            "WEDGE",
+            "PUTTER"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Cornerz Puzzle 15",
+      "description": "",
+      "author": "Claude",
+      "difficulty": 2,
+      "rating": 92,
+      "solveRating": 3,
+      "words": [
+        "SPEED",
+        "TOURIST",
+        "MOUSE",
+        "DEATH",
+        "FOOL",
+        "MAGICIAN",
+        "STAR",
+        "POST",
+        "TIMES",
+        "MONITOR",
+        "KEYBOARD",
+        "SPEAKER"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "___ TRAP",
+          "difficulty": 2,
+          "solution": "<strong>MOUSE</strong> - Mousetrap (spring-loaded rodent catcher)<br><strong>SPEED</strong> - Speed trap (where police watch for speeders)<br><strong>TOURIST</strong> - Tourist trap (overpriced attraction)<br><strong>DEATH</strong> - Death trap (something extremely dangerous)",
+          "words": [
+            "MOUSE",
+            "SPEED",
+            "TOURIST",
+            "DEATH"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tarot Cards",
+          "difficulty": 4,
+          "solution": "<strong>DEATH</strong> - The Death card (transformation and endings)<br><strong>STAR</strong> - The Star card (hope and renewal)<br><strong>FOOL</strong> - The Fool card (new beginnings, card 0)<br><strong>MAGICIAN</strong> - The Magician card (skill and willpower)",
+          "words": [
+            "DEATH",
+            "STAR",
+            "FOOL",
+            "MAGICIAN"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Newspaper Names",
+          "difficulty": 3,
+          "solution": "<strong>STAR</strong> - The Toronto Star, Kansas City Star<br><strong>MONITOR</strong> - The Christian Science Monitor<br><strong>POST</strong> - The Washington Post, New York Post<br><strong>TIMES</strong> - The New York Times, Los Angeles Times",
+          "words": [
+            "STAR",
+            "MONITOR",
+            "POST",
+            "TIMES"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Computer Parts",
+          "difficulty": 1,
+          "solution": "<strong>MONITOR</strong> - The display screen<br><strong>MOUSE</strong> - Point-and-click input device<br><strong>KEYBOARD</strong> - Typing input device<br><strong>SPEAKER</strong> - Audio output device",
+          "words": [
+            "MONITOR",
+            "MOUSE",
+            "KEYBOARD",
+            "SPEAKER"
           ]
         }
       ]
@@ -872,152 +1164,6 @@
             "JUXTAPOSITION",
             "RAZZMATAZZ",
             "AX"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "title": "Not About the Animals",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 3,
-      "rating": 93,
-      "solveRating": 4,
-      "words": [
-        "BEAR",
-        "DOLPHIN",
-        "LION",
-        "BRONCO",
-        "BEETLE",
-        "VIPER",
-        "RABBIT",
-        "ROOSTER",
-        "DRAGON",
-        "RAT",
-        "DUCK",
-        "BADGER"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "NFL Teams",
-          "difficulty": 1,
-          "solution": "<strong>BEAR</strong> - Chicago Bears<br><strong>DOLPHIN</strong> - Miami Dolphins<br><strong>LION</strong> - Detroit Lions<br><strong>BRONCO</strong> - Denver Broncos",
-          "words": [
-            "BEAR",
-            "DOLPHIN",
-            "LION",
-            "BRONCO"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Vehicles",
-          "difficulty": 2,
-          "solution": "<strong>BRONCO</strong> - Ford Bronco<br><strong>BEETLE</strong> - Volkswagen Beetle<br><strong>VIPER</strong> - Dodge Viper<br><strong>RABBIT</strong> - Volkswagen Rabbit",
-          "words": [
-            "BRONCO",
-            "BEETLE",
-            "VIPER",
-            "RABBIT"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Chinese Zodiac",
-          "difficulty": 3,
-          "solution": "<strong>RABBIT</strong> - One of the 12 Chinese zodiac animals<br><strong>ROOSTER</strong> - One of the 12 Chinese zodiac animals<br><strong>DRAGON</strong> - One of the 12 Chinese zodiac animals<br><strong>RAT</strong> - One of the 12 Chinese zodiac animals",
-          "words": [
-            "RABBIT",
-            "ROOSTER",
-            "DRAGON",
-            "RAT"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Verbs",
-          "difficulty": 4,
-          "solution": "<strong>RAT</strong> - To rat someone out (inform)<br><strong>DUCK</strong> - To duck (lower quickly to avoid something)<br><strong>BADGER</strong> - To badger (pester repeatedly)<br><strong>BEAR</strong> - To bear (endure/carry)",
-          "words": [
-            "RAT",
-            "DUCK",
-            "BADGER",
-            "BEAR"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "title": "Name Dropping",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 2,
-      "rating": 88,
-      "solveRating": 3,
-      "words": [
-        "Tom Hanks",
-        "Robin Wright",
-        "Gary Sinise",
-        "Haley Joel Osment",
-        "Shirley Temple",
-        "Macaulay Culkin",
-        "Drew Barrymore",
-        "Oprah Winfrey",
-        "Regis Philbin",
-        "Ellen DeGeneres",
-        "Amy Poehler",
-        "Owen Wilson"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Forrest Gump Cast",
-          "difficulty": 2,
-          "solution": "<strong>Tom Hanks</strong> - Played Forrest Gump, the lovable Alabama man who witnessed decades of American history<br><strong>Robin Wright</strong> - Played Jenny, Forrest's lifelong love interest<br><strong>Gary Sinise</strong> - Played Lieutenant Dan, Forrest's Vietnam War commander<br><strong>Haley Joel Osment</strong> - Played Forrest Gump Jr., Forrest's son",
-          "words": [
-            "Tom Hanks",
-            "Robin Wright",
-            "Gary Sinise",
-            "Haley Joel Osment"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Child Actors",
-          "difficulty": 1,
-          "solution": "<strong>Haley Joel Osment</strong> - Starred in <em>The Sixth Sense</em> at age 11<br><strong>Shirley Temple</strong> - Hollywood's biggest child star of the 1930s and 40s<br><strong>Macaulay Culkin</strong> - Starred in <em>Home Alone</em> at age 10<br><strong>Drew Barrymore</strong> - Appeared in <em>E.T. the Extra-Terrestrial</em> at age 7",
-          "words": [
-            "Haley Joel Osment",
-            "Shirley Temple",
-            "Macaulay Culkin",
-            "Drew Barrymore"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Daytime TV Hosts",
-          "difficulty": 3,
-          "solution": "<strong>Drew Barrymore</strong> - Host of <em>The Drew Barrymore Show</em> (2020–present)<br><strong>Oprah Winfrey</strong> - Hosted <em>The Oprah Winfrey Show</em> for 25 years (1986–2011)<br><strong>Regis Philbin</strong> - Co-hosted <em>Live with Regis and Kathie Lee</em> for decades<br><strong>Ellen DeGeneres</strong> - Hosted <em>The Ellen DeGeneres Show</em> for 19 years (2003–2022)",
-          "words": [
-            "Drew Barrymore",
-            "Oprah Winfrey",
-            "Regis Philbin",
-            "Ellen DeGeneres"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Pixar Voice Leads",
-          "difficulty": 4,
-          "solution": "<strong>Ellen DeGeneres</strong> - Voiced Dory in <em>Finding Nemo</em> and <em>Finding Dory</em><br><strong>Amy Poehler</strong> - Voiced Joy in <em>Inside Out</em> and <em>Inside Out 2</em><br><strong>Owen Wilson</strong> - Voiced Lightning McQueen in the <em>Cars</em> franchise<br><strong>Tom Hanks</strong> - Voiced Woody in the <em>Toy Story</em> franchise",
-          "words": [
-            "Ellen DeGeneres",
-            "Amy Poehler",
-            "Owen Wilson",
-            "Tom Hanks"
           ]
         }
       ]

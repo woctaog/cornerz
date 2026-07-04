@@ -18,7 +18,20 @@
       "Bash(node:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npm run *)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(npx playwright *)",
+      "Bash(npx --prefix /home/woctaog/source/cornerz playwright install-deps chromium)",
+      "Bash(python3 -c ' *)",
+      "Skill(run)",
+      "Bash(timeout 60 bash -c 'until curl -sf http://localhost:4200 >/dev/null 2>&1; do sleep 2; done')",
+      "Bash(chromium-cli *)",
+      "Bash(curl -sf http://localhost:4200)",
+      "Bash(git -C /home/woctaog/source/cornerz remote -v)",
+      "Bash(git -C /home/woctaog/source/cornerz branch -a)",
+      "Bash(git -C /home/woctaog/source/cornerz diff --stat)",
+      "Bash(git push *)"
     ]
   }
 }

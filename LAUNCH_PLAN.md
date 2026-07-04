@@ -1,5 +1,14 @@
 # Cornerz Launch Plan
 
+## Launch Status
+
+**NOT YET LAUNCHED** — Update this section when the game goes live.
+
+- Target launch date: March 25, 2026 *(passed — launch delayed)*
+- Actual launch date: TBD
+
+---
+
 ## Context
 
 - Free word puzzle game, no monetization

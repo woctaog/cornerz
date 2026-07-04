@@ -1,15 +1,22 @@
 <div class="game-container">
-  <div class="puzzle-info" *ngIf="currentPuzzle && !loading">
-    <div class="title-row">
-      <h2>{{ isDailyPuzzleMode ? 'Cornerz Daily Puzzle' : (currentPuzzle.title || 'Cornerz Puzzle') }}</h2>
+  <div class="game-header" *ngIf="currentPuzzle && !loading">
+    <div class="wordmark">CORNERZ</div>
+    <div class="puzzle-meta">
+      <span class="puzzle-title">{{ isDailyPuzzleMode ? 'Daily Puzzle' : (currentPuzzle.title || 'Puzzle') }}</span>
       <span class="puzzle-author" *ngIf="currentPuzzle!.author">by {{ currentPuzzle!.author }}</span>
     </div>
     <div class="header-actions">
       <div class="streak-badge" *ngIf="currentStreak > 0" (click)="statsModalOpen = true" role="button" [attr.aria-label]="currentStreak + ' day streak'">
         🔥 {{ currentStreak }}
       </div>
-      <button type="button" class="help-button" (click)="statsModalOpen = true" aria-label="View stats">&#x1F4CA;</button>
-      <button type="button" class="help-button" (click)="openHelp()" aria-label="Open how to play help">?</button>
+      <button type="button" class="icon-button" (click)="statsModalOpen = true" aria-label="View stats">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+          <rect x="3" y="13" width="4" height="8" rx="1"/>
+          <rect x="10" y="7" width="4" height="14" rx="1"/>
+          <rect x="17" y="3" width="4" height="18" rx="1"/>
+        </svg>
+      </button>
+      <button type="button" class="icon-button" (click)="openHelp()" aria-label="Open how to play help">?</button>
     </div>
   </div>
 
@@ -73,12 +80,14 @@
         <div class="bank-container"
              cdkDropList
              id="bank-list"
+             [cdkDropListSortingDisabled]="true"
              (cdkDropListDropped)="dropToBank($event)"
              [cdkDropListData]="availableTiles"
              [cdkDropListConnectedTo]="getConnectedDropLists()"
              (click)="onBankClick()">
           <div class="bank-tile-wrapper"
                *ngFor="let tile of availableTiles; let i = index"
+               [style.--tile-index]="i"
                [class.selected]="isBankTileSelected(i)"
                (click)="onBankTileClick(i); $event.stopPropagation()">
             <app-game-tile

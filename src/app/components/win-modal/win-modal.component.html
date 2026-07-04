@@ -1,3 +1,17 @@
+<div class="confetti-container" aria-hidden="true">
+  <div class="confetti-piece"
+       *ngFor="let piece of confettiPieces"
+       [style.left]="piece.left"
+       [style.background]="piece.color"
+       [style.width]="piece.size"
+       [style.height]="piece.size"
+       [style.animation-delay]="piece.delay"
+       [style.animation-duration]="piece.duration"
+       [style.--rot]="piece.rotation"
+       [style.border-radius]="piece.round ? '50%' : '2px'">
+  </div>
+</div>
+
 <div class="overlay" (click)="$event.stopPropagation()">
   <div class="modal">
 

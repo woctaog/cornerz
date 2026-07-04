@@ -2,6 +2,16 @@ import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Category, DIFFICULTY_LABELS, DIFFICULTY_EMOJIS } from '../../models/puzzle.model';
 
+interface ConfettiPiece {
+  left: string;
+  color: string;
+  size: string;
+  delay: string;
+  duration: string;
+  rotation: string;
+  round: boolean;
+}
+
 const RATING_TIERS: { threshold: number; stars: string; label: string }[] = [
   { threshold: 0, stars: '★★★', label: 'Perfect!' },
   { threshold: 2, stars: '★★☆', label: 'Great!' },
@@ -29,10 +39,34 @@ export class WinModalComponent implements OnDestroy {
   selectedCategory: Category | null = null;
   selectedSolutionHtml: SafeHtml | null = null;
   copied = false;
+  confettiPieces: ConfettiPiece[] = [];
 
   private shareTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) {
+    this.confettiPieces = this.generateConfetti();
+  }
+
+  private generateConfetti(): ConfettiPiece[] {
+    const colors = [
+      '#FFCA28', '#FFE082', '#43A047', '#A5D6A7',
+      '#1E88E5', '#90CAF9', '#8E24AA', '#CE93D8',
+      '#FF7043', '#FFFFFF',
+    ];
+    return Array.from({ length: 50 }, () => {
+      const rotDir = Math.random() > 0.5 ? 1 : -1;
+      const rotAmt = 360 + Math.floor(Math.random() * 3) * 360;
+      return {
+        left: `${(Math.random() * 100).toFixed(1)}%`,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: `${(6 + Math.random() * 8).toFixed(1)}px`,
+        delay: `${(Math.random() * 1.5).toFixed(2)}s`,
+        duration: `${(2 + Math.random() * 1.5).toFixed(2)}s`,
+        rotation: `${rotDir * rotAmt}deg`,
+        round: Math.random() > 0.5,
+      };
+    });
+  }
 
   ngOnDestroy(): void {
     if (this.shareTimeout) clearTimeout(this.shareTimeout);

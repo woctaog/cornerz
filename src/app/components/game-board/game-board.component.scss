@@ -5,6 +5,17 @@ $board-max: 400px;
 
 // --- Animations ---
 
+@keyframes tile-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes bounce {
   0%   { transform: scale(1); }
   40%  { transform: scale(1.1); }
@@ -38,72 +49,100 @@ $board-max: 400px;
   max-height: 100%;
 }
 
-.puzzle-info {
+.game-header {
   width: min(92vw, $board-max);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.4rem;
+  gap: 0.5rem;
+}
 
-  .title-row {
-    display: flex;
-    align-items: baseline;
-    gap: 0.4rem;
-    min-width: 0;
+.wordmark {
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 2px 0;
+}
+
+.puzzle-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  flex: 1;
+  gap: 0;
+}
+
+.puzzle-title {
+  color: var(--text-secondary);
+  font-size: clamp(0.72rem, 2vw, 0.85rem);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.puzzle-author {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.streak-badge {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 0.5rem;
+  border-radius: 15px;
+  border: 1px solid #ffcc80;
+  background: #fff8e1;
+  color: #e65100;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+
+  &:hover {
+    background: #fff3e0;
   }
+}
 
-  h2 {
-    color: #333;
-    margin: 0;
-    font-size: clamp(0.98rem, 2.4vw, 1.2rem);
-    white-space: nowrap;
-  }
+.icon-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
 
-  .puzzle-author {
-    color: #78909c;
-    font-size: 0.78rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    flex-shrink: 0;
-  }
-
-  .streak-badge {
-    display: flex;
-    align-items: center;
-    height: 32px;
-    padding: 0 0.5rem;
-    border-radius: 16px;
-    border: 1px solid #ffcc80;
-    background: #fff8e1;
-    color: #e65100;
-    font-size: 0.85rem;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-    user-select: none;
-
-    &:hover {
-      background: #fff3e0;
-    }
-  }
-
-  .help-button {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid #b0bec5;
-    background-color: #fff;
-    color: #455a64;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
+  &:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
   }
 }
 
@@ -360,6 +399,8 @@ $board-max: 400px;
   overflow: hidden;
   border-radius: 6px;
   transition: box-shadow 0.15s ease;
+  animation: tile-entrance 0.3s ease backwards;
+  animation-delay: calc(var(--tile-index, 0) * 45ms);
 
   &.selected {
     box-shadow: 0 0 0 3px #FF9800;
@@ -584,16 +625,14 @@ $board-max: 400px;
 }
 
 @media (max-width: 768px) {
-  .puzzle-info {
-    h2 {
-      font-size: 0.95rem;
-    }
+  .wordmark {
+    font-size: 1rem;
+  }
 
-    .help-button {
-      width: 34px;
-      height: 34px;
-      font-size: 1.05rem;
-    }
+  .icon-button {
+    width: 34px;
+    height: 34px;
+    font-size: 1.05rem;
   }
 
   .grid-cell.disabled .center-indicator {

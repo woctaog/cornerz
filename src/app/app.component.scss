@@ -6,8 +6,8 @@
   height: 100dvh;
   max-height: 100dvh;
   padding: 0.6rem 0.6rem 0.5rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--app-bg);
+  font-family: var(--font-sans);
   app-game-board {
     width: 100%;
     flex: 1;

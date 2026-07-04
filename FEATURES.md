@@ -149,7 +149,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - Updates immediately after completing a daily puzzle (no page reload needed)
 
 ### Stats Modal
-- 📊 button in the game board header opens the stats modal (sits alongside the "?" help button)
+- Bar chart SVG icon button in the game board header opens the stats modal (sits alongside the "?" help button); replaced emoji to avoid rendering issues on some platforms
 - Click outside the modal or the ✕ button to close
 - Shows four headline stats: **Played**, **Streak**, **Best Streak**, **Avg Mistakes**
 - Shows a **Mistake Distribution** bar chart — each row is a mistake count with a proportional CSS bar and game count
@@ -177,6 +177,18 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 ---
 
 ## Animations
+
+### Tile Entrance (Bank Load)
+- When a puzzle loads, bank tiles stagger-fade-in one by one (0.3s each, 45ms per-tile delay offset)
+- Each tile fades from opacity 0 + slight scale/translate to full visibility
+- Re-animates whenever tiles re-enter the bank (e.g. after an invalid line is rejected)
+
+### Confetti (Win)
+- 50 confetti pieces fall from the top of the screen when the win modal appears
+- Colors match the game palette: yellow, green, blue, purple, white, and orange variants
+- Each piece has a randomized position, size, fall duration, delay, and rotation
+- Pieces are `position: fixed; z-index: 1200; pointer-events: none` — appear above the modal without blocking interaction
+- Fade out in the last 20% of their fall, then disappear (`animation-fill-mode: forwards`)
 
 ### Bounce (Tile Placement)
 - Plays on successful placement: scale 1 -> 1.1 -> 0.95 -> 1 (300ms)
@@ -321,7 +333,7 @@ Each puzzle in `puzzles.json`:
 
 Corner words appear in exactly 2 categories; edge words appear in exactly 1.
 
-Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 ("Cornerz Puzzle 10"), 11 ("Cornerz Puzzle 11"), 12 ("Name Dropping"), 13 ("Cornerz Puzzle 13")
+Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 ("Cornerz Puzzle 10"), 11 ("Cornerz Puzzle 11"), 12 ("Name Dropping"), 13 ("Cornerz Puzzle 13"), 14 ("Cornerz Puzzle 14", by Claude), 15 ("Cornerz Puzzle 15", by Claude)
 
 ---
 
@@ -451,6 +463,14 @@ Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 (
 ### Scrollability
 - Form page is fully scrollable (`:host` overflow-y auto) within the fixed-height app container
 - `app-submit-puzzle` given flex sizing in `.main-container` to fill available height
+
+---
+
+## Branding
+
+### Favicon
+- Custom SVG favicon (`src/favicon.svg`): purple gradient background (brand colors `#667eea` → `#764ba2`) with four white rounded squares representing the corner tiles of the game
+- SVG favicon declared first in `index.html` for modern browsers; `.ico` fallback remains for older browsers
 
 ---
 

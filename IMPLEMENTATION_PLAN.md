@@ -223,18 +223,17 @@ PuzzleService (abstract interface)
 ### Phase 7: Animations & Visual Polish
 **Goal**: Make the game feel satisfying and premium.
 
-- [ ] **7.1 — Tile animations**
-  - Entrance animation: tiles stagger-fade-in when puzzle loads
-  - Drop animation: smooth snap-to-grid with slight overshoot/bounce
-  - Line complete: tiles flash/pulse green with a ripple effect
-  - Win animation: celebratory effect (confetti, glow burst, or cascading tile flips)
+- [x] **7.1 — Tile animations**
+  - Entrance animation: bank tiles stagger-fade-in when puzzle loads (45ms offset per tile)
+  - Drop animation: bounce on placement already in place from Phase 1
+  - Win animation: 50-piece confetti falls from top of screen (palette colors, randomized params, pointer-events: none)
 
-- [ ] **7.2 — UI/UX refinements**
-  - Redesign the header with a clean logo/wordmark
-  - Add a consistent color palette and design tokens (CSS custom properties)
-  - Improve typography hierarchy
-  - Add subtle background patterns or gradients
-  - Dark mode support (respect `prefers-color-scheme`, toggleable)
+- [x] **7.2 — UI/UX refinements**
+  - "CORNERZ" gradient wordmark in game board header (purple-to-blue, bold uppercase)
+  - Brand + app design tokens added to `_variables.scss` (`--brand-gradient`, `--app-bg`, `--surface`, `--text-*`, `--font-sans`)
+  - Typography: `system-ui` font stack globally, `antialiased` rendering, refined text hierarchy
+  - Background upgraded to blue-purple tinted gradient via `--app-bg` token
+  - Dark mode: deferred
 
 - [ ] **7.3 — Loading and transition states**
   - Skeleton loader while puzzle data loads
