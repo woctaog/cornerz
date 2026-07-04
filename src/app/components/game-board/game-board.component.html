@@ -1,6 +1,5 @@
 <div class="game-container">
   <div class="game-header" *ngIf="currentPuzzle && !loading">
-    <div class="wordmark">CORNERZ</div>
     <div class="puzzle-meta">
       <span class="puzzle-title">{{ isDailyPuzzleMode ? 'Daily Puzzle' : (currentPuzzle.title || 'Puzzle') }}</span>
       <span class="puzzle-author" *ngIf="currentPuzzle!.author">by {{ currentPuzzle!.author }}</span>
@@ -25,9 +24,9 @@
 
   <div class="skeleton-loader" *ngIf="loading" aria-hidden="true">
     <div class="skeleton-header">
-      <div class="skeleton-block skeleton-wordmark"></div>
       <div class="skeleton-block skeleton-title"></div>
-      <div class="skeleton-block skeleton-circle"></div>
+      <div class="skeleton-circle"></div>
+      <div class="skeleton-circle"></div>
     </div>
     <div class="skeleton-grid">
       <div class="skeleton-cell"

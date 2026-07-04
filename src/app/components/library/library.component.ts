@@ -66,11 +66,7 @@ export class LibraryComponent implements OnInit {
   }
 
   playPuzzle(puzzleId: number): void {
-    this.router.navigate(['/'], { queryParams: { puzzle: puzzleId } });
-  }
-
-  goToDaily(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/play', puzzleId]);
   }
 }
 

@@ -39,7 +39,8 @@ $board-max: 400px;
 }
 
 .game-container {
-  --board-width: min(90vw, #{$board-max}, calc(100dvh - 285px));
+  // 100dvh minus app nav + header + bank + gaps
+  --board-width: min(90vw, #{$board-max}, calc(100dvh - 320px));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,19 +56,6 @@ $board-max: 400px;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-}
-
-.wordmark {
-  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  background: var(--brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  flex-shrink: 0;
-  line-height: 1;
-  padding: 2px 0;
 }
 
 .puzzle-meta {
@@ -208,11 +196,6 @@ $board-max: 400px;
 .skeleton-block {
   @extend %shimmer;
   border-radius: 6px;
-}
-
-.skeleton-wordmark {
-  width: 110px;
-  height: 20px;
 }
 
 .skeleton-title {
@@ -757,7 +740,7 @@ $board-max: 400px;
   }
 
   .game-container {
-    --board-width: min(91vw, calc(100dvh - 245px));
+    --board-width: min(91vw, calc(100dvh - 280px));
   }
 
   .help-modal {

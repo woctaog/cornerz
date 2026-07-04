@@ -112,6 +112,13 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     if (testMode || testMode2) {
       this.isDailyPuzzleMode = false;
       this.loadPuzzle(-1);
+    } else if (this.route.snapshot.paramMap.has('id')) {
+      // /play/:id route
+      this.route.paramMap.subscribe(params => {
+        this.isDailyPuzzleMode = false;
+        this.dailyPuzzleId = null;
+        this.loadPuzzle(parseInt(params.get('id')!, 10));
+      });
     } else {
       this.route.queryParams.subscribe(params => {
         const puzzleParam = params['puzzle'];
@@ -765,7 +772,9 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   onNextPuzzle() {
     if (this.currentPuzzle) {
-      this.loadPuzzle(this.currentPuzzle.id + 1, true);
+      // On /play/:id the paramMap subscription reloads; from any other route
+      // the navigation recreates the component with the new id.
+      this.router.navigate(['/play', this.currentPuzzle.id + 1]);
     }
   }
 

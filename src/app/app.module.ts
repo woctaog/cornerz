@@ -14,6 +14,8 @@ import { FitTextDirective } from './directives/fit-text.directive';
 import { LibraryComponent } from './components/library/library.component';
 import { SubmitPuzzleComponent } from './components/submit-puzzle/submit-puzzle.component';
 import { StatsModalComponent } from './components/stats-modal/stats-modal.component';
+import { StatsPageComponent } from './components/stats-page/stats-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PuzzleProvider } from './services/puzzle-provider';
 import { StaticPuzzleProvider } from './services/static-puzzle-provider';
 import { StatsProvider } from './services/stats-provider';
@@ -28,7 +30,9 @@ import { LocalStatsProvider } from './services/local-stats-provider';
     FitTextDirective,
     LibraryComponent,
     SubmitPuzzleComponent,
-    StatsModalComponent
+    StatsModalComponent,
+    StatsPageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,12 @@
 <div class="main-container">
+  <nav class="app-nav" aria-label="Main navigation">
+    <a class="nav-brand" routerLink="/" aria-label="Cornerz — daily puzzle">CORNERZ</a>
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Daily</a>
+      <a routerLink="/library" routerLinkActive="active">Library</a>
+      <a routerLink="/stats" routerLinkActive="active">Stats</a>
+      <a routerLink="/submit" routerLinkActive="active">Submit</a>
+    </div>
+  </nav>
   <router-outlet></router-outlet>
 </div>

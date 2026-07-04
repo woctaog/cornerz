@@ -104,10 +104,10 @@ PuzzleService (abstract interface)
 ### Phase 3: Puzzle Content & Daily Puzzle System
 **Goal**: Build out the puzzle library and daily puzzle mechanic.
 
-- [ ] **3.1 — Expand puzzle library**
-  - Create at least 10 complete, playtested puzzles
-  - Organize puzzles with metadata: difficulty (easy/medium/hard), theme, author, date
-  - Update `puzzles.json` schema to include metadata fields
+- [x] **3.1 — Expand puzzle library**
+  - 15 complete puzzles shipped (ids 1–15), including two Claude-authored ones (14, 15)
+  - Metadata in place: puzzle-level `difficulty`, `author`, `rating`, `solveRating`; dates derived from id + `PUZZLE_START_DATE`
+  - Rated against `PUZZLE_EVALUATION.md`; validated with `npm run validate`
 
 - [x] **3.2 — Daily puzzle system**
   - Determine daily puzzle by date (e.g., puzzle index = days since launch date)
@@ -235,34 +235,29 @@ PuzzleService (abstract interface)
   - Background upgraded to blue-purple tinted gradient via `--app-bg` token
   - Dark mode: deferred
 
-- [ ] **7.3 — Loading and transition states**
-  - Skeleton loader while puzzle data loads
-  - Smooth route transitions between library and game views
-  - Button press states and micro-interactions
+- [x] **7.3 — Loading and transition states**
+  - Skeleton loaders (shimmer) for the game board and library while data loads
+  - Routed views fade/slide in on navigation; `prefers-reduced-motion` respected
+  - Global button press states (scale on :active) and hover/focus micro-interactions
 
-- [ ] **7.4 — Accessibility**
-  - Ensure all interactive elements are keyboard-navigable
-  - Add ARIA labels to grid cells, tiles, and controls
-  - Ensure sufficient color contrast ratios
-  - Screen reader announcements for line completions and game events
+- [x] **7.4 — Accessibility**
+  - Bank tiles, grid cells, center indicators, and streak badge are keyboard-operable (Tab + Enter/Space; Escape clears selection/closes modals; Delete returns a selected grid tile to the bank)
+  - ARIA labels on grid cells (row/column/content/state), tiles, tile bank, and controls; `role="dialog"` + `aria-modal` on all modals
+  - `aria-live` announcements for tile selection/placement, line results, one-away, mistakes, and wins
+  - Contrast fix: dark text on yellow (difficulty 1) center indicators and labels; consistent `:focus-visible` rings app-wide
 
 ### Phase 8: Navigation & App Shell
 **Goal**: Structure the app with proper routing and navigation.
 
-- [ ] **8.1 — App shell and routing**
-  - Define routes:
-    - `/` — Home / daily puzzle landing
-    - `/play/:id` — Play a specific puzzle
-    - `/library` — Browse all puzzles
-    - `/stats` — Player stats
-    - `/submit` — Submit a puzzle form
-  - Add a top navigation bar with links: Daily, Library, Stats, Submit
-  - Handle 404 / unknown routes
+- [x] **8.1 — App shell and routing**
+  - Routes: `/` (daily), `/play/:id`, `/library`, `/stats`, `/submit`, plus `**` → NotFound page
+  - Top navigation bar with CORNERZ brand + Daily / Library / Stats / Submit links (active-state pills)
+  - Library "Play" and win-modal "Next Puzzle" navigate to `/play/:id`; legacy `/?puzzle=N` links still work
+  - Wordmark moved from the game header into the shared nav
 
-- [ ] **8.2 — Home / landing page**
-  - Show today's daily puzzle front-and-center
-  - Quick-access to the puzzle library
-  - Show current streak and basic stats summary
+- [x] **8.2 — Home / landing page**
+  - `/` shows today's daily puzzle front-and-center (unchanged by design — the game *is* the landing page)
+  - Library and stats one tap away in the nav; streak badge + stats button in the game header
 
 ---
 
@@ -377,12 +372,13 @@ playwright.config.ts              # Multi-browser config with Angular dev server
 |----------|-------|--------|-------|
 | 1st      | Phase 1 (Core Polish) | Done (1.1-1.3), 1.4 absorbed into 4.1 | Puzzle validation now part of Phase 4 validator service |
 | 2nd      | Phase 2 (E2E Tests) | Done | 4 spec files covering core gameplay, UI state, regression |
-| 3rd      | Phase 3 (Puzzles & Daily) | Mostly done | 3.1 (expand library to 10+ puzzles) still TODO |
+| 3rd      | Phase 3 (Puzzles & Daily) | Done | 15 puzzles shipped with metadata |
 | 4th      | Phase 4 (Community Submissions) | Done | Validator service, submission form, Basin POST, loading/success/error UX |
-| 5th      | Phase 5 (Share) | Mostly done | 5.1 (emoji card) and 5.2 (clipboard copy) done; 5.3 (Web Share API) optional/TODO |
-| 6th      | Phase 6 (Stats) | TODO | Depends on puzzle completion tracking (ProgressService exists as foundation) |
-| 7th      | Phase 7 (Visual Polish) | TODO | Animations, UI refinements, accessibility, dark mode, loading states |
-| 8th      | Phase 8 (Navigation) | Partially done | Basic routing exists (/, /library, /test-page); full app shell/header/stats/submit routes TODO |
+| 5th      | Phase 5 (Share) | Done | Emoji card, clipboard copy, Web Share API on mobile |
+| 6th      | Phase 6 (Stats) | Done | StatsProvider, stats modal, streak badge |
+| 7th      | Phase 7 (Visual Polish) | Done | Animations, skeleton loaders, transitions, accessibility (dark mode deferred) |
+| 8th      | Phase 8 (Navigation) | Done | App shell nav, /play/:id, /stats, 404 page |
+| 9th      | Phase 9 (Puzzle Encryption) | TODO | Spoiler-proof future dailies with date-derived AES keys |
 
 Phase 2 tests should be expanded as new features land in later phases.
 

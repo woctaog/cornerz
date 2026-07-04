@@ -5,7 +5,7 @@
   justify-content: flex-start;
   height: 100dvh;
   max-height: 100dvh;
-  padding: 0.6rem 0.6rem 0.5rem;
+  padding: 0.4rem 0.6rem 0.5rem;
   background: var(--app-bg);
   font-family: var(--font-sans);
   app-game-board {
@@ -26,5 +26,64 @@
     width: 100%;
     flex: 1;
     min-height: 0;
+  }
+
+  app-stats-page,
+  app-not-found {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+  }
+}
+
+.app-nav {
+  width: min(92vw, 400px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.15rem 0 0.4rem;
+  flex-shrink: 0;
+}
+
+.nav-brand {
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  line-height: 1;
+  padding: 2px 0;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+
+  a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.28rem 0.5rem;
+    border-radius: 14px;
+    line-height: 1;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--text-primary);
+    }
+
+    &.active {
+      background: var(--surface);
+      color: var(--text-primary);
+      box-shadow: 0 1px 4px rgba(26, 35, 50, 0.12);
+    }
   }
 }

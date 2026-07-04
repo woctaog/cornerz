@@ -203,6 +203,32 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - Dragging over: blue border + light blue background
 - Receiving: orange border + light orange background
 
+### Loading & Transition States
+- Skeleton loaders with shimmer animation while data loads: game board (header + 4x4 grid + bank) and library (4 placeholder cards); screen-reader-only "Loading..." text accompanies them
+- Routed views (game, library, submit) fade/slide in on navigation (0.22s)
+- Global button micro-interactions: scale-down on press (`:active`), smooth hover/background transitions
+- `prefers-reduced-motion: reduce` collapses all animations/transitions to near-zero duration
+
+---
+
+## Accessibility
+
+### Keyboard Navigation
+- Bank tiles and playable grid cells are focusable (`tabindex="0"`, `role="button"`); Enter/Space selects, places, or swaps — mirroring tap-to-place
+- Escape closes the topmost modal (solution → help → stats → win) or clears the current tile selection
+- Delete/Backspace returns a selected grid tile to the bank
+- Center indicators (completed lines) and the streak badge are keyboard-operable
+- Consistent `:focus-visible` outlines on all interactive elements (brand color globally; blue ring on board elements)
+
+### Screen Reader Support
+- `aria-live="polite"` status region announces: tile selected/placed, line solved (with category name and progress), invalid line (with one-away hint and mistake count), tile returned, and puzzle win
+- Grid cells expose row/column position, contents, and state via `aria-label`; bank tiles use `aria-pressed` for selection
+- All modals (help, solution, stats, win) use `role="dialog"` + `aria-modal="true"` with labels
+- Skeleton loaders are `aria-hidden` with visually-hidden text alternatives (`.sr-only` utility)
+
+### Contrast
+- Yellow (difficulty 1) center indicators and difficulty labels use dark brown text instead of white for WCAG contrast (mirrored in the submit-form preview)
+
 ---
 
 ## Daily Puzzle System
@@ -232,15 +258,35 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 
 ---
 
+## App Shell & Navigation
+
+### Top Navigation Bar
+- Global nav in the app shell (`app.component`): CORNERZ gradient brand (links home) + Daily / Library / Stats / Submit links
+- Active route shown as a highlighted pill (`routerLinkActive`; Daily uses exact matching)
+- Brand wordmark lives in the nav (removed from the game header)
+
+### Routes
+- `/` — daily puzzle (home/landing)
+- `/play/:id` — play a specific puzzle (used by library Play buttons and win-modal Next Puzzle)
+- `/library` — puzzle archive
+- `/stats` — stats page (routed wrapper around the stats modal; closing returns home)
+- `/submit` — community puzzle submission
+- `/test-page`, `/test-page2` — dev test modes
+- `**` — Page Not Found component with a link back to the daily puzzle
+- Hash-based routing (`useHash: true`) throughout
+
+---
+
 ## Puzzle Navigation
 
 ### Daily Mode
 - Default route loads the daily puzzle
 - `isDailyPuzzleMode` flag distinguishes from archive browsing
 
-### Query Parameter Navigation
-- Specific puzzles loaded via `?puzzle=<id>` query parameter
-- Supports bookmarking and sharing (hash-based routing)
+### Direct Puzzle Links
+- Preferred: `/play/:id` route parameter
+- Legacy `?puzzle=<id>` query parameter still supported on `/`
+- Both support bookmarking and sharing (hash-based routing)
 
 ### Play Again
 - Reloads the same puzzle with reshuffled words
@@ -248,8 +294,7 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 - For locked daily puzzles, simply closes the win modal (no reset)
 
 ### Next Puzzle
-- Loads puzzle with id + 1
-- Updates URL; falls back to puzzle 1 if not found
+- Navigates to `/play/<id + 1>`; falls back to puzzle 1 if not found
 
 ---
 
