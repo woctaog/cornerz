@@ -31,7 +31,9 @@
       "Bash(git -C /home/woctaog/source/cornerz remote -v)",
       "Bash(git -C /home/woctaog/source/cornerz branch -a)",
       "Bash(git -C /home/woctaog/source/cornerz diff --stat)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git *)",
+      "Bash(curl -s --max-time 15 https://cornerz.cc/assets/puzzles.json)"
     ]
   }
 }

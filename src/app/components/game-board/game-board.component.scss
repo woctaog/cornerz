@@ -177,6 +177,95 @@ $board-max: 400px;
   font-size: 1.2rem;
 }
 
+// --- Skeleton loader ---
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+%shimmer {
+  background: linear-gradient(90deg, #e8edf2 25%, #f8fafc 50%, #e8edf2 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.skeleton-header {
+  width: min(92vw, $board-max);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skeleton-block {
+  @extend %shimmer;
+  border-radius: 6px;
+}
+
+.skeleton-wordmark {
+  width: 110px;
+  height: 20px;
+}
+
+.skeleton-title {
+  width: 120px;
+  height: 13px;
+  flex: 1;
+  max-width: 140px;
+}
+
+.skeleton-circle {
+  @extend %shimmer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: clamp(4px, 1.5vw, 8px);
+  width: var(--board-width);
+  aspect-ratio: 1;
+  border: 2px solid #e0e4ea;
+  border-radius: 8px;
+  padding: clamp(4px, 1.5vw, 8px);
+  background-color: #f5f5f5;
+}
+
+.skeleton-bank {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(4px, 1.5vw, 8px);
+  width: var(--board-width);
+  border: 2px solid #e8ecef;
+  border-radius: 8px;
+  padding: clamp(4px, 1.5vw, 8px);
+  background-color: #fafafa;
+}
+
+.skeleton-cell {
+  @extend %shimmer;
+  aspect-ratio: 1;
+  border-radius: 4px;
+
+  &.disabled {
+    animation: none;
+    background: #e0e0e0;
+  }
+}
+
 .error {
   color: #f44336;
   background-color: #ffebee;
@@ -315,6 +404,11 @@ $board-max: 400px;
         }
       }
 
+      // Dark text on the yellow (difficulty 1) background for WCAG contrast
+      &[data-difficulty="1"] {
+        color: #3E2723;
+      }
+
       .arrow {
         font-size: clamp(0.9rem, 3vw, 1.5rem);
         margin-bottom: 2px;
@@ -406,6 +500,14 @@ $board-max: 400px;
     box-shadow: 0 0 0 3px #FF9800;
     border-radius: 8px;
   }
+}
+
+// Keyboard focus indicators for interactive game elements
+.grid-cell:focus-visible,
+.bank-tile-wrapper:focus-visible,
+.center-indicator:focus-visible {
+  outline: 3px solid #2196F3;
+  outline-offset: 2px;
 }
 
 .help-modal-backdrop {
@@ -537,6 +639,11 @@ $board-max: 400px;
   margin-left: 0.4rem;
 
   @include difficulty-color(background-color);
+
+  // Dark text on the yellow (difficulty 1) background for WCAG contrast
+  &[data-difficulty="1"] {
+    color: #3E2723;
+  }
 }
 
 .solution-body {

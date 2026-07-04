@@ -116,6 +116,7 @@
                    [class.preview-center]="cell.catIndex === -1"
                    [class.preview-cat-filled]="cell.catIndex > 0 && cell.word"
                    [class.preview-cat-empty]="cell.catIndex > 0 && !cell.word"
+                   [attr.data-cat]="cell.catIndex === -1 ? cell.centerFor : (cell.catIndex > 0 ? cell.catIndex : null)"
                    [style.backgroundColor]="cell.catIndex === -1 ? catColors[cell.centerFor!] : (cell.catIndex > 0 && cell.word ? catColors[cell.catIndex] : null)">
 
                 <!-- Center indicator cell -->

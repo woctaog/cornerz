@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CdkDragDrop, CdkDragStart, CdkDragEnd, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -76,6 +76,14 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   lines = LINES;
   centerIndicators = CENTER_INDICATORS;
 
+  // Skeleton loader placeholders
+  readonly skeletonCells = new Array(16).fill(0);
+  readonly skeletonTiles = new Array(12).fill(0);
+
+  // Screen reader announcement (aria-live)
+  announcement = '';
+  private announceTimer: ReturnType<typeof setTimeout> | undefined;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -125,6 +133,61 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       this.countdownTimer = null;
     }
     if (this.oneAwayTimer) clearTimeout(this.oneAwayTimer);
+    if (this.announceTimer) clearTimeout(this.announceTimer);
+  }
+
+  // --- Accessibility helpers ---
+
+  /** Queue a polite screen reader announcement (clearing first so repeats re-announce). */
+  private announce(message: string): void {
+    this.announcement = '';
+    if (this.announceTimer) clearTimeout(this.announceTimer);
+    this.announceTimer = setTimeout(() => { this.announcement = message; }, 50);
+  }
+
+  isCellInteractive(cellIndex: number): boolean {
+    return !this.isSpotDisabled(cellIndex) && !this.isCornerLocked(cellIndex) && !this.isDailyLocked;
+  }
+
+  getCellAriaLabel(cellIndex: number): string {
+    const row = Math.floor(cellIndex / 4) + 1;
+    const col = (cellIndex % 4) + 1;
+    const tile = this.gridTiles[cellIndex];
+    const base = `Grid cell row ${row}, column ${col}`;
+    if (!tile) {
+      return this.selectedTile ? `${base}, empty. Press Enter to place the selected tile.` : `${base}, empty`;
+    }
+    const state = this.isGridCellSelected(cellIndex)
+      ? ', selected'
+      : this.isCellInCompletedLine(cellIndex) ? ', in a solved line' : '';
+    return `${base}: ${tile.word}${state}`;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey(): void {
+    if (this.activeSolution) {
+      this.closeSolution();
+    } else if (this.isHelpOpen) {
+      this.closeHelp();
+    } else if (this.statsModalOpen) {
+      this.statsModalOpen = false;
+    } else if (this.winModalOpen) {
+      this.winModalOpen = false;
+    } else if (this.selectedTile) {
+      this.selectedTile = null;
+      this.announce('Selection cleared');
+    }
+  }
+
+  @HostListener('document:keydown.delete')
+  @HostListener('document:keydown.backspace')
+  onDeleteKey(): void {
+    // Return the selected grid tile to the bank (keyboard alternative to clicking the bank)
+    if (this.selectedTile?.source === 'grid') {
+      const word = this.gridTiles[this.selectedTile.index]?.word;
+      this.onBankClick();
+      if (word) this.announce(`${word} returned to the bank`);
+    }
   }
 
   private loadDailyPuzzle(): void {
@@ -377,10 +440,12 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
     if (this.selectedTile?.source === 'bank' && this.selectedTile.index === index) {
       this.selectedTile = null;
+      this.announce('Selection cleared');
       return;
     }
 
     this.selectedTile = { source: 'bank', index };
+    this.announce(`${this.availableTiles[index].word} selected. Choose a grid cell to place it.`);
   }
 
   onGridCellClick(cellIndex: number) {
@@ -422,11 +487,14 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       }
 
       this.selectedTile = null;
+      const placedWord = this.gridTiles[cellIndex]?.word;
+      if (placedWord) this.announce(`${placedWord} placed`);
       this.playBounce(cellIndex);
       this.checkForCompletedLines();
     } else if (this.gridTiles[cellIndex] !== null) {
       // Select this grid tile
       this.selectedTile = { source: 'grid', index: cellIndex };
+      this.announce(`${this.gridTiles[cellIndex]!.word} selected. Choose a cell to move it, or press Delete to return it to the bank.`);
     }
   }
 
@@ -555,19 +623,20 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.showCornerHint = false;
   }
 
-  private triggerOneAwayIfApplicable(submittedWords: string[]): void {
-    if (!this.currentPuzzle) return;
+  private triggerOneAwayIfApplicable(submittedWords: string[]): boolean {
+    if (!this.currentPuzzle) return false;
     const isOneAway = this.currentPuzzle.categories
       .filter(cat => !this.completedLines.has(this.getCategoryLineName(cat)))
       .some(cat => {
         const matches = submittedWords.filter(w => cat.words.includes(w)).length;
         return matches === 3;
       });
-    if (!isOneAway) return;
+    if (!isOneAway) return false;
 
     this.showOneAway = true;
     if (this.oneAwayTimer) clearTimeout(this.oneAwayTimer);
     this.oneAwayTimer = setTimeout(() => { this.showOneAway = false; }, 3000);
+    return true;
   }
 
   private getCategoryLineName(cat: { words: string[] }): string {
@@ -617,11 +686,13 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.lineCategoryData.set(lineName, matchingCategory);
           this.lineCompletionOrder.push(matchingCategory.difficulty);
           this.gameSequence.push(matchingCategory.difficulty);
+          this.announce(`${lineName} line solved: ${matchingCategory.name}. ${this.completedLines.size} of 4 lines complete.`);
           this.checkWinCondition();
         } else {
           this.mistakes++;
           this.gameSequence.push(0);
-          this.triggerOneAwayIfApplicable(lineWords);
+          const oneAway = this.triggerOneAwayIfApplicable(lineWords);
+          this.announce(`That ${lineName} line is not a category.${oneAway ? ' One away!' : ''} Tiles returned to the bank. Mistakes: ${this.mistakes}.`);
           this.maybeShowCornerHint();
           this.isResolvingInvalidLine = true;
           this.playShake(positions);
@@ -678,6 +749,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
       }
       this.gameWon = true;
       this.winModalOpen = true;
+      this.announce(`Puzzle solved with ${this.mistakes} mistake${this.mistakes === 1 ? '' : 's'}! Well done.`);
     }
   }
 

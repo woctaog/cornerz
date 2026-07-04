@@ -6,7 +6,10 @@
       <span class="puzzle-author" *ngIf="currentPuzzle!.author">by {{ currentPuzzle!.author }}</span>
     </div>
     <div class="header-actions">
-      <div class="streak-badge" *ngIf="currentStreak > 0" (click)="statsModalOpen = true" role="button" [attr.aria-label]="currentStreak + ' day streak'">
+      <div class="streak-badge" *ngIf="currentStreak > 0" (click)="statsModalOpen = true" role="button" tabindex="0"
+           (keydown.enter)="statsModalOpen = true"
+           (keydown.space)="statsModalOpen = true; $event.preventDefault()"
+           [attr.aria-label]="currentStreak + ' day streak. View stats.'">
         🔥 {{ currentStreak }}
       </div>
       <button type="button" class="icon-button" (click)="statsModalOpen = true" aria-label="View stats">
@@ -20,9 +23,22 @@
     </div>
   </div>
 
-  <div class="loading" *ngIf="loading">
-    <p>Loading puzzle...</p>
+  <div class="skeleton-loader" *ngIf="loading" aria-hidden="true">
+    <div class="skeleton-header">
+      <div class="skeleton-block skeleton-wordmark"></div>
+      <div class="skeleton-block skeleton-title"></div>
+      <div class="skeleton-block skeleton-circle"></div>
+    </div>
+    <div class="skeleton-grid">
+      <div class="skeleton-cell"
+           *ngFor="let cell of skeletonCells; let i = index"
+           [class.disabled]="isSpotDisabled(i)"></div>
+    </div>
+    <div class="skeleton-bank">
+      <div class="skeleton-cell" *ngFor="let tile of skeletonTiles"></div>
+    </div>
   </div>
+  <p class="sr-only" *ngIf="loading">Loading puzzle...</p>
 
   <div class="error" *ngIf="error">
     <p>{{ error }}</p>
@@ -51,6 +67,11 @@
              (cdkDropListDropped)="dropOnCell($event, i)"
              [cdkDropListData]="[tile]"
              [cdkDropListConnectedTo]="getConnectedDropLists()"
+             [attr.tabindex]="isCellInteractive(i) ? 0 : null"
+             [attr.role]="isCellInteractive(i) ? 'button' : null"
+             [attr.aria-label]="isCellInteractive(i) ? getCellAriaLabel(i) : null"
+             (keydown.enter)="onGridCellClick(i)"
+             (keydown.space)="onGridCellClick(i); $event.preventDefault()"
              (click)="onGridCellClick(i)">
           <app-game-tile
             *ngIf="gridTiles[i] && !isSpotDisabled(i)"
@@ -66,6 +87,11 @@
           <!-- Center indicator for completed lines -->
           <div *ngIf="isSpotDisabled(i) && isCenterIndicatorActive(i)" class="center-indicator clickable"
                [attr.data-difficulty]="getCenterDifficulty(i)"
+               tabindex="0"
+               role="button"
+               [attr.aria-label]="'Show solution for category ' + getCenterIndicatorCategory(i)"
+               (keydown.enter)="onCenterIndicatorClick(i); $event.stopPropagation()"
+               (keydown.space)="onCenterIndicatorClick(i); $event.stopPropagation(); $event.preventDefault()"
                (click)="onCenterIndicatorClick(i); $event.stopPropagation()">
             <div class="arrow">{{ getCenterIndicatorArrow(i) }}</div>
             <div class="category-label" [appFitText]="12" [fitTextWrap]="true">{{ getCenterIndicatorCategory(i) }}</div>
@@ -80,6 +106,8 @@
         <div class="bank-container"
              cdkDropList
              id="bank-list"
+             role="group"
+             aria-label="Tile bank. Select a tile, then choose a grid cell. Press Delete to return a selected grid tile to the bank."
              [cdkDropListSortingDisabled]="true"
              (cdkDropListDropped)="dropToBank($event)"
              [cdkDropListData]="availableTiles"
@@ -89,6 +117,12 @@
                *ngFor="let tile of availableTiles; let i = index"
                [style.--tile-index]="i"
                [class.selected]="isBankTileSelected(i)"
+               tabindex="0"
+               role="button"
+               [attr.aria-pressed]="isBankTileSelected(i)"
+               [attr.aria-label]="'Tile ' + tile.word"
+               (keydown.enter)="onBankTileClick(i); $event.stopPropagation()"
+               (keydown.space)="onBankTileClick(i); $event.stopPropagation(); $event.preventDefault()"
                (click)="onBankTileClick(i); $event.stopPropagation()">
             <app-game-tile
               [word]="tile.word"
@@ -134,8 +168,10 @@
 
   </div>
 
+  <div class="sr-only" role="status" aria-live="polite">{{ announcement }}</div>
+
   <div class="help-modal-backdrop" *ngIf="isHelpOpen" (click)="closeHelp()">
-    <div class="help-modal" (click)="$event.stopPropagation()">
+    <div class="help-modal" role="dialog" aria-modal="true" aria-label="How to play" (click)="$event.stopPropagation()">
       <div class="help-modal-header">
         <h3>How To Play</h3>
         <button type="button" class="close-button" (click)="closeHelp()" aria-label="Close help">X</button>
@@ -156,7 +192,7 @@
   </div>
 
   <div class="solution-modal-backdrop" *ngIf="activeSolution" (click)="closeSolution()">
-    <div class="solution-modal" [attr.data-difficulty]="activeSolution.difficulty" (click)="$event.stopPropagation()">
+    <div class="solution-modal" role="dialog" aria-modal="true" [attr.aria-label]="'Solution for ' + activeSolution.name" [attr.data-difficulty]="activeSolution.difficulty" (click)="$event.stopPropagation()">
       <div class="solution-modal-header">
         <h3>
           {{ activeSolution.name }}

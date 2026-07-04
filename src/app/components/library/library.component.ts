@@ -25,6 +25,8 @@ export class LibraryComponent implements OnInit {
   difficultyFilter: DifficultyFilter = 'all';
   completionFilter: CompletionFilter = 'all';
 
+  readonly skeletonCards = new Array(4).fill(0);
+
   constructor(
     private router: Router,
     private puzzleProvider: PuzzleProvider,

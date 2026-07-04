@@ -24,7 +24,17 @@
     </label>
   </div>
 
-  <div class="loading" *ngIf="loading">Loading archive...</div>
+  <div class="skeleton-list" *ngIf="loading" aria-hidden="true">
+    <div class="skeleton-card" *ngFor="let card of skeletonCards">
+      <div class="skeleton-line skeleton-line-title"></div>
+      <div class="skeleton-line skeleton-line-sub"></div>
+      <div class="skeleton-card-footer">
+        <div class="skeleton-line skeleton-line-tag"></div>
+        <div class="skeleton-line skeleton-line-btn"></div>
+      </div>
+    </div>
+  </div>
+  <p class="sr-only" *ngIf="loading">Loading archive...</p>
   <div class="error" *ngIf="error">{{ error }}</div>
 
   <div class="empty-state" *ngIf="!loading && !error && filteredPuzzles.length === 0">

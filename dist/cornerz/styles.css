@@ -1,0 +1,125 @@
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].rules[0].oneOf[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].rules[0].oneOf[0].use[2]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[6].rules[1].use[0]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[6].rules[1].use[1]!./src/styles.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+:root {
+  --brand-from: #667eea;
+  --brand-to: #764ba2;
+  --brand-gradient: linear-gradient(135deg, var(--brand-from) 0%, var(--brand-to) 100%);
+  --app-bg: linear-gradient(160deg, #f0f2ff 0%, #e8ecf8 55%, #dde3f5 100%);
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --border-subtle: #e2e8f0;
+  --text-primary: #1a2332;
+  --text-secondary: #4a5568;
+  --text-muted: #94a3b8;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --difficulty-1-color: #F9A825;
+  --difficulty-1-bg: #FFF9C4;
+  --difficulty-1-accent: #F57F17;
+  --difficulty-1-glow: 249, 168, 37;
+  --difficulty-2-color: #2E7D32;
+  --difficulty-2-bg: #C8E6C9;
+  --difficulty-2-accent: #4CAF50;
+  --difficulty-2-glow: 76, 175, 80;
+  --difficulty-3-color: #1565C0;
+  --difficulty-3-bg: #BBDEFB;
+  --difficulty-3-accent: #42A5F5;
+  --difficulty-3-glow: 21, 101, 192;
+  --difficulty-4-color: #6A1B9A;
+  --difficulty-4-bg: #E1BEE7;
+  --difficulty-4-accent: #AB47BC;
+  --difficulty-4-glow: 106, 27, 154;
+  --difficulty-easy-color: var(--difficulty-2-color);
+  --difficulty-medium-color: var(--difficulty-3-color);
+  --difficulty-hard-color: var(--difficulty-4-color);
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Visually hidden but available to screen readers */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Button micro-interactions: subtle press feedback everywhere */
+
+button {
+  font-family: inherit;
+  transition: transform 0.12s ease, opacity 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+/* Consistent keyboard focus ring on all interactive controls */
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role=button]:focus-visible {
+  outline: 2px solid var(--brand-from);
+  outline-offset: 2px;
+}
+
+/* Smooth route transitions: routed views fade/slide in on navigation */
+
+@keyframes route-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+app-game-board,
+app-library,
+app-submit-puzzle {
+  display: block;
+  animation: route-enter 0.22s ease;
+}
+
+/* Respect users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map*/

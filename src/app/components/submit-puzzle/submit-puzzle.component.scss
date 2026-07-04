@@ -277,6 +277,16 @@
   color: white;
 }
 
+// Match the game board: dark text on the yellow (category 1) background for WCAG contrast
+.preview-cell[data-cat="1"] {
+  .center-arrow,
+  .center-label,
+  &:not(.preview-corner) .cell-word:not(.cell-empty) {
+    color: #3E2723;
+    text-shadow: none;
+  }
+}
+
 .center-label {
   font-weight: 600;
   line-height: 1.2;
