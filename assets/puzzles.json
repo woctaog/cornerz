@@ -1,153 +1,13 @@
 {
   "puzzles": [
     {
-      "id": 5,
-      "title": "Cornerz Puzzle 5",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 3,
-      "words": [
-        "FIELD",
-        "FOSTER",
-        "SWANK",
-        "STONE",
-        "DANCES",
-        "TILE",
-        "TIN",
-        "STEEL",
-        "BULL",
-        "HERRING",
-        "FLAG",
-        "WOOD"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Repeat Best Actress Winners",
-          "difficulty": 3,
-          "solution": "<strong>FIELD</strong> - Sally Field won for <em>Norma Rae</em> (1979) and <em>Places in the Heart</em> (1984)<br><strong>FOSTER</strong> - Jodie Foster won for <em>The Accused</em> (1988) and <em>The Silence of the Lambs</em> (1991)<br><strong>SWANK</strong> - Hilary Swank won for <em>Boys Don't Cry</em> (1999) and <em>Million Dollar Baby</em> (2004)<br><strong>STONE</strong> - Emma Stone won for <em>La La Land</em> (2016) and <em>Poor Things</em> (2023)",
-          "words": [
-            "FIELD",
-            "FOSTER",
-            "SWANK",
-            "STONE"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "First Words of Kevin Costner Movies",
-          "difficulty": 4,
-          "solution": "<strong>FIELD</strong> - <em>Field of Dreams</em> (1989)<br><strong>DANCES</strong> - <em>Dances with Wolves</em> (1990)<br><strong>TIN</strong> - <em>Tin Cup</em> (1996)<br><strong>BULL</strong> - <em>Bull Durham</em> (1988)",
-          "words": [
-            "FIELD",
-            "DANCES",
-            "TIN",
-            "BULL"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Building Materials",
-          "difficulty": 1,
-          "solution": "<strong>STONE</strong> - Natural stone used in construction<br><strong>TILE</strong> - Ceramic or porcelain tiles for flooring and walls<br><strong>STEEL</strong> - Metal alloy used in structural frameworks<br><strong>WOOD</strong> - Lumber and timber for framing and finishing",
-          "words": [
-            "STONE",
-            "TILE",
-            "STEEL",
-            "WOOD"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Words That Follow RED",
-          "difficulty": 2,
-          "solution": "<strong>BULL</strong> - <em>Red Bull</em> (energy drink)<br><strong>HERRING</strong> - <em>Red Herring</em> (misleading clue or distraction)<br><strong>FLAG</strong> - <em>Red Flag</em> (warning sign)<br><strong>WOOD</strong> - <em>Redwood</em> (type of tree)",
-          "words": [
-            "BULL",
-            "HERRING",
-            "FLAG",
-            "WOOD"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Cornerz Puzzle 4",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 2,
-      "words": [
-        "GOLD",
-        "SWORD",
-        "TUNA",
-        "SAIL",
-        "VICTOR",
-        "SENT",
-        "PRIME",
-        "CACHE",
-        "GOAT",
-        "PASS",
-        "RANGE",
-        "DEW"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Types of Fish",
-          "difficulty": 1,
-          "solution": "<strong>GOLD</strong> - Goldfish (common aquarium fish)<br><strong>SWORD</strong> - Swordfish (large game fish)<br><strong>TUNA</strong> - Tuna fish (commercial food fish)<br><strong>SAIL</strong> - Sailfish (fish with large dorsal fin)",
-          "words": [
-            "GOLD",
-            "SWORD",
-            "TUNA",
-            "SAIL"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Words preceded by MOUNTAIN",
-          "difficulty": 2,
-          "solution": "<strong>GOAT</strong> - Mountain Goat<br><strong>PASS</strong> - Mountain Pass<br><strong>RANGE</strong> - Mountain Range<br><strong>DEW</strong> - Mountain Dew (beverage brand)",
-          "words": [
-            "GOAT",
-            "PASS",
-            "RANGE",
-            "DEW"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Homophones of money terms",
-          "difficulty": 4,
-          "solution": "<strong>SAIL</strong> - Sounds like <em>Sale</em><br><strong>SENT</strong> - Sounds like <em>Cent</em><br><strong>CACHE</strong> - Sounds like <em>Cash</em><br><strong>DEW</strong> - Sounds like <em>Due</em>",
-          "words": [
-            "SAIL",
-            "SENT",
-            "CACHE",
-            "DEW"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Best / top-tier",
-          "difficulty": 3,
-          "solution": "<strong>GOLD</strong> - Gold medal (highest award)<br><strong>VICTOR</strong> - Victor (winner)<br><strong>PRIME</strong> - Prime quality (best grade)<br><strong>GOAT</strong> - GOAT (Greatest Of All Time)",
-          "words": [
-            "GOLD",
-            "VICTOR",
-            "PRIME",
-            "GOAT"
-          ]
-        }
-      ]
-    },
-    {
       "id": 1,
       "title": "Cornerz Puzzle 1",
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
+      "rating": 68,
+      "solveRating": 2,
       "words": [
         "RING",
         "CHAIN",
@@ -215,152 +75,12 @@
     },
     {
       "id": 2,
-      "title": "Cornerz Puzzle 2",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 2,
-      "words": [
-        "SOLE",
-        "PERCH",
-        "RAY",
-        "BASS",
-        "LACE",
-        "EYELET",
-        "DRUM",
-        "HARP",
-        "HEART",
-        "LUNG",
-        "TOUNGE",
-        "ORGAN"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Types of Fish",
-          "difficulty": 4,
-          "solution": "<strong>SOLE</strong> - Flatfish found in coastal waters<br><strong>PERCH</strong> - Freshwater fish with spined dorsal fin<br><strong>RAY</strong> - Flat cartilaginous fish with barbed tail<br><strong>BASS</strong> - Freshwater or saltwater game fish",
-          "words": [
-            "SOLE",
-            "PERCH",
-            "RAY",
-            "BASS"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Parts of a Shoe",
-          "difficulty": 3,
-          "solution": "<strong>SOLE</strong> - Bottom of the shoe<br><strong>TONGUE</strong> - Flap under the laces<br><strong>LACE</strong> - Cord for fastening<br><strong>EYELET</strong> - Hole for threading laces",
-          "words": [
-            "SOLE",
-            "TOUNGE",
-            "LACE",
-            "EYELET"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Musical Instruments",
-          "difficulty": 2,
-          "solution": "<strong>BASS</strong> - Low-pitched string instrument<br><strong>DRUM</strong> - Percussion instrument struck with sticks<br><strong>HARP</strong> - String instrument with multiple strings<br><strong>ORGAN</strong> - Keyboard instrument with pipes",
-          "words": [
-            "BASS",
-            "DRUM",
-            "HARP",
-            "ORGAN"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Body Parts",
-          "difficulty": 1,
-          "solution": "<strong>TONGUE</strong> - Organ in the mouth<br><strong>HEART</strong> - Organ that pumps blood<br><strong>LUNG</strong> - Organ for breathing<br><strong>ORGAN</strong> - General term for body parts with specific functions",
-          "words": [
-            "TOUNGE",
-            "HEART",
-            "LUNG",
-            "ORGAN"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "Cornerz Puzzle 3",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 1,
-      "words": [
-        "JAM",
-        "TOAST",
-        "CEREAL",
-        "BAGEL",
-        "POP",
-        "BEAT",
-        "TRACK",
-        "PUNCH",
-        "BALLOON",
-        "CONFETTI",
-        "CIDER",
-        "SHAKE"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Breakfast Foods",
-          "difficulty": 1,
-          "solution": "<strong>JAM</strong> - Fruit preserve spread on toast<br><strong>TOAST</strong> - Browned bread<br><strong>CEREAL</strong> - Grain-based breakfast food with milk<br><strong>BAGEL</strong> - Ring-shaped bread roll",
-          "words": [
-            "JAM",
-            "TOAST",
-            "CEREAL",
-            "BAGEL"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Party Things",
-          "difficulty": 2,
-          "solution": "<strong>TOAST</strong> - A drink raised in celebration<br><strong>PUNCH</strong> - Beverage served at parties<br><strong>BALLOON</strong> - Inflatable decoration<br><strong>CONFETTI</strong> - Colorful paper scattered in celebration",
-          "words": [
-            "TOAST",
-            "PUNCH",
-            "BALLOON",
-            "CONFETTI"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Music Terms",
-          "difficulty": 3,
-          "solution": "<strong>JAM</strong> - To play music spontaneously with others<br><strong>POP</strong> - Popular music genre<br><strong>BEAT</strong> - Rhythmic pulse of music<br><strong>TRACK</strong> - Individual song on an album",
-          "words": [
-            "JAM",
-            "POP",
-            "BEAT",
-            "TRACK"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Types of Drinks",
-          "difficulty": 4,
-          "solution": "<strong>POP</strong> - Carbonated soft drink (soda)<br><strong>PUNCH</strong> - Beverage made from fruit juice and other ingredients<br><strong>CIDER</strong> - Fermented or non-fermented apple juice<br><strong>SHAKE</strong> - Creamy beverage made with ice cream and milk",
-          "words": [
-            "POP",
-            "PUNCH",
-            "CIDER",
-            "SHAKE"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 7,
       "title": "Puz #1",
       "description": "",
       "author": "woctaog",
       "difficulty": 1,
+      "rating": 80,
+      "solveRating": 2,
       "words": [
         "EVE",
         "VIOLET",
@@ -427,437 +147,86 @@
       ]
     },
     {
-      "id": 8,
-      "title": "Puz #2",
+      "id": 3,
+      "title": "Cornerz Puzzle 3",
       "description": "",
-      "author": "Victor",
-      "difficulty": 2,
-      "words": [
-        "STRANGE",
-        "CURIOUS",
-        "PECULIAR",
-        "ODD",
-        "BUSH",
-        "BOY",
-        "COSTANZA",
-        "PEPPER",
-        "HOUSE",
-        "WHO",
-        "CAR",
-        "FENCE"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Synonyms for Weird",
-          "difficulty": 1,
-          "solution": "<strong>STRANGE</strong> - Unusual or surprising<br><strong>CURIOUS</strong> - Strange in an interesting way<br><strong>PECULIAR</strong> - Distinctly odd<br><strong>ODD</strong> - Different from what is expected",
-          "words": [
-            "STRANGE",
-            "CURIOUS",
-            "PECULIAR",
-            "ODD"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Objects in Front Yard Portrait",
-          "difficulty": 2,
-          "solution": "<strong>HOUSE</strong> - The home in the background<br><strong>CAR</strong> - Vehicle in the driveway<br><strong>BUSH</strong> - Shrub in the landscaping<br><strong>FENCE</strong> - Border around the yard",
-          "words": [
-            "HOUSE",
-            "CAR",
-            "BUSH",
-            "FENCE"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Famous Georges",
-          "difficulty": 3,
-          "solution": "<strong>BUSH</strong> - George Bush (U.S. Presidents)<br><strong>CURIOUS</strong> - Curious George (children's book character)<br><strong>BOY</strong> - Boy George (pop singer)<br><strong>COSTANZA</strong> - George Costanza (Seinfeld character)",
-          "words": [
-            "BUSH",
-            "CURIOUS",
-            "BOY",
-            "COSTANZA"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Doctors in Pop Culture",
-          "difficulty": 4,
-          "solution": "<strong>PEPPER</strong> - Dr Pepper (soft drink)<br><strong>STRANGE</strong> - Doctor Strange (Marvel)<br><strong>HOUSE</strong> - Dr. House (TV series)<br><strong>WHO</strong> - Doctor Who (BBC series)",
-          "words": [
-            "PEPPER",
-            "STRANGE",
-            "HOUSE",
-            "WHO"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "title": "Cornerz Puzzle 11",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 3,
-      "words": [
-        "NEW",
-        "OPEN",
-        "SAVE",
-        "CLOSE",
-        "NORTH",
-        "RHODE",
-        "WEST",
-        "SERVE",
-        "RACKET",
-        "MATCH",
-        "MOOT",
-        "BREAKING"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "File Menu Options",
-          "difficulty": 1,
-          "solution": "<strong>NEW</strong> - File &gt; New (create a new document)<br><strong>OPEN</strong> - File &gt; Open (open an existing file)<br><strong>SAVE</strong> - File &gt; Save (save the current file)<br><strong>CLOSE</strong> - File &gt; Close (close the current document)",
-          "words": [
-            "NEW",
-            "OPEN",
-            "SAVE",
-            "CLOSE"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Tennis Terms",
-          "difficulty": 3,
-          "solution": "<strong>OPEN</strong> - A major open tournament (e.g. US Open)<br><strong>SERVE</strong> - Putting the ball in play to start a point<br><strong>RACKET</strong> - The strung paddle used to hit the ball<br><strong>MATCH</strong> - A complete contest between two players or teams",
-          "words": [
-            "OPEN",
-            "SERVE",
-            "RACKET",
-            "MATCH"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "___ Point",
-          "difficulty": 4,
-          "solution": "<strong>MATCH</strong> - Match Point (the point that wins the match)<br><strong>MOOT</strong> - Moot Point (an issue open to debate, or no longer relevant)<br><strong>WEST</strong> - West Point (the U.S. Military Academy in New York)<br><strong>BREAKING</strong> - Breaking Point (the moment of crisis or collapse)",
-          "words": [
-            "MATCH",
-            "MOOT",
-            "WEST",
-            "BREAKING"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "First Word of a US State",
-          "difficulty": 2,
-          "solution": "<strong>NEW</strong> - New York, New Jersey, New Mexico, New Hampshire<br><strong>NORTH</strong> - North Carolina, North Dakota<br><strong>RHODE</strong> - Rhode Island<br><strong>WEST</strong> - West Virginia",
-          "words": [
-            "NEW",
-            "NORTH",
-            "RHODE",
-            "WEST"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "title": "Cornerz Puzzle 10",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 3,
-      "words": [
-        "SQUASH",
-        "MASH",
-        "PRESS",
-        "SQUEEZE",
-        "FLAME",
-        "LOVER",
-        "STEADY",
-        "SLAM",
-        "BLAST",
-        "ROAST",
-        "COUCH",
-        "HOT"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "___ Potato",
-          "difficulty": 1,
-          "solution": "<strong>COUCH</strong> - Couch Potato<br><strong>HOT</strong> - Hot Potato<br><strong>MASH</strong> - Mash Potato (mashed potatoes)<br><strong>ROAST</strong> - Roast Potato",
-          "words": [
-            "COUCH",
-            "HOT",
-            "MASH",
-            "ROAST"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Apply Pressure",
-          "difficulty": 2,
-          "solution": "<strong>SQUASH</strong> - To squash something is to press it with force<br><strong>MASH</strong> - To mash is to press or squeeze into a pulp<br><strong>PRESS</strong> - To press is to push steadily against something<br><strong>SQUEEZE</strong> - To squeeze is to apply pressure by compressing",
-          "words": [
-            "SQUASH",
-            "MASH",
-            "PRESS",
-            "SQUEEZE"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Romantic Partner",
-          "difficulty": 3,
-          "solution": "<strong>FLAME</strong> - An old flame (a former romantic partner)<br><strong>LOVER</strong> - A person in a romantic relationship<br><strong>STEADY</strong> - A steady (a regular, committed partner)<br><strong>SQUEEZE</strong> - My squeeze (informal for a romantic partner)",
-          "words": [
-            "FLAME",
-            "LOVER",
-            "STEADY",
-            "SQUEEZE"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Criticize Harshly",
-          "difficulty": 4,
-          "solution": "<strong>SLAM</strong> - To slam someone's work or ideas<br><strong>BLAST</strong> - To blast someone in a review or speech<br><strong>FLAME</strong> - To flame someone (harsh public criticism, especially online)<br><strong>ROAST</strong> - To roast someone (mock and criticize, often humorously)",
-          "words": [
-            "SLAM",
-            "BLAST",
-            "FLAME",
-            "ROAST"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "title": "Cornerz Puzzle 9",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 2,
-      "words": [
-        "BIRD",
-        "KETTLE",
-        "REFEREE",
-        "TRAIN",
-        "CANDY CANE",
-        "CROSSWALK",
-        "TIGER",
-        "ANGEL",
-        "TINSEL",
-        "ORNAMENT",
-        "AIRPLANE",
-        "HOSPITAL"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Things That Whistle",
-          "difficulty": 2,
-          "solution": "<strong>BIRD</strong> - Birds whistle and tweet<br><strong>KETTLE</strong> - A boiling kettle whistles to signal it's ready<br><strong>REFEREE</strong> - Blows a whistle to start, stop, and call fouls<br><strong>TRAIN</strong> - Train horns and whistles signal departures and crossings",
-          "words": [
-            "BIRD",
-            "KETTLE",
-            "REFEREE",
-            "TRAIN"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "Things With Stripes",
-          "difficulty": 1,
-          "solution": "<strong>CANDY CANE</strong> - Classic red and white spiral stripes<br><strong>CROSSWALK</strong> - White painted stripes across the road<br><strong>REFEREE</strong> - Iconic black and white striped uniform<br><strong>TIGER</strong> - Orange fur with black stripes",
-          "words": [
-            "CANDY CANE",
-            "CROSSWALK",
-            "REFEREE",
-            "TIGER"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Christmas Tree Decorations",
-          "difficulty": 3,
-          "solution": "<strong>CANDY CANE</strong> - Hooked candy hung on tree branches<br><strong>ANGEL</strong> - Traditional tree topper<br><strong>TINSEL</strong> - Shiny metallic strands draped on branches<br><strong>ORNAMENT</strong> - Decorative balls and shapes hung on the tree",
-          "words": [
-            "CANDY CANE",
-            "ANGEL",
-            "TINSEL",
-            "ORNAMENT"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Things With Wings",
-          "difficulty": 4,
-          "solution": "<strong>ANGEL</strong> - Angel wings<br><strong>BIRD</strong> - Bird wings<br><strong>AIRPLANE</strong> - Airplane wings<br><strong>HOSPITAL</strong> - A hospital wing is a section or building of a hospital",
-          "words": [
-            "ANGEL",
-            "BIRD",
-            "AIRPLANE",
-            "HOSPITAL"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 13,
-      "title": "Cornerz Puzzle 13",
-      "description": "",
-      "author": "woctaog",
-      "difficulty": 3,
-      "words": [
-        "ROUNDUP",
-        "LASSO",
-        "CAMPFIRE",
-        "DRAW",
-        "STALEMATE",
-        "TIE",
-        "WASH",
-        "SHAMPOO",
-        "STYLE",
-        "TRIM",
-        "MOWING",
-        "FERTILIZER"
-      ],
-      "categories": [
-        {
-          "id": 1,
-          "name": "Cowboy Things",
-          "difficulty": 4,
-          "solution": "<strong>ROUNDUP</strong> - A cattle roundup, gathering livestock on the range<br><strong>LASSO</strong> - Rope thrown to catch cattle or horses<br><strong>CAMPFIRE</strong> - Cowboys gather around the campfire on the trail<br><strong>DRAW</strong> - A quick draw, pulling a gun from its holster",
-          "words": [
-            "ROUNDUP",
-            "LASSO",
-            "CAMPFIRE",
-            "DRAW"
-          ]
-        },
-        {
-          "id": 2,
-          "name": "No Winner",
-          "difficulty": 3,
-          "solution": "<strong>DRAW</strong> - A draw ends with neither side winning<br><strong>STALEMATE</strong> - A stalemate (chess or otherwise) produces no winner<br><strong>TIE</strong> - A tied score means no winner<br><strong>WASH</strong> - A wash means no net gain or loss; a toss-up",
-          "words": [
-            "DRAW",
-            "STALEMATE",
-            "TIE",
-            "WASH"
-          ]
-        },
-        {
-          "id": 3,
-          "name": "Hair Salon Services",
-          "difficulty": 1,
-          "solution": "<strong>WASH</strong> - Shampooing and rinsing the hair<br><strong>SHAMPOO</strong> - Cleaning product used to wash hair<br><strong>STYLE</strong> - Blow-drying and finishing the hair<br><strong>TRIM</strong> - A light cut to remove split ends",
-          "words": [
-            "WASH",
-            "SHAMPOO",
-            "STYLE",
-            "TRIM"
-          ]
-        },
-        {
-          "id": 4,
-          "name": "Lawn Care",
-          "difficulty": 2,
-          "solution": "<strong>TRIM</strong> - Trimming edges and hedges<br><strong>MOWING</strong> - Cutting the grass with a mower<br><strong>FERTILIZER</strong> - Nutrients applied to feed the lawn<br><strong>ROUNDUP</strong> - Roundup, the popular weed killer brand",
-          "words": [
-            "TRIM",
-            "MOWING",
-            "FERTILIZER",
-            "ROUNDUP"
-          ]
-        }
-      ]
-    },
-    {
-      "id": -1,
-      "title": "Test Puzzle",
-      "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
       "author": "woctaog",
       "difficulty": 1,
+      "rating": 91,
+      "solveRating": 2,
       "words": [
-        "COUNTERPRODUCTIVE",
-        "GO",
-        "EXTRAORDINARY",
-        "AX",
-        "BAMBOOZLE",
-        "HI",
-        "PERPENDICULAR",
-        "ME",
-        "QUINTESSENTIAL",
-        "UP",
-        "JUXTAPOSITION",
-        "RAZZMATAZZ"
+        "JAM",
+        "TOAST",
+        "CEREAL",
+        "BAGEL",
+        "POP",
+        "BEAT",
+        "TRACK",
+        "PUNCH",
+        "BALLOON",
+        "CONFETTI",
+        "CIDER",
+        "SHAKE"
       ],
       "categories": [
         {
           "id": 1,
-          "name": "Words That Rhyme With A President's Last Name",
+          "name": "Breakfast Foods",
           "difficulty": 1,
-          "solution": "Stress test puzzle - this category contains test words of varying lengths.",
+          "solution": "<strong>JAM</strong> - Fruit preserve spread on toast<br><strong>TOAST</strong> - Browned bread<br><strong>CEREAL</strong> - Grain-based breakfast food with milk<br><strong>BAGEL</strong> - Ring-shaped bread roll",
           "words": [
-            "COUNTERPRODUCTIVE",
-            "BAMBOOZLE",
-            "HI",
-            "GO"
+            "JAM",
+            "TOAST",
+            "CEREAL",
+            "BAGEL"
           ]
         },
         {
           "id": 2,
-          "name": "Big",
+          "name": "Party Things",
           "difficulty": 2,
-          "solution": "Stress test puzzle - this category tests text fitting with extremely long words.",
+          "solution": "<strong>TOAST</strong> - A drink raised in celebration<br><strong>PUNCH</strong> - Beverage served at parties<br><strong>BALLOON</strong> - Inflatable decoration<br><strong>CONFETTI</strong> - Colorful paper scattered in celebration",
           "words": [
-            "COUNTERPRODUCTIVE",
-            "PERPENDICULAR",
-            "ME",
-            "EXTRAORDINARY"
+            "TOAST",
+            "PUNCH",
+            "BALLOON",
+            "CONFETTI"
           ]
         },
         {
           "id": 3,
-          "name": "Overwhelming Sensations",
+          "name": "Music Terms",
           "difficulty": 3,
-          "solution": "Stress test puzzle - this category combines very long and very short words.",
+          "solution": "<strong>JAM</strong> - To play music spontaneously with others<br><strong>POP</strong> - Popular music genre<br><strong>BEAT</strong> - Rhythmic pulse of music<br><strong>TRACK</strong> - Individual song on an album",
           "words": [
-            "GO",
-            "QUINTESSENTIAL",
-            "UP",
-            "AX"
+            "JAM",
+            "POP",
+            "BEAT",
+            "TRACK"
           ]
         },
         {
           "id": 4,
-          "name": "Communication Methods",
+          "name": "Types of Drinks",
           "difficulty": 4,
-          "solution": "Stress test puzzle - this category pushes layout limits with extreme word lengths.",
+          "solution": "<strong>POP</strong> - Carbonated soft drink (soda)<br><strong>PUNCH</strong> - Beverage made from fruit juice and other ingredients<br><strong>CIDER</strong> - Fermented or non-fermented apple juice<br><strong>SHAKE</strong> - Creamy beverage made with ice cream and milk",
           "words": [
-            "EXTRAORDINARY",
-            "JUXTAPOSITION",
-            "RAZZMATAZZ",
-            "AX"
+            "POP",
+            "PUNCH",
+            "CIDER",
+            "SHAKE"
           ]
         }
       ]
     },
     {
-      "id": 6,
+      "id": 4,
       "title": "Not About the Animals",
       "description": "",
       "author": "woctaog",
       "difficulty": 3,
+      "rating": 93,
+      "solveRating": 4,
       "words": [
         "BEAR",
         "DOLPHIN",
@@ -924,11 +293,159 @@
       ]
     },
     {
-      "id": 12,
+      "id": 5,
+      "title": "Puz #2",
+      "description": "",
+      "author": "Victor",
+      "difficulty": 2,
+      "rating": 66,
+      "solveRating": 4,
+      "words": [
+        "STRANGE",
+        "CURIOUS",
+        "PECULIAR",
+        "ODD",
+        "BUSH",
+        "BOY",
+        "COSTANZA",
+        "PEPPER",
+        "HOUSE",
+        "WHO",
+        "CAR",
+        "FENCE"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Synonyms for Weird",
+          "difficulty": 1,
+          "solution": "<strong>STRANGE</strong> - Unusual or surprising<br><strong>CURIOUS</strong> - Strange in an interesting way<br><strong>PECULIAR</strong> - Distinctly odd<br><strong>ODD</strong> - Different from what is expected",
+          "words": [
+            "STRANGE",
+            "CURIOUS",
+            "PECULIAR",
+            "ODD"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Objects in Front Yard Portrait",
+          "difficulty": 2,
+          "solution": "<strong>HOUSE</strong> - The home in the background<br><strong>CAR</strong> - Vehicle in the driveway<br><strong>BUSH</strong> - Shrub in the landscaping<br><strong>FENCE</strong> - Border around the yard",
+          "words": [
+            "HOUSE",
+            "CAR",
+            "BUSH",
+            "FENCE"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Famous Georges",
+          "difficulty": 3,
+          "solution": "<strong>BUSH</strong> - George Bush (U.S. Presidents)<br><strong>CURIOUS</strong> - Curious George (children's book character)<br><strong>BOY</strong> - Boy George (pop singer)<br><strong>COSTANZA</strong> - George Costanza (Seinfeld character)",
+          "words": [
+            "BUSH",
+            "CURIOUS",
+            "BOY",
+            "COSTANZA"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Doctors in Pop Culture",
+          "difficulty": 4,
+          "solution": "<strong>PEPPER</strong> - Dr Pepper (soft drink)<br><strong>STRANGE</strong> - Doctor Strange (Marvel)<br><strong>HOUSE</strong> - Dr. House (TV series)<br><strong>WHO</strong> - Doctor Who (BBC series)",
+          "words": [
+            "PEPPER",
+            "STRANGE",
+            "HOUSE",
+            "WHO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Cornerz Puzzle 6",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "rating": 87,
+      "solveRating": 3,
+      "words": [
+        "SQUASH",
+        "MASH",
+        "PRESS",
+        "SQUEEZE",
+        "FLAME",
+        "LOVER",
+        "STEADY",
+        "SLAM",
+        "BLAST",
+        "ROAST",
+        "COUCH",
+        "HOT"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "___ Potato",
+          "difficulty": 1,
+          "solution": "<strong>COUCH</strong> - Couch Potato<br><strong>HOT</strong> - Hot Potato<br><strong>MASH</strong> - Mash Potato (mashed potatoes)<br><strong>ROAST</strong> - Roast Potato",
+          "words": [
+            "COUCH",
+            "HOT",
+            "MASH",
+            "ROAST"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Apply Pressure",
+          "difficulty": 2,
+          "solution": "<strong>SQUASH</strong> - To squash something is to press it with force<br><strong>MASH</strong> - To mash is to press or squeeze into a pulp<br><strong>PRESS</strong> - To press is to push steadily against something<br><strong>SQUEEZE</strong> - To squeeze is to apply pressure by compressing",
+          "words": [
+            "SQUASH",
+            "MASH",
+            "PRESS",
+            "SQUEEZE"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Romantic Partner",
+          "difficulty": 3,
+          "solution": "<strong>FLAME</strong> - An old flame (a former romantic partner)<br><strong>LOVER</strong> - A person in a romantic relationship<br><strong>STEADY</strong> - A steady (a regular, committed partner)<br><strong>SQUEEZE</strong> - My squeeze (informal for a romantic partner)",
+          "words": [
+            "FLAME",
+            "LOVER",
+            "STEADY",
+            "SQUEEZE"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Criticize Harshly",
+          "difficulty": 4,
+          "solution": "<strong>SLAM</strong> - To slam someone's work or ideas<br><strong>BLAST</strong> - To blast someone in a review or speech<br><strong>FLAME</strong> - To flame someone (harsh public criticism, especially online)<br><strong>ROAST</strong> - To roast someone (mock and criticize, often humorously)",
+          "words": [
+            "SLAM",
+            "BLAST",
+            "FLAME",
+            "ROAST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
       "title": "Name Dropping",
       "description": "",
       "author": "woctaog",
       "difficulty": 2,
+      "rating": 88,
+      "solveRating": 3,
       "words": [
         "Tom Hanks",
         "Robin Wright",
@@ -972,7 +489,7 @@
           "id": 3,
           "name": "Daytime TV Hosts",
           "difficulty": 3,
-          "solution": "<strong>Drew Barrymore</strong> - Host of <em>The Drew Barrymore Show</em> (2020–present)<br><strong>Oprah Winfrey</strong> - Hosted <em>The Oprah Winfrey Show</em> for 25 years (1986–2011)<br><strong>Regis Philbin</strong> - Co-hosted <em>Live with Regis and Kathie Lee</em> for decades<br><strong>Ellen DeGeneres</strong> - Hosted <em>The Ellen DeGeneres Show</em> for 19 years (2003–2022)",
+          "solution": "<strong>Drew Barrymore</strong> - Host of <em>The Drew Barrymore Show</em> (2020\u2013present)<br><strong>Oprah Winfrey</strong> - Hosted <em>The Oprah Winfrey Show</em> for 25 years (1986\u20132011)<br><strong>Regis Philbin</strong> - Co-hosted <em>Live with Regis and Kathie Lee</em> for decades<br><strong>Ellen DeGeneres</strong> - Hosted <em>The Ellen DeGeneres Show</em> for 19 years (2003\u20132022)",
           "words": [
             "Drew Barrymore",
             "Oprah Winfrey",
@@ -990,6 +507,663 @@
             "Amy Poehler",
             "Owen Wilson",
             "Tom Hanks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Cornerz Puzzle 8",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "rating": 89,
+      "solveRating": 4,
+      "words": [
+        "FIELD",
+        "FOSTER",
+        "SWANK",
+        "STONE",
+        "DANCES",
+        "TILE",
+        "TIN",
+        "STEEL",
+        "BULL",
+        "HERRING",
+        "FLAG",
+        "WOOD"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Repeat Best Actress Winners",
+          "difficulty": 3,
+          "solution": "<strong>FIELD</strong> - Sally Field won for <em>Norma Rae</em> (1979) and <em>Places in the Heart</em> (1984)<br><strong>FOSTER</strong> - Jodie Foster won for <em>The Accused</em> (1988) and <em>The Silence of the Lambs</em> (1991)<br><strong>SWANK</strong> - Hilary Swank won for <em>Boys Don't Cry</em> (1999) and <em>Million Dollar Baby</em> (2004)<br><strong>STONE</strong> - Emma Stone won for <em>La La Land</em> (2016) and <em>Poor Things</em> (2023)",
+          "words": [
+            "FIELD",
+            "FOSTER",
+            "SWANK",
+            "STONE"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "First Words of Kevin Costner Movies",
+          "difficulty": 4,
+          "solution": "<strong>FIELD</strong> - <em>Field of Dreams</em> (1989)<br><strong>DANCES</strong> - <em>Dances with Wolves</em> (1990)<br><strong>TIN</strong> - <em>Tin Cup</em> (1996)<br><strong>BULL</strong> - <em>Bull Durham</em> (1988)",
+          "words": [
+            "FIELD",
+            "DANCES",
+            "TIN",
+            "BULL"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Building Materials",
+          "difficulty": 1,
+          "solution": "<strong>STONE</strong> - Natural stone used in construction<br><strong>TILE</strong> - Ceramic or porcelain tiles for flooring and walls<br><strong>STEEL</strong> - Metal alloy used in structural frameworks<br><strong>WOOD</strong> - Lumber and timber for framing and finishing",
+          "words": [
+            "STONE",
+            "TILE",
+            "STEEL",
+            "WOOD"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Words That Follow RED",
+          "difficulty": 2,
+          "solution": "<strong>BULL</strong> - <em>Red Bull</em> (energy drink)<br><strong>HERRING</strong> - <em>Red Herring</em> (misleading clue or distraction)<br><strong>FLAG</strong> - <em>Red Flag</em> (warning sign)<br><strong>WOOD</strong> - <em>Redwood</em> (type of tree)",
+          "words": [
+            "BULL",
+            "HERRING",
+            "FLAG",
+            "WOOD"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Cornerz Puzzle 9",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "rating": 82,
+      "solveRating": 3,
+      "words": [
+        "GOLD",
+        "SWORD",
+        "TUNA",
+        "SAIL",
+        "VICTOR",
+        "SENT",
+        "PRIME",
+        "CACHE",
+        "GOAT",
+        "PASS",
+        "RANGE",
+        "DEW"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Types of Fish",
+          "difficulty": 1,
+          "solution": "<strong>GOLD</strong> - Goldfish (common aquarium fish)<br><strong>SWORD</strong> - Swordfish (large game fish)<br><strong>TUNA</strong> - Tuna fish (commercial food fish)<br><strong>SAIL</strong> - Sailfish (fish with large dorsal fin)",
+          "words": [
+            "GOLD",
+            "SWORD",
+            "TUNA",
+            "SAIL"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Words preceded by MOUNTAIN",
+          "difficulty": 2,
+          "solution": "<strong>GOAT</strong> - Mountain Goat<br><strong>PASS</strong> - Mountain Pass<br><strong>RANGE</strong> - Mountain Range<br><strong>DEW</strong> - Mountain Dew (beverage brand)",
+          "words": [
+            "GOAT",
+            "PASS",
+            "RANGE",
+            "DEW"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Homophones of money terms",
+          "difficulty": 4,
+          "solution": "<strong>SAIL</strong> - Sounds like <em>Sale</em><br><strong>SENT</strong> - Sounds like <em>Cent</em><br><strong>CACHE</strong> - Sounds like <em>Cash</em><br><strong>DEW</strong> - Sounds like <em>Due</em>",
+          "words": [
+            "SAIL",
+            "SENT",
+            "CACHE",
+            "DEW"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Best / top-tier",
+          "difficulty": 3,
+          "solution": "<strong>GOLD</strong> - Gold medal (highest award)<br><strong>VICTOR</strong> - Victor (winner)<br><strong>PRIME</strong> - Prime quality (best grade)<br><strong>GOAT</strong> - GOAT (Greatest Of All Time)",
+          "words": [
+            "GOLD",
+            "VICTOR",
+            "PRIME",
+            "GOAT"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Cornerz Puzzle 10",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "rating": 78,
+      "solveRating": 3,
+      "words": [
+        "NEW",
+        "OPEN",
+        "SAVE",
+        "CLOSE",
+        "NORTH",
+        "RHODE",
+        "WEST",
+        "SERVE",
+        "RACKET",
+        "MATCH",
+        "MOOT",
+        "BREAKING"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "File Menu Options",
+          "difficulty": 1,
+          "solution": "<strong>NEW</strong> - File &gt; New (create a new document)<br><strong>OPEN</strong> - File &gt; Open (open an existing file)<br><strong>SAVE</strong> - File &gt; Save (save the current file)<br><strong>CLOSE</strong> - File &gt; Close (close the current document)",
+          "words": [
+            "NEW",
+            "OPEN",
+            "SAVE",
+            "CLOSE"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tennis Terms",
+          "difficulty": 3,
+          "solution": "<strong>OPEN</strong> - A major open tournament (e.g. US Open)<br><strong>SERVE</strong> - Putting the ball in play to start a point<br><strong>RACKET</strong> - The strung paddle used to hit the ball<br><strong>MATCH</strong> - A complete contest between two players or teams",
+          "words": [
+            "OPEN",
+            "SERVE",
+            "RACKET",
+            "MATCH"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "___ Point",
+          "difficulty": 4,
+          "solution": "<strong>MATCH</strong> - Match Point (the point that wins the match)<br><strong>MOOT</strong> - Moot Point (an issue open to debate, or no longer relevant)<br><strong>WEST</strong> - West Point (the U.S. Military Academy in New York)<br><strong>BREAKING</strong> - Breaking Point (the moment of crisis or collapse)",
+          "words": [
+            "MATCH",
+            "MOOT",
+            "WEST",
+            "BREAKING"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "First Word of a US State",
+          "difficulty": 2,
+          "solution": "<strong>NEW</strong> - New York, New Jersey, New Mexico, New Hampshire<br><strong>NORTH</strong> - North Carolina, North Dakota<br><strong>RHODE</strong> - Rhode Island<br><strong>WEST</strong> - West Virginia",
+          "words": [
+            "NEW",
+            "NORTH",
+            "RHODE",
+            "WEST"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Cornerz Puzzle 11",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "rating": 92,
+      "solveRating": 3,
+      "words": [
+        "BIRD",
+        "KETTLE",
+        "REFEREE",
+        "TRAIN",
+        "CANDY CANE",
+        "CROSSWALK",
+        "TIGER",
+        "ANGEL",
+        "TINSEL",
+        "ORNAMENT",
+        "AIRPLANE",
+        "HOSPITAL"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Things That Whistle",
+          "difficulty": 2,
+          "solution": "<strong>BIRD</strong> - Birds whistle and tweet<br><strong>KETTLE</strong> - A boiling kettle whistles to signal it's ready<br><strong>REFEREE</strong> - Blows a whistle to start, stop, and call fouls<br><strong>TRAIN</strong> - Train horns and whistles signal departures and crossings",
+          "words": [
+            "BIRD",
+            "KETTLE",
+            "REFEREE",
+            "TRAIN"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Things With Stripes",
+          "difficulty": 1,
+          "solution": "<strong>CANDY CANE</strong> - Classic red and white spiral stripes<br><strong>CROSSWALK</strong> - White painted stripes across the road<br><strong>REFEREE</strong> - Iconic black and white striped uniform<br><strong>TIGER</strong> - Orange fur with black stripes",
+          "words": [
+            "CANDY CANE",
+            "CROSSWALK",
+            "REFEREE",
+            "TIGER"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Christmas Tree Decorations",
+          "difficulty": 3,
+          "solution": "<strong>CANDY CANE</strong> - Hooked candy hung on tree branches<br><strong>ANGEL</strong> - Traditional tree topper<br><strong>TINSEL</strong> - Shiny metallic strands draped on branches<br><strong>ORNAMENT</strong> - Decorative balls and shapes hung on the tree",
+          "words": [
+            "CANDY CANE",
+            "ANGEL",
+            "TINSEL",
+            "ORNAMENT"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Things With Wings",
+          "difficulty": 4,
+          "solution": "<strong>ANGEL</strong> - Angel wings<br><strong>BIRD</strong> - Bird wings<br><strong>AIRPLANE</strong> - Airplane wings<br><strong>HOSPITAL</strong> - A hospital wing is a section or building of a hospital",
+          "words": [
+            "ANGEL",
+            "BIRD",
+            "AIRPLANE",
+            "HOSPITAL"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Cornerz Puzzle 12",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 3,
+      "rating": 64,
+      "solveRating": 2,
+      "words": [
+        "ROUNDUP",
+        "LASSO",
+        "CAMPFIRE",
+        "DRAW",
+        "STALEMATE",
+        "TIE",
+        "WASH",
+        "SHAMPOO",
+        "STYLE",
+        "TRIM",
+        "MOWING",
+        "FERTILIZER"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Cowboy Things",
+          "difficulty": 4,
+          "solution": "<strong>ROUNDUP</strong> - A cattle roundup, gathering livestock on the range<br><strong>LASSO</strong> - Rope thrown to catch cattle or horses<br><strong>CAMPFIRE</strong> - Cowboys gather around the campfire on the trail<br><strong>DRAW</strong> - A quick draw, pulling a gun from its holster",
+          "words": [
+            "ROUNDUP",
+            "LASSO",
+            "CAMPFIRE",
+            "DRAW"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "No Winner",
+          "difficulty": 3,
+          "solution": "<strong>DRAW</strong> - A draw ends with neither side winning<br><strong>STALEMATE</strong> - A stalemate (chess or otherwise) produces no winner<br><strong>TIE</strong> - A tied score means no winner<br><strong>WASH</strong> - A wash means no net gain or loss; a toss-up",
+          "words": [
+            "DRAW",
+            "STALEMATE",
+            "TIE",
+            "WASH"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Hair Salon Services",
+          "difficulty": 1,
+          "solution": "<strong>WASH</strong> - Shampooing and rinsing the hair<br><strong>SHAMPOO</strong> - Cleaning product used to wash hair<br><strong>STYLE</strong> - Blow-drying and finishing the hair<br><strong>TRIM</strong> - A light cut to remove split ends",
+          "words": [
+            "WASH",
+            "SHAMPOO",
+            "STYLE",
+            "TRIM"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Lawn Care",
+          "difficulty": 2,
+          "solution": "<strong>TRIM</strong> - Trimming edges and hedges<br><strong>MOWING</strong> - Cutting the grass with a mower<br><strong>FERTILIZER</strong> - Nutrients applied to feed the lawn<br><strong>ROUNDUP</strong> - Roundup, the popular weed killer brand",
+          "words": [
+            "TRIM",
+            "MOWING",
+            "FERTILIZER",
+            "ROUNDUP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Cornerz Puzzle 13",
+      "description": "",
+      "author": "woctaog",
+      "difficulty": 2,
+      "rating": 76,
+      "solveRating": 3,
+      "words": [
+        "SOLE",
+        "PERCH",
+        "RAY",
+        "BASS",
+        "LACE",
+        "EYELET",
+        "DRUM",
+        "HARP",
+        "HEART",
+        "LUNG",
+        "TONGUE",
+        "ORGAN"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Types of Fish",
+          "difficulty": 4,
+          "solution": "<strong>SOLE</strong> - Flatfish found in coastal waters<br><strong>PERCH</strong> - Freshwater fish with spined dorsal fin<br><strong>RAY</strong> - Flat cartilaginous fish with barbed tail<br><strong>BASS</strong> - Freshwater or saltwater game fish",
+          "words": [
+            "SOLE",
+            "PERCH",
+            "RAY",
+            "BASS"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Parts of a Shoe",
+          "difficulty": 3,
+          "solution": "<strong>SOLE</strong> - Bottom of the shoe<br><strong>TONGUE</strong> - Flap under the laces<br><strong>LACE</strong> - Cord for fastening<br><strong>EYELET</strong> - Hole for threading laces",
+          "words": [
+            "SOLE",
+            "TONGUE",
+            "LACE",
+            "EYELET"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Musical Instruments",
+          "difficulty": 2,
+          "solution": "<strong>BASS</strong> - Low-pitched string instrument<br><strong>DRUM</strong> - Percussion instrument struck with sticks<br><strong>HARP</strong> - String instrument with multiple strings<br><strong>ORGAN</strong> - Keyboard instrument with pipes",
+          "words": [
+            "BASS",
+            "DRUM",
+            "HARP",
+            "ORGAN"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Body Parts",
+          "difficulty": 1,
+          "solution": "<strong>TONGUE</strong> - Organ in the mouth<br><strong>HEART</strong> - Organ that pumps blood<br><strong>LUNG</strong> - Organ for breathing<br><strong>ORGAN</strong> - General term for body parts with specific functions",
+          "words": [
+            "TONGUE",
+            "HEART",
+            "LUNG",
+            "ORGAN"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Cornerz Puzzle 14",
+      "description": "",
+      "author": "Claude",
+      "difficulty": 1,
+      "rating": 90,
+      "solveRating": 2,
+      "words": [
+        "WASH",
+        "DRY",
+        "FOLD",
+        "IRON",
+        "BLUFF",
+        "ANTE",
+        "CALL",
+        "THROW",
+        "QUARTER",
+        "GREEN",
+        "WEDGE",
+        "PUTTER"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Doing the Laundry",
+          "difficulty": 1,
+          "solution": "<strong>WASH</strong> - Run the clothes through the washing machine<br><strong>DRY</strong> - Tumble or hang the clothes to dry<br><strong>FOLD</strong> - Fold the clean clothes<br><strong>IRON</strong> - Press out the wrinkles",
+          "words": [
+            "WASH",
+            "DRY",
+            "FOLD",
+            "IRON"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Poker Actions",
+          "difficulty": 3,
+          "solution": "<strong>FOLD</strong> - Surrender your hand and sit out the rest of the round<br><strong>CALL</strong> - Match the current bet<br><strong>BLUFF</strong> - Bet big on a weak hand to scare opponents off<br><strong>ANTE</strong> - Put in the required stake before the deal",
+          "words": [
+            "FOLD",
+            "CALL",
+            "BLUFF",
+            "ANTE"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "___ BACK",
+          "difficulty": 4,
+          "solution": "<strong>CALL</strong> - Callback (a return phone call, or a second audition)<br><strong>THROW</strong> - Throwback (a nostalgic nod to the past)<br><strong>QUARTER</strong> - Quarterback (football position)<br><strong>GREEN</strong> - Greenback (slang for a U.S. dollar bill)",
+          "words": [
+            "CALL",
+            "THROW",
+            "QUARTER",
+            "GREEN"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Golf Terms",
+          "difficulty": 2,
+          "solution": "<strong>GREEN</strong> - The closely mown area around the hole<br><strong>IRON</strong> - Club used for approach shots<br><strong>WEDGE</strong> - High-loft club for short shots and bunkers<br><strong>PUTTER</strong> - Club used on the green",
+          "words": [
+            "GREEN",
+            "IRON",
+            "WEDGE",
+            "PUTTER"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Cornerz Puzzle 15",
+      "description": "",
+      "author": "Claude",
+      "difficulty": 2,
+      "rating": 92,
+      "solveRating": 3,
+      "words": [
+        "SPEED",
+        "TOURIST",
+        "MOUSE",
+        "DEATH",
+        "FOOL",
+        "MAGICIAN",
+        "STAR",
+        "POST",
+        "TIMES",
+        "MONITOR",
+        "KEYBOARD",
+        "SPEAKER"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "___ TRAP",
+          "difficulty": 2,
+          "solution": "<strong>MOUSE</strong> - Mousetrap (spring-loaded rodent catcher)<br><strong>SPEED</strong> - Speed trap (where police watch for speeders)<br><strong>TOURIST</strong> - Tourist trap (overpriced attraction)<br><strong>DEATH</strong> - Death trap (something extremely dangerous)",
+          "words": [
+            "MOUSE",
+            "SPEED",
+            "TOURIST",
+            "DEATH"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Tarot Cards",
+          "difficulty": 4,
+          "solution": "<strong>DEATH</strong> - The Death card (transformation and endings)<br><strong>STAR</strong> - The Star card (hope and renewal)<br><strong>FOOL</strong> - The Fool card (new beginnings, card 0)<br><strong>MAGICIAN</strong> - The Magician card (skill and willpower)",
+          "words": [
+            "DEATH",
+            "STAR",
+            "FOOL",
+            "MAGICIAN"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Newspaper Names",
+          "difficulty": 3,
+          "solution": "<strong>STAR</strong> - The Toronto Star, Kansas City Star<br><strong>MONITOR</strong> - The Christian Science Monitor<br><strong>POST</strong> - The Washington Post, New York Post<br><strong>TIMES</strong> - The New York Times, Los Angeles Times",
+          "words": [
+            "STAR",
+            "MONITOR",
+            "POST",
+            "TIMES"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Computer Parts",
+          "difficulty": 1,
+          "solution": "<strong>MONITOR</strong> - The display screen<br><strong>MOUSE</strong> - Point-and-click input device<br><strong>KEYBOARD</strong> - Typing input device<br><strong>SPEAKER</strong> - Audio output device",
+          "words": [
+            "MONITOR",
+            "MOUSE",
+            "KEYBOARD",
+            "SPEAKER"
+          ]
+        }
+      ]
+    },
+    {
+      "id": -1,
+      "title": "Test Puzzle",
+      "description": "Stress-test puzzle for text fitting with extreme word and category lengths.",
+      "author": "woctaog",
+      "difficulty": 1,
+      "rating": 15,
+      "solveRating": 1,
+      "words": [
+        "COUNTERPRODUCTIVE",
+        "GO",
+        "EXTRAORDINARY",
+        "AX",
+        "BAMBOOZLE",
+        "HI",
+        "PERPENDICULAR",
+        "ME",
+        "QUINTESSENTIAL",
+        "UP",
+        "JUXTAPOSITION",
+        "RAZZMATAZZ"
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Words That Rhyme With A President's Last Name",
+          "difficulty": 1,
+          "solution": "Stress test puzzle - this category contains test words of varying lengths.",
+          "words": [
+            "COUNTERPRODUCTIVE",
+            "BAMBOOZLE",
+            "HI",
+            "GO"
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Big",
+          "difficulty": 2,
+          "solution": "Stress test puzzle - this category tests text fitting with extremely long words.",
+          "words": [
+            "COUNTERPRODUCTIVE",
+            "PERPENDICULAR",
+            "ME",
+            "EXTRAORDINARY"
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Overwhelming Sensations",
+          "difficulty": 3,
+          "solution": "Stress test puzzle - this category combines very long and very short words.",
+          "words": [
+            "GO",
+            "QUINTESSENTIAL",
+            "UP",
+            "AX"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Communication Methods",
+          "difficulty": 4,
+          "solution": "Stress test puzzle - this category pushes layout limits with extreme word lengths.",
+          "words": [
+            "EXTRAORDINARY",
+            "JUXTAPOSITION",
+            "RAZZMATAZZ",
+            "AX"
           ]
         }
       ]
