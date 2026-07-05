@@ -382,6 +382,32 @@ Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 (
 
 ---
 
+## Puzzle Data Encryption (Spoiler Prevention)
+
+### Shipped Format (`src/assets/puzzles.json`)
+- Top-level `{ "format": "encrypted-v1", "puzzles": [...] }`
+- Each real puzzle (id > 0) is an opaque blob: `{ id, releaseDate, difficulty, iv, ciphertext }` — title, words, and categories are unreadable without decryption
+- Dev/test entries (id ≤ 0) remain plaintext (nothing to spoil)
+- Goal is casual spoiler prevention, not DRM: keys derive from stored release dates, so a determined user running the crypto can still peek
+
+### Scheme
+- Key: `PBKDF2(password = releaseDate "YYYY-MM-DD", salt = "cornerz-<id>", 100k iterations, SHA-256)` → 256-bit AES key
+- Data: AES-256-GCM with 12-byte random IV; auth tag appended (native Web Crypto AES-GCM format)
+- Defined in `tools/puzzle-crypto.js`; runtime mirror in `StaticPuzzleProvider`
+
+### Tooling
+- `npm run encrypt` — reads `tools/puzzles-plaintext.json` (gitignored source of truth), writes encrypted assets file; refuses to double-encrypt; round-trip verifies before writing
+- `npm run decrypt` — reconstructs the plaintext source from the assets file (also handled the one-time migration); nothing is ever unrecoverable
+- `npm run validate` — validates the plaintext file by default and transparently decrypts encrypted input
+- Workflow documented in `CLAUDE.md`: edit plaintext → validate → encrypt → commit encrypted file
+
+### Runtime Decryption
+- `StaticPuzzleProvider` decrypts entries on demand via the Web Crypto API (`crypto.subtle`)
+- Per-puzzle promise cache — crypto runs once per puzzle per session
+- Library decrypts only released puzzles (unreleased ones are filtered out before decryption and never render)
+
+---
+
 ## Puzzle Provider Architecture (API-Ready)
 
 ### Abstract Provider
@@ -390,8 +416,8 @@ Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 (
 - All return RxJS `Observable`s for async compatibility
 
 ### Static Implementation
-- `StaticPuzzleProvider` loads puzzles from `assets/puzzles.json` via HTTP
-- Cached with `shareReplay(1)` — single fetch per session
+- `StaticPuzzleProvider` loads puzzles from `assets/puzzles.json` via HTTP and decrypts encrypted entries on demand (see Puzzle Data Encryption)
+- Cached with `shareReplay(1)` — single fetch per session; decrypted puzzles cached per id
 - Daily puzzle calculated deterministically from `PUZZLE_START_DATE` in `daily.constants.ts`
 - `getLibrary()` returns `PuzzleSummary` objects with computed difficulty label
 

@@ -33,7 +33,26 @@
       "Bash(git -C /home/woctaog/source/cornerz diff --stat)",
       "Bash(git push *)",
       "Bash(git *)",
-      "Bash(curl -s --max-time 15 https://cornerz.cc/assets/puzzles.json)"
+      "Bash(curl -s --max-time 15 https://cornerz.cc/assets/puzzles.json)",
+      "Bash(apt-get update *)",
+      "Bash(apt-get install *)",
+      "Bash(ldd /home/woctaog/.cache/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell)",
+      "Bash(mkdir -p /tmp/chrome-libs)",
+      "Read(//tmp/**)",
+      "Bash(wget -q http://deb.debian.org/debian/pool/main/n/nspr/libnspr4_4.35-1_amd64.deb)",
+      "Bash(dpkg -x libnspr4_4.35-1_amd64.deb .)",
+      "Bash(find . -name \"libnspr4.so*\")",
+      "Bash(wget -q http://deb.debian.org/debian/pool/main/n/nss/libnss3_3.98-1_amd64.deb)",
+      "Bash(dpkg -x libnss3_3.98-1_amd64.deb .)",
+      "Bash(wget -q http://deb.debian.org/debian/pool/main/n/nss/libnssutil3_3.98-1_amd64.deb)",
+      "Bash(dpkg -x libnssutil3_3.98-1_amd64.deb .)",
+      "Bash(wget -q http://deb.debian.org/debian/pool/main/a/alsa-lib/libasound2_1.2.12-1_amd64.deb)",
+      "Bash(curl -L -o libnss3.deb http://deb.debian.org/debian/pool/main/n/nss/libnss3_3.98-1_amd64.deb)",
+      "Bash(curl -s \"https://packages.ubuntu.com/noble/libnss3\")",
+      "Bash(xargs -I {} curl -L -o libnss3.deb \"https://packages.ubuntu.com{}\")",
+      "Bash(xargs ls -la)",
+      "Bash(echo \"BUILD_EXIT=$?\")",
+      "Bash(gh auth *)"
     ]
   }
 }

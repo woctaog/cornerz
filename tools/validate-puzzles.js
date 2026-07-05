@@ -15,7 +15,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const jsonPath = process.argv[2] || path.join(__dirname, '..', 'src', 'assets', 'puzzles.json');
+// Default to the plaintext source of truth; fall back to the (possibly
+// encrypted) assets file, whose entries are decrypted transparently below.
+const plaintextDefault = path.join(__dirname, 'puzzles-plaintext.json');
+const assetsDefault = path.join(__dirname, '..', 'src', 'assets', 'puzzles.json');
+const jsonPath = process.argv[2] || (fs.existsSync(plaintextDefault) ? plaintextDefault : assetsDefault);
+const { decryptPuzzle, isEncryptedEntry } = require('./puzzle-crypto');
 
 // --- Helpers ---
 
@@ -252,6 +257,12 @@ try {
 if (!data.puzzles || !Array.isArray(data.puzzles)) {
   console.error(red('Expected top-level "puzzles" array'));
   process.exit(1);
+}
+
+const encryptedCount = data.puzzles.filter(isEncryptedEntry).length;
+if (encryptedCount > 0) {
+  console.log(`Decrypting ${encryptedCount} encrypted puzzle(s) for validation...`);
+  data.puzzles = data.puzzles.map(entry => (isEncryptedEntry(entry) ? decryptPuzzle(entry) : entry));
 }
 
 console.log(`Found ${data.puzzles.length} puzzle(s)`);

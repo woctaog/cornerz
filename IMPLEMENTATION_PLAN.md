@@ -378,7 +378,7 @@ playwright.config.ts              # Multi-browser config with Angular dev server
 | 6th      | Phase 6 (Stats) | Done | StatsProvider, stats modal, streak badge |
 | 7th      | Phase 7 (Visual Polish) | Done | Animations, skeleton loaders, transitions, accessibility (dark mode deferred) |
 | 8th      | Phase 8 (Navigation) | Done | App shell nav, /play/:id, /stats, 404 page |
-| 9th      | Phase 9 (Puzzle Encryption) | TODO | Spoiler-proof future dailies with date-derived AES keys |
+| 9th      | Phase 9 (Puzzle Encryption) | Done | puzzles.json ships AES-GCM blobs; keys derived from release dates |
 
 Phase 2 tests should be expanded as new features land in later phases.
 
@@ -389,31 +389,29 @@ Phase 2 tests should be expanded as new features land in later phases.
 
 **Approach**: Encrypt each puzzle's words and categories with a key derived from its scheduled release date. `puzzles.json` becomes a list of opaque encrypted blobs. The app decrypts only the puzzle(s) it currently needs using the corresponding date key — future puzzles remain unreadable without running the decryption logic and knowing the target date.
 
-- [ ] **9.1 — Encryption scheme design**
+- [x] **9.1 — Encryption scheme design**
   - Use Web Crypto API (`AES-GCM`) — available in all modern browsers, no library needed
   - Key derivation: `PBKDF2(password=releaseDate, salt=puzzleId, iterations=100k, hash=SHA-256)` → 256-bit AES key
   - `releaseDate` format: `YYYY-MM-DD` string of the puzzle's scheduled daily date
   - Each puzzle entry in JSON stores: `{ id, releaseDate, iv, ciphertext }` — plaintext fields (`title`, `words`, `categories`) replaced by the encrypted blob
   - Metadata that doesn't spoil anything (`id`, `releaseDate`, puzzle-level `difficulty`) may remain in plaintext for the library view
 
-- [ ] **9.2 — Build-time encryption script**
+- [x] **9.2 — Build-time encryption script** *(tools/encrypt-puzzles.js + tools/decrypt-puzzles.js + shared tools/puzzle-crypto.js; plaintext source lives at tools/puzzles-plaintext.json, gitignored and reconstructible via `npm run decrypt`)*
   - Node.js script (`tools/encrypt-puzzles.js`) reads `puzzles-plaintext.json`, encrypts each puzzle, writes `puzzles.json`
   - `puzzles-plaintext.json` kept out of the repo (or in a private branch / local only) — this is the source of truth
   - npm script: `npm run encrypt` to regenerate `puzzles.json` after adding new puzzles
   - Script also assigns `releaseDate` fields based on the launch date + puzzle order
 
-- [ ] **9.3 — Runtime decryption in StaticPuzzleProvider**
+- [x] **9.3 — Runtime decryption in StaticPuzzleProvider**
   - `StaticPuzzleProvider` fetches `puzzles.json` and decrypts entries on demand using Web Crypto API
   - Decrypts only the puzzle(s) needed: daily puzzle uses today's date, archive uses the stored `releaseDate`
   - Past puzzles (released dates) are decryptable; future dates will also decrypt if a user changes their clock — this is acceptable, as the goal is casual spoiler prevention not DRM
   - Decrypted results cached in memory (`shareReplay`) so crypto runs once per session per puzzle
 
-- [ ] **9.4 — Library view adaptation**
-  - Library cards show only unencrypted metadata (`id`, `releaseDate`, `difficulty`, a generic title like "Daily Puzzle #12") until the puzzle's release date
-  - On/after release date, full title and description are shown (decrypted)
-  - Completed puzzles (per localStorage) always show their full details
+- [x] **9.4 — Library view adaptation**
+  - Simpler than planned: the library already hides unreleased puzzles entirely (date filter), so released cards just decrypt for full details and future puzzles never render — no generic-title state needed
 
-- [ ] **9.5 — Migration and tooling**
+- [x] **9.5 — Migration and tooling**
   - Migrate existing puzzles into the new encrypted format
   - Update `CLAUDE.md` with the workflow: edit `puzzles-plaintext.json` → run `npm run encrypt` → commit `puzzles.json`
   - Validate that all puzzles decrypt correctly before committing
