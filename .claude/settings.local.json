@@ -63,7 +63,16 @@
       "Bash(grep -B2 -A15 \"failed$\\\\|✘\")",
       "Bash(NODE_PATH=/home/woctaog/source/cornerz/node_modules node -e \"require\\('@playwright/test'\\); console.log\\('ok'\\)\")",
       "Bash(sed -i \"s/require\\('playwright'\\)/require\\('@playwright\\\\/test'\\)/\" /tmp/claude-1000/-home-woctaog-source-cornerz/9146e319-81c9-4755-ad8f-2c9e671e0542/scratchpad/mobile-fit-check.js)",
-      "Bash(NODE_PATH=/home/woctaog/source/cornerz/node_modules node /tmp/claude-1000/-home-woctaog-source-cornerz/9146e319-81c9-4755-ad8f-2c9e671e0542/scratchpad/mobile-fit-check.js)"
+      "Bash(NODE_PATH=/home/woctaog/source/cornerz/node_modules node /tmp/claude-1000/-home-woctaog-source-cornerz/9146e319-81c9-4755-ad8f-2c9e671e0542/scratchpad/mobile-fit-check.js)",
+      "Bash(npx angular-cli-ghpages *)",
+      "Bash(curl -s https://cornerz.cc/)",
+      "Bash(curl -sI https://cornerz.cc/)",
+      "Bash(gh api *)",
+      "Bash(curl -s https://api.github.com/repos/woctaog/cornerz/pages/builds/latest)",
+      "Bash(curl -s -H 'Cache-Control: no-cache' https://cornerz.cc/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://woctaog.github.io/cornerz/)",
+      "Bash(disown)",
+      "Bash(curl *)"
     ]
   }
 }

@@ -63,6 +63,8 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   currentStreak: number = 0;
   showCornerHint: boolean = false;
   showOneAway: boolean = false;
+  oneAwayMessage: string = 'One Away!';
+  oneAwayCorner: boolean = false;
   private oneAwayTimer: ReturnType<typeof setTimeout> | undefined;
   private readonly cornerHintKey = 'cornerz-corner-hint-shown';
   keepBoardVisibleAfterWin = false;
@@ -632,17 +634,24 @@ export class GameBoardComponent implements OnInit, OnDestroy {
 
   private triggerOneAwayIfApplicable(submittedWords: string[]): boolean {
     if (!this.currentPuzzle) return false;
-    const isOneAway = this.currentPuzzle.categories
+    const oneAwayCategories = this.currentPuzzle.categories
       .filter(cat => !this.completedLines.has(this.getCategoryLineName(cat)))
-      .some(cat => {
-        const matches = submittedWords.filter(w => cat.words.includes(w)).length;
-        return matches === 3;
-      });
-    if (!isOneAway) return false;
+      .filter(cat => submittedWords.filter(w => cat.words.includes(w)).length === 3);
+    if (oneAwayCategories.length === 0) return false;
+
+    // The near-miss is a corner problem when the missing fourth word is
+    // currently sitting in a swappable corner of an already-solved line.
+    this.oneAwayCorner = oneAwayCategories.some(cat => {
+      const missingWord = cat.words.find(w => !submittedWords.includes(w));
+      return this.gridTiles.some((tile, i) => tile?.word === missingWord && this.isMovableCorner(i));
+    });
+    this.oneAwayMessage = this.oneAwayCorner
+      ? 'One away — the word you need is in a corner of a solved line!'
+      : 'One Away!';
 
     this.showOneAway = true;
     if (this.oneAwayTimer) clearTimeout(this.oneAwayTimer);
-    this.oneAwayTimer = setTimeout(() => { this.showOneAway = false; }, 3000);
+    this.oneAwayTimer = setTimeout(() => { this.showOneAway = false; }, this.oneAwayCorner ? 4500 : 3000);
     return true;
   }
 
@@ -699,8 +708,12 @@ export class GameBoardComponent implements OnInit, OnDestroy {
           this.mistakes++;
           this.gameSequence.push(0);
           const oneAway = this.triggerOneAwayIfApplicable(lineWords);
-          this.announce(`That ${lineName} line is not a category.${oneAway ? ' One away!' : ''} Tiles returned to the bank. Mistakes: ${this.mistakes}.`);
-          this.maybeShowCornerHint();
+          this.announce(`That ${lineName} line is not a category.${oneAway ? ' ' + this.oneAwayMessage : ''} Tiles returned to the bank. Mistakes: ${this.mistakes}.`);
+          // The corner-specific one-away toast already teaches the swap, so
+          // save the one-time generic hint for a mistake it applies to.
+          if (!(oneAway && this.oneAwayCorner)) {
+            this.maybeShowCornerHint();
+          }
           this.isResolvingInvalidLine = true;
           this.playShake(positions);
           setTimeout(() => {

@@ -48,6 +48,8 @@ A complete reference of all currently built features.
 - Mistake counter increments
 - After 500ms, non-locked tiles return to the bank
 - Grid is briefly locked during the shake/return animation
+- **One Away toast**: shown when the failed line has 3 of 4 words of an unsolved category (3s)
+- **Corner-aware One Away variant**: if the missing fourth word is currently sitting in a movable corner of an already-solved line, the toast instead reads "One away — the word you need is in a corner of a solved line!" and stays up longer (4.5s); it fires every time the situation occurs and suppresses the one-time generic corner hint for that mistake (saving it for a mistake it applies to)
 
 ### Corner Word Locking
 - Corner positions (0, 3, 12, 15) can belong to two lines

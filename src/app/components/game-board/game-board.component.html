@@ -206,7 +206,7 @@
 
 <app-stats-modal *ngIf="statsModalOpen" (close)="statsModalOpen = false"></app-stats-modal>
 
-<div class="one-away-toast" *ngIf="showOneAway">One Away!</div>
+<div class="one-away-toast" *ngIf="showOneAway" [class.long]="oneAwayCorner">{{ oneAwayMessage }}</div>
 
 <div class="corner-hint-toast" *ngIf="showCornerHint" (click)="dismissCornerHint()">
   <span class="corner-hint-icon">⇄</span>

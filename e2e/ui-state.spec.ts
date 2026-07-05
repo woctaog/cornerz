@@ -178,6 +178,24 @@ test.describe('UI state', () => {
     await expect(page.locator('app-stats-modal')).not.toBeVisible();
   });
 
+  test('one-away toast flags a wrong corner in a solved line', async ({ page }) => {
+    // Solve the top line (Jewelry) with its corners swapped: the line still
+    // completes as a set, but RING (needed by the left line) ends up at cell 3.
+    await fillLine(page, [['BAND', 0], ['CHAIN', 1], ['PENDANT', 2], ['RING', 3]]);
+    await expect(page.locator('#grid-cell-0')).toHaveClass(/completed/, { timeout: 10000 });
+
+    // Attempt the left line (Geometric Shapes). Its fourth word, RING, is
+    // sitting in the solved top line's movable corner.
+    await fillLine(page, [['DIAMOND', 4], ['SQUARE', 8], ['CIRCLE', 12]]);
+    await expect(page.locator('.one-away-toast')).toContainText('corner of a solved line');
+
+    // A plain near-miss (missing word still in the bank) keeps the generic
+    // message: BAND + BAT/BASE/DIAMOND is one away from Baseball (PITCH).
+    await expect(page.locator('.one-away-toast')).not.toBeVisible({ timeout: 6000 });
+    await fillLine(page, [['BAT', 4], ['BASE', 8], ['DIAMOND', 12]]);
+    await expect(page.locator('.one-away-toast')).toHaveText('One Away!');
+  });
+
   test('puzzle loads from URL query parameter', async ({ page }) => {
     // Puzzle 1 loaded via ?puzzle=1 in beforeEach
     await expect(page.locator('.puzzle-title')).toHaveText('Cornerz Puzzle 1');
