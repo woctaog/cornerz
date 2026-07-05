@@ -7,6 +7,13 @@
       <a routerLink="/stats" routerLinkActive="active">Stats</a>
       <a routerLink="/submit" routerLinkActive="active">Submit</a>
     </div>
+    <button
+      class="theme-toggle"
+      type="button"
+      (click)="theme.toggle()"
+      [attr.aria-label]="theme.isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+      [title]="theme.isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    >{{ theme.isDark ? '☀️' : '🌙' }}</button>
   </nav>
   <router-outlet></router-outlet>
 </div>

@@ -52,7 +52,18 @@
       "Bash(xargs -I {} curl -L -o libnss3.deb \"https://packages.ubuntu.com{}\")",
       "Bash(xargs ls -la)",
       "Bash(echo \"BUILD_EXIT=$?\")",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(xargs cat)",
+      "Bash(grep -rn --include=\"*.scss\" -E \"#[0-9a-fA-F]{3,8}\\\\b|rgba?\\\\\\(\" src/app/)",
+      "Bash(grep -rln --include=\"*.scss\" -E \"#[0-9a-fA-F]{3,8}\\\\b\" src/app/)",
+      "Bash(xargs -I{} sh -c 'echo \"{}: $\\(grep -cE \"#[0-9a-fA-F]{3,8}\\\\b\" {}\\)\"')",
+      "Bash(grep -rn --include=\"*.scss\" -E \"#[0-9a-fA-F]{3,8}\\\\b\" src/app/)",
+      "Bash(CHROME_BIN=/home/woctaog/.cache/ms-playwright/chromium-1208/chrome-linux64/chrome npx ng test --watch=false --browsers=ChromeHeadless)",
+      "Bash(grep -B5 \"FAILED$\\\\|FAILED \")",
+      "Bash(grep -B2 -A15 \"failed$\\\\|✘\")",
+      "Bash(NODE_PATH=/home/woctaog/source/cornerz/node_modules node -e \"require\\('@playwright/test'\\); console.log\\('ok'\\)\")",
+      "Bash(sed -i \"s/require\\('playwright'\\)/require\\('@playwright\\\\/test'\\)/\" /tmp/claude-1000/-home-woctaog-source-cornerz/9146e319-81c9-4755-ad8f-2c9e671e0542/scratchpad/mobile-fit-check.js)",
+      "Bash(NODE_PATH=/home/woctaog/source/cornerz/node_modules node /tmp/claude-1000/-home-woctaog-source-cornerz/9146e319-81c9-4755-ad8f-2c9e671e0542/scratchpad/mobile-fit-check.js)"
     ]
   }
 }

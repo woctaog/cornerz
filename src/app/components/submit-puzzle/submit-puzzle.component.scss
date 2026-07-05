@@ -10,7 +10,7 @@
   width: min(92vw, 720px);
   margin: 0 auto;
   padding: 0.75rem 0.75rem 1.5rem;
-  color: #263238;
+  color: var(--text-primary);
 }
 
 .submit-header {
@@ -26,17 +26,17 @@
 }
 
 .back-btn {
-  border: 1px solid #cfd8dc;
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  background: #fff;
-  color: #37474f;
+  background: var(--surface);
+  color: var(--text-secondary);
   padding: 0.35rem 0.65rem;
   cursor: pointer;
 }
 
 .submit-description {
   margin: 0 0 1rem;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-size: 0.86rem;
   line-height: 1.4;
 }
@@ -55,28 +55,28 @@
 
   label {
     font-size: 0.82rem;
-    color: #455a64;
+    color: var(--text-secondary);
     font-weight: 500;
   }
 
   input,
   textarea {
-    border: 1px solid #cfd8dc;
+    border: 1px solid var(--border-subtle);
     border-radius: 6px;
     padding: 0.35rem 0.5rem;
     width: 100%;
     font-size: 0.88rem;
-    color: #263238;
-    background: #fff;
+    color: var(--text-primary);
+    background: var(--surface);
     box-sizing: border-box;
 
     &::placeholder {
-      color: #90a4ae;
+      color: var(--text-muted);
     }
 
     &:focus {
       outline: none;
-      border-color: #1976d2;
+      border-color: var(--accent);
     }
   }
 
@@ -87,11 +87,11 @@
 }
 
 .input-error {
-  border-color: #c62828 !important;
+  border-color: var(--error-text) !important;
 }
 
 .field-error {
-  color: #c62828;
+  color: var(--error-text);
   font-size: 0.78rem;
   margin-top: 0.2rem;
 }
@@ -103,19 +103,19 @@
   align-items: center;
   gap: 4px;
   font-size: 0.75rem;
-  color: #546e7a;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .corner-word-label {
-  color: #1f2a30;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .auto-fill-badge {
   font-size: 0.62rem;
-  background: #e3f2fd;
-  color: #1565c0;
+  background: var(--info-bg);
+  color: var(--info-text);
   border-radius: 3px;
   padding: 0 4px;
   line-height: 1.4;
@@ -123,13 +123,13 @@
 }
 
 .auto-filled-input {
-  background: #e3f2fd !important;
-  color: #1565c0 !important;
+  background: var(--info-bg) !important;
+  color: var(--info-text) !important;
   cursor: default;
-  border-color: #90caf9 !important;
+  border-color: var(--info-border) !important;
 
   &::placeholder {
-    color: #90a4ae;
+    color: var(--text-muted);
     font-style: italic;
     font-size: 0.75rem;
   }
@@ -143,13 +143,13 @@
   h3 {
     margin: 0 0 0.6rem;
     font-size: 1.05rem;
-    color: #1f2a30;
+    color: var(--text-primary);
   }
 }
 
 .category-block {
-  background: #ffffff;
-  border: 1px solid #d7e0e6;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
   padding: 0.7rem 0.75rem;
   margin-bottom: 0.6rem;
@@ -161,7 +161,7 @@
   gap: 0.4rem;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #37474f;
+  color: var(--text-secondary);
   margin-bottom: 0.5rem;
 }
 
@@ -201,7 +201,7 @@
   h3 {
     margin: 0 0 0.5rem;
     font-size: 1.05rem;
-    color: #1f2a30;
+    color: var(--text-primary);
   }
 }
 
@@ -215,10 +215,10 @@
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(4px, 1.5vw, 8px);
   width: min(100%, 400px);
-  border: 2px solid #333;
+  border: 2px solid var(--board-border);
   border-radius: 8px;
   padding: clamp(4px, 1.5vw, 8px);
-  background-color: #f5f5f5;
+  background-color: var(--board-bg);
 }
 
 .preview-cell {
@@ -230,20 +230,20 @@
   justify-content: center;
   padding: 3px;
   background: transparent;
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--cell-dashed-border);
   overflow: hidden;
   text-align: center;
 }
 
 // Corner cells: white tile with solid border to show they're shared between two categories
 .preview-corner {
-  background: #ffffff !important;
-  border: 2px solid #666 !important;
+  background: var(--surface) !important;
+  border: 2px solid var(--preview-corner-border) !important;
   border-radius: 6px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   .cell-word {
-    color: #263238 !important;
+    color: var(--text-primary) !important;
     text-shadow: none !important;
     font-weight: 700;
   }
@@ -251,9 +251,9 @@
 
 // Center indicators: match real game's center-indicator style
 .preview-center {
-  border: 2px solid #888 !important;
+  border: 2px solid var(--center-indicator-border) !important;
   border-radius: 4px !important;
-  background: #666 !important; // fallback; inline style applies catColor over this
+  background: var(--center-indicator-bg) !important; // fallback; inline style applies catColor over this
   gap: 2px;
 }
 
@@ -266,7 +266,7 @@
 
 // Empty category cells: dashed border, no fill
 .preview-cat-empty {
-  border: 2px dashed #ccc !important;
+  border: 2px dashed var(--cell-dashed-border) !important;
   background: transparent !important;
 }
 
@@ -312,7 +312,7 @@
   box-sizing: border-box;
 
   &.cell-empty {
-    color: #b0bec5;
+    color: var(--text-muted);
     font-size: 1.2rem;
     font-weight: 400;
     text-shadow: none;
@@ -326,9 +326,9 @@
 }
 
 %error-box {
-  border: 1px solid #ef9a9a;
+  border: 1px solid var(--error-border);
   border-radius: 8px;
-  background: #ffebee;
+  background: var(--error-bg);
   padding: 0.5rem 0.75rem;
 
   ul {
@@ -337,7 +337,7 @@
   }
 
   li {
-    color: #c62828;
+    color: var(--error-text);
     font-size: 0.82rem;
     line-height: 1.4;
   }
@@ -360,8 +360,8 @@ fieldset {
 }
 
 .success-card {
-  background: #ffffff;
-  border: 1px solid #c8e6c9;
+  background: var(--surface);
+  border: 1px solid var(--success-border);
   border-radius: 10px;
   padding: 1.5rem 1rem;
   text-align: center;
@@ -369,19 +369,19 @@ fieldset {
   h3 {
     margin: 0 0 0.5rem;
     font-size: 1.1rem;
-    color: #2e7d32;
+    color: var(--success-text);
   }
 
   p {
     margin: 0 0 1rem;
-    color: #546e7a;
+    color: var(--text-secondary);
     font-size: 0.88rem;
     line-height: 1.4;
   }
 }
 
 .submit-error {
-  color: #c62828;
+  color: var(--error-text);
   font-size: 0.86rem;
   margin-bottom: 0.75rem;
 }
@@ -394,7 +394,7 @@ fieldset {
     align-items: flex-start;
     gap: 0.5rem;
     font-size: 0.78rem;
-    color: #546e7a;
+    color: var(--text-secondary);
     cursor: pointer;
     line-height: 1.4;
 
@@ -412,7 +412,7 @@ fieldset {
 
   strong {
     display: block;
-    color: #c62828;
+    color: var(--error-text);
     font-size: 0.82rem;
     margin-bottom: 0.25rem;
   }
@@ -422,14 +422,14 @@ fieldset {
   border: none;
   border-radius: 8px;
   padding: 0.5rem 1.2rem;
-  background: #1976d2;
+  background: var(--accent);
   color: #fff;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
 
   &:hover:not(:disabled) {
-    background: #1565c0;
+    background: var(--accent-hover);
   }
 
   &:disabled {

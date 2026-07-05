@@ -7,6 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    // Apply a manually chosen theme before the app boots to avoid a flash
+    // of the wrong theme. Kept in sync with ThemeService ('cornerz-theme').
+    try {
+      var theme = localStorage.getItem('cornerz-theme');
+      if (theme === 'light' || theme === 'dark') {
+        document.documentElement.dataset.theme = theme;
+      }
+    } catch (e) { /* storage unavailable: fall back to OS preference */ }
+  </script>
 </head>
 <body>
   <app-root></app-root>

@@ -60,6 +60,21 @@
   flex-shrink: 0;
 }
 
+.theme-toggle {
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0.28rem;
+  border-radius: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:hover {
+    background: var(--nav-hover-bg);
+  }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -76,7 +91,7 @@
     transition: background-color 0.15s ease, color 0.15s ease;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.7);
+      background: var(--nav-hover-bg);
       color: var(--text-primary);
     }
 
@@ -85,5 +100,21 @@
       color: var(--text-primary);
       box-shadow: 0 1px 4px rgba(26, 35, 50, 0.12);
     }
+  }
+}
+
+// Tighten the nav so brand + links + theme toggle fit narrow phones
+@media (max-width: 430px) {
+  .app-nav {
+    gap: 0.3rem;
+  }
+
+  .nav-links a {
+    padding: 0.28rem 0.35rem;
+  }
+
+  .theme-toggle {
+    padding: 0.24rem;
+    font-size: 0.85rem;
   }
 }

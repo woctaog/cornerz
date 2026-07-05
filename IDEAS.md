@@ -60,9 +60,6 @@ this as a menu.
 
 ## Polish
 
-- **Dark mode** — deferred from Phase 7.2; the design-token system
-  (`_variables.scss`) makes this mostly a token-swap under
-  `prefers-color-scheme` + a manual toggle.
 - **Sound effects** — soft click on placement, chime on line completion, fanfare
   on win; must be off by default with a persisted toggle (Open Question in plan).
 - **Haptics on mobile** — `navigator.vibrate` pulses for placement/completion
