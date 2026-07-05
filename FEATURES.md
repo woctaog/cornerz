@@ -357,8 +357,8 @@ Applied to completed grid cells, center indicators, solution modals, and win mod
 
 ## Responsive Design
 
-- Board width: `min(90vw, 400px, calc(100dvh - 285px))`
-- Mobile breakpoint at 768px adjusts board width, font sizes, and modal widths
+- Board width: `max(240px, min(90vw, 400px, calc((100dvh - 160px) / 1.75)))` — the `/1.75` accounts for the tile bank scaling with the board (3 rows ≈ 0.75× board height), so board + bank + chrome always fit the visible viewport without scrolling; the 240px floor keeps tiles readable on very short screens
+- Mobile breakpoint at 768px adjusts board width (chrome reserve tightened to 150px), font sizes, and modal widths
 - Grid gaps and padding use `clamp()` for fluid scaling
 - Modals capped at 85vh with scroll overflow
 - Typography uses `clamp()` for responsive sizing
@@ -434,14 +434,24 @@ Current puzzles: 1–6, 7 ("Puz #1"), 8 ("Puz #2"), 9 ("Cornerz Puzzle 9"), 10 (
 ## Shared Style System
 
 ### CSS Custom Properties (`src/styles/_variables.scss`)
+- Full semantic token set on `:root`: surfaces (`--surface`, `--surface-muted/-hover/-active`), borders (`--border-subtle/-strong`), text (`--text-primary/-secondary/-muted`), accent (`--accent`, `--accent-hover`), board/bank/cell tokens, selection & drag states, feedback (error/success/info), tags, toasts, streak badge, skeleton shimmer, and modal backdrop
 - All difficulty colors defined as CSS custom properties on `:root`
 - Per-level tokens: `--difficulty-{1-4}-color`, `--difficulty-{1-4}-bg`, `--difficulty-{1-4}-accent`, `--difficulty-{1-4}-glow`
 - String-mapped aliases for the library: `--difficulty-easy-color`, `--difficulty-medium-color`, `--difficulty-hard-color`
+- Component styles reference tokens only — remaining hardcoded colors are intentional (white text on colored tiles, WCAG dark-on-yellow overrides, shadows/glows)
+
+### Dark Mode
+- Full dark theme implemented as a token swap: a `dark-tokens` SCSS mixin in `_variables.scss` overrides all semantic tokens (including brightened difficulty colors and deep-tint difficulty backgrounds)
+- Applied two ways: `:root[data-theme='dark']` (manual choice) and `@media (prefers-color-scheme: dark)` on `:root:not([data-theme='light'])` (OS preference wins unless the user chose light)
+- `color-scheme: light/dark` set so native form controls and scrollbars match the theme
+- `ThemeService` (`src/app/services/theme.service.ts`): stamps `data-theme` on `<html>`, persists manual choice to `localStorage` (`cornerz-theme`), falls back to OS preference and tracks live `prefers-color-scheme` changes when no manual choice exists
+- Sun/moon toggle button in the nav (`app.component`) with aria-label; nav compacts below 430px so brand + links + toggle fit narrow phones
+- Inline script in `index.html` applies a persisted manual theme before Angular boots (no flash of wrong theme)
 
 ### SCSS Mixins (`src/styles/_mixins.scss`)
 - `difficulty-color($property)` — generates `[data-difficulty="N"]` rules mapping to `var(--difficulty-N-color)`
 - `difficulty-bg($property)` — same pattern for background tokens
-- `modal-backdrop` — shared fixed overlay used by help, solution, and win modals
+- `modal-backdrop` — shared fixed overlay used by help, solution, and win modals (backdrop color via `--modal-backdrop`)
 
 ### Grid Constants (`src/app/constants/grid.constants.ts`)
 - `DISABLED_SPOTS` — Set of center cell indices (5, 6, 9, 10)
